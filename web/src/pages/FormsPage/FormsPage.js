@@ -8,7 +8,10 @@ const FormsPage = () => {
     <>
       <MetaTags title="Forms" description="Forms page" />
       <h1>FormsPage</h1>
+
+      <h2>Prufa fyrir component sem getur tekið inn margar setningar</h2>
       <TestForm />
+      <h2>---------------------------------------------------</h2>
     </>
   )
 }

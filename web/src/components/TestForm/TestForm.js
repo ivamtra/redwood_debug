@@ -1,8 +1,5 @@
 import { useState } from 'react'
 
-import { render } from 'react-dom'
-
-import { Form, Submit, TextField } from '@redwoodjs/forms'
 const initialList = [
   {
     id: '0',
@@ -36,14 +33,28 @@ const TestForm = () => {
   }
 
   const consoleLog = () => {
-    for (let i = 0; i < 2; i++) console.log(finalList)
+    console.log(finalList)
   }
 
-  const onPoop = () => {
+  // FIXME: Þetta þarf alltaf að keyra tvisvar til að virka
+  const onDone = () => {
     let tempList = [...textArray]
     tempList.shift()
     setFinalList([...tempList, { id: String(idIndex), sentence: textValue }])
     while (textArray.length > 0) textArray.shift()
+    console.log(finalList)
+    console.log('list-length = ' + finalList.length)
+    console.log('index = ' + idIndex)
+  }
+
+  const onFinished = () => {
+    if (finalList.length === idIndex) {
+      // Gera ehv
+      console.log('success')
+    } else {
+      // Gera ehv
+      console.log('villa')
+    }
   }
   return (
     <>
@@ -66,8 +77,8 @@ const TestForm = () => {
             </li>
           ))}
         </ul>
-        <button onClick={onPoop}>Submit</button>
-        <button onClick={consoleLog}>Log</button>
+        <button onClick={onDone}>Done</button>
+        <button onClick={onFinished}>Submit</button>
       </div>
     </>
   )
