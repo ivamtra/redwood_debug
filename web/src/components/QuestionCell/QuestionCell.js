@@ -1,3 +1,5 @@
+import SentenceCell from '../SentenceCell/SentenceCell'
+
 export const QUERY = gql`
   query FindQuestionQuery($id: Int!) {
     question: question(id: $id) {

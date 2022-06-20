@@ -1,0 +1,16 @@
+yarn rw g cell AnswerComment
+yarn rw g cell Answer
+yarn rw g cell Badge
+yarn rw g cell Category
+yarn rw g cell Group
+yarn rw g cell Issue
+yarn rw g cell QuestionIsInCategory
+#yarn rw g cell Question
+yarn rw g cell Sentence
+yarn rw g cell Translation
+yarn rw g cell UserHasBadge
+yarn rw g cell UserIsInGroup
+yarn rw g cell UserLikesAnswer
+yarn rw g cell UserLikesComment
+yarn rw g cell UserLikesQuestion
+yarn rw g cell User
