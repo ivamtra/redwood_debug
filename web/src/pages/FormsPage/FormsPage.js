@@ -1,15 +1,18 @@
 import { Form, TextField, Submit } from '@redwoodjs/forms'
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 const FormsPage = () => {
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+
   return (
     <>
       <MetaTags title="Forms" description="Forms page" />
 
       <h1>FormsPage</h1>
 
-      <Form>
+      <Form onSubmit={onSubmit}>
         <TextField name="input" />
         <Submit>Save</Submit>
       </Form>
