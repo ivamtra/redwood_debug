@@ -16,7 +16,7 @@ const TestForm = () => {
   const [textArray, setTextArray] = useState(initialList)
   const [textValue, setTextValue] = useState('')
   const [finalList, setFinalList] = useState([])
-  const [isDisabledList, setDisabledList] = useState([true])
+  const [isDonePressed, setDonePressed] = useState(false)
 
   const onChange = (e) => {
     setTextValue(e.target.value)
@@ -29,7 +29,6 @@ const TestForm = () => {
     console.log(idIndex)
     console.log(textValue)
     console.log(textArray)
-    console.log(isDisabledList.length)
   }
 
   const consoleLog = () => {
@@ -37,7 +36,9 @@ const TestForm = () => {
   }
 
   // FIXME: Þetta þarf alltaf að keyra tvisvar til að virka
+  // Ehv. callback gæti virkað?
   const onDone = () => {
+    setDonePressed(true)
     let tempList = [...textArray]
     tempList.shift()
     setFinalList([...tempList, { id: String(idIndex), sentence: textValue }])
@@ -77,8 +78,12 @@ const TestForm = () => {
             </li>
           ))}
         </ul>
-        <button onClick={onDone}>Done</button>
-        <button onClick={onFinished}>Submit</button>
+        <button disabled={isDonePressed} onClick={onDone}>
+          Done
+        </button>
+        <button disabled={!isDonePressed} onClick={onFinished}>
+          Submit
+        </button>
       </div>
     </>
   )
