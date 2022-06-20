@@ -1,4 +1,4 @@
-import SentenceCell from '../SentenceCell/SentenceCell'
+import SentencesCell from '../SentencesCell'
 
 export const QUERY = gql`
   query FindQuestionQuery($id: Int!) {
@@ -40,6 +40,8 @@ export const Success = ({ question }) => {
         <h3>Tungumál: {question.language}</h3>
         <h3>Aðrar upplýsingar: {question.other_info}</h3>
       </div>
+      <h3>Setningar</h3>
+      <SentencesCell />
     </div>
   )
 }
