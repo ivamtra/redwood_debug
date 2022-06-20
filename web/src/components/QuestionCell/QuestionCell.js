@@ -35,6 +35,7 @@ export const Success = ({ question }) => {
   })
   return (
     <div>
+      <h1>Titill:{question.title}</h1>
       <div>
         {/*TODO: vantar virkni á takka */}
         <button>upvote</button>
@@ -43,7 +44,6 @@ export const Success = ({ question }) => {
         <p>Dagsetning: {question.createdAt}</p>
         <p>User: {question.user.email}</p>
       </div>
-      <h1>Titill:{question.title}</h1>
       <div>
         <h3>Tungumál: {question.language}</h3>
         <h3>Aðrar upplýsingar: {question.other_info}</h3>
