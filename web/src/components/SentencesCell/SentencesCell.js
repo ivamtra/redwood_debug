@@ -18,18 +18,16 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ sentences }) => {
   return (
-    <ul>
+    <>
       {sentences.map((item) => {
         return (
-          <>
-            <div>
-              <h3>id = {item.id}</h3>
-              <h3>sentence = {item.sentence}</h3>
-              <h3>questionId = {item.questionId}</h3>
-            </div>
-          </>
+          <div key={item.id}>
+            <h3>id = {item.id}</h3>
+            <h3>sentence = {item.sentence}</h3>
+            <h3>questionId = {item.questionId}</h3>
+          </div>
         )
       })}
-    </ul>
+    </>
   )
 }
