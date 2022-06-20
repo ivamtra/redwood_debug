@@ -1,6 +1,6 @@
 export const QUERY = gql`
-  query SentencesQuery {
-    sentences {
+  query SentencesQuery($questionId: Int!) {
+    sentences(questionId: $questionId) {
       id
       sentence
       questionId

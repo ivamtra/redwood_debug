@@ -34,14 +34,12 @@ export const Success = ({ question }) => {
         <p>userId: {question.userId} (breytist seinna)</p>
       </div>
       <h1>Titill:{question.title}</h1>
-      <h3>Setningar:</h3>
-      <h4>Bæta við seinna</h4>
       <div>
         <h3>Tungumál: {question.language}</h3>
         <h3>Aðrar upplýsingar: {question.other_info}</h3>
       </div>
       <h3>Setningar</h3>
-      <SentencesCell />
+      <SentencesCell questionId={question.id} />
     </div>
   )
 }

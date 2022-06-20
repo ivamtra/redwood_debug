@@ -1,7 +1,7 @@
 import { db } from 'src/lib/db'
 
-export const sentences = () => {
-  return db.sentence.findMany()
+export const sentences = ({ questionId }) => {
+  return db.sentence.findMany({ where: { questionId } })
 }
 
 export const sentence = ({ id }) => {

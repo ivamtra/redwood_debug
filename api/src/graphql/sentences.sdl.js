@@ -7,7 +7,7 @@ export const schema = gql`
   }
 
   type Query {
-    sentences: [Sentence!]! @requireAuth
+    sentences(questionId: Int!): [Sentence!]! @requireAuth
     sentence(id: Int!): Sentence @requireAuth
   }
 
