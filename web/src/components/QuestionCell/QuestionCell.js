@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import SentencesCell from '../SentencesCell'
 
 export const QUERY = gql`
@@ -10,6 +12,11 @@ export const QUERY = gql`
       other_info
       userId
       createdAt
+      user {
+        id
+        name
+        email
+      }
     }
   }
 `
@@ -23,6 +30,9 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question }) => {
+  useEffect(() => {
+    console.log(question)
+  })
   return (
     <div>
       <div>
@@ -31,7 +41,7 @@ export const Success = ({ question }) => {
         <button>downvote</button>
         <p>Number of upvotes:</p>
         <p>Dagsetning: {question.createdAt}</p>
-        <p>userId: {question.userId} (breytist seinna)</p>
+        <p>User: {question.user.email}</p>
       </div>
       <h1>Titill:{question.title}</h1>
       <div>
@@ -39,7 +49,9 @@ export const Success = ({ question }) => {
         <h3>Aðrar upplýsingar: {question.other_info}</h3>
       </div>
       <h3>Setningar</h3>
-      <SentencesCell questionId={question.id} />
+      <div>
+        <SentencesCell questionId={question.id} />
+      </div>
     </div>
   )
 }

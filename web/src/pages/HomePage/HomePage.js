@@ -19,6 +19,8 @@ const HomePage = () => {
         <Link to={routes.home()}>Home</Link>`
       </p>
       <h1>-------------------------------------------------</h1>
+      <h1>Test Spurningar</h1>
+      <h1>-------------------------------------------------</h1>
 
       <div>
         <QuestionCell id={1} />
