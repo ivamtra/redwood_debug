@@ -35,7 +35,7 @@ export const Success = ({ question }) => {
   })
   return (
     <div>
-      <h1>Titill:{question.title}</h1>
+      <h1>Titill: {question.title}</h1>
       <div>
         {/*TODO: vantar virkni á takka */}
         <button>upvote</button>
