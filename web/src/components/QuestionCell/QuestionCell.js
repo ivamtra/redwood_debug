@@ -1,5 +1,3 @@
-import Question from '../Question/Question'
-
 export const QUERY = gql`
   query FindQuestionQuery($id: Int!) {
     question: question(id: $id) {
