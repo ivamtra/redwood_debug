@@ -33,7 +33,7 @@ export const Success = ({ question }) => {
         <p>Dagsetning: {question.createdAt}</p>
         <p>userId: {question.userId} (breytist seinna)</p>
       </div>
-      <h1>{question.title}</h1>
+      <h1>Titill:{question.title}</h1>
       <h3>Setningar:</h3>
       <h4>Bæta við seinna</h4>
       <div>

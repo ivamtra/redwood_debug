@@ -21,7 +21,7 @@ export const Success = ({ sentences }) => {
     <>
       {sentences.map((item) => {
         return (
-          <div className="bg-gray-400" key={item.id}>
+          <div key={item.id}>
             <h3>id = {item.id}</h3>
             <h3>sentence = {item.sentence}</h3>
             <h3>questionId = {item.questionId}</h3>
