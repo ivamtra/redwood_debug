@@ -1,4 +1,4 @@
-import { Form, TextField } from '@redwoodjs/forms'
+import { Form, TextField, Submit } from '@redwoodjs/forms'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
@@ -11,6 +11,7 @@ const FormsPage = () => {
 
       <Form>
         <TextField name="input" />
+        <Submit>Save</Submit>
       </Form>
     </>
   )
