@@ -17,6 +17,7 @@ const TestForm = () => {
   const [textValue, setTextValue] = useState('')
   const [finalList, setFinalList] = useState([])
   const [isDonePressed, setDonePressed] = useState(false)
+  const [isFinishedPressed, setFinishedPressed] = useState(false)
 
   const onChange = (e) => {
     setTextValue(e.target.value)
@@ -36,8 +37,7 @@ const TestForm = () => {
   }
 
   // FIXME: Þetta þarf alltaf að keyra tvisvar til að virka
-  // Ehv. callback gæti virkað?
-  const onDone = () => {
+  const onDone = async () => {
     setDonePressed(true)
     let tempList = [...textArray]
     tempList.shift()
@@ -46,11 +46,14 @@ const TestForm = () => {
     console.log(finalList)
     console.log('list-length = ' + finalList.length)
     console.log('index = ' + idIndex)
+    setTimeout(() => onFinished, 200)
   }
 
   const onFinished = () => {
+    console.log(finalList)
     if (finalList.length === idIndex) {
       // Gera ehv
+      setFinishedPressed(true)
       console.log('success')
     } else {
       // Gera ehv
@@ -81,7 +84,10 @@ const TestForm = () => {
         <button disabled={isDonePressed} onClick={onDone}>
           Done
         </button>
-        <button disabled={!isDonePressed} onClick={onFinished}>
+        <button
+          disabled={!isDonePressed || isFinishedPressed}
+          onClick={onFinished}
+        >
           Submit
         </button>
       </div>
