@@ -13,6 +13,7 @@ const initialList = [
   {
     id: '0',
     sentence: 'placeholder',
+    questionId: '0',
   },
 ]
 
@@ -34,7 +35,10 @@ const TestForm = ({ question }) => {
   // Bæta við nýju gildi í listann
   const handle = () => {
     setIdIndex(idIndex + 1)
-    setTextArray([...textArray, { id: String(idIndex), sentence: textValue }])
+    setTextArray([
+      ...textArray,
+      { id: String(idIndex), sentence: textValue, questionId: question.id },
+    ])
 
     console.log(idIndex)
     console.log(textValue)
@@ -47,7 +51,10 @@ const TestForm = ({ question }) => {
     setDonePressed(true)
     let tempList = [...textArray]
     tempList.shift()
-    setFinalList([...tempList, { id: String(idIndex), sentence: textValue }])
+    setFinalList([
+      ...tempList,
+      { id: String(idIndex), sentence: textValue, questionId: question.id },
+    ])
     // Uncommenta til að láta viðmótslistann hverfa
     //while (textArray.length > 0) textArray.shift()
     console.log(finalList) //FIXME: Final list er tómur hérna
