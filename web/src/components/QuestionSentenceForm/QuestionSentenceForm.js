@@ -29,6 +29,7 @@ const QuestionSentenceForm = ({ question, sentences }) => {
   const onFinished = () => {
     const finalQuestion = { ...question, userId: currentUser.id }
     console.log(finalQuestion)
+    console.log(findMaxId)
     createQUESTION({ variables: { input: finalQuestion } })
     // TODO: Vantar id-ið sem var nýkomið
     // TODO: For lúppa fyrir allar setningarnar

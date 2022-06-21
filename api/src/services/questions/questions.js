@@ -33,14 +33,14 @@ export const deleteQuestion = ({ id }) => {
 // Þá lækkar countið
 
 //Þetta ætti að gefa max-idið
-export const findMaxId = () => {
-  db.question.findMany({
-    orderBy: {
-      createdAt: 'desc',
-    },
-    take: 1,
-  })
-}
+// export const findMaxId = () => {
+//   db.question.findMany({
+//     orderBy: {
+//       createdAt: 'desc',
+//     },
+//     take: 1,
+//   })
+// }
 
 export const Question = {
   user: (_obj, { root }) =>
