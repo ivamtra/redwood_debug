@@ -6,6 +6,8 @@
 
 import { useState } from 'react'
 
+import QuestionSentenceForm from '../QuestionSentenceForm/QuestionSentenceForm'
+
 // Placeholder til að það sýni eina línu í viðmótinu
 const initialList = [
   {
@@ -16,7 +18,7 @@ const initialList = [
 
 let returnList
 
-const TestForm = () => {
+const TestForm = ({ question }) => {
   const [idIndex, setIdIndex] = useState(1)
   const [textArray, setTextArray] = useState(initialList)
   const [textValue, setTextValue] = useState('')
@@ -48,20 +50,20 @@ const TestForm = () => {
     setFinalList([...tempList, { id: String(idIndex), sentence: textValue }])
     // Uncommenta til að láta viðmótslistann hverfa
     //while (textArray.length > 0) textArray.shift()
-    console.log(finalList)
+    console.log(finalList) //FIXME: Final list er tómur hérna
     console.log('list-length = ' + finalList.length)
     console.log('index = ' + idIndex)
   }
 
   // Þegar ýtt er á submit takkann
   const onFinished = () => {
-    console.log(finalList)
+    returnList = finalList
+    console.log(returnList)
+    console.log(finalList) //FIXME: En ekki hérna????
     if (finalList.length === idIndex) {
       // Gera ehv
       setFinishedPressed(true)
       console.log('success')
-      returnList = finalList
-      console.log(returnList)
       return returnList
     } else {
       // Gera ehv
@@ -94,9 +96,10 @@ const TestForm = () => {
           disabled={!isDonePressed || isFinishedPressed}
           onClick={onFinished}
         >
-          Submit
+          Save sentences
         </button>
       </div>
+      <QuestionSentenceForm question={question} sentences={returnList} />
     </>
   )
 }
