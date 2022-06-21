@@ -1,7 +1,11 @@
+import { useAuth } from '@redwoodjs/auth'
+
 export const QUERY = gql`
   query FindUserQuery($id: Int!) {
     user: user(id: $id) {
       id
+      email
+      name
     }
   }
 `
@@ -15,5 +19,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ user }) => {
-  return <div>{JSON.stringify(user)}</div>
+  const { isAuthenticated, currentUser, logOut } = useAuth()
+
+  return <h3>Current user: {user.email}</h3>
 }

@@ -3,9 +3,8 @@ import { useEffect } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
-//TODO: Create mutation
-//TODO: Vantar leið til að fá user id
 
+//TODO: Vantar leið til að sækja þetta id
 const CREATE_QUESTION = gql`
   mutation CreateQuestionMutation($input: CreateQuestionInput!) {
     createQuestion(input: $input) {
@@ -28,9 +27,11 @@ const QuestionSentenceForm = ({ question, sentences }) => {
   const { isAuthenticated, currentUser, logOut } = useAuth()
 
   const onFinished = () => {
-    let finalQuestion = { ...question, userId: currentUser.id }
+    const finalQuestion = { ...question, userId: currentUser.id }
     console.log(finalQuestion)
     createQUESTION({ variables: { input: finalQuestion } })
+    // TODO: Vantar id-ið sem var nýkomið
+    // TODO: For lúppa fyrir allar setningarnar
   }
 
   return (
