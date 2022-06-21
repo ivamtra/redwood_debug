@@ -1,3 +1,9 @@
+/*
+ * Pottþétt betri leið til að gera þetta
+ */
+
+// TODO: Bæta þessum component í question form og sækja lista
+
 import { useState } from 'react'
 
 // Placeholder til að það sýni eina línu í viðmótinu
