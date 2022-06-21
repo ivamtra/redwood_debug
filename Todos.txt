@@ -2,3 +2,4 @@
 2. Bæta við trigger sem hækkar rating countið á því posti þegar likes töflurnar breytast.
 3. Form componentar
 4. Bæta við ehv styling svo hægt er að horfa á þetta
+5. Búa til síðu fyrir hvert question

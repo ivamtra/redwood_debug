@@ -71,24 +71,22 @@ const TestForm = () => {
   return (
     <>
       <div>
-        <ul>
+        <div>
           {textArray.map((item) => (
-            <li key={item.id}>
-              <div>
-                {/* <p>{textValue}</p> */}
-                <input
-                  onChange={onChange}
-                  type="textfield"
-                  name={item.id}
-                  id={item.id}
-                  disabled={item.id < idIndex - 1 || isDonePressed}
-                  placeholder={item.id}
-                />
-                <button onClick={handle}>+</button>
-              </div>
-            </li>
+            <div key={item.id}>
+              {/* <p>{textValue}</p> */}
+              <input
+                onChange={onChange}
+                type="textfield"
+                name={item.id}
+                id={item.id}
+                disabled={item.id < idIndex - 1 || isDonePressed}
+                placeholder={'sentence ' + (parseInt(item.id) + 1)}
+              />
+              <button onClick={handle}>+</button>
+            </div>
           ))}
-        </ul>
+        </div>
         <button disabled={isDonePressed} onClick={onDone}>
           Done
         </button>
