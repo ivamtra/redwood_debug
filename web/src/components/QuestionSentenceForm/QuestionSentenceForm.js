@@ -1,5 +1,7 @@
 import { Submit, Form } from '@redwoodjs/forms'
 
+//TODO: Create mutation
+
 const QuestionSentenceForm = ({ question, sentences }) => {
   return (
     <div>
@@ -11,7 +13,9 @@ const QuestionSentenceForm = ({ question, sentences }) => {
       >
         log question
       </button>
-      <button onClick={() => console.log(sentences)}>log sentences</button>
+      <button onClick={() => console.log(sentences)}>log sentences</button>{' '}
+      <br />
+      <button>Klára</button>
       <p>Question component</p>
     </div>
   )
