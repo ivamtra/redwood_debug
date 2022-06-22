@@ -2,6 +2,15 @@ export const QUERY = gql`
   query FindAnswerQuery($id: Int!) {
     answer: answer(id: $id) {
       id
+      title
+      justification
+      userId
+      createdAt
+      questionId
+      translations {
+        id
+        translation
+      }
     }
   }
 `
@@ -15,5 +24,13 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ answer }) => {
-  return <div>{JSON.stringify(answer)}</div>
+  return (
+    <div>
+      <p>answer.id = {answer.id}</p>
+      <p>answer.title = {answer.title}</p>
+      <p>answer.justification = {answer.justification}</p>
+      <p>answer.createdAt = {answer.createdAt}</p>
+      <p>answer.questionId = {answer.questionId}</p>
+    </div>
+  )
 }

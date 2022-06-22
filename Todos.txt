@@ -1,5 +1,6 @@
-1. Bæta við rating attribute í comment, question answer.
-2. Bæta við trigger sem hækkar rating countið á því posti þegar likes töflurnar breytast.
-3. Form componentar
-4. Bæta við ehv styling svo hægt er að horfa á þetta
-5. Búa til síðu fyrir hvert question
+-Laga query-ið í QuestionSentenceForm.js
+-Form componentar
+-Bæta við rating attribute í comment, question answer.
+-Bæta við trigger sem hækkar rating countið á því posti þegar likes töflurnar breytast.
+-Bæta við ehv styling svo hægt er að horfa á þetta
+-Búa til síðu fyrir hvert question
