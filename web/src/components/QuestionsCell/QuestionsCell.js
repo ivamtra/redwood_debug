@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import QuestionCell from '../QuestionCell/QuestionCell'
 
 export const QUERY = gql`
@@ -17,6 +19,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ questions }) => {
+  useEffect(() => console.log(questions))
   return (
     <ul>
       {questions.map((item) => {

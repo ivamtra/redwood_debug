@@ -4,6 +4,8 @@ import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
+// Virkar að query-a, það vantar bara einhverja leið til að fá
+// Max-id query-ið til að virka
 export const QUERY = gql`
   query FindMaxIdQuery {
     questions {
@@ -47,7 +49,11 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
     // TODO: Vantar id-ið sem var nýkomið
     // TODO: For lúppa fyrir allar setningarnar
   }
-  useEffect(() => console.log(questions))
+  useEffect(() => {
+    questions.forEach((item) => {
+      console.log(item)
+    })
+  })
 
   return (
     <div>
