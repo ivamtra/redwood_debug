@@ -4,6 +4,20 @@ import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
+export const QUERY = gql`
+  query FindMaxIdQuery {
+    questions {
+      id
+      title
+      language
+      definition
+      other_info
+      userId
+      createdAt
+    }
+  }
+`
+
 //TODO: Vantar leið til að sækja þetta id
 const CREATE_QUESTION = gql`
   mutation CreateQuestionMutation($input: CreateQuestionInput!) {
@@ -21,7 +35,7 @@ const CREATE_SENTENCE = gql`
   }
 `
 
-const QuestionSentenceForm = ({ question, sentences }) => {
+const QuestionSentenceForm = ({ question, sentences, questions }) => {
   const [createQUESTION] = useMutation(CREATE_QUESTION)
   const [createSENTENCE] = useMutation(CREATE_SENTENCE)
   const { isAuthenticated, currentUser, logOut } = useAuth()
@@ -29,11 +43,11 @@ const QuestionSentenceForm = ({ question, sentences }) => {
   const onFinished = () => {
     const finalQuestion = { ...question, userId: currentUser.id }
     console.log(finalQuestion)
-    console.log(findMaxId)
     createQUESTION({ variables: { input: finalQuestion } })
     // TODO: Vantar id-ið sem var nýkomið
     // TODO: For lúppa fyrir allar setningarnar
   }
+  useEffect(() => console.log(questions))
 
   return (
     <div>
