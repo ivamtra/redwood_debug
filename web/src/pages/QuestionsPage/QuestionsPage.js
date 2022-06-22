@@ -1,6 +1,8 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import QuestionsCell from 'src/components/QuestionsCell/QuestionsCell'
+
 const QuestionsPage = () => {
   return (
     <>
@@ -14,6 +16,7 @@ const QuestionsPage = () => {
         My default route is named <code>questions</code>, link to me with `
         <Link to={routes.questions()}>Questions</Link>`
       </p>
+      <QuestionsCell />
     </>
   )
 }

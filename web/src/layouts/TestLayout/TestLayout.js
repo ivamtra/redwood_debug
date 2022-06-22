@@ -20,7 +20,8 @@ const TestLayout = ({ children, user }) => {
       <h2>Links</h2>
       <h2>
         <Link to={routes.forms()}>Forms </Link>
-        <Link to={routes.home()}>Home</Link>
+        <Link to={routes.home()}>Home </Link>
+        <Link to={routes.questions()}>Spurningar </Link>
       </h2>
       <main>{children}</main>
     </>
