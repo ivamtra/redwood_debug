@@ -28,7 +28,7 @@ const CREATE_QUESTION = gql`
     }
   }
 `
-
+// => Sem fer í þetta statement
 const CREATE_SENTENCE = gql`
   mutation CreateSentenceMutation($input: CreateSentenceInput!) {
     createSentence(input: $input) {
@@ -50,9 +50,7 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
     // TODO: For lúppa fyrir allar setningarnar
   }
   useEffect(() => {
-    questions.forEach((item) => {
-      console.log(item)
-    })
+    // questions.forEach((item) => console.log(item))
   })
 
   return (
