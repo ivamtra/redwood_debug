@@ -12,11 +12,11 @@ const TestLayout = ({ children, user }) => {
 
   return (
     <>
-      {/* {currentUser === null ? (
+      {currentUser === null ? (
         <p>Not logged in</p>
       ) : (
         <UserCell id={currentUser.id} />
-      )} */}
+      )}
       <h2>Links</h2>
       <h2>
         <Link to={routes.questions()}>Spurningar </Link>
