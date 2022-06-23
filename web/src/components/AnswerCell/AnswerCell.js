@@ -1,3 +1,5 @@
+import RatingButton from '../RatingButton/RatingButton'
+
 export const QUERY = gql`
   query FindAnswerQuery($id: Int!) {
     answer: answer(id: $id) {
@@ -31,8 +33,9 @@ export const Success = ({ answer }) => {
     <div>
       <div>
         {/*TODO: vantar virkni á takka */}
-        <button>upvote</button>
-        <button>downvote</button>
+        {/* <button>upvote</button>
+        <button>downvote</button> */}
+        <RatingButton id={answer.id} type="answer" />
         <p>answer.id = {answer.id}</p>
         <p>Number of upvotes:</p>
         <p>Dagsetning: {answer.createdAt}</p>
