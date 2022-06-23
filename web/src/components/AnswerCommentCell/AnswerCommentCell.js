@@ -1,4 +1,4 @@
-import UserCellStories from '../UserCell/UserCell.stories'
+import RatingButton from '../RatingButton/RatingButton'
 
 export const QUERY = gql`
   query FindAnswerCommentQuery($id: Int!) {
@@ -24,6 +24,7 @@ export const Failure = ({ error }) => (
 export const Success = ({ answerComment }) => {
   return (
     <div>
+      <RatingButton type={'comment'} id={answerComment.id} />
       <p>{answerComment.createdAt}</p>
       <p>{answerComment.user.email}</p>
       <h2>{answerComment.body}</h2>

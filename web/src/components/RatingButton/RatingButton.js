@@ -1,28 +1,29 @@
+/* eslint-disable no-case-declarations */
 //FIXME: Vantar að ýta tvisvar til að þetta virki
-
+//TODO: Refactora
 import { useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@redwoodjs/web'
 const CREATE_QUESTION_UPVOTE = gql`
-  mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
-    createUserLikesQuestion(input: $input) {
+  mutation CreateQuestionUpvote($questionInput: CreateUserLikesQuestionInput!) {
+    createUserLikesQuestion(input: $questionInput) {
       id
     }
   }
 `
 
 const CREATE_ANSWER_UPVOTE = gql`
-  mutation CreateAnswerUpvote($input: CreateUserLikesAnswerInput!) {
-    createUserLikesQuestion(input: $input) {
+  mutation CreateAnswerUpvote($answerInput: CreateUserLikesAnswerInput!) {
+    createUserLikesAnswer(input: $answerInput) {
       id
     }
   }
 `
 
 const CREATE_COMMENT_UPVOTE = gql`
-  mutation CreateCommentUpvote($input: CreateUserLikesCommentInput!) {
-    createUserLikesQuestion(input: $input) {
+  mutation CreateCommentUpvote($commentInput: CreateUserLikesCommentInput!) {
+    createUserLikesComment(input: $commentInput) {
       id
     }
   }
@@ -67,32 +68,30 @@ const RatingButton = ({ type, id }) => {
     if (rating === 1 || rating === -1) {
       // Bæta við rating
       console.log(input)
-      let finalInput
 
       switch (type) {
         case 'answer':
-          finalInput = { ...input, answerId: id }
-          console.log(finalInput)
+          const answerInput = { ...input, answerId: id }
+          console.log(answerInput)
           console.log(
             createAnswerUpvote({
-              variables: { input: finalInput },
+              variables: { input: answerInput },
             })
           )
           break
         case 'question':
-          // eslint-disable-next-line no-case-declarations
-          finalInput = { ...input, questionId: id }
+          const questionInput = { ...input, questionId: id }
           console.log(
             createQuestionUpvote({
-              variables: { input: finalInput },
+              variables: { input: questionInput },
             })
           )
           break
         case 'comment':
-          finalInput = { ...input, commentId: id }
+          const commentInput = { ...input, commentId: id }
           console.log(
             createCommentUpvote({
-              variables: { input: input },
+              variables: { input: commentInput },
             })
           )
           break
