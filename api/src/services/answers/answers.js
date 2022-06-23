@@ -1,7 +1,7 @@
 import { db } from 'src/lib/db'
 
-export const answers = () => {
-  return db.answer.findMany()
+export const answers = ({ questionId }) => {
+  return db.answer.findMany({ where: { questionId } })
 }
 
 export const answer = ({ id }) => {
