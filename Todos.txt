@@ -4,3 +4,4 @@
 -Bæta við trigger sem hækkar rating countið á því posti þegar likes töflurnar breytast.
 -Bæta við ehv styling svo hægt er að horfa á þetta
 -Seed fyrir gagnagrunninn
+-Bæta við Answers fyrir hverja spurningu
