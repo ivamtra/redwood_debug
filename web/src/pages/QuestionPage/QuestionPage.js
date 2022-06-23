@@ -1,7 +1,9 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
-const QuestionPage = () => {
+import QuestionCell from 'src/components/QuestionCell/QuestionCell'
+
+const QuestionPage = ({ id }) => {
   return (
     <>
       <MetaTags title="Question" description="Question page" />
@@ -12,8 +14,8 @@ const QuestionPage = () => {
       </p>
       <p>
         My default route is named <code>question</code>, link to me with `
-        <Link to={routes.question()}>Question</Link>`
       </p>
+      <QuestionCell id={id} />
     </>
   )
 }

@@ -47,7 +47,9 @@ export const Success = ({ question, inQuestionsCell }) => {
 
       {inQuestionsCell ? (
         <h1>
-          <Link to={routes.test()}>Titill: {question.title}</Link>
+          <Link to={routes.question({ id: question.id })}>
+            Titill: {question.title}
+          </Link>
         </h1>
       ) : (
         <h1>Titill: {question.title}</h1>
