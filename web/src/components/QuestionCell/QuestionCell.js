@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Link, routes } from '@redwoodjs/router'
 
 import AnswersCell from '../AnswersCell'
+import RatingButton from '../RatingButton/RatingButton'
 import SentencesCell from '../SentencesCell'
 export const QUERY = gql`
   query FindQuestionQuery($id: Int!) {
@@ -32,20 +33,13 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question, inQuestionsCell }) => {
-  useEffect(() => {
-    console.log(question)
-    console.log(inQuestionsCell)
-  })
+  // useEffect(() => {
+  //   console.log(question)
+  //   console.log(inQuestionsCell)
+  // })
   return (
     <div>
       <h1>---------------------------------------</h1>
-      {/* {if (inQuestionsCell === true) {
-        (<h1><Link to={routes.home()}>Titill: {question.title}</Link></h1>)
-      }
-      else {
-      (<h1>Titill: {question.title}</h1>)
-      }} */}
-
       {inQuestionsCell ? (
         <h1>
           <Link to={routes.question({ id: question.id })}>
@@ -57,8 +51,7 @@ export const Success = ({ question, inQuestionsCell }) => {
       )}
       <div>
         {/*TODO: vantar virkni á takka */}
-        <button>upvote</button>
-        <button>downvote</button>
+        <RatingButton />
         <p>Number of upvotes:</p>
         <p>Dagsetning: {question.createdAt}</p>
         <p>User: {question.user.email}</p>
