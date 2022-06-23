@@ -138,6 +138,8 @@ model Category {
 // Many to many vensl fyrir upvotes
 
 //Hvaða user hefur upvote-að hvaða svar
+
+//TODO:
 model UserLikesAnswer {
   id       Int      @id @default(autoincrement())
   user     User     @relation(fields: [userId], references: [id])
@@ -164,6 +166,7 @@ model UserLikesQuestion {
   @@unique([userId, questionId])
 }
 
+//FIXME: breyta í commentId
 model UserLikesComment {
   id     Int  @id @default(autoincrement())
   user   User @relation(fields: [userId], references: [id])

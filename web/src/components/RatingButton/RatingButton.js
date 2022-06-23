@@ -6,24 +6,24 @@ import { useState } from 'react' //
 import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@redwoodjs/web'
 const CREATE_QUESTION_UPVOTE = gql`
-  mutation CreateQuestionUpvote($questionInput: CreateUserLikesQuestionInput!) {
-    createUserLikesQuestion(input: $questionInput) {
+  mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
+    createUserLikesQuestion(input: $input) {
       id
     }
   }
 `
 
 const CREATE_ANSWER_UPVOTE = gql`
-  mutation CreateAnswerUpvote($answerInput: CreateUserLikesAnswerInput!) {
-    createUserLikesAnswer(input: $answerInput) {
+  mutation CreateAnswerUpvote($input: CreateUserLikesAnswerInput!) {
+    createUserLikesAnswer(input: $input) {
       id
     }
   }
 `
 
 const CREATE_COMMENT_UPVOTE = gql`
-  mutation CreateCommentUpvote($commentInput: CreateUserLikesCommentInput!) {
-    createUserLikesComment(input: $commentInput) {
+  mutation CreateCommentUpvote($input: CreateUserLikesCommentInput!) {
+    createUserLikesComment(input: $input) {
       id
     }
   }
@@ -88,7 +88,8 @@ const RatingButton = ({ type, id }) => {
           )
           break
         case 'comment':
-          const commentInput = { ...input, commentId: id }
+          const commentInput = { ...input, questionId: id }
+          console.log(commentInput)
           console.log(
             createCommentUpvote({
               variables: { input: commentInput },
