@@ -5,3 +5,8 @@
 -Bæta við ehv styling svo hægt er að horfa á þetta
 -Seed fyrir gagnagrunninn
 - Button componentar
+- CSS á Button componentinn til að merkja að hann hafi verið smelltur
+- Bæta flagg-takka við Question/Answer componenta.
+  -Þegar ýtt er á flaggið opnast gluggi sem tekur inn upplýsingar um vandamál
+    - 1) Getur verið ný slóð
+    - 2) Getur verið pop up

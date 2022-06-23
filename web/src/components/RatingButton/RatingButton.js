@@ -1,6 +1,8 @@
 /* eslint-disable no-case-declarations */
 //FIXME: Vantar að ýta tvisvar til að þetta virki
 //TODO: Refactora
+//TODO: ENUM fyrir tegund af component?
+//TODO: CSS til að merkja hvort að takkinn hafi verið smelltur
 import { useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
