@@ -19,7 +19,6 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ questions }) => {
-  useEffect(() => console.log(questions))
   return (
     <ul>
       {questions.map((item) => {

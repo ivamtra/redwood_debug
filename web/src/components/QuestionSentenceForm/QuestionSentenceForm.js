@@ -77,10 +77,6 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
       return QUESTIONCREATED_ID
     })
   }
-  useEffect(() => {
-    // questions.forEach((item) => console.log(item))
-    console.log(QUESTIONCREATED_ID)
-  })
 
   return (
     <div>
