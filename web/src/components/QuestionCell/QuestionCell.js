@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 import { Link, routes } from '@redwoodjs/router'
 
+import AnswersCell from '../AnswersCell'
 import SentencesCell from '../SentencesCell'
 export const QUERY = gql`
   query FindQuestionQuery($id: Int!) {
@@ -70,6 +71,7 @@ export const Success = ({ question, inQuestionsCell }) => {
       <div>
         <SentencesCell questionId={question.id} />
       </div>
+      <AnswersCell questionId={question.id} />
     </div>
   )
 }

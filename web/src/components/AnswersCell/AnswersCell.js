@@ -1,3 +1,5 @@
+import AnswerCell from '../AnswerCell'
+
 export const QUERY = gql`
   query AnswersQuery($questionId: Int!) {
     answers(questionId: $questionId) {
@@ -16,10 +18,10 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ answers }) => {
   return (
-    <ul>
+    <div>
       {answers.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
+        return <AnswerCell id={item.id} key={item.id} />
       })}
-    </ul>
+    </div>
   )
 }
