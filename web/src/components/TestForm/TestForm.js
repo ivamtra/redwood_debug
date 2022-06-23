@@ -4,6 +4,8 @@
 
 // TODO: Bæta þessum component í question form og sækja lista
 
+//TODO: Sækja hæsta id-
+
 import { useState } from 'react'
 
 import QuestionSentenceForm from '../QuestionSentenceForm/QuestionSentenceForm'
@@ -11,7 +13,7 @@ import QuestionSentenceForm from '../QuestionSentenceForm/QuestionSentenceForm'
 // Placeholder til að það sýni eina línu í viðmótinu
 const initialList = [
   {
-    id: '0',
+    listId: '0',
     sentence: 'placeholder',
     questionId: '0',
   },
@@ -37,7 +39,7 @@ const TestForm = ({ question }) => {
     setIdIndex(idIndex + 1)
     setTextArray([
       ...textArray,
-      { id: String(idIndex), sentence: textValue, questionId: question.id },
+      { listId: String(idIndex), sentence: textValue, questionId: question.id },
     ])
 
     console.log(idIndex)
@@ -53,7 +55,7 @@ const TestForm = ({ question }) => {
     tempList.shift()
     setFinalList([
       ...tempList,
-      { id: String(idIndex), sentence: textValue, questionId: question.id },
+      { listId: String(idIndex), sentence: textValue, questionId: question.id },
     ])
     // Uncommenta til að láta viðmótslistann hverfa
     //while (textArray.length > 0) textArray.shift()
@@ -82,15 +84,15 @@ const TestForm = ({ question }) => {
       <div>
         <div>
           {textArray.map((item) => (
-            <div key={item.id}>
+            <div key={item.listId}>
               {/* <p>{textValue}</p> */}
               <input
                 onChange={onChange}
                 type="textfield"
-                name={item.id}
-                id={item.id}
-                disabled={item.id < idIndex - 1 || isDonePressed}
-                placeholder={'sentence ' + (parseInt(item.id) + 1)}
+                name={item.listId}
+                id={item.listId}
+                disabled={item.listId < idIndex - 1 || isDonePressed}
+                placeholder={'sentence ' + (parseInt(item.listId) + 1)}
               />
               <button onClick={handle}>+</button>
             </div>

@@ -57,11 +57,22 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
       console.log(result.data.createQuestion.id)
       QUESTIONCREATED_ID = result.data.createQuestion.id
       console.log(QUESTIONCREATED_ID)
-    })
-    // TODO: For lúppa fyrir allar setningarnar
-    console.log(sentences)
-    sentences.forEach((sentence) => {
-      console.log(createSENTENCE({ variables: { input: sentence } }))
+      console.log(QUESTIONCREATED_ID)
+
+      //Bæta question id-ið við sentence objectana
+
+      // TODO: For lúppa fyrir allar setningarnar
+      console.log(sentences)
+      sentences.forEach((sentence) => {
+        // const newSentence = { ...sentence, questionId: QUESTIONCREATED_ID }
+        const newSentence = {
+          sentence: sentence.sentence,
+          questionId: QUESTIONCREATED_ID,
+        }
+        console.log(newSentence)
+        console.log(createSENTENCE({ variables: { input: newSentence } }))
+      })
+      return QUESTIONCREATED_ID
     })
   }
   useEffect(() => {
