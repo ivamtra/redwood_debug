@@ -27,6 +27,7 @@ const CREATE_QUESTION = gql`
   mutation CreateQuestionMutation($input: CreateQuestionInput!) {
     createQuestion(input: $input) {
       id
+      createdAt
     }
   }
 `
@@ -56,6 +57,7 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
     let promise2 = questionCreatedPromise.then((result) => {
       console.log(result.data.createQuestion.id)
       QUESTIONCREATED_ID = result.data.createQuestion.id
+      console.log(result.data.createQuestion.createdAt)
       console.log(QUESTIONCREATED_ID)
       console.log(QUESTIONCREATED_ID)
 

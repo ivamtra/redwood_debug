@@ -25,6 +25,7 @@ const RatingButton = ({ type, id }) => {
   const downvoteClick = () => {
     setRating(-1)
     console.log('downvoted')
+    console.log(new Date().toISOString)
     handleMutation()
   }
 
@@ -34,9 +35,18 @@ const RatingButton = ({ type, id }) => {
     handleMutation()
   }
   const handleMutation = () => {
-    const input = { userId: currentUser.id, action: rating, questionId: id }
+    const dateTime = new Date().toISOString()
+    const input = {
+      userId: currentUser.id,
+      action: rating,
+      questionId: id,
+      dateTime: new Date().toISOString(),
+    }
     if (rating === 1 || rating === -1) {
       // Bæta við rating
+      console.log(input)
+
+      //FIXME: Vill ekki nota default datetime wtf??
       console.log(
         createQuestionUpvote({
           variables: { input: input },
