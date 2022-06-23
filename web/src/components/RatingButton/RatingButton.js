@@ -25,11 +25,26 @@ const RatingButton = ({ type, id }) => {
   const downvoteClick = () => {
     setRating(-1)
     console.log('downvoted')
+    handleMutation()
   }
 
   const upvoteClick = () => {
     setRating(1)
     console.log('upvoted')
+    handleMutation()
+  }
+  const handleMutation = () => {
+    const input = { userId: currentUser.id, action: rating, questionId: id }
+    if (rating === 1 || rating === -1) {
+      // Bæta við rating
+      console.log(
+        createQuestionUpvote({
+          variables: { input: input },
+        })
+      )
+    } else {
+      // Deleta úr töflunni
+    }
   }
 
   return (
