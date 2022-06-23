@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@redwoodjs/web'
@@ -35,7 +35,6 @@ const RatingButton = ({ type, id }) => {
     handleMutation()
   }
   const handleMutation = () => {
-    const dateTime = new Date().toISOString()
     const input = {
       userId: currentUser.id,
       action: rating,
