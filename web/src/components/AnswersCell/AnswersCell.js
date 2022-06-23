@@ -1,6 +1,6 @@
 export const QUERY = gql`
-  query AnswersQuery {
-    answers {
+  query AnswersQuery($questionId: Int!) {
+    answers(questionId: $questionId) {
       id
     }
   }

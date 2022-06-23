@@ -15,7 +15,7 @@ export const schema = gql`
   }
 
   type Query {
-    answers: (questionId: Int!): [Answer!]! @requireAuth
+    answers(questionId: Int!): [Answer!]! @requireAuth
     answer(id: Int!): Answer @requireAuth
   }
 
