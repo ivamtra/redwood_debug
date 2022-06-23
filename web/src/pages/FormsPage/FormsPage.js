@@ -1,6 +1,7 @@
 import { Form, TextField, Submit } from '@redwoodjs/forms'
 import { MetaTags } from '@redwoodjs/web'
 
+import AnswerCommentForm from 'src/components/AnswerCommentForm/AnswerCommentForm'
 import QuestionForm from 'src/components/QuestionForm/QuestionForm'
 import TestForm from 'src/components/TestForm'
 
@@ -24,6 +25,7 @@ const FormsPage = () => {
       <QuestionForm />
       <h2>---------------------------------------------------</h2>
       <h1>Comment form test</h1>
+      <AnswerCommentForm />
     </>
   )
 }

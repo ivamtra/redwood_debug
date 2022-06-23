@@ -20,6 +20,8 @@ export const QUERY = gql`
   }
 `
 
+var QUESTIONCREATED_ID
+
 //TODO: Vantar leið til að sækja þetta id
 const CREATE_QUESTION = gql`
   mutation CreateQuestionMutation($input: CreateQuestionInput!) {
@@ -45,12 +47,26 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
   const onFinished = () => {
     const finalQuestion = { ...question, userId: currentUser.id }
     console.log(finalQuestion)
-    createQUESTION({ variables: { input: finalQuestion } })
+    let questionCreatedPromise = createQUESTION({
+      variables: { input: finalQuestion },
+    })
+
+    console.log(questionCreatedPromise)
     // TODO: Vantar id-ið sem var nýkomið
+    let promise2 = questionCreatedPromise.then((result) => {
+      console.log(result.data.createQuestion.id)
+      QUESTIONCREATED_ID = result.data.createQuestion.id
+      console.log(QUESTIONCREATED_ID)
+    })
     // TODO: For lúppa fyrir allar setningarnar
+    console.log(sentences)
+    sentences.forEach((sentence) => {
+      console.log(createSENTENCE({ variables: { input: sentence } }))
+    })
   }
   useEffect(() => {
     // questions.forEach((item) => console.log(item))
+    console.log(QUESTIONCREATED_ID)
   })
 
   return (
