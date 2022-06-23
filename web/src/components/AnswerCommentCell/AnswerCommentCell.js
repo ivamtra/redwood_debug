@@ -1,7 +1,14 @@
+import UserCellStories from '../UserCell/UserCell.stories'
+
 export const QUERY = gql`
   query FindAnswerCommentQuery($id: Int!) {
     answerComment: answerComment(id: $id) {
       id
+      user {
+        email
+      }
+      body
+      createdAt
     }
   }
 `
@@ -15,5 +22,11 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ answerComment }) => {
-  return <div>{JSON.stringify(answerComment)}</div>
+  return (
+    <div>
+      <p>{answerComment.createdAt}</p>
+      <p>{answerComment.user.email}</p>
+      <h2>{answerComment.body}</h2>
+    </div>
+  )
 }

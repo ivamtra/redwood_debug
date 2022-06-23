@@ -45,6 +45,7 @@ const RatingButton = ({ type, id }) => {
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
 
   const downvoteClick = () => {
+    // Breyta seinna til að höndla það að taka burt rating-ið
     setRating(-1)
     console.log('downvoted')
     console.log(new Date().toISOString)
@@ -52,6 +53,7 @@ const RatingButton = ({ type, id }) => {
   }
 
   const upvoteClick = () => {
+    // Breyta seinna til að höndla það að taka burt rating-ið
     setRating(1)
     console.log('upvoted')
     handleMutation()
@@ -60,31 +62,34 @@ const RatingButton = ({ type, id }) => {
     const input = {
       userId: currentUser.id,
       action: rating,
-      questionId: id,
       dateTime: new Date().toISOString(),
     }
     if (rating === 1 || rating === -1) {
       // Bæta við rating
       console.log(input)
-
-      //FIXME: Vill ekki nota default datetime wtf??
+      let finalInput
 
       switch (type) {
-        case 'question':
+        case 'answer':
+          finalInput = { ...input, answerId: id }
+          console.log(finalInput)
           console.log(
-            createQuestionUpvote({
-              variables: { input: input },
+            createAnswerUpvote({
+              variables: { input: finalInput },
             })
           )
           break
-        case 'answer':
+        case 'question':
+          // eslint-disable-next-line no-case-declarations
+          finalInput = { ...input, questionId: id }
           console.log(
-            createAnswerUpvote({
-              variables: { input: input },
+            createQuestionUpvote({
+              variables: { input: finalInput },
             })
           )
           break
         case 'comment':
+          finalInput = { ...input, commentId: id }
           console.log(
             createCommentUpvote({
               variables: { input: input },
