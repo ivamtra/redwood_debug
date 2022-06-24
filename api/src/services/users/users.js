@@ -46,4 +46,6 @@ export const User = {
     db.user.findUnique({ where: { id: root.id } }).UserIsInGroup(),
   UserLikesComment: (_obj, { root }) =>
     db.user.findUnique({ where: { id: root.id } }).UserLikesComment(),
+  Issue: (_obj, { root }) =>
+    db.user.findUnique({ where: { id: root.id } }).Issue(),
 }

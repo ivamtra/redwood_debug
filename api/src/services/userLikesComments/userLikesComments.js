@@ -32,6 +32,6 @@ export const deleteUserLikesComment = ({ id }) => {
 export const UserLikesComment = {
   user: (_obj, { root }) =>
     db.userLikesComment.findUnique({ where: { id: root.id } }).user(),
-  question: (_obj, { root }) =>
-    db.userLikesComment.findUnique({ where: { id: root.id } }).question(),
+  answerComment: (_obj, { root }) =>
+    db.userLikesComment.findUnique({ where: { id: root.id } }).answerComment(),
 }

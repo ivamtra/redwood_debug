@@ -9,6 +9,7 @@ export const schema = gql`
     answerId: Int!
     createdAt: DateTime!
     Issue: [Issue]!
+    UserLikesComment: [UserLikesComment]!
   }
 
   type Query {

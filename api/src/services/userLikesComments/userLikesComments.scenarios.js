@@ -2,25 +2,52 @@ export const standard = defineScenario({
   userLikesComment: {
     one: {
       data: {
-        action: 190404,
+        action: 4585290,
         user: {
           create: {
-            email: 'String9018715',
+            email: 'String2083746',
             hashedPassword: 'String',
             salt: 'String',
           },
         },
 
-        question: {
+        answerComment: {
           create: {
-            title: 'String',
-            language: 'String',
-            definition: 'String',
+            body: 'String',
             user: {
               create: {
-                email: 'String9252556',
+                email: 'String3854321',
                 hashedPassword: 'String',
                 salt: 'String',
+              },
+            },
+
+            answer: {
+              create: {
+                title: 'String',
+                justification: 'String',
+                user: {
+                  create: {
+                    email: 'String5293170',
+                    hashedPassword: 'String',
+                    salt: 'String',
+                  },
+                },
+
+                question: {
+                  create: {
+                    title: 'String',
+                    language: 'String',
+                    definition: 'String',
+                    user: {
+                      create: {
+                        email: 'String9829567',
+                        hashedPassword: 'String',
+                        salt: 'String',
+                      },
+                    },
+                  },
+                },
               },
             },
           },
@@ -30,25 +57,52 @@ export const standard = defineScenario({
 
     two: {
       data: {
-        action: 413363,
+        action: 334734,
         user: {
           create: {
-            email: 'String9883563',
+            email: 'String946472',
             hashedPassword: 'String',
             salt: 'String',
           },
         },
 
-        question: {
+        answerComment: {
           create: {
-            title: 'String',
-            language: 'String',
-            definition: 'String',
+            body: 'String',
             user: {
               create: {
-                email: 'String3877666',
+                email: 'String6654729',
                 hashedPassword: 'String',
                 salt: 'String',
+              },
+            },
+
+            answer: {
+              create: {
+                title: 'String',
+                justification: 'String',
+                user: {
+                  create: {
+                    email: 'String7742009',
+                    hashedPassword: 'String',
+                    salt: 'String',
+                  },
+                },
+
+                question: {
+                  create: {
+                    title: 'String',
+                    language: 'String',
+                    definition: 'String',
+                    user: {
+                      create: {
+                        email: 'String7231162',
+                        hashedPassword: 'String',
+                        salt: 'String',
+                      },
+                    },
+                  },
+                },
               },
             },
           },

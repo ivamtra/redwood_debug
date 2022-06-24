@@ -19,12 +19,13 @@ describe('issues', () => {
     expect(result).toEqual(scenario.issue.one)
   })
 
-  scenario('creates a issue', async () => {
+  scenario('creates a issue', async (scenario) => {
     const result = await createIssue({
-      input: { description: 'String' },
+      input: { description: 'String', userId: scenario.issue.two.userId },
     })
 
     expect(result.description).toEqual('String')
+    expect(result.userId).toEqual(scenario.issue.two.userId)
   })
 
   scenario('updates a issue', async (scenario) => {

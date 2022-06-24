@@ -18,6 +18,7 @@ export const schema = gql`
     UserHasBadge: [UserHasBadge]!
     UserIsInGroup: [UserIsInGroup]!
     UserLikesComment: [UserLikesComment]!
+    Issue: [Issue]!
   }
 
   type Query {

@@ -1,6 +1,6 @@
 export const QUERY = gql`
   query FindCommentQuery($id: Int!) {
-    comment: comment(id: $id) {
+    answerComment: answerComment(id: $id) {
       id
     }
   }
@@ -14,6 +14,6 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ comment }) => {
-  return <div>{JSON.stringify(comment)}</div>
+export const Success = ({ answerComment }) => {
+  return <div>{JSON.stringify(answerComment)}</div>
 }

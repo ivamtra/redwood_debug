@@ -2,10 +2,10 @@ export const standard = defineScenario({
   userLikesQuestion: {
     one: {
       data: {
-        action: 3323746,
+        action: 3808764,
         user: {
           create: {
-            email: 'String7846467',
+            email: 'String7816799',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -18,7 +18,7 @@ export const standard = defineScenario({
             definition: 'String',
             user: {
               create: {
-                email: 'String4161218',
+                email: 'String5956547',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -30,10 +30,10 @@ export const standard = defineScenario({
 
     two: {
       data: {
-        action: 276911,
+        action: 6554913,
         user: {
           create: {
-            email: 'String2091487',
+            email: 'String4921825',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -46,7 +46,7 @@ export const standard = defineScenario({
             definition: 'String',
             user: {
               create: {
-                email: 'String2951146',
+                email: 'String9191049',
                 hashedPassword: 'String',
                 salt: 'String',
               },

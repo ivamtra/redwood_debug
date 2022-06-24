@@ -33,6 +33,7 @@ model User {
   UserHasBadge        UserHasBadge[]
   UserIsInGroup       UserIsInGroup[]
   UserLikesComment    UserLikesComment[]
+  Issue               Issue[]
 }
 
 // Svipað og facebook hópur
@@ -58,7 +59,6 @@ model Question {
   Sentence             Sentence[]
   Answer               Answer[]
   UserLikesQuestion    UserLikesQuestion[]
-  UserLikesComment     UserLikesComment[]
   Issue                Issue[]
   QuestionIsInCategory QuestionIsInCategory[]
 }
@@ -95,15 +95,16 @@ model Translation {
 }
 
 model AnswerComment {
-  id        Int      @id @default(autoincrement())
-  body      String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  parentId  Int? // Vísa í komment fyrir ofan
-  answer    Answer   @relation(fields: [answerId], references: [id])
-  answerId  Int
-  createdAt DateTime @default(now())
-  Issue     Issue[]
+  id               Int                @id @default(autoincrement())
+  body             String
+  user             User               @relation(fields: [userId], references: [id])
+  userId           Int
+  parentId         Int? // Vísa í komment fyrir ofan
+  answer           Answer             @relation(fields: [answerId], references: [id])
+  answerId         Int
+  createdAt        DateTime           @default(now())
+  Issue            Issue[]
+  UserLikesComment UserLikesComment[]
 }
 
 model Category {
@@ -174,12 +175,12 @@ model UserLikesComment {
   user   User @relation(fields: [userId], references: [id])
   action Int // -1, 0, 1
 
-  question   Question @relation(fields: [questionId], references: [id])
-  dateTime   DateTime @default(now())
-  userId     Int
-  questionId Int
+  answerComment AnswerComment @relation(fields: [commentId], references: [id])
+  dateTime      DateTime      @default(now())
+  userId        Int
+  commentId     Int
 
-  @@unique([userId, questionId])
+  @@unique([userId, commentId])
 }
 
 // ------------------------------------------
@@ -223,6 +224,7 @@ model Issue {
   question      Question      @relation(fields: [questionId], references: [id])
   answer        Answer        @relation(fields: [answerId], references: [id])
   answerComment AnswerComment @relation(fields: [answerCommentId], references: [id])
+  user          User          @relation(fields: [userId], references: [id])
 
   description String // Lýsingin á vandamálinu
 
@@ -230,6 +232,7 @@ model Issue {
   questionId      Int @default(0)
   answerId        Int @default(0)
   answerCommentId Int @default(0)
+  userId          Int
 }
 
 // Many-to-many vensl fyrir spurningar og flokka

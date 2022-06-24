@@ -4,10 +4,12 @@ export const schema = gql`
     question: Question!
     answer: Answer!
     answerComment: AnswerComment!
+    user: User!
     description: String!
     questionId: Int!
     answerId: Int!
     answerCommentId: Int!
+    userId: Int!
   }
 
   type Query {
@@ -20,6 +22,7 @@ export const schema = gql`
     questionId: Int!
     answerId: Int!
     answerCommentId: Int!
+    userId: Int!
   }
 
   input UpdateIssueInput {
@@ -27,6 +30,7 @@ export const schema = gql`
     questionId: Int
     answerId: Int
     answerCommentId: Int
+    userId: Int
   }
 
   type Mutation {

@@ -29,16 +29,6 @@ export const deleteQuestion = ({ id }) => {
   })
 }
 
-// Þetta ætti að gefa max-idið
-// export const questions = () => {
-//   db.question.findMany({
-//     orderBy: {
-//       createdAt: 'desc',
-//     },
-//     take: 1,
-//   })
-// }
-
 export const Question = {
   user: (_obj, { root }) =>
     db.question.findUnique({ where: { id: root.id } }).user(),
@@ -48,8 +38,6 @@ export const Question = {
     db.question.findUnique({ where: { id: root.id } }).Answer(),
   UserLikesQuestion: (_obj, { root }) =>
     db.question.findUnique({ where: { id: root.id } }).UserLikesQuestion(),
-  UserLikesComment: (_obj, { root }) =>
-    db.question.findUnique({ where: { id: root.id } }).UserLikesComment(),
   Issue: (_obj, { root }) =>
     db.question.findUnique({ where: { id: root.id } }).Issue(),
   QuestionIsInCategory: (_obj, { root }) =>

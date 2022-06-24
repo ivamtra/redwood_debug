@@ -36,4 +36,6 @@ export const Issue = {
     db.issue.findUnique({ where: { id: root.id } }).answer(),
   answerComment: (_obj, { root }) =>
     db.issue.findUnique({ where: { id: root.id } }).answerComment(),
+  user: (_obj, { root }) =>
+    db.issue.findUnique({ where: { id: root.id } }).user(),
 }

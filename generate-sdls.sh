@@ -1,16 +1,16 @@
-yarn rw g sdl AnswerComment
-yarn rw g sdl Answer
-yarn rw g sdl Badge
-yarn rw g sdl Category
-yarn rw g sdl Group
-yarn rw g sdl Issue
-yarn rw g sdl QuestionIsInCategory
-yarn rw g sdl Question
-yarn rw g sdl Sentence
-yarn rw g sdl Translation
-yarn rw g sdl UserHasBadge
-yarn rw g sdl UserIsInGroup
-yarn rw g sdl UserLikesAnswer
-yarn rw g sdl UserLikesComment
-yarn rw g sdl UserLikesQuestion
-yarn rw g sdl User
+yarn rw g sdl AnswerComment --force
+yarn rw g sdl Answer --force
+yarn rw g sdl Badge --force
+yarn rw g sdl Category --force
+yarn rw g sdl Group --force
+yarn rw g sdl Issue --force
+yarn rw g sdl QuestionIsInCategory --force
+yarn rw g sdl Question --force
+yarn rw g sdl Sentence --force
+yarn rw g sdl Translation --force
+yarn rw g sdl UserHasBadge --force
+yarn rw g sdl UserIsInGroup --force
+yarn rw g sdl UserLikesAnswer --force
+yarn rw g sdl UserLikesComment --force
+yarn rw g sdl UserLikesQuestion --force
+yarn rw g sdl User --force

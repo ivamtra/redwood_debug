@@ -11,7 +11,6 @@ export const schema = gql`
     Sentence: [Sentence]!
     Answer: [Answer]!
     UserLikesQuestion: [UserLikesQuestion]!
-    UserLikesComment: [UserLikesComment]!
     Issue: [Issue]!
     QuestionIsInCategory: [QuestionIsInCategory]!
   }
@@ -19,7 +18,6 @@ export const schema = gql`
   type Query {
     questions: [Question!]! @requireAuth
     question(id: Int!): Question @requireAuth
-    findMaxId: Question @requireAuth
   }
 
   input CreateQuestionInput {

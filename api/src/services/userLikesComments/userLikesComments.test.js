@@ -30,15 +30,15 @@ describe('userLikesComments', () => {
   scenario('creates a userLikesComment', async (scenario) => {
     const result = await createUserLikesComment({
       input: {
-        action: 9003448,
+        action: 8136460,
         userId: scenario.userLikesComment.two.userId,
-        questionId: scenario.userLikesComment.two.questionId,
+        commentId: scenario.userLikesComment.two.commentId,
       },
     })
 
-    expect(result.action).toEqual(9003448)
+    expect(result.action).toEqual(8136460)
     expect(result.userId).toEqual(scenario.userLikesComment.two.userId)
-    expect(result.questionId).toEqual(scenario.userLikesComment.two.questionId)
+    expect(result.commentId).toEqual(scenario.userLikesComment.two.commentId)
   })
 
   scenario('updates a userLikesComment', async (scenario) => {
@@ -48,10 +48,10 @@ describe('userLikesComments', () => {
 
     const result = await updateUserLikesComment({
       id: original.id,
-      input: { action: 2002498 },
+      input: { action: 5395603 },
     })
 
-    expect(result.action).toEqual(2002498)
+    expect(result.action).toEqual(5395603)
   })
 
   scenario('deletes a userLikesComment', async (scenario) => {
