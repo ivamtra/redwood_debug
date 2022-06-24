@@ -46,6 +46,7 @@ model Group {
   UserIsInGroup UserIsInGroup[]
 }
 
+//FIXME: Inniheldur UserLikesComment í prisma studio þó það sé ekki hérna
 model Question {
   id         Int      @id @default(autoincrement())
   title      String
