@@ -3,6 +3,7 @@ import { MetaTags } from '@redwoodjs/web'
 
 import AnswerCell from 'src/components/AnswerCell/AnswerCell'
 import AnswerCommentCell from 'src/components/AnswerCommentCell/AnswerCommentCell'
+import FlagButton from 'src/components/FlagButton/FlagButton'
 
 const HomePage = () => {
   return (
@@ -25,6 +26,9 @@ const HomePage = () => {
       <h1>Test Comment</h1>
       <h1>-------------------------------------------------</h1>
       <AnswerCommentCell id={1} />
+      <h1>-------------------------------------------------</h1>
+      <h1>Test FlagButton</h1>
+      <FlagButton type={'question'} id={5} />
     </>
   )
 }

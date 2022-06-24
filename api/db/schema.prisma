@@ -2,6 +2,8 @@
 //TODO: Vantar likes dálk í Question, Answer .. sem updatast þegar likes taflan updatast.
 // Hugmynd: Hægt að láta upvote töluna hækka/lækka beint í staðinn fyrir að gera það
 // í gegnum gagnagrunninn
+//TODO: Laga UserLikesComment töfluna þannig það hefur commentId í staðinn fyrir questionId
+//TODO: Bæta við userId í Issues töfluna
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
