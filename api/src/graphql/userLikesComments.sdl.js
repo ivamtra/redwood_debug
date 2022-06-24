@@ -7,6 +7,7 @@ export const schema = gql`
     dateTime: DateTime!
     userId: Int!
     commentId: Int!
+    questionId: Int!
   }
 
   type Query {
@@ -19,6 +20,7 @@ export const schema = gql`
     dateTime: DateTime!
     userId: Int!
     commentId: Int!
+    questionId: Int!
   }
 
   input UpdateUserLikesCommentInput {
@@ -26,6 +28,7 @@ export const schema = gql`
     dateTime: DateTime
     userId: Int
     commentId: Int
+    questionId: Int
   }
 
   type Mutation {

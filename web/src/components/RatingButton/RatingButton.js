@@ -90,7 +90,7 @@ const RatingButton = ({ type, id }) => {
           )
           break
         case 'comment':
-          const commentInput = { ...input, commentId: id }
+          const commentInput = { ...input, commentId: id, questionId: 0 }
           console.log(commentInput)
           console.log(
             createCommentUpvote({
