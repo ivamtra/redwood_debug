@@ -169,7 +169,9 @@ model UserLikesQuestion {
   @@unique([userId, questionId])
 }
 
-//FIXME: breyta í commentId
+//FIXME: Nýja skemað vill ekki virka því það query-ar eftir questionId sem er ekki lengur til
+// Gæti verið best að gera nýja töflu og láta þessa vera tóma því það er eitthvað dependency
+// í bakgrunni sem er mjög erfitt að laga
 model UserLikesComment {
   id     Int  @id @default(autoincrement())
   user   User @relation(fields: [userId], references: [id])
@@ -179,6 +181,7 @@ model UserLikesComment {
   dateTime      DateTime      @default(now())
   userId        Int
   commentId     Int
+  questionId    Int //FIXME: Þessi dálkur á ekki að vera hérna en allt brotnar þegar hann fer
 
   @@unique([userId, commentId])
 }
