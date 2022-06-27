@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Link, routes } from '@redwoodjs/router'
 
 import AnswersCell from '../AnswersCell'
+import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
 import SentencesCell from '../SentencesCell'
 export const QUERY = gql`
@@ -52,6 +53,7 @@ export const Success = ({ question, inQuestionsCell }) => {
       <div>
         {/*TODO: vantar virkni á takka */}
         <RatingButton id={question.id} type="question" />
+        <FlagButton type={'question'} id={question.id} />
         <p>Number of upvotes:</p>
         <p>Dagsetning: {question.createdAt}</p>
         <p>User: {question.user.email}</p>

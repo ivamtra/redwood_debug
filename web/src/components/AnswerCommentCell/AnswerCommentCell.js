@@ -1,3 +1,4 @@
+import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
 
 export const QUERY = gql`
@@ -25,6 +26,7 @@ export const Success = ({ answerComment }) => {
   return (
     <div>
       <RatingButton type={'comment'} id={answerComment.id} />
+      <FlagButton type={'comment'} id={answerComment.id} />
       <p>{answerComment.createdAt}</p>
       <p>{answerComment.user.email}</p>
       <h2>{answerComment.body}</h2>

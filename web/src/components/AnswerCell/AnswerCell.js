@@ -1,3 +1,4 @@
+import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
 
 export const QUERY = gql`
@@ -35,7 +36,8 @@ export const Success = ({ answer }) => {
         {/*TODO: vantar virkni á takka */}
         {/* <button>upvote</button>
         <button>downvote</button> */}
-        <RatingButton id={answer.id} type="answer" />
+        <RatingButton id={answer.id} type={'answer'} />
+        <FlagButton id={answer.id} type={'answer'} />
         <p>answer.id = {answer.id}</p>
         <p>Number of upvotes:</p>
         <p>Dagsetning: {answer.createdAt}</p>

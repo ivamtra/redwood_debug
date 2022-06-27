@@ -34,7 +34,7 @@ const FlagButton = ({ type, id }) => {
   const [createIssue] = useMutation(CREATE_ISSUE)
 
   const handleFlag = () => {
-    setIsClicked(true)
+    setIsClicked(!isClicked)
   }
 
   const handleMutation = (data) => {
