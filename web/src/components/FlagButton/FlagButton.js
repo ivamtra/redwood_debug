@@ -50,8 +50,8 @@ const FlagButton = ({ type, id }) => {
         console.log(createIssue({ variables: { input: data } }))
         break
       case 'comment':
-        const commentInput = { ...data, answerCommentId: id }
-        console.log(commentInput)
+        data.answerCommentId = id
+        console.log(createIssue({ variables: { input: data } }))
         break
       default:
         // Throw exception
