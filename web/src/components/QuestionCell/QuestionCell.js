@@ -54,7 +54,7 @@ export const Success = ({ question, inQuestionsCell }) => {
         {/*TODO: vantar virkni á takka */}
         <RatingButton id={question.id} type="question" />
         <FlagButton type={'question'} id={question.id} />
-        <p>Number of upvotes:</p>
+        <p>Rating:</p>
         <p>Dagsetning: {question.createdAt}</p>
         <p>User: {question.user.email}</p>
       </div>

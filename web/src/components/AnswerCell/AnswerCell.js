@@ -39,7 +39,7 @@ export const Success = ({ answer }) => {
         <RatingButton id={answer.id} type={'answer'} />
         <FlagButton id={answer.id} type={'answer'} />
         <p>answer.id = {answer.id}</p>
-        <p>Number of upvotes:</p>
+        <p>Rating:</p>
         <p>Dagsetning: {answer.createdAt}</p>
         <h4>User: {answer.user.email}</h4>
       </div>

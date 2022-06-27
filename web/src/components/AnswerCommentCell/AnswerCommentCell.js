@@ -27,6 +27,7 @@ export const Success = ({ answerComment }) => {
     <div>
       <RatingButton type={'comment'} id={answerComment.id} />
       <FlagButton type={'comment'} id={answerComment.id} />
+      <p>Rating:</p>
       <p>{answerComment.createdAt}</p>
       <p>{answerComment.user.email}</p>
       <h2>{answerComment.body}</h2>
