@@ -1,3 +1,6 @@
+//TODO: Setja allt í einn component til að losna við dependency
+//TODO: Nota Submit og Form til að það þurfi bara eitt click
+
 import { useEffect } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
@@ -58,7 +61,6 @@ const QuestionSentenceForm = ({ question, sentences, questions }) => {
       console.log(result.data.createQuestion.id)
       QUESTIONCREATED_ID = result.data.createQuestion.id
       console.log(result.data.createQuestion.createdAt)
-      console.log(QUESTIONCREATED_ID)
       console.log(QUESTIONCREATED_ID)
 
       //Bæta question id-ið við sentence objectana
