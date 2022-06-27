@@ -4,6 +4,7 @@ import { MetaTags } from '@redwoodjs/web'
 import AnswerCell from 'src/components/AnswerCell/AnswerCell'
 import AnswerCommentCell from 'src/components/AnswerCommentCell/AnswerCommentCell'
 import FlagButton from 'src/components/FlagButton/FlagButton'
+import NewQuestionForm from 'src/components/NewQuestionForm/NewQuestionForm'
 
 const HomePage = () => {
   return (
@@ -31,7 +32,7 @@ const HomePage = () => {
       <FlagButton type={'question'} id={5} />
       <h1>-------------------------------------------------</h1>
       <h1>Nytt question form</h1>
-      <h1>-------------------------------------------------</h1>
+      <NewQuestionForm />
     </>
   )
 }
