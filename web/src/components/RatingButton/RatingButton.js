@@ -6,6 +6,7 @@
 import { useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
+import { Submit } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 const CREATE_QUESTION_UPVOTE = gql`
   mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
@@ -107,8 +108,8 @@ const RatingButton = ({ type, id }) => {
 
   return (
     <div>
-      <button onClick={upvoteClick}>Upvote</button>
-      <button onClick={downvoteClick}>Downvote</button>
+      <Submit onClick={upvoteClick}>Upvote</Submit>
+      <Submit onClick={downvoteClick}>Downvote</Submit>
     </div>
   )
 }
