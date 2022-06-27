@@ -21,19 +21,42 @@ const CREATE_SENTENCE = gql`
 `
 
 const NewQuestionForm = () => {
+  const [createQuestion] = useMutation(CREATE_QUESTION)
+  const [createSentence] = useMutation(CREATE_SENTENCE)
+  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const [textValue, setTextValue] = useState('')
+
   const [list, setList] = useState([
     { listIndex: 0, sentence: 'placeholder', questionId: 0 },
   ])
   const [listIndex, setListIndex] = useState(0)
 
-  const onSubmit = (data) => console.log(data)
+  const addSentence = () => {}
+
+  const onSubmit = (questionData) => {
+    handleQuestionMutation(questionData)
+    handleSentenceMutation()
+  }
+
+  const handleSentenceMutation = (sentenceList) => {}
+
+  const handleQuestionMutation = (data) => {
+    console.log(data)
+    const inputData = { ...data, userId: currentUser.id }
+    const questionCreatedPromise = createQuestion({
+      variables: {
+        input: inputData,
+      },
+    })
+    console.log(questionCreatedPromise)
+  }
   return (
     <div>
       <Form onSubmit={onSubmit}>
-        <TextField placeholder="title" name="title" /> <br />
-        <TextField placeholder="language" name="language" /> <br />
-        <TextField placeholder="definition" name="definition" /> <br />
-        <TextField placeholder="other_info" name="other_info" /> <br />
+        <TextField placeholder="title" name="title" required /> <br />
+        <TextField placeholder="language" name="language" required /> <br />
+        <TextField placeholder="definition" name="definition" required /> <br />
+        <TextField placeholder="other_info" name="other_info" required /> <br />
         <div>
           {list.map((item) => (
             <div key={item.listIndex}>
@@ -41,6 +64,7 @@ const NewQuestionForm = () => {
                 placeholder={'sentence ' + listIndex}
                 name={item.listIndex}
               />
+              <button onClick={addSentence}>+</button>
             </div>
           ))}
         </div>
