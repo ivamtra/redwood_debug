@@ -33,6 +33,10 @@ const FlagButton = ({ type, id }) => {
   }
   const [createIssue] = useMutation(CREATE_ISSUE)
 
+  const handleFlag = () => {
+    setIsClicked(true)
+  }
+
   const handleMutation = (data) => {
     switch (type) {
       case 'answer':
@@ -58,11 +62,17 @@ const FlagButton = ({ type, id }) => {
   const { isAuthenticated, currentUser, logOut } = useAuth()
   return (
     <div>
-      <button>Flag</button>
-      <Form onSubmit={onSubmit}>
-        <TextAreaField name="description" />
-        <Submit>Save</Submit>
-      </Form>
+      <button onClick={handleFlag}>Flag</button>
+      {isClicked ? (
+        <div>
+          <Form onSubmit={onSubmit}>
+            <TextAreaField name="description" />
+            <Submit>Save</Submit>
+          </Form>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   )
 }
