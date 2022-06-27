@@ -1,4 +1,6 @@
 /* eslint-disable no-case-declarations */
+import { useState } from 'react'
+
 import { useAuth } from '@redwoodjs/auth'
 import { Form, Submit, TextAreaField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
@@ -17,6 +19,7 @@ const CREATE_ISSUE = gql`
 `
 
 const FlagButton = ({ type, id }) => {
+  const [isClicked, setIsClicked] = useState(false)
   const onSubmit = (data) => {
     console.log(data)
     const newData = {
@@ -39,6 +42,7 @@ const FlagButton = ({ type, id }) => {
         break
       case 'question':
         data.questionId = id
+        console.log(data)
         console.log(createIssue({ variables: { input: data } }))
         break
       case 'comment':
