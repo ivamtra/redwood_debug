@@ -29,47 +29,100 @@ const NewQuestionForm = () => {
   const [list, setList] = useState([
     { listIndex: 0, sentence: 'placeholder', questionId: 0 },
   ])
-  const [listIndex, setListIndex] = useState(0)
+  const [listIndex, setListIndex] = useState(1)
 
-  const addSentence = () => {}
+  const addSentence = () => {
+    setListIndex(listIndex + 1)
+    console.log(listIndex)
+    let tempArray = [...list]
+    tempArray.push({ listIndex: listIndex, sentence: textValue, questionId: 0 })
+    setList(tempArray)
+    console.log(list)
+  }
+
+  const logSentences = () => console.log(list)
+
+  const onChange = (e) => setTextValue(e.target.value)
 
   const onSubmit = (questionData) => {
     handleQuestionMutation(questionData)
-    handleSentenceMutation()
   }
 
-  const handleSentenceMutation = (sentenceList) => {}
+  const handleSentenceMutation = (questionId) => {
+    // Undirbúa lokalistann
+    setListIndex(listIndex + 1)
+    let finalArray = [...list]
+    finalArray.shift()
+    finalArray.push({
+      listIndex: listIndex,
+      sentence: textValue,
+      questionId: 0,
+    })
+
+    // Athuga duplicate/ eða tómt í síðasta
+    if (finalArray.length >= 2) {
+      const n = finalArray.length
+      if (
+        finalArray[n - 1].sentence === finalArray[n - 2].sentence ||
+        finalArray[n - 1].sentence === ''
+      ) {
+        finalArray.pop()
+      }
+    }
+    console.log(finalArray)
+
+    // Bæta hverja setningu við gagnagrunninn
+    finalArray.forEach((item) => {
+      // Bæta við questionId úr createSentence
+      console.log(questionId)
+      const inputData = { sentence: item.sentence, questionId: questionId }
+      console.log(inputData)
+      // Setja hana í gagnagrunninn
+      createSentence({
+        variables: {
+          input: inputData,
+        },
+      })
+    })
+  }
 
   const handleQuestionMutation = (data) => {
     console.log(data)
     const inputData = { ...data, userId: currentUser.id }
+    console.log(inputData)
     const questionCreatedPromise = createQuestion({
       variables: {
         input: inputData,
       },
+    })
+    questionCreatedPromise.then((result) => {
+      console.log(result.data.createQuestion.id)
+      handleSentenceMutation(result.data.createQuestion.id)
     })
     console.log(questionCreatedPromise)
   }
   return (
     <div>
       <Form onSubmit={onSubmit}>
-        <TextField placeholder="title" name="title" required /> <br />
-        <TextField placeholder="language" name="language" required /> <br />
-        <TextField placeholder="definition" name="definition" required /> <br />
-        <TextField placeholder="other_info" name="other_info" required /> <br />
-        <div>
-          {list.map((item) => (
-            <div key={item.listIndex}>
-              <input
-                placeholder={'sentence ' + listIndex}
-                name={item.listIndex}
-              />
-              <button onClick={addSentence}>+</button>
-            </div>
-          ))}
-        </div>
+        <TextField placeholder="title" name="title" /> <br />
+        <TextField placeholder="language" name="language" /> <br />
+        <TextField placeholder="definition" name="definition" /> <br />
+        <TextField placeholder="other_info" name="other_info" /> <br />
         <Submit>Submit</Submit>
       </Form>
+      <div>
+        {list.map((item) => (
+          <div key={item.listIndex}>
+            <input
+              placeholder={'sentence ' + listIndex}
+              name={item.listIndex}
+              onChange={onChange}
+            />
+            <button onClick={addSentence}>+</button>
+          </div>
+        ))}
+      </div>
+      <button onClick={logSentences}>Log sentences</button>
     </div>
   )
 }

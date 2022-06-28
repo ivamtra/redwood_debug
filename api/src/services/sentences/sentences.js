@@ -23,6 +23,10 @@ export const updateSentence = ({ id, input }) => {
   })
 }
 
+export const getSentences = ({ questionId }) => {
+  return db.sentence.findMany({ where: { questionId } })
+}
+
 export const deleteSentence = ({ id }) => {
   return db.sentence.delete({
     where: { id },

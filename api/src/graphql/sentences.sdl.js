@@ -7,8 +7,9 @@ export const schema = gql`
   }
 
   type Query {
-    sentences(questionId: Int!): [Sentence!]! @requireAuth
-    sentence(id: Int!): Sentence @requireAuth
+    sentences(questionId: Int!): [Sentence!]! @skipAuth
+    sentence(id: Int!): Sentence @skipAuth
+    getSentences(questionId: Int!): [Sentence!]! @skipAuth
   }
 
   input CreateSentenceInput {

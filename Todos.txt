@@ -10,3 +10,7 @@
   -Þegar ýtt er á flaggið opnast gluggi sem tekur inn upplýsingar um vandamál
     - 1) Getur verið ný slóð
     - 2) Getur verið pop up
+
+
+-Verkefnalýsingar fyrir fiverr
+-Birta question componenta í réttri röð
