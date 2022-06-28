@@ -31,6 +31,7 @@ const NewQuestionForm = () => {
   ])
   const [listIndex, setListIndex] = useState(1)
 
+  // Bæta við setningu í listann
   const addSentence = () => {
     setListIndex(listIndex + 1)
     console.log(listIndex)
@@ -40,14 +41,14 @@ const NewQuestionForm = () => {
     console.log(list)
   }
 
-  const logSentences = () => console.log(list)
-
+  // Athuga hver er nýjasta setningin
   const onChange = (e) => setTextValue(e.target.value)
 
   const onSubmit = (questionData) => {
     handleQuestionMutation(questionData)
   }
 
+  // Höndlar gögnin sem fást úr listanum og sendir þau í gagnagrunninn
   const handleSentenceMutation = (questionId) => {
     // Undirbúa lokalistann
     setListIndex(listIndex + 1)
@@ -86,6 +87,9 @@ const NewQuestionForm = () => {
     })
   }
 
+  // Höndlar gögn fyrir Question hlutinn en kallar
+  // einnig á handleSentenceMutation sem býr til
+  // raðir í Sentence töflunni
   const handleQuestionMutation = (data) => {
     console.log(data)
     const inputData = { ...data, userId: currentUser.id }
@@ -110,6 +114,7 @@ const NewQuestionForm = () => {
         <TextField placeholder="other_info" name="other_info" /> <br />
         <Submit>Submit</Submit>
       </Form>
+      {/*Setningar verða að vera hérna því plús takkinn kallar á onSubmit */}
       <div>
         {list.map((item) => (
           <div key={item.listIndex}>
@@ -122,7 +127,6 @@ const NewQuestionForm = () => {
           </div>
         ))}
       </div>
-      <button onClick={logSentences}>Log sentences</button>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 -Laga query-ið í QuestionSentenceForm.js
 -Form componentar
--Bæta við rating attribute í comment, question answer.
+-Bæta við rating attribute í comment, question, answer.
 -Bæta við trigger sem hækkar rating countið á því posti þegar likes töflurnar breytast.
 -Bæta við ehv styling svo hægt er að horfa á þetta
 -Seed fyrir gagnagrunninn
