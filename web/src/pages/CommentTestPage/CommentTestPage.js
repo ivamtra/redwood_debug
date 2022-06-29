@@ -1,3 +1,5 @@
+//TODO: Vantar að query-a fyrir utan react componentinn
+
 import { useEffect } from 'react'
 
 import { Link, routes } from '@redwoodjs/router'
@@ -5,6 +7,10 @@ import { MetaTags } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
 
 import AnswerCell from 'src/components/AnswerCell'
+
+const TreeModel = require('tree-model'),
+  tree = new TreeModel(),
+  root = tree.parse({ name: 'a', children: [{ name: 'b' }] })
 
 const CommentQuery = gql`
   query FindAnswerCommentQuery {
@@ -19,9 +25,25 @@ const CommentQuery = gql`
   }
 `
 
+const CommentByParentId = gql`
+  query FindCommentByParentId($parentId: Int) {
+    answerCommentsByParentId(parentId: $parentId) {
+      id
+      user {
+        email
+      }
+      body
+      createdAt
+    }
+  }
+`
+
 const CommentTestPage = () => {
   // useMemo fyrir trjáreikniritið
-  useEffect(() => console.log(data))
+  useEffect(() => {
+    console.log(tree)
+    console.log(data)
+  })
 
   const onClick = () => {
     console.log(data)
