@@ -14,8 +14,8 @@ import TestLayout from './layouts/TestLayout/TestLayout'
 const Routes = () => {
   return (
     <Router>
-      <Route path="/comment-test" page={CommentTestPage} name="commentTest" />
       <Set wrap={TestLayout}>
+        <Route path="/comment-test" page={CommentTestPage} name="commentTest" />
         <Route path="/question/{id:Int}" page={QuestionPage} name="question" />
         <Route path="/questions" page={QuestionsPage} name="questions" />
         <Route path="/test" page={HomePage} name="test" />
