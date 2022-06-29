@@ -1,8 +1,8 @@
 import AnswerCommentCell from '../AnswerCommentCell'
 
 export const QUERY = gql`
-  query AnswerCommentsQuery {
-    answerComments {
+  query AnswerCommentsQuery($answerId: Int!) {
+    answerComments(answerId: $answerId) {
       id
     }
   }
@@ -16,11 +16,13 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ answerComments }) => {
+export const Success = ({ answerComments, answerId }) => {
   return (
     <div>
       {answerComments.map((item) => {
-        return <AnswerCommentCell key={item.id} id={item.id} />
+        return (
+          <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
+        )
       })}
     </div>
   )

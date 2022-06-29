@@ -1,3 +1,4 @@
+import AnswerCommentsCell from '../AnswerCommentsCell/AnswerCommentsCell'
 import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
 
@@ -48,6 +49,7 @@ export const Success = ({ answer }) => {
         <h3>Rökstuðningur: {answer.justification}</h3>
         <p>answer.questionId = {answer.questionId}</p>
       </div>
+      <AnswerCommentsCell answerId={answer.id} />
     </div>
   )
 }

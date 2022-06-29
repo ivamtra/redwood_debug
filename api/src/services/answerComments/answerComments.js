@@ -1,13 +1,17 @@
 import { db } from 'src/lib/db'
 
-export const answerComments = () => {
-  return db.answerComment.findMany()
-}
+// export const answerComments = () => {
+//   return db.answerComment.findMany()
+// }
 
 export const answerComment = ({ id }) => {
   return db.answerComment.findUnique({
     where: { id },
   })
+}
+
+export const answerComments = ({ answerId }) => {
+  return db.answerComment.findMany({ where: { answerId } })
 }
 
 export const createAnswerComment = ({ input }) => {
