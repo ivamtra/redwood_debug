@@ -4,9 +4,11 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
 
+import AnswerCell from 'src/components/AnswerCell'
+
 const CommentQuery = gql`
   query FindAnswerCommentQuery {
-    answerComments {
+    answerComments(answerId: 5) {
       id
       user {
         email
@@ -18,9 +20,12 @@ const CommentQuery = gql`
 `
 
 const CommentTestPage = () => {
-  useEffect(function () {
-    setTimeout(() => console.log(data), 1000)
-  })
+  // useMemo fyrir trjáreikniritið
+  useEffect(() => console.log(data))
+
+  const onClick = () => {
+    console.log(data)
+  }
 
   const { data, loading, error } = useQuery(CommentQuery)
   return (
@@ -35,6 +40,10 @@ const CommentTestPage = () => {
         My default route is named <code>commentTest</code>, link to me with `
         <Link to={routes.commentTest()}>CommentTest</Link>`
       </p>
+      <button oClick={onClick}>Log data</button>
+      <h1>AnswerCell id=5</h1>
+      <h1>---------------------------------------</h1>
+      <AnswerCell id={5} />
     </>
   )
 }

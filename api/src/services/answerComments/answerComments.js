@@ -14,6 +14,10 @@ export const answerComments = ({ answerId }) => {
   return db.answerComment.findMany({ where: { answerId } })
 }
 
+export const answerCommentsByAnswerId = ({ answerId }) => {
+  return db.answerComment.findMany({ where: { answerId } })
+}
+
 export const createAnswerComment = ({ input }) => {
   return db.answerComment.create({
     data: input,
@@ -31,6 +35,10 @@ export const deleteAnswerComment = ({ id }) => {
   return db.answerComment.delete({
     where: { id },
   })
+}
+
+export const answerCommentsByParentId = ({ parentId }) => {
+  return db.answerComment.findMany({ where: { parentId } })
 }
 
 export const AnswerComment = {

@@ -16,6 +16,8 @@ export const schema = gql`
     # answerComments: [AnswerComment!]! @skipAuth
     answerComment(id: Int!): AnswerComment @skipAuth
     answerComments(answerId: Int!): [AnswerComment!]! @skipAuth
+    answerCommentsByParentId(parentId: Int): [AnswerComment!]! @skipAuth
+    answerCommentsByAnswerId(answerId: Int!): [AnswerComment!]! @skipAuth
   }
 
   input CreateAnswerCommentInput {
