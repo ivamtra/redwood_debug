@@ -1,6 +1,13 @@
 //TODO: Vantar að query-a fyrir utan react componentinn
 
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
+
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  useApolloClient,
+} from '@apollo/client'
 
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
@@ -8,9 +15,34 @@ import { useQuery } from '@redwoodjs/web'
 
 import AnswerCell from 'src/components/AnswerCell'
 
+// let apolloClient
+
+// const httpLink = new HttpLink({
+//   uri: 'http://localhost:8911/graphql',
+// })
+
+// function createApolloClient() {
+//   return new ApolloClient({
+//     link: httpLink,
+//     cache: new InMemoryCache(),
+//   })
+// }
+
+// export function initializeApollo() {
+//   const _apolloClient = apolloClient ?? createApolloClient()
+//   if (!apolloClient) apolloClient = _apolloClient
+
+//   return _apolloClient
+// }
+
+// export function useApollo() {
+//   const store = useMemo(() => initializeApollo(initialState), [initialState])
+//   return store
+// }
+
 const TreeModel = require('tree-model'),
   tree = new TreeModel(),
-  root = tree.parse({ name: 'a', children: [{ name: 'b' }] })
+  root = tree.parse({ id: '0' })
 
 const CommentQuery = gql`
   query FindAnswerCommentQuery {
@@ -21,6 +53,7 @@ const CommentQuery = gql`
       }
       body
       createdAt
+      parentId
     }
   }
 `
@@ -34,9 +67,19 @@ const CommentByParentId = gql`
       }
       body
       createdAt
+      parentId
     }
   }
 `
+
+// const QueryCommentByParentId = async (parentId) => {
+//   const client = initializeApollo()
+//   const res = await client.query({
+//     query: CommentByParentId,
+//     variables: { parentId: parentId },
+//   })
+//   return res
+// }
 
 const CommentTestPage = () => {
   // useMemo fyrir trjáreikniritið
@@ -45,9 +88,55 @@ const CommentTestPage = () => {
     console.log(data)
   })
 
-  const onClick = () => {
+  const logComments = () => {
     console.log(data)
   }
+
+  const client = useApolloClient()
+
+  const sortComments = () => {
+    console.log(data.answerComments)
+    const tempList = [...data.answerComments]
+    console.log(tempList)
+    const reversedList = tempList.reverse()
+    console.log(reversedList)
+
+    let childrenAdded = 0
+    let nodeQueue = []
+    let parentId = 0
+    let counter = 0
+    let finalList = []
+    while (childrenAdded !== reversedList.length) {
+      reversedList.forEach((item) => {
+        if (item.parentId === parentId) {
+          nodeQueue.push(item.id)
+          finalList.push(item.id)
+          console.log(item)
+          console.log('level: ' + nodeQueue.length)
+          console.log(parentId)
+          childrenAdded++
+        }
+      })
+      console.log('childrenAdded: ' + childrenAdded)
+      console.log('list length ' + reversedList.length)
+      console.log(childrenAdded === reversedList.length)
+
+      console.log(nodeQueue)
+      parentId = nodeQueue[0]
+      console.log(parentId)
+      nodeQueue.shift()
+      counter++
+      if (counter >= 20) {
+        break
+      }
+    }
+    return finalList
+  }
+  // const fetchCommentsByParentId = (parentId) => {
+  //   const { data, loading, error } = useQuery(CommentByParentId, {
+  //     variables: { parentId: parentId },
+  //   })
+  // }
 
   const { data, loading, error } = useQuery(CommentQuery)
   return (
@@ -62,7 +151,8 @@ const CommentTestPage = () => {
         My default route is named <code>commentTest</code>, link to me with `
         <Link to={routes.commentTest()}>CommentTest</Link>`
       </p>
-      <button oClick={onClick}>Log data</button>
+      <button onClick={sortComments}>Sort comments</button>
+      <button onClick={logComments}>Log data</button>
       <h1>AnswerCell id=5</h1>
       <h1>---------------------------------------</h1>
       <AnswerCell id={5} />
