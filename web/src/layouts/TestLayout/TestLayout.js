@@ -18,8 +18,9 @@ const TestLayout = ({ children, user }) => {
       <h2>Links</h2>
       <h2>
         <Link to={routes.questions()}>Spurningar </Link>
-        <Link to={routes.forms()}>Forms </Link>
+        <Link to={routes.forms()}>Forms </Link> <br />
         <Link to={routes.test()}>Svör </Link>
+        <Link to={routes.commentTest()}>Comment </Link>
       </h2>
       <main>{children}</main>
     </>

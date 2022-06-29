@@ -13,8 +13,8 @@ export const schema = gql`
   }
 
   type Query {
-    answerComments: [AnswerComment!]! @requireAuth
-    answerComment(id: Int!): AnswerComment @requireAuth
+    answerComments: [AnswerComment!]! @skipAuth
+    answerComment(id: Int!): AnswerComment @skipAuth
   }
 
   input CreateAnswerCommentInput {

@@ -13,4 +13,5 @@
 
 
 -Verkefnalýsingar fyrir fiverr
--Birta question componenta í réttri röð
+-Birta comment componenta í réttri röð
+  - Held að DFS sé lausnin á þessu
