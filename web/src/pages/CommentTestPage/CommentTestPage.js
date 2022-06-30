@@ -91,6 +91,8 @@ const CommentTestPage = () => {
 
   const [list, setList] = useState([])
 
+  const [tree, setTree] = useState(new Tree())
+
   const logComments = () => {
     console.log(data)
   }
@@ -131,10 +133,6 @@ const CommentTestPage = () => {
       parentId = nodeQueue[0]
       console.log(parentId)
       nodeQueue.shift()
-      counter++
-      if (counter >= 20) {
-        break
-      }
     }
     console.log(finalList)
     return finalList
