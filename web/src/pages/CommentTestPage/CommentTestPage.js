@@ -1,6 +1,6 @@
 //TODO: Vantar að query-a fyrir utan react componentinn
 
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import {
   ApolloClient,
@@ -88,16 +88,21 @@ const CommentTestPage = () => {
     console.log(data)
   })
 
+  const [list, setList] = useState([])
+
   const logComments = () => {
     console.log(data)
   }
 
   const client = useApolloClient()
 
+  // Þetta fall fer í AnswerCell.js
   const sortComments = () => {
+    //Clone-a answerComments fylkið
     console.log(data.answerComments)
     const tempList = [...data.answerComments]
     console.log(tempList)
+    // Nýjustu commentin koma fyrst þegar búið er að reverse-a
     const reversedList = tempList.reverse()
     console.log(reversedList)
 
@@ -130,6 +135,7 @@ const CommentTestPage = () => {
         break
       }
     }
+    console.log(finalList)
     return finalList
   }
   // const fetchCommentsByParentId = (parentId) => {
