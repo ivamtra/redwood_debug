@@ -13,6 +13,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
 
+import Tree from 'src/algos/Tree'
 import AnswerCell from 'src/components/AnswerCell'
 
 // let apolloClient
