@@ -14,6 +14,7 @@ import { MetaTags } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
 
 import Tree from 'src/algos/Tree'
+import TreeNode from 'src/algos/TreeNode'
 import AnswerCell from 'src/components/AnswerCell'
 
 // let apolloClient
@@ -112,13 +113,15 @@ const CommentTestPage = () => {
     let childrenAdded = 0
     let nodeQueue = []
     let parentId = 0
-    let counter = 0
+    let level = 1
     let finalList = []
+    let currentTreeNode = tree.root
     while (childrenAdded !== reversedList.length) {
       reversedList.forEach((item) => {
         if (item.parentId === parentId) {
           nodeQueue.push(item.id)
           finalList.push(item.id)
+          currentTreeNode.add(item.id)
           console.log(item)
           console.log('level: ' + nodeQueue.length)
           console.log(parentId)

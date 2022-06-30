@@ -13,5 +13,6 @@
 
 
 -Verkefnalýsingar fyrir fiverr
--Birta comment componenta í réttri röð
-  - Held að DFS sé lausnin á þessu
+
+-Birta comment componenta í réttri röð (Komið)
+  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt
