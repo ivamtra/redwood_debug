@@ -1,7 +1,7 @@
+import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
 import AnswerCommentsCell from '../AnswerCommentsCell/AnswerCommentsCell'
 import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
-
 export const QUERY = gql`
   query FindAnswerQuery($id: Int!) {
     answer: answer(id: $id) {
@@ -34,9 +34,7 @@ export const Success = ({ answer }) => {
   return (
     <div>
       <div>
-        {/*TODO: vantar virkni á takka */}
-        {/* <button>upvote</button>
-        <button>downvote</button> */}
+        <AnswerCommentForm answerId={answer.id} parentId={0} />
         <RatingButton id={answer.id} type={'answer'} />
         <FlagButton id={answer.id} type={'answer'} />
         <p>answer.id = {answer.id}</p>

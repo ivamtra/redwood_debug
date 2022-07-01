@@ -11,6 +11,7 @@ export const QUERY = gql`
       body
       createdAt
       parentId
+      level
     }
   }
 `
@@ -27,6 +28,7 @@ export const Success = ({ answerComment }) => {
   return (
     <div>
       <h1>----------------------------------</h1>
+      <h2>{answerComment.body}</h2>
       <RatingButton type={'comment'} id={answerComment.id} />
       <FlagButton type={'comment'} id={answerComment.id} />
       <p>Rating:</p>
@@ -34,7 +36,7 @@ export const Success = ({ answerComment }) => {
       <p>{answerComment.createdAt}</p>
       <p>{answerComment.user.email}</p>
       <p>parentId: {answerComment.parentId}</p>
-      <h2>{answerComment.body}</h2>
+      <p>level: {answerComment.level}</p>
     </div>
   )
 }

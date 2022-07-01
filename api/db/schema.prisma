@@ -95,6 +95,7 @@ model Translation {
   answerId    Int
 }
 
+//TODO: Vantar level til að indenta comment
 model AnswerComment {
   id               Int                @id @default(autoincrement())
   body             String
@@ -104,6 +105,7 @@ model AnswerComment {
   answer           Answer             @relation(fields: [answerId], references: [id])
   answerId         Int
   createdAt        DateTime           @default(now())
+  level            Int                @default(0)
   Issue            Issue[]
   UserLikesComment UserLikesComment[]
 }

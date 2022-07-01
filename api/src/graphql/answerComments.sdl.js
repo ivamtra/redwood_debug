@@ -10,6 +10,7 @@ export const schema = gql`
     createdAt: DateTime!
     Issue: [Issue]!
     UserLikesComment: [UserLikesComment]!
+    level: Int!
   }
 
   type Query {
