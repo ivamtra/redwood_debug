@@ -40,15 +40,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
       level: 0,
     }
 
-    const testData = {
-      body: 'test',
-      userId: 0,
-      parentId: 0,
-      answerId: 0,
-      level: 0,
-    }
     console.log(inputData)
-    console.log(testData)
     console.log(createComment({ variables: { input: inputData } }))
   }
 

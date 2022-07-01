@@ -25,7 +25,7 @@ const FormsPage = () => {
       <QuestionForm />
       <h2>---------------------------------------------------</h2>
       <h1>Comment form test</h1>
-      <AnswerCommentForm />
+      <AnswerCommentForm parentId={0} answerId={0} />
     </>
   )
 }
