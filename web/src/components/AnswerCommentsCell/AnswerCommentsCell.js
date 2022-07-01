@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
+
+import { node } from 'prop-types'
 
 import AnswerCommentCell from '../AnswerCommentCell'
 
@@ -6,6 +8,12 @@ export const QUERY = gql`
   query AnswerCommentsQuery($answerId: Int!) {
     answerComments(answerId: $answerId) {
       id
+      user {
+        email
+      }
+      body
+      createdAt
+      parentId
     }
   }
 `
@@ -21,6 +29,10 @@ export const Failure = ({ error }) => (
 export const Success = ({ answerComments, answerId }) => {
   const [list, setList] = useState([])
 
+  useEffect(() => console.log(answerComments))
+
+  useLayoutEffect(() => sortComments, [])
+
   const sortComments = () => {
     //Clone-a answerComments fylkið
     console.log(answerComments)
@@ -35,15 +47,13 @@ export const Success = ({ answerComments, answerId }) => {
     let parentId = 0
     let level = 1
     let finalList = []
-    let currentTreeNode = tree.root
     while (childrenAdded !== reversedList.length) {
       reversedList.forEach((item) => {
-        if (item.parentId === parentId) {
-          nodeQueue.push(item.id)
-          finalList.push(item.id)
-          currentTreeNode.add(item.id)
+        // console.log(item)
+        if (item.parentId == parentId) {
+          nodeQueue.push(item)
+          finalList.push(item)
           console.log(item)
-          console.log('level: ' + nodeQueue.length)
           console.log(parentId)
           childrenAdded++
         }
@@ -53,21 +63,24 @@ export const Success = ({ answerComments, answerId }) => {
       console.log(childrenAdded === reversedList.length)
 
       console.log(nodeQueue)
-      parentId = nodeQueue[0]
-      console.log(parentId)
+      parentId = nodeQueue[0].id
+      console.log('parentId: ' + parentId)
       nodeQueue.shift()
+      console.log(nodeQueue)
     }
     console.log(finalList)
     setList(finalList)
+    console.log(list)
     return finalList
   }
   return (
     <div>
-      {answerComments.map((item) => {
+      {list.map((item) => {
         return (
           <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
         )
       })}
+      <button onClick={sortComments}>Sort comments</button>
     </div>
   )
 }
