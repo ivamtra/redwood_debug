@@ -147,6 +147,9 @@ const CommentTestPage = () => {
     }
     console.log(tree)
     console.log(finalList)
+    root.walk((node) => {
+      console.log(node.model.id)
+    })
     return finalList
   }
   // const fetchCommentsByParentId = (parentId) => {
