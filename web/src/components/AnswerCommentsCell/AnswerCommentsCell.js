@@ -18,6 +18,10 @@ export const QUERY = gql`
   }
 `
 
+const TreeModel = require('tree-model'),
+  tree = new TreeModel(),
+  root = tree.parse({ id: 0 })
+
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = () => <div>Empty</div>
@@ -39,20 +43,25 @@ export const Success = ({ answerComments, answerId }) => {
     const tempList = [...answerComments]
     console.log(tempList)
     // Nýjustu commentin koma fyrst þegar búið er að reverse-a
-    const reversedList = tempList.reverse()
+    let reversedList = tempList.reverse()
     console.log(reversedList)
 
     let childrenAdded = 0
-    let nodeQueue = []
+    let idQueue = []
     let parentId = 0
-    let level = 1
     let finalList = []
+    let currentTreeNode = root
+    let nodeQueue = []
     while (childrenAdded !== reversedList.length) {
       reversedList.forEach((item) => {
         // console.log(item)
         if (item.parentId == parentId) {
-          nodeQueue.push(item)
+          idQueue.push(item)
           finalList.push(item)
+          let mutableItem = { ...item }
+          let newNode = tree.parse(mutableItem)
+          currentTreeNode.addChild(newNode)
+          nodeQueue.push(newNode)
           console.log(item)
           console.log(parentId)
           childrenAdded++
@@ -62,15 +71,32 @@ export const Success = ({ answerComments, answerId }) => {
       console.log('list length ' + reversedList.length)
       console.log(childrenAdded === reversedList.length)
 
-      console.log(nodeQueue)
-      parentId = nodeQueue[0].id
-      console.log('parentId: ' + parentId)
+      currentTreeNode = nodeQueue[0]
+      console.log(currentTreeNode)
       nodeQueue.shift()
-      console.log(nodeQueue)
+
+      console.log(idQueue)
+      parentId = idQueue[0].id
+      console.log('parentId: ' + parentId)
+      idQueue.shift()
+      console.log(idQueue)
     }
     console.log(finalList)
     setList(finalList)
     console.log(list)
+    console.log(root)
+
+    let returnList = []
+
+    root.walk((node) => {
+      node.model.children = null
+      console.log(node.model)
+      if (node.model.id !== 0) {
+        returnList.push(node.model)
+      }
+    })
+    setList(returnList)
+
     return finalList
   }
   return (

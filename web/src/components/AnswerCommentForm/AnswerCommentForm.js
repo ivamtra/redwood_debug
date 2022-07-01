@@ -1,3 +1,5 @@
+//TODO: Vantar refetch queries þegar maður commentar
+
 import { useEffect, useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'

@@ -147,6 +147,7 @@ const CommentTestPage = () => {
     }
     console.log(tree)
     console.log(finalList)
+    // Skilar commentum í réttri röð
     root.walk((node) => {
       console.log(node.model.id)
     })

@@ -15,4 +15,5 @@
 -Verkefnalýsingar fyrir fiverr
 
 -Birta comment componenta í réttri röð (Komið)
-  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt
+  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt (Komið)
+  - Bæta við refetch queries þegar maður commentar
