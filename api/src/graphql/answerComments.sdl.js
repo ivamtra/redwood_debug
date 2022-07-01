@@ -8,9 +8,9 @@ export const schema = gql`
     answer: Answer!
     answerId: Int!
     createdAt: DateTime!
+    level: Int!
     Issue: [Issue]!
     UserLikesComment: [UserLikesComment]!
-    level: Int!
   }
 
   type Query {
@@ -26,7 +26,7 @@ export const schema = gql`
     userId: Int!
     parentId: Int
     answerId: Int!
-    levels: Int!
+    level: Int!
   }
 
   input UpdateAnswerCommentInput {
@@ -34,6 +34,7 @@ export const schema = gql`
     userId: Int
     parentId: Int
     answerId: Int
+    level: Int
   }
 
   type Mutation {

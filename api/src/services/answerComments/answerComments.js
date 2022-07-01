@@ -1,17 +1,13 @@
 import { db } from 'src/lib/db'
 
-// export const answerComments = () => {
-//   return db.answerComment.findMany()
-// }
+export const answerComments = ({ answerId }) => {
+  return db.answerComment.findMany({ where: { answerId } })
+}
 
 export const answerComment = ({ id }) => {
   return db.answerComment.findUnique({
     where: { id },
   })
-}
-
-export const answerComments = ({ answerId }) => {
-  return db.answerComment.findMany({ where: { answerId } })
 }
 
 export const answerCommentsByAnswerId = ({ answerId }) => {
@@ -35,10 +31,6 @@ export const deleteAnswerComment = ({ id }) => {
   return db.answerComment.delete({
     where: { id },
   })
-}
-
-export const answerCommentsByParentId = ({ parentId }) => {
-  return db.answerComment.findMany({ where: { parentId } })
 }
 
 export const AnswerComment = {

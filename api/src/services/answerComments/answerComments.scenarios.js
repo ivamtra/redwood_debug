@@ -5,7 +5,7 @@ export const standard = defineScenario({
         body: 'String',
         user: {
           create: {
-            email: 'String1836401',
+            email: 'String9918558',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -17,7 +17,7 @@ export const standard = defineScenario({
             justification: 'String',
             user: {
               create: {
-                email: 'String7509549',
+                email: 'String6140349',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -30,7 +30,7 @@ export const standard = defineScenario({
                 definition: 'String',
                 user: {
                   create: {
-                    email: 'String1429540',
+                    email: 'String8508017',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -47,7 +47,7 @@ export const standard = defineScenario({
         body: 'String',
         user: {
           create: {
-            email: 'String6021278',
+            email: 'String8893710',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -59,7 +59,7 @@ export const standard = defineScenario({
             justification: 'String',
             user: {
               create: {
-                email: 'String2897525',
+                email: 'String6108490',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -72,7 +72,7 @@ export const standard = defineScenario({
                 definition: 'String',
                 user: {
                   create: {
-                    email: 'String1058711',
+                    email: 'String4390227',
                     hashedPassword: 'String',
                     salt: 'String',
                   },

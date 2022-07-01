@@ -34,7 +34,7 @@ export const Success = ({ answer }) => {
   return (
     <div>
       <div>
-        <AnswerCommentForm answerId={answer.id} parentId={0} />
+        <AnswerCommentForm answerId={answer.id} parentId={-1} />
         <RatingButton id={answer.id} type={'answer'} />
         <FlagButton id={answer.id} type={'answer'} />
         <p>answer.id = {answer.id}</p>

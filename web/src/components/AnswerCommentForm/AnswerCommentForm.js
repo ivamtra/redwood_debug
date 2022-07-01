@@ -4,8 +4,9 @@ import { useAuth } from '@redwoodjs/auth'
 import { Form, Submit, TextAreaField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
+
 const CREATE_COMMENT = gql`
-  mutation CreateAnswerComment($input: CreateAnswerCommentInput) {
+  mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
     createAnswerComment(input: $input) {
       id
     }
@@ -35,12 +36,24 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
       body: data.body,
       parentId: parentId,
       answerId: answerId,
+      level: 0,
+    }
+
+    const testData = {
+      body: 'test',
+      userId: 0,
+      parentId: 0,
+      answerId: 0,
+      level: 0,
     }
     console.log(inputData)
-    console.log(createComment({ variables: { input: inputData } }))
+    console.log(testData)
+    console.log(createComment({ variables: { input: testData } }))
   }
 
-  const handleLevel = () => {}
+  const handleLevel = () => {
+    //parentId: er -1 ef verið er að svara comment
+  }
 
   return (
     <div>
