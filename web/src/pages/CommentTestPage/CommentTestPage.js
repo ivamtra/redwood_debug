@@ -44,7 +44,7 @@ import AnswerCell from 'src/components/AnswerCell'
 
 const TreeModel = require('tree-model'),
   tree = new TreeModel(),
-  root = tree.parse({ id: '0' })
+  root = tree.parse({ id: 0 })
 
 const CommentQuery = gql`
   query FindAnswerCommentQuery {
@@ -92,8 +92,6 @@ const CommentTestPage = () => {
 
   const [list, setList] = useState([])
 
-  const [tree, setTree] = useState(new Tree())
-
   const logComments = () => {
     console.log(data)
   }
@@ -111,38 +109,43 @@ const CommentTestPage = () => {
     console.log(reversedList)
 
     let childrenAdded = 0
-    let nodeStack = []
+    let idQueue = []
     let parentId = 0
+    let level = 1
     let finalList = []
+    let nodeQueue = []
+    let currentTreeNode = root
+    console.log(currentTreeNode)
     while (childrenAdded !== reversedList.length) {
-      for (let i = 0; i < reversedList.length; i++) {
-        if (reversedList[i].parentId === parentId) {
-          nodeStack.push(reversedList[i].id)
-          console.log(reversedList[i])
-          console.log('level: ' + nodeStack.length)
+      reversedList.forEach((item) => {
+        if (item.parentId === parentId) {
+          idQueue.push(item.id)
+          finalList.push(item.id)
+          let newNode = tree.parse({ id: item.id })
+          currentTreeNode.addChild(newNode)
+          nodeQueue.push(newNode)
+          console.log(item)
+          console.log('level: ' + idQueue.length)
           console.log(parentId)
           childrenAdded++
-          break
         }
-      }
-      // reversedList.forEach((item) => {
-      //   if (item.parentId === parentId) {
-      //     nodeStack.push(item.id)
-      //     console.log(item)
-      //     console.log('level: ' + nodeStack.length)
-      //     console.log(parentId)
-      //     childrenAdded++
-      //   }
-      // })
+      })
       console.log('childrenAdded: ' + childrenAdded)
       console.log('list length ' + reversedList.length)
       console.log(childrenAdded === reversedList.length)
 
-      console.log(nodeStack)
-      parentId = nodeStack[0]
+      console.log(idQueue)
+
+      // currentTreeNode = null
+      currentTreeNode = nodeQueue[0]
+      console.log(currentTreeNode)
+      nodeQueue.shift()
+      parentId = idQueue[0]
       console.log(parentId)
-      nodeStack.pop()
+      console.log(root)
+      idQueue.shift()
     }
+    console.log(tree)
     console.log(finalList)
     return finalList
   }
