@@ -111,31 +111,37 @@ const CommentTestPage = () => {
     console.log(reversedList)
 
     let childrenAdded = 0
-    let nodeQueue = []
+    let nodeStack = []
     let parentId = 0
-    let level = 1
     let finalList = []
-    let currentTreeNode = tree.root
     while (childrenAdded !== reversedList.length) {
-      reversedList.forEach((item) => {
-        if (item.parentId === parentId) {
-          nodeQueue.push(item.id)
-          finalList.push(item.id)
-          currentTreeNode.add(item.id)
-          console.log(item)
-          console.log('level: ' + nodeQueue.length)
+      for (let i = 0; i < reversedList.length; i++) {
+        if (reversedList[i].parentId === parentId) {
+          nodeStack.push(reversedList[i].id)
+          console.log(reversedList[i])
+          console.log('level: ' + nodeStack.length)
           console.log(parentId)
           childrenAdded++
+          break
         }
-      })
+      }
+      // reversedList.forEach((item) => {
+      //   if (item.parentId === parentId) {
+      //     nodeStack.push(item.id)
+      //     console.log(item)
+      //     console.log('level: ' + nodeStack.length)
+      //     console.log(parentId)
+      //     childrenAdded++
+      //   }
+      // })
       console.log('childrenAdded: ' + childrenAdded)
       console.log('list length ' + reversedList.length)
       console.log(childrenAdded === reversedList.length)
 
-      console.log(nodeQueue)
-      parentId = nodeQueue[0]
+      console.log(nodeStack)
+      parentId = nodeStack[0]
       console.log(parentId)
-      nodeQueue.shift()
+      nodeStack.pop()
     }
     console.log(finalList)
     return finalList

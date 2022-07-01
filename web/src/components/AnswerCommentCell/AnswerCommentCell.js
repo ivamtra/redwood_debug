@@ -1,10 +1,12 @@
 import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
+import ReplyButton from '../ReplyButton/ReplyButton'
 
 export const QUERY = gql`
   query FindAnswerCommentQuery($id: Int!) {
     answerComment: answerComment(id: $id) {
       id
+      answerId
       user {
         email
       }
@@ -31,6 +33,10 @@ export const Success = ({ answerComment }) => {
       <h2>{answerComment.body}</h2>
       <RatingButton type={'comment'} id={answerComment.id} />
       <FlagButton type={'comment'} id={answerComment.id} />
+      <ReplyButton
+        parentId={answerComment.id}
+        answerId={answerComment.answerId}
+      />
       <p>Rating:</p>
       <p>id = {answerComment.id}</p>
       <p>{answerComment.createdAt}</p>
