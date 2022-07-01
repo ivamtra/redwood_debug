@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Form, Submit, TextAreaField } from '@redwoodjs/forms'
@@ -15,7 +15,7 @@ const CREATE_COMMENT = gql`
 
 const PARENT_COMMENT_QUERY = gql`
   query FindAnswerCommentQuery($id: Int!) {
-    answerComment: answrComment(id: $id) {
+    answerComment: answerComment(id: $id) {
       level
     }
   }
@@ -24,6 +24,7 @@ const PARENT_COMMENT_QUERY = gql`
 const AnswerCommentForm = ({ parentId, answerId }) => {
   const [createComment] = useMutation(CREATE_COMMENT)
   const { isAuthenticated, currentUser, logOut } = useAuth()
+  const [level, setLevel] = useState(0)
 
   const onSubmit = (data) => {
     console.log(data.body)
@@ -48,12 +49,26 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
     }
     console.log(inputData)
     console.log(testData)
-    console.log(createComment({ variables: { input: testData } }))
+    console.log(createComment({ variables: { input: inputData } }))
   }
 
   const handleLevel = () => {
+    console.log(data)
+    const parentLevel = data.answerComment.level
+    console.log(parentLevel)
+    setLevel(parentLevel + 1)
     //parentId: er -1 ef verið er að svara comment
   }
+
+  const { data, loading, error } = useQuery(PARENT_COMMENT_QUERY, {
+    variables: { id: parentId },
+  })
+
+  useEffect(() => {
+    if (!loading) {
+      handleLevel()
+    }
+  })
 
   return (
     <div>
