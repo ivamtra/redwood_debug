@@ -26,6 +26,7 @@ export const schema = gql`
     userId: Int!
     parentId: Int
     answerId: Int!
+    levels: Int!
   }
 
   input UpdateAnswerCommentInput {
