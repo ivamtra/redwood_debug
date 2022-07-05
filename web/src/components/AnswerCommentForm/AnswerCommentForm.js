@@ -47,9 +47,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
   }
 
   const handleLevel = () => {
-    console.log(data)
     const parentLevel = data.answerComment.level
-    console.log(parentLevel)
     setLevel(parentLevel + 1)
     //parentId: er -1 ef verið er að svara comment
   }

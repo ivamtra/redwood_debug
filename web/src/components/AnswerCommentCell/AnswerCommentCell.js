@@ -38,6 +38,7 @@ export const Success = ({ answerComment }) => {
         answerId={answerComment.answerId}
       />
       <p>Rating:</p>
+      <p>answerId = {answerComment.answerId}</p>
       <p>id = {answerComment.id}</p>
       <p>{answerComment.createdAt}</p>
       <p>{answerComment.user.email}</p>
