@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import { node } from 'prop-types'
 
@@ -33,9 +33,7 @@ export const Failure = ({ error }) => (
 export const Success = ({ answerComments, answerId }) => {
   const [list, setList] = useState([])
 
-  useEffect(() => console.log(answerComments))
-
-  useLayoutEffect(() => sortComments, [])
+  //useEffect(() => console.log(answerComments))
 
   const sortComments = () => {
     //Clone-a answerComments fylkið
@@ -99,6 +97,9 @@ export const Success = ({ answerComments, answerId }) => {
 
     return finalList
   }
+
+  useLayoutEffect(() => sortComments, [])
+
   return (
     <div>
       {list.map((item) => {
@@ -106,7 +107,7 @@ export const Success = ({ answerComments, answerId }) => {
           <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
         )
       })}
-      <button onClick={sortComments}>Sort comments</button>
+      <button onClick={sortComments}>Show comments</button>
     </div>
   )
 }

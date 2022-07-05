@@ -6,6 +6,9 @@ import { useAuth } from '@redwoodjs/auth'
 import { Form, Submit, TextAreaField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
+
+import { QUERY as CommentsQuery } from 'src/components/AnswerCommentsCell/AnswerCommentsCell'
 
 const CREATE_COMMENT = gql`
   mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
@@ -24,7 +27,14 @@ const PARENT_COMMENT_QUERY = gql`
 `
 
 const AnswerCommentForm = ({ parentId, answerId }) => {
-  const [createComment] = useMutation(CREATE_COMMENT)
+  const [hasPosted, setHasPosted] = useState(false)
+  const [createComment] = useMutation(CREATE_COMMENT, {
+    onCompleted: () => {
+      setHasPosted(true)
+      toast.success('Thank you for your comment!')
+    },
+    refetchQueries: [{ query: CommentsQuery }],
+  })
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [level, setLevel] = useState(0)
 
