@@ -64,8 +64,8 @@ const AnswerForm = ({ questionId }) => {
     if (finalArray.length >= 2) {
       const n = finalArray.length
       if (
-        finalArray[n - 1].sentence === finalArray[n - 2].sentence ||
-        finalArray[n - 1].sentence === ''
+        finalArray[n - 1].translation === finalArray[n - 2].translation ||
+        finalArray[n - 1].translation === ''
       ) {
         finalArray.pop()
       }
@@ -74,7 +74,7 @@ const AnswerForm = ({ questionId }) => {
 
     // Bæta hverja setningu við gagnagrunninn
     finalArray.forEach((item) => {
-      // Bæta við answerId úr createTranslation
+      // Bæta við answerId úr createAnswer
       console.log(answerId)
       const inputData = { translation: item.translation, answerId: answerId }
       console.log(inputData)
