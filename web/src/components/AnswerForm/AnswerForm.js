@@ -4,8 +4,6 @@ import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form, TextField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
-import { getCurrentUser } from 'src/lib/auth'
-
 const CREATE_ANSWER = gql`
   mutation CreateAnswerMutation($input: CreateAnswerInput!) {
     createAnswer(input: $input) {
@@ -43,6 +41,7 @@ const AnswerForm = ({ questionId }) => {
       answerId: 0,
     })
     setList(tempArray)
+    console.log(list)
   }
 
   const onChange = (e) => setTextValue(e.target.value)
@@ -71,10 +70,11 @@ const AnswerForm = ({ questionId }) => {
         finalArray.pop()
       }
     }
+    console.log(finalArray)
 
     // Bæta hverja setningu við gagnagrunninn
     finalArray.forEach((item) => {
-      // Bæta við questionId úr createSentence
+      // Bæta við answerId úr createTranslation
       console.log(answerId)
       const inputData = { translation: item.translation, answerId: answerId }
       console.log(inputData)
@@ -89,7 +89,11 @@ const AnswerForm = ({ questionId }) => {
 
   const handleAnswerMutation = (data) => {
     console.log(data)
-    const inputData = { ...data, userId: currentUser.id }
+    const inputData = {
+      ...data,
+      userId: currentUser.id,
+      questionId: questionId,
+    }
     const answerCreatedPromise = createAnswer({
       variables: {
         input: inputData,
@@ -104,7 +108,21 @@ const AnswerForm = ({ questionId }) => {
       <Form onSubmit={onSubmit}>
         <TextField placeholder="title" name="title" /> <br />
         <TextField placeholder="justification" name="justification" /> <br />
+        <Submit>Submit</Submit>
       </Form>
+
+      <div>
+        {list.map((item) => (
+          <div key={item.listIndex}>
+            <input
+              placeholder={'translation' + listIndex}
+              name={item.listIndex}
+              onChange={onChange}
+            />
+            <button onClick={addTranslation}>+</button>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

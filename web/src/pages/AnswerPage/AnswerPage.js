@@ -10,7 +10,7 @@ const AnswerPage = () => {
 
       <h1>AnswerPage</h1>
 
-      <AnswerForm />
+      <AnswerForm questionId={23} />
     </>
   )
 }
