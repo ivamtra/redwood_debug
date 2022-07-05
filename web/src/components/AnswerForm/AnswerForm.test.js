@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import AnserForm from './AnserForm'
+import AnswerForm from './AnswerForm'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('AnserForm', () => {
+describe('AnswerForm', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<AnserForm />)
+      render(<AnswerForm />)
     }).not.toThrow()
   })
 })
