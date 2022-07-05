@@ -97,7 +97,7 @@ export const Success = ({ answerComments, answerId }) => {
 
   useLayoutEffect(() => {
     setList(sortComments(answerComments))
-  }, [])
+  }, [answerComments])
 
   return (
     <div>

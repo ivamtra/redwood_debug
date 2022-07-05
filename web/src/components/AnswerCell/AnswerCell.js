@@ -34,7 +34,6 @@ export const Success = ({ answer }) => {
   return (
     <div>
       <div>
-        <AnswerCommentForm answerId={answer.id} parentId={0} />
         <RatingButton id={answer.id} type={'answer'} />
         <FlagButton id={answer.id} type={'answer'} />
         <p>answer.id = {answer.id}</p>
@@ -47,6 +46,7 @@ export const Success = ({ answer }) => {
         <h3>Rökstuðningur: {answer.justification}</h3>
         <p>answer.questionId = {answer.questionId}</p>
       </div>
+      <AnswerCommentForm answerId={answer.id} parentId={0} />
       <AnswerCommentsCell answerId={answer.id} />
     </div>
   )
