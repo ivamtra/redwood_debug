@@ -108,8 +108,18 @@ const RatingButton = ({ type, id }) => {
   return (
     <div>
       <Form onSubmit={handleMutation}>
-        <Submit onClick={upvoteClick}>Upvote</Submit>
-        <Submit onClick={downvoteClick}>Downvote</Submit>
+        <Submit
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l mx-1"
+          onClick={upvoteClick}
+        >
+          Upvote
+        </Submit>
+        <Submit
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l mx-1"
+          onClick={downvoteClick}
+        >
+          Downvote
+        </Submit>
       </Form>
     </div>
   )
