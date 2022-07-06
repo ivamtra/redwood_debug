@@ -8,6 +8,7 @@ export const schema = gql`
     user: User!
     userId: Int!
     createdAt: DateTime!
+    rating: Int!
     Sentence: [Sentence]!
     Answer: [Answer]!
     UserLikesQuestion: [UserLikesQuestion]!
@@ -26,6 +27,7 @@ export const schema = gql`
     definition: String!
     other_info: String
     userId: Int!
+    rating: Int!
   }
 
   input UpdateQuestionInput {
@@ -34,6 +36,7 @@ export const schema = gql`
     definition: String
     other_info: String
     userId: Int
+    rating: Int
   }
 
   type Mutation {

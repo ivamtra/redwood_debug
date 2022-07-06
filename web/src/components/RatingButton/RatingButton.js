@@ -30,6 +30,14 @@ const CREATE_COMMENT_UPVOTE = gql`
     }
   }
 `
+
+const UPDATE_QUESTION_RATING = gql`
+  mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
+    updateQuestion(id: $id, input: $input) {
+      id
+    }
+  }
+`
 // type : {
 //   question
 //   answer
@@ -52,16 +60,16 @@ const RatingButton = ({ type, id }) => {
     setRating(-1)
     console.log('downvoted')
     console.log(new Date().toISOString)
-    handleMutation()
+    handleCreateMutation()
   }
 
   const upvoteClick = () => {
     // Breyta seinna til að höndla það að taka burt rating-ið
     setRating(1)
     console.log('upvoted')
-    handleMutation()
+    handleCreateMutation()
   }
-  const handleMutation = () => {
+  const handleCreateMutation = () => {
     const input = {
       userId: currentUser.id,
       action: rating,
@@ -107,7 +115,7 @@ const RatingButton = ({ type, id }) => {
 
   return (
     <div>
-      <Form onSubmit={handleMutation}>
+      <Form onSubmit={handleCreateMutation}>
         <Submit
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l mx-1"
           onClick={upvoteClick}

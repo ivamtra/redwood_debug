@@ -92,7 +92,7 @@ const NewQuestionForm = () => {
   // raðir í Sentence töflunni
   const handleQuestionMutation = (data) => {
     console.log(data)
-    const inputData = { ...data, userId: currentUser.id }
+    const inputData = { ...data, userId: currentUser.id, rating: 0 }
     console.log(inputData)
     const questionCreatedPromise = createQuestion({
       variables: {
