@@ -93,6 +93,7 @@ const AnswerForm = ({ questionId }) => {
       ...data,
       userId: currentUser.id,
       questionId: questionId,
+      rating: 0,
     }
     const answerCreatedPromise = createAnswer({
       variables: {
