@@ -110,6 +110,16 @@ const COMMENT_QUERY = gql`
 //useReducer gæti verið sniðugt hérna þar sem
 // það eru 3 mismunandi tilvik eftir því hvort þetta er spurning, svar eða comment
 const RatingButton = ({ type, id }) => {
+  // ------------ OnCompleted ------------------------
+
+  const onCompleted = (type) => {
+    if (rating === -1) {
+      toast.success('downvoted ' + type)
+    } else {
+      toast.success('upvoted ' + type)
+    }
+  }
+
   // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
@@ -129,19 +139,19 @@ const RatingButton = ({ type, id }) => {
   const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING, {
     refetchQueries: [{ query: refetchQuestionQuery }],
     onCompleted: () => {
-      if (rating === -1) {
-        toast.success('downvoted question')
-      } else {
-        toast.success('upvoted question')
-      }
+      onCompleted('question')
     },
   })
 
   // Answer
-  const [UpdateAnswerRating] = useMutation(UPDATE_ANSWER_RATING)
+  const [UpdateAnswerRating] = useMutation(UPDATE_ANSWER_RATING, {
+    onCompleted: () => onCompleted('answer'),
+  })
 
   // Comment
-  const [UpdateCommentRating] = useMutation(UPDATE_COMMENT_RATING)
+  const [UpdateCommentRating] = useMutation(UPDATE_COMMENT_RATING, {
+    onCompleted: () => onCompleted('comment'),
+  })
   // ------------------------------------------------
 
   // QUERY
@@ -165,13 +175,13 @@ const RatingButton = ({ type, id }) => {
   })
 
   // Comment query
-  // const {
-  //   data: commentData,
-  //   loading: commentLoading,
-  //   error: commentError,
-  // } = useQuery(COMMENT_QUERY, {
-  //   variables: { id },
-  // })
+  const {
+    data: commentData,
+    loading: commentLoading,
+    error: commentError,
+  } = useQuery(COMMENT_QUERY, {
+    variables: { id },
+  })
 
   // ------------------------------------------------
 
@@ -231,7 +241,7 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createQuestionUpvote({
               variables: { input: questionInput },
-            }).then((result) => {
+            }).then(() => {
               console.log(questionData)
               console.log(questionLoading)
               console.log(questionError)
@@ -250,6 +260,13 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createCommentUpvote({
               variables: { input: commentInput },
+            }).then(() => {
+              UpdateCommentRating({
+                variables: {
+                  input: { rating: commentData.answerComment.rating + rating },
+                  id: id,
+                },
+              })
             })
           )
           break

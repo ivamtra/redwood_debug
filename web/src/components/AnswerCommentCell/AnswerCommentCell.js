@@ -14,6 +14,7 @@ export const QUERY = gql`
       createdAt
       parentId
       level
+      rating
     }
   }
 `
@@ -37,7 +38,7 @@ export const Success = ({ answerComment }) => {
         parentId={answerComment.id}
         answerId={answerComment.answerId}
       />
-      <p>Rating:</p>
+      <p>Rating: {answerComment.rating}</p>
       <p>answerId = {answerComment.answerId}</p>
       <p>id = {answerComment.id}</p>
       <p>{answerComment.createdAt}</p>
