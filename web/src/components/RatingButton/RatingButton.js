@@ -51,19 +51,19 @@ const UPDATE_QUESTION_RATING = gql`
 `
 
 const UPDATE_ANSWER_RATING = gql`
-mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
-  updateQuestion(id: $id, input: $input) {
-    id
+  mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
+    updateQuestion(id: $id, input: $input) {
+      id
+    }
   }
-}
 `
 
 const UPDATE_COMMENT_RATING = gql`
-mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
-  updateQuestion(id: $id, input: $input) {
-    id
+  mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
+    updateQuestion(id: $id, input: $input) {
+      id
+    }
   }
-}
 `
 
 // ---------------------------------------------
@@ -88,7 +88,7 @@ const ANSWER_QUERY = gql`
   }
 `
 
-const ANSWER_QUERY = gql`
+const COMMENT_QUERY = gql`
   query FindAnswerCommentQuery($id: Int!) {
     answerComment: answerComment(id: $id) {
       id
@@ -114,7 +114,7 @@ const RatingButton = ({ type, id }) => {
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
 
-  // --------- Database ------------------------------
+  // --------- DATABASE ------------------------------
 
   // -------------------------------------------------
 
@@ -146,7 +146,7 @@ const RatingButton = ({ type, id }) => {
 
   // QUERY
 
-  // question query
+  // Question query
   const {
     data: questionData,
     loading: questionLoading,
@@ -155,15 +155,23 @@ const RatingButton = ({ type, id }) => {
     variables: { id },
   })
 
-  // answer query
-  const {
-    data: answerData,
-    loading: answerLoading,
-    error: answerError,
-  } = useQuery(ANSWER_QUERY, {
-    variables: { id },
-  })
+  // Answer query
+  // const {
+  //   data: answerData,
+  //   loading: answerLoading,
+  //   error: answerError,
+  // } = useQuery(ANSWER_QUERY, {
+  //   variables: { id },
+  // })
 
+  // Comment query
+  // const {
+  //   data: commentData,
+  //   loading: commentLoading,
+  //   error: commentError,
+  // } = useQuery(COMMENT_QUERY, {
+  //   variables: { id },
+  // })
 
   // ------------------------------------------------
 
@@ -187,7 +195,6 @@ const RatingButton = ({ type, id }) => {
   // ------------------------------------------------
 
   // ------- Database Mutations ---------------------
-
 
   const handleCreateMutation = () => {
     const input = {
