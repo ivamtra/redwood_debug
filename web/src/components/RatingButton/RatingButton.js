@@ -7,6 +7,10 @@ import { useState } from 'react' //
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation, useQuery } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
+
+import { QUERY as refetchQuestionQuery } from '../QuestionCell'
+
 const CREATE_QUESTION_UPVOTE = gql`
   mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
     createUserLikesQuestion(input: $input) {
@@ -67,7 +71,16 @@ const RatingButton = ({ type, id }) => {
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
   // -------------------------------
   // UPDATE
-  const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING)
+  const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING, {
+    refetchQueries: [{ query: refetchQuestionQuery }],
+    onCompleted: () => {
+      if (rating === -1) {
+        toast.success('downvoted')
+      } else {
+        toast.success('upvoted')
+      }
+    },
+  })
   // --------------------------------
   // QUERY
   const {
