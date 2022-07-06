@@ -6,7 +6,7 @@ import { useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
-import { useMutation } from '@redwoodjs/web'
+import { useMutation, useQuery } from '@redwoodjs/web'
 const CREATE_QUESTION_UPVOTE = gql`
   mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
     createUserLikesQuestion(input: $input) {
@@ -38,6 +38,16 @@ const UPDATE_QUESTION_RATING = gql`
     }
   }
 `
+
+const QUESTION_QUERY = gql`
+  query FindQuestionQuery($id: Int!) {
+    question: question(id: $id) {
+      id
+      rating
+    }
+  }
+`
+
 // type : {
 //   question
 //   answer
@@ -51,10 +61,22 @@ const UPDATE_QUESTION_RATING = gql`
 const RatingButton = ({ type, id }) => {
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
+  // CREATE
   const [createQuestionUpvote] = useMutation(CREATE_QUESTION_UPVOTE)
   const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE)
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
+  // -------------------------------
+  // UPDATE
   const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING)
+  // --------------------------------
+  // QUERY
+  const {
+    data: questionData,
+    loading: questionLoading,
+    error: questionError,
+  } = useQuery(QUESTION_QUERY, {
+    variables: { id },
+  })
 
   const downvoteClick = () => {
     // Breyta seinna til að höndla það að taka burt rating-ið
@@ -96,8 +118,14 @@ const RatingButton = ({ type, id }) => {
             createQuestionUpvote({
               variables: { input: questionInput },
             }).then((result) => {
+              console.log(questionData)
+              console.log(questionLoading)
+              console.log(questionError)
               updateQuestionRating({
-                variables: { input: { rating: 5 }, id: id },
+                variables: {
+                  input: { rating: questionData.question.rating + rating },
+                  id: id,
+                },
               })
             })
           )

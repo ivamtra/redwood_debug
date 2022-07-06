@@ -21,6 +21,7 @@ export const QUERY = gql`
         name
         email
       }
+      rating
     }
   }
 `
@@ -54,7 +55,7 @@ export const Success = ({ question, inQuestionsCell }) => {
         {/*TODO: vantar virkni á takka */}
         <RatingButton id={question.id} type="question" />
         <FlagButton type={'question'} id={question.id} />
-        <p>Rating:</p>
+        <p>Rating: {question.rating}</p>
         <p>Dagsetning: {question.createdAt}</p>
         <p>User: {question.user.email}</p>
       </div>
