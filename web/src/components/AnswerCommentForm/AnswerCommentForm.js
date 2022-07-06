@@ -50,6 +50,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
       parentId: parentId,
       answerId: answerId,
       level: level,
+      rating: 0,
     }
 
     console.log(inputData)
