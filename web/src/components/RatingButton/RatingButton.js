@@ -54,6 +54,7 @@ const RatingButton = ({ type, id }) => {
   const [createQuestionUpvote] = useMutation(CREATE_QUESTION_UPVOTE)
   const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE)
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
+  const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING)
 
   const downvoteClick = () => {
     // Breyta seinna til að höndla það að taka burt rating-ið
@@ -94,6 +95,10 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createQuestionUpvote({
               variables: { input: questionInput },
+            }).then((result) => {
+              updateQuestionRating({
+                variables: { input: { rating: 5 }, id: id },
+              })
             })
           )
           break
