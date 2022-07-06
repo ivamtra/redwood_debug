@@ -52,7 +52,7 @@ const UPDATE_QUESTION_RATING = gql`
 
 const UPDATE_ANSWER_RATING = gql`
   mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
-    updateQuestion(id: $id, input: $input) {
+    updateAnswer(id: $id, input: $input) {
       id
     }
   }
@@ -60,7 +60,7 @@ const UPDATE_ANSWER_RATING = gql`
 
 const UPDATE_COMMENT_RATING = gql`
   mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
-    updateQuestion(id: $id, input: $input) {
+    updateAnswerComment(id: $id, input: $input) {
       id
     }
   }
@@ -156,13 +156,13 @@ const RatingButton = ({ type, id }) => {
   })
 
   // Answer query
-  // const {
-  //   data: answerData,
-  //   loading: answerLoading,
-  //   error: answerError,
-  // } = useQuery(ANSWER_QUERY, {
-  //   variables: { id },
-  // })
+  const {
+    data: answerData,
+    loading: answerLoading,
+    error: answerError,
+  } = useQuery(ANSWER_QUERY, {
+    variables: { id },
+  })
 
   // Comment query
   // const {
@@ -213,6 +213,16 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createAnswerUpvote({
               variables: { input: answerInput },
+            }).then(() => {
+              console.log(answerData)
+              console.log(answerLoading)
+              console.log(answerError)
+              UpdateAnswerRating({
+                variables: {
+                  input: { rating: answerData.answer.rating + rating },
+                  id: id,
+                },
+              })
             })
           )
           break
