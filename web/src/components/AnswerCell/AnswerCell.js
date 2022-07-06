@@ -1,3 +1,5 @@
+import { routes, Link } from '@redwoodjs/router'
+
 import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
 import AnswerCommentsCell from '../AnswerCommentsCell/AnswerCommentsCell'
 import FlagButton from '../FlagButton/FlagButton'
@@ -47,6 +49,7 @@ export const Success = ({ answer }) => {
         <h3>Rökstuðningur: {answer.justification}</h3>
         <p>answer.questionId = {answer.questionId}</p>
       </div>
+      {/* <Link to={routes.answer({ id: answer.id })} /> */}
       <AnswerCommentForm answerId={answer.id} parentId={0} />
       <AnswerCommentsCell answerId={answer.id} />
     </div>

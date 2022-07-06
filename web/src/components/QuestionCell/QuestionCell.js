@@ -71,6 +71,7 @@ export const Success = ({ question, inQuestionsCell }) => {
         <div>
           <h1>---------------------------------------</h1>
           <AnswersCell questionId={question.id} />
+          {/* <Link to={routes.answer({ id: question.id })} /> */}
         </div>
       ) : (
         <div></div>
