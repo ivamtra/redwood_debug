@@ -9,6 +9,8 @@ import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
+import { QUERY as refetchAnswerQuery } from '../AnswerCell'
+import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
 import { QUERY as refetchQuestionQuery } from '../QuestionCell'
 
 // ----------- GRAPHQL --------------------------
@@ -137,7 +139,7 @@ const RatingButton = ({ type, id }) => {
 
   // Question
   const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING, {
-    refetchQueries: [{ query: refetchQuestionQuery }],
+    refetchQueries: [{ query: refetchQuestionQuery, variables: { id } }],
     onCompleted: () => {
       onCompleted('question')
     },
@@ -145,11 +147,13 @@ const RatingButton = ({ type, id }) => {
 
   // Answer
   const [UpdateAnswerRating] = useMutation(UPDATE_ANSWER_RATING, {
+    refetchQueries: [{ query: refetchAnswerQuery, variables: { id } }],
     onCompleted: () => onCompleted('answer'),
   })
 
   // Comment
   const [UpdateCommentRating] = useMutation(UPDATE_COMMENT_RATING, {
+    refetchQueries: [{ query: refetchCommentQuery, variables: { id } }],
     onCompleted: () => onCompleted('comment'),
   })
   // ------------------------------------------------
