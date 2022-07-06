@@ -11,6 +11,10 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { QUERY as refetchQuestionQuery } from '../QuestionCell'
 
+// ----------- GRAPHQL --------------------------
+
+// ----------- CREATE ---------------------------
+
 const CREATE_QUESTION_UPVOTE = gql`
   mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
     createUserLikesQuestion(input: $input) {
@@ -34,6 +38,9 @@ const CREATE_COMMENT_UPVOTE = gql`
     }
   }
 `
+// ---------------------------------------------
+
+// ----------- UPDATE --------------------------
 
 const UPDATE_QUESTION_RATING = gql`
   mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
@@ -43,6 +50,10 @@ const UPDATE_QUESTION_RATING = gql`
   }
 `
 
+// ---------------------------------------------
+
+// ----------- QUERY ---------------------------
+
 const QUESTION_QUERY = gql`
   query FindQuestionQuery($id: Int!) {
     question: question(id: $id) {
@@ -51,6 +62,17 @@ const QUESTION_QUERY = gql`
     }
   }
 `
+
+const ANSWER_QUERY = gql`
+  query FindAnswerQuery($id: Int!) {
+    answer: answer(id: $id) {
+      id
+      rating
+    }
+  }
+`
+
+// ---------------------------------------------
 
 // type : {
 //   question
@@ -83,11 +105,20 @@ const RatingButton = ({ type, id }) => {
   })
   // --------------------------------
   // QUERY
+  // question query
   const {
     data: questionData,
     loading: questionLoading,
     error: questionError,
   } = useQuery(QUESTION_QUERY, {
+    variables: { id },
+  })
+  // answer query
+  const {
+    data: answerData,
+    loading: answerLoading,
+    error: answerError,
+  } = useQuery(ANSWER_QUERY, {
     variables: { id },
   })
 
