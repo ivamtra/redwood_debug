@@ -50,6 +50,22 @@ const UPDATE_QUESTION_RATING = gql`
   }
 `
 
+const UPDATE_ANSWER_RATING = gql`
+mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
+  updateQuestion(id: $id, input: $input) {
+    id
+  }
+}
+`
+
+const UPDATE_COMMENT_RATING = gql`
+mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
+  updateQuestion(id: $id, input: $input) {
+    id
+  }
+}
+`
+
 // ---------------------------------------------
 
 // ----------- QUERY ---------------------------
@@ -66,6 +82,15 @@ const QUESTION_QUERY = gql`
 const ANSWER_QUERY = gql`
   query FindAnswerQuery($id: Int!) {
     answer: answer(id: $id) {
+      id
+      rating
+    }
+  }
+`
+
+const ANSWER_QUERY = gql`
+  query FindAnswerCommentQuery($id: Int!) {
+    answerComment: answerComment(id: $id) {
       id
       rating
     }
@@ -97,9 +122,9 @@ const RatingButton = ({ type, id }) => {
     refetchQueries: [{ query: refetchQuestionQuery }],
     onCompleted: () => {
       if (rating === -1) {
-        toast.success('downvoted')
+        toast.success('downvoted question')
       } else {
-        toast.success('upvoted')
+        toast.success('upvoted question')
       }
     },
   })
