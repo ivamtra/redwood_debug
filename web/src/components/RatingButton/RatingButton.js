@@ -110,14 +110,22 @@ const ANSWER_QUERY = gql`
 //useReducer gæti verið sniðugt hérna þar sem
 // það eru 3 mismunandi tilvik eftir því hvort þetta er spurning, svar eða comment
 const RatingButton = ({ type, id }) => {
+  // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
+
+  // --------- Database ------------------------------
+
+  // -------------------------------------------------
+
   // CREATE
   const [createQuestionUpvote] = useMutation(CREATE_QUESTION_UPVOTE)
   const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE)
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
   // -------------------------------
   // UPDATE
+
+  // Question
   const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING, {
     refetchQueries: [{ query: refetchQuestionQuery }],
     onCompleted: () => {
@@ -128,8 +136,16 @@ const RatingButton = ({ type, id }) => {
       }
     },
   })
-  // --------------------------------
+
+  // Answer
+  const [UpdateAnswerRating] = useMutation(UPDATE_ANSWER_RATING)
+
+  // Comment
+  const [UpdateCommentRating] = useMutation(UPDATE_COMMENT_RATING)
+  // ------------------------------------------------
+
   // QUERY
+
   // question query
   const {
     data: questionData,
@@ -138,6 +154,7 @@ const RatingButton = ({ type, id }) => {
   } = useQuery(QUESTION_QUERY, {
     variables: { id },
   })
+
   // answer query
   const {
     data: answerData,
@@ -146,6 +163,11 @@ const RatingButton = ({ type, id }) => {
   } = useQuery(ANSWER_QUERY, {
     variables: { id },
   })
+
+
+  // ------------------------------------------------
+
+  // ---------- Click Events -------------------------
 
   const downvoteClick = () => {
     // Breyta seinna til að höndla það að taka burt rating-ið
@@ -161,6 +183,12 @@ const RatingButton = ({ type, id }) => {
     console.log('upvoted')
     handleCreateMutation()
   }
+
+  // ------------------------------------------------
+
+  // ------- Database Mutations ---------------------
+
+
   const handleCreateMutation = () => {
     const input = {
       userId: currentUser.id,
