@@ -191,6 +191,10 @@ const RatingButton = ({ type, id }) => {
   } = useQuery(COMMENT_QUERY, {
     variables: { id },
   })
+  // ------------------------------------------------
+
+  // DELETE
+  const [deleteQuestionRating] = useMutation(DELETE_QUESTION_RATING)
 
   // ------------------------------------------------
 
@@ -263,7 +267,15 @@ const RatingButton = ({ type, id }) => {
                 })
               })
               .catch(() => {
+                // Rating tekið í burt
                 console.log('In catch block')
+                console.log(currentUser.id)
+                console.log(id)
+                deleteQuestionRating({
+                  variables: {
+                    id: 64,
+                  },
+                })
               })
           )
           break
