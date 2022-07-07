@@ -7,6 +7,7 @@ import NewQuestionForm from 'src/components/NewQuestionForm/NewQuestionForm'
 import QuestionForm from 'src/components/QuestionForm/QuestionForm'
 import TestForm from 'src/components/TestForm'
 
+//TODO: Uncommenta þegar gagnagrunnur er kominn í lag
 const FormsPage = () => {
   return (
     <>
@@ -27,10 +28,10 @@ const FormsPage = () => {
       <NewQuestionForm />
       <h2>---------------------------------------------------</h2>
       <h1>Comment form test</h1>
-      <AnswerCommentForm parentId={0} answerId={0} />
+      {/* <AnswerCommentForm parentId={0} answerId={0} /> */}
       <h2>---------------------------------------------------</h2>
       <h1>Answer Form test</h1>
-      <AnswerForm questionId={20} />
+      {/* <AnswerForm questionId={20} /> */}
     </>
   )
 }

@@ -32,7 +32,7 @@ export default async () => {
       {
         id: 0,
         title: 'Placeholder',
-        language: 'Placehodler',
+        language: 'Placeholder',
         definition: 'Placeholder',
         userId: 0,
         rating: 0,
