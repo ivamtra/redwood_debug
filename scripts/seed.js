@@ -16,6 +16,10 @@ export default async () => {
       // { name: 'mark', email: 'mark@example.com' },
       // { name: 'jackie', email: 'jackie@example.com' },
       // { name: 'bob', email: 'bob@example.com' },
+
+      // -------------------------------------------------------------------
+      // USER
+      { email: 'test', hashedPassword: 'asdasdjkasdffasdjk', salt: 'ASDA' },
     ]
     console.log(
       "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
@@ -28,7 +32,7 @@ export default async () => {
       // Change to match your data model and seeding needs
       //
       data.map(async (data) => {
-        const record = await db.userExample.create({ data })
+        const record = await db.user.create({ data })
         console.log(record)
       })
     )
