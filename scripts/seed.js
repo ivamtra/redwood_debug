@@ -19,6 +19,18 @@ export default async () => {
 
       // -------------------------------------------------------------------
       // USER
+      {
+        id: 0,
+        email: 'Placeholder',
+        hashedPassword: 'Placeholder',
+        salt: 'salt',
+      },
+      {
+        email: 'ivan',
+        hashedPassword:
+          'f01d1e7dc3eff50d1addc98cd59197d9b65833495704f8083a8eb3994630f41e',
+        salt: 'b8c776ee8e770532d01c1a913bf69553',
+      },
       { email: 'test', hashedPassword: 'asdasdjkasdffasdjk', salt: 'ASDA' },
     ]
     console.log(
