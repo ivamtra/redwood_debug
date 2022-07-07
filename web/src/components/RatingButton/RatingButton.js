@@ -13,7 +13,7 @@ import { QUERY as refetchAnswerQuery } from '../AnswerCell'
 import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
 import { QUERY as refetchQuestionQuery } from '../QuestionCell'
 
-// ----------- GRAPHQL --------------------------
+// ----------- GRAPHQL CRUD --------------------------
 
 // ----------- CREATE ---------------------------
 
@@ -42,35 +42,7 @@ const CREATE_COMMENT_UPVOTE = gql`
 `
 // ---------------------------------------------
 
-// ----------- UPDATE --------------------------
-
-const UPDATE_QUESTION_RATING = gql`
-  mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
-    updateQuestion(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-const UPDATE_ANSWER_RATING = gql`
-  mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
-    updateAnswer(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-const UPDATE_COMMENT_RATING = gql`
-  mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
-    updateAnswerComment(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-// ---------------------------------------------
-
-// ----------- QUERY ---------------------------
+// ----------- READ ----------------------------
 
 const QUESTION_QUERY = gql`
   query FindQuestionQuery($id: Int!) {
@@ -99,20 +71,53 @@ const COMMENT_QUERY = gql`
   }
 `
 
-// ---------------------------------------------
+// ----------- UPDATE --------------------------
 
-// type : {
-//   question
-//   answer
-//   comment
-// }
+const UPDATE_QUESTION_RATING = gql`
+  mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
+    updateQuestion(id: $id, input: $input) {
+      id
+    }
+  }
+`
 
-//const types = ['question', 'answer', 'comment']
+const UPDATE_ANSWER_RATING = gql`
+  mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
+    updateAnswer(id: $id, input: $input) {
+      id
+    }
+  }
+`
 
-//useReducer gæti verið sniðugt hérna þar sem
-// það eru 3 mismunandi tilvik eftir því hvort þetta er spurning, svar eða comment
+const UPDATE_COMMENT_RATING = gql`
+  mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
+    updateAnswerComment(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
+// -----------------------------------------------------
+
+// ----------- DELETE ----------------------------------
+
+// Deletar frá UserLikesX þegar maður ýtir aftur á like/dislike takka
+// til að taka burt ratingið sitt.
+
+const DELETE_QUESTION_RATING = gql`
+  mutation DeleteQuestionRating($id: Int!) {
+    deleteUserLikesQuestion(id: $id) {
+      id
+    }
+  }
+`
+
+// ------------------------------------------------------
+
+// ------------ React Component ------------------------
+
 const RatingButton = ({ type, id }) => {
-  // ------------ OnCompleted ------------------------
+  // ------------ OnCompleted ----------------------------
 
   const onCompleted = (type) => {
     if (rating === -1) {
@@ -245,17 +250,21 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createQuestionUpvote({
               variables: { input: questionInput },
-            }).then(() => {
-              console.log(questionData)
-              console.log(questionLoading)
-              console.log(questionError)
-              updateQuestionRating({
-                variables: {
-                  input: { rating: questionData.question.rating + rating },
-                  id: id,
-                },
-              })
             })
+              .then(() => {
+                console.log(questionData)
+                console.log(questionLoading)
+                console.log(questionError)
+                updateQuestionRating({
+                  variables: {
+                    input: { rating: questionData.question.rating + rating },
+                    id: id,
+                  },
+                })
+              })
+              .catch(() => {
+                console.log('In catch block')
+              })
           )
           break
         case 'comment':
@@ -281,6 +290,8 @@ const RatingButton = ({ type, id }) => {
     }
   }
 
+  // ------- React UI ----------------------------
+
   return (
     <div>
       <Form onSubmit={handleCreateMutation}>
@@ -302,3 +313,14 @@ const RatingButton = ({ type, id }) => {
 }
 
 export default RatingButton
+
+// type : {
+//   question
+//   answer
+//   comment
+// }
+
+//const types = ['question', 'answer', 'comment']
+
+//useReducer gæti verið sniðugt hérna þar sem
+// það eru 3 mismunandi tilvik eftir því hvort þetta er spurning, svar eða comment
