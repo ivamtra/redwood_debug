@@ -39,6 +39,10 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
   const [level, setLevel] = useState(0)
 
   const onSubmit = (data) => {
+    if (data.body === '[Deleted]') {
+      toast.error('Má ekki :(')
+      return
+    }
     console.log(data.body)
     console.log(currentUser.id)
     console.log(parentId)

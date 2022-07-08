@@ -3,6 +3,9 @@
  * Takkinn eyðir í rauninni ekki gögnum heldur felur þau bara.
  */
 
+//TODO: Gæti verið sniðugt að búa til nýja töflu fyrir eydd gögn
+//TODO: Leyfa Admin að eyða gögnum
+
 import { useRef } from 'react'
 
 import { useMutation, useQuery } from '@redwoodjs/web'

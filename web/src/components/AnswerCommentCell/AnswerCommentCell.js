@@ -39,18 +39,22 @@ export const Success = ({ answerComment }) => {
     <div>
       <h1>----------------------------------</h1>
       <h2>{answerComment.body}</h2>
-      <RatingButton type={'comment'} id={answerComment.id} />
-      <FlagButton type={'comment'} id={answerComment.id} />
-      <ReplyButton
-        parentId={answerComment.id}
-        answerId={answerComment.answerId}
-      />
-      {answerComment.body !== '[Deleted]' &&
-      answerComment.user.id === currentUser.id ? (
-        <DeleteButton id={answerComment.id} />
-      ) : (
-        <></>
-      )}
+      <>
+        {answerComment.body !== '[Deleted]' &&
+        answerComment.user.id === currentUser.id ? (
+          <>
+            <RatingButton type={'comment'} id={answerComment.id} />
+            <FlagButton type={'comment'} id={answerComment.id} />
+            <ReplyButton
+              parentId={answerComment.id}
+              answerId={answerComment.answerId}
+            />
+            <DeleteButton id={answerComment.id} />
+          </>
+        ) : (
+          <></>
+        )}
+      </>
 
       <p>Rating: {answerComment.rating}</p>
       <p>answerId = {answerComment.answerId}</p>

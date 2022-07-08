@@ -1,9 +1,5 @@
--Laga query-ið í QuestionSentenceForm.js
 -Form componentar
--Bæta við rating attribute í comment, question, answer.
--Bæta við trigger sem hækkar rating countið á því posti þegar likes töflurnar breytast.
 -Bæta við ehv styling svo hægt er að horfa á þetta
--Seed fyrir gagnagrunninn
 - Button componentar
 - CSS á Button componentinn til að merkja að hann hafi verið smelltur
 - Bæta flagg-takka við Question/Answer componenta.
@@ -17,3 +13,6 @@
 -Birta comment componenta í réttri röð (Komið)
   - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt (Komið)
   - Bæta við refetch queries þegar maður commentar
+
+- Töflur fyrir eydd gögn
+- Leyfa admin/moderator að eyða gögnum
