@@ -302,7 +302,7 @@ const RatingButton = ({ type, id }) => {
   // ------- React UI ----------------------------
 
   return (
-    <div>
+    <>
       <Form onSubmit={handleCreateMutation}>
         <Submit
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l mx-1"
@@ -317,7 +317,7 @@ const RatingButton = ({ type, id }) => {
           Downvote
         </Submit>
       </Form>
-    </div>
+    </>
   )
 }
 

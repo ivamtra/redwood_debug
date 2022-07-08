@@ -36,12 +36,12 @@ export const Failure = ({ error }) => (
 export const Success = ({ answerComment }) => {
   const { currentUser } = useAuth()
   return (
-    <div>
-      <h1>----------------------------------</h1>
+    <div className="grid grid-cols-4">
+      {/* <h1>----------------------------------</h1> */}
       <h2>{answerComment.body}</h2>
       <>
         {answerComment.body !== '[Deleted]' &&
-        answerComment.user.id === currentUser.id ? (
+        /*answerComment.user.id === currentUser.id */ true ? (
           <>
             <RatingButton type={'comment'} id={answerComment.id} />
             <FlagButton type={'comment'} id={answerComment.id} />
