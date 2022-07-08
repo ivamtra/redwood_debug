@@ -40,7 +40,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
 
   const onSubmit = (data) => {
     if (data.body === '[Deleted]') {
-      toast.error('Má ekki :(')
+      toast.error('Má ekki 🥺')
       return
     }
     console.log(data.body)

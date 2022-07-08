@@ -1,12 +1,19 @@
 // Define your own mock data here:
-export const standard = () => ({
-  answerComment: {
-    id: 42,
-    user: {
-      email: 'ivan',
+const user = { email: 'ivan', id: 3 }
+export const standard = () => {
+  return {
+    answerComment: {
+      id: 1,
+      answerId: 1,
+      user: {
+        email: 'ivan',
+        id: '1',
+      },
+      body: 'body',
+      createdAt: '234128',
+      parentId: 1,
+      level: 1,
+      rating: 100,
     },
-    answerId: 5,
-  },
-  parentId: 2,
-  level: 2,
-})
+  }
+}

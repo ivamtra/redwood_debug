@@ -106,7 +106,8 @@ export const Success = ({ answerComments, answerId }) => {
           <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
         )
       })}
-      <button onClick={sortComments}>Show comments</button>
+      {/* Þarf ekki vegna useEffect */}
+      {/* <button onClick={sortComments}>Show comments</button> */}
     </div>
   )
 }

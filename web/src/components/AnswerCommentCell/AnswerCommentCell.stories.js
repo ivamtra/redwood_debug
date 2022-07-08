@@ -12,8 +12,11 @@ export const empty = () => {
 export const failure = () => {
   return Failure ? <Failure error={new Error('Oh no')} /> : null
 }
-
 export const success = () => {
+  console.log(standard())
+  mockCurrentUser({
+    id: 3,
+  })
   return Success ? <Success {...standard()} /> : null
 }
 

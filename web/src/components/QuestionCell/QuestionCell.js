@@ -53,7 +53,6 @@ export const Success = ({ question, inQuestionsCell }) => {
         <h1>Titill: {question.title}</h1>
       )}
       <div>
-        {/*TODO: vantar virkni á takka */}
         <RatingButton id={question.id} type="question" />
         <FlagButton type={'question'} id={question.id} />
         <p>Rating: {question.rating}</p>
