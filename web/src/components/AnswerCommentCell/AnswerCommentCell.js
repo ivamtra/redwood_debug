@@ -1,3 +1,6 @@
+import { useAuth } from '@redwoodjs/auth'
+
+import DeleteButton from '../DeleteButton/DeleteButton'
 import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
 import ReplyButton from '../ReplyButton/ReplyButton'
@@ -9,6 +12,7 @@ export const QUERY = gql`
       answerId
       user {
         email
+        id
       }
       body
       createdAt
@@ -28,6 +32,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ answerComment }) => {
+  const { currentUser } = useAuth()
   return (
     <div>
       <h1>----------------------------------</h1>
@@ -38,11 +43,23 @@ export const Success = ({ answerComment }) => {
         parentId={answerComment.id}
         answerId={answerComment.answerId}
       />
+      {answerComment.body !== '[Deleted]' &&
+      answerComment.user.id === currentUser.id ? (
+        <DeleteButton id={answerComment.id} />
+      ) : (
+        <></>
+      )}
+
       <p>Rating: {answerComment.rating}</p>
       <p>answerId = {answerComment.answerId}</p>
       <p>id = {answerComment.id}</p>
       <p>{answerComment.createdAt}</p>
-      <p>{answerComment.user.email}</p>
+
+      {answerComment.body !== '[Deleted]' ? (
+        <p>{answerComment.user.email}</p>
+      ) : (
+        <></>
+      )}
       <p>parentId: {answerComment.parentId}</p>
       <p>level: {answerComment.level}</p>
     </div>

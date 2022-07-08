@@ -10,7 +10,7 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { QUERY as CommentsQuery } from 'src/components/AnswerCommentsCell/AnswerCommentsCell'
 
-const CREATE_COMMENT = gql`
+export const CREATE_COMMENT = gql`
   mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
     createAnswerComment(input: $input) {
       id
