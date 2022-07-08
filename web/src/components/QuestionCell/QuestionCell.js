@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 import { Link, routes } from '@redwoodjs/router'
 
+import AnswerForm from '../AnswerForm'
 import AnswersCell from '../AnswersCell'
 import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
@@ -69,6 +70,9 @@ export const Success = ({ question, inQuestionsCell }) => {
       </div>
       {!inQuestionsCell ? (
         <div>
+          <h1>---------------------------------------</h1>
+          <h1>Answer form</h1>
+          <AnswerForm questionId={question.id} />
           <h1>---------------------------------------</h1>
           <AnswersCell questionId={question.id} />
           {/* <Link to={routes.answer({ id: question.id })} /> */}
