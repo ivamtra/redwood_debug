@@ -271,11 +271,8 @@ const RatingButton = ({ type, id }) => {
                 console.log('In catch block')
                 console.log(currentUser.id)
                 console.log(id)
-                deleteQuestionRating({
-                  variables: {
-                    id: 64,
-                  },
-                })
+                //FIXME: Taka rating burt
+                toast.error('Búið að gefa endurgjöf')
               })
           )
           break
