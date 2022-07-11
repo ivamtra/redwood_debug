@@ -90,10 +90,10 @@ const USER_LIKES_QUESTION_QUERY = gql`
 `
 
 const USER_LIKES_ANSWER_QUERY = gql`
-  query CustomUserLikesAnswer($userId: Int!, $questionId: Int!) {
+  query CustomUserLikesAnswer($userId: Int!, $answerId: Int!) {
     customUserLikesAnswer: customUserLikesAnswer(
       userId: $userId
-      questionId: $questionId
+      answerId: $answerId
     ) {
       id
       action
@@ -348,7 +348,8 @@ const RatingButton = ({ type, id }) => {
                 })
               })
               .catch(() => {
-                console.log(userLikesAnswerData)
+                console.log(id)
+                console.log(userLikesAnswerData) // FIXME: Á ekki að vera undefined
                 const workingData = userLikesAnswerData.customUserLikesAnswer[0]
                 const ratingChange = calculateRatingDifference(
                   workingData.action,
