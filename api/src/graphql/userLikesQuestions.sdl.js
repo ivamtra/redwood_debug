@@ -12,6 +12,10 @@ export const schema = gql`
   type Query {
     userLikesQuestions: [UserLikesQuestion!]! @requireAuth
     userLikesQuestion(id: Int!): UserLikesQuestion @requireAuth
+    customUserLikesQuestion(
+      questionId: Int!
+      userId: Int!
+    ): [UserLikesQuestion!]! @skipAuth
   }
 
   input CreateUserLikesQuestionInput {
