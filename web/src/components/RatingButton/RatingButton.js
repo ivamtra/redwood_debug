@@ -75,7 +75,7 @@ const COMMENT_QUERY = gql`
   }
 `
 
-// ----------- UserLikesX Töflur Query --------------------------
+// ----------- UserLikesX Töflur Query GraphQL --------------------------
 
 const USER_LIKES_QUESTION_QUERY = gql`
   query CustomUserLikesQuestion($userId: Int!, $questionId: Int!) {
@@ -88,6 +88,7 @@ const USER_LIKES_QUESTION_QUERY = gql`
     }
   }
 `
+
 const USER_LIKES_ANSWER_QUERY = gql`
   query CustomUserLikesAnswer($userId: Int!, $questionId: Int!) {
     customUserLikesAnswer: customUserLikesAnswer(
@@ -142,6 +143,17 @@ const UPDATE_USER_LIKES_QUESTION = gql`
   }
 `
 
+const UPDATE_USER_LIKES_ANSWER = gql`
+  mutation UpdateUserLikesAnswer(
+    $id: Int!
+    $input: UpdateUserLikesAnswerInput!
+  ) {
+    updateUserLikesAnswer(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
 // -----------------------------------------------------
 
 // ----------- UpdateRating fall ----------------------------------
@@ -185,17 +197,6 @@ const RatingButton = ({ type, id }) => {
   // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
-  const [isFinished, setIsFinished] = useState(false)
-  const [newActionState, setNewActionState] = useState(0)
-  const [ratingDifferenceState, setRatingDifferenceState] = useState(0)
-
-  // useEffect
-
-  useEffect(() => console.log('re-render'))
-
-  const calcRate = useCallback(
-    (oldRating, newRating) => calculateRatingDifference
-  )
 
   // --------- DATABASE ------------------------------
 
@@ -241,6 +242,15 @@ const RatingButton = ({ type, id }) => {
       },
     ],
   })
+
+  const [updateUserLikesAnswer] = useMutation(UPDATE_USER_LIKES_ANSWER, {
+    refetchQueries: [
+      {
+        query: USER_LIKES_ANSWER_QUERY,
+        variables: { userId: currentUser.id, answerId: id },
+      },
+    ],
+  })
   // ------------------------------------------------
 
   // Component Queries
@@ -279,12 +289,15 @@ const RatingButton = ({ type, id }) => {
     variables: { questionId: id, userId: currentUser.id },
   })
 
+  const { data: userLikesAnswerData } = useQuery(USER_LIKES_ANSWER_QUERY, {
+    variables: { answerId: id, userId: currentUser.id },
+  })
+
   // ------------------------------------------------
 
   // ---------- Click Events -------------------------
 
   const downvoteClick = () => {
-    // Breyta seinna til að höndla það að taka burt rating-ið
     setRating(-1)
     console.log('downvoted')
     console.log(new Date().toISOString)
@@ -292,7 +305,6 @@ const RatingButton = ({ type, id }) => {
   }
 
   const upvoteClick = () => {
-    // Breyta seinna til að höndla það að taka burt rating-ið
     setRating(1)
     console.log('upvoted')
     handleCreateMutation()
@@ -323,17 +335,43 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createAnswerUpvote({
               variables: { input: answerInput },
-            }).then(() => {
-              console.log(answerData)
-              console.log(answerLoading)
-              console.log(answerError)
-              UpdateAnswerRating({
-                variables: {
-                  input: { rating: answerData.answer.rating + rating },
-                  id: id,
-                },
-              })
             })
+              .then(() => {
+                console.log(answerData)
+                console.log(answerLoading)
+                console.log(answerError)
+                UpdateAnswerRating({
+                  variables: {
+                    input: { rating: answerData.answer.rating + rating },
+                    id: id,
+                  },
+                })
+              })
+              .catch(() => {
+                console.log(userLikesAnswerData)
+                const workingData = userLikesAnswerData.customUserLikesAnswer[0]
+                const ratingChange = calculateRatingDifference(
+                  workingData.action,
+                  rating
+                )
+                const newAction = newRating(workingData.action, rating)
+
+                updateUserLikesAnswer({
+                  variables: {
+                    input: { action: newAction },
+                    id: workingData.id,
+                  },
+                }).then(() => {
+                  UpdateAnswerRating({
+                    variables: {
+                      input: {
+                        rating: answerData.answer.rating + ratingChange,
+                      },
+                      id: id,
+                    },
+                  })
+                })
+              })
           )
           break
         case 'question':
@@ -393,8 +431,6 @@ const RatingButton = ({ type, id }) => {
                   })
                 })
 
-                setIsFinished(true)
-
                 toast.success('Endurgjöf breytt!')
               })
           )
@@ -427,7 +463,6 @@ const RatingButton = ({ type, id }) => {
   return (
     <>
       <Form onSubmit={handleCreateMutation}>
-        {true ? <></> : <p></p>}
         <Submit
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l mx-1"
           onClick={upvoteClick}
