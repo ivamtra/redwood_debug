@@ -88,7 +88,17 @@ const USER_LIKES_QUESTION_QUERY = gql`
     }
   }
 `
-
+const USER_LIKES_ANSWER_QUERY = gql`
+  query CustomUserLikesAnswer($userId: Int!, $questionId: Int!) {
+    customUserLikesAnswer: customUserLikesAnswer(
+      userId: $userId
+      questionId: $questionId
+    ) {
+      id
+      action
+    }
+  }
+`
 // ---------------------------------------------
 
 // ----------- UPDATE --------------------------
@@ -344,12 +354,11 @@ const RatingButton = ({ type, id }) => {
                 })
               })
               .catch(() => {
+                // Rating nú þegar til og verður að uppfæra
                 console.log('In catch')
-                // Rating tekið í burt
 
-                // 1) Query-a eftir id-inu sem failaði
+                // 1) Query-a eftir id-inu sem failaði (Gert í hook)
 
-                //FIXME: Requerie-ar ekki
                 console.log(userLikesQuestionData.customUserLikesQuestion[0])
 
                 // 2) Breyta yfir í rétt form
@@ -364,16 +373,7 @@ const RatingButton = ({ type, id }) => {
                   rating
                 )
 
-                console.log(questionData.question.rating)
-                console.log(userLikesQuestionData)
-
-                console.log(ratingChange)
                 const newAction = newRating(workingData.action, rating)
-                console.log(newAction)
-
-                console.log('Old action:' + workingData.action)
-                console.log('New Action:' + newAction)
-                setNewActionState()
 
                 // ) Updata rating-ið
 

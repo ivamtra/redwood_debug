@@ -10,6 +10,21 @@ export const userLikesAnswer = ({ id }) => {
   })
 }
 
+export const customUserLikesAnswer = ({ userId, answerId }) => {
+  return db.userLikesAnswer.findMany({
+    where: {
+      AND: [
+        {
+          answerId: answerId,
+        },
+        {
+          userId: userId,
+        },
+      ],
+    },
+  })
+}
+
 export const createUserLikesAnswer = ({ input }) => {
   return db.userLikesAnswer.create({
     data: input,
