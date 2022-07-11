@@ -203,9 +203,39 @@ const RatingButton = ({ type, id }) => {
   // -------------------------------------------------
 
   // CREATE
-  const [createQuestionUpvote] = useMutation(CREATE_QUESTION_UPVOTE)
-  const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE)
-  const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
+  const [createQuestionUpvote] = useMutation(CREATE_QUESTION_UPVOTE, {
+    refetchQueries: [
+      {
+        query: USER_LIKES_QUESTION_QUERY,
+        variables: {
+          userId: currentUser.id,
+          questionId: id,
+        },
+      },
+    ],
+  })
+  const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE, {
+    refetchQueries: [
+      {
+        query: USER_LIKES_ANSWER_QUERY,
+        variables: {
+          userId: currentUser.id,
+          answerId: id,
+        },
+      },
+    ],
+  })
+  const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE, {
+    refetchQueries: [
+      {
+        query: USER_LIKES_ANSWER_QUERY,
+        variables: {
+          userId: currentUser.id,
+          commentId: id,
+        },
+      },
+    ],
+  })
   // -------------------------------
 
   // UPDATE
