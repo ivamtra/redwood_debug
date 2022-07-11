@@ -13,6 +13,8 @@ export const schema = gql`
   type Query {
     userLikesComments: [UserLikesComment!]! @requireAuth
     userLikesComment(id: Int!): UserLikesComment @requireAuth
+    customUserLikesComment(commentId: Int!, userId: Int!): [UserLikesComment!]!
+      @skipAuth
   }
 
   input CreateUserLikesCommentInput {
