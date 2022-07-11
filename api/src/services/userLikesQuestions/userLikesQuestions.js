@@ -46,7 +46,16 @@ export const deleteUserLikesQuestion = ({ id }) => {
 
 export const customDeleteUserLikesQuestion = ({ questionId, userId }) => {
   return db.userLikesQuestion.delete({
-    where: { userId: userId, questionId: questionId },
+    where: {
+      AND: [
+        {
+          userId: userId,
+        },
+        {
+          questionId: questionId,
+        },
+      ],
+    },
   })
 }
 

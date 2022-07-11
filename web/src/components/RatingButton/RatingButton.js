@@ -44,6 +44,8 @@ const CREATE_COMMENT_UPVOTE = gql`
 
 // ----------- READ ----------------------------
 
+// ----------- Componenta Query ----------------------------
+
 const QUESTION_QUERY = gql`
   query FindQuestionQuery($id: Int!) {
     question: question(id: $id) {
@@ -71,7 +73,25 @@ const COMMENT_QUERY = gql`
   }
 `
 
+// ----------- UserLikesX Töflur Query --------------------------
+
+const USER_LIKES_QUESTION_QUERY = gql`
+  query CustomUserLikesQuestion($userId: Int!, $questionId: Int!) {
+    customUserLikesQuestion: customUserLikesQuestion(
+      userId: $userId
+      questionId: $questionId
+    ) {
+      id
+      action
+    }
+  }
+`
+
+// ---------------------------------------------
+
 // ----------- UPDATE --------------------------
+
+// ----------- Hækka rating á question --------------------------
 
 const UPDATE_QUESTION_RATING = gql`
   mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
@@ -97,20 +117,43 @@ const UPDATE_COMMENT_RATING = gql`
   }
 `
 
-// -----------------------------------------------------
+// ----------- Breytingar í UserLikesX töflum ----------
 
-// ----------- DELETE ----------------------------------
-
-// Deletar frá UserLikesX þegar maður ýtir aftur á like/dislike takka
-// til að taka burt ratingið sitt.
-
-const DELETE_QUESTION_RATING = gql`
-  mutation DeleteQuestionRating($userId: Int!, $questionId: Int!) {
-    customDeleteUserLikesQuestion(userId: $userId, questionId: $questionId) {
+const UPDATE_USER_LIKES_QUESTION = gql`
+  mutation UpdateUserLikesQuestion(
+    $id: Int!
+    $input: UpdateUserLikesQuestionInput!
+  ) {
+    updateUserLikesQuestion(id: $id, input: $input) {
       id
     }
   }
 `
+
+// -----------------------------------------------------
+
+// ----------- UpdateRating fall ----------------------------------
+
+// (int, int) => int
+// Gefur töluna sem hækka/lækka á componentinn um
+const calculateRatingDifference = (oldRating, newRating) => {
+  if (oldRating === 0) {
+    return newRating
+  } else if (oldRating !== newRating) {
+    return 2 * newRating
+  } else {
+    return -newRating
+  }
+}
+
+// Talan sem fer í userLikesX
+const newRating = (oldRating, newRating) => {
+  if (oldRating === newRating) {
+    return 0
+  } else {
+    return newRating
+  }
+}
 
 // ------------------------------------------------------
 
@@ -140,7 +183,10 @@ const RatingButton = ({ type, id }) => {
   const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE)
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE)
   // -------------------------------
+
   // UPDATE
+
+  // Components
 
   // Question
   const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING, {
@@ -161,9 +207,13 @@ const RatingButton = ({ type, id }) => {
     refetchQueries: [{ query: refetchCommentQuery, variables: { id } }],
     onCompleted: () => onCompleted('comment'),
   })
+
+  // UserLikesX
+
+  const [updateUserLikesQuestion] = useMutation(UPDATE_USER_LIKES_QUESTION)
   // ------------------------------------------------
 
-  // QUERY
+  // Component Queries
 
   // Question query
   const {
@@ -193,8 +243,11 @@ const RatingButton = ({ type, id }) => {
   })
   // ------------------------------------------------
 
-  // DELETE
-  const [deleteQuestionRating] = useMutation(DELETE_QUESTION_RATING)
+  // UserLikesX Queries
+
+  const { data: userLikesQuestionData } = useQuery(USER_LIKES_QUESTION_QUERY, {
+    variables: { questionId: id, userId: currentUser.id },
+  })
 
   // ------------------------------------------------
 
@@ -219,6 +272,10 @@ const RatingButton = ({ type, id }) => {
 
   // ------- Database Mutations ---------------------
 
+  /*
+    Höndlar það að búa til dálka í UserLikesX töflum
+    og breytir rating hjá componentum
+   */
   const handleCreateMutation = () => {
     const input = {
       userId: currentUser.id,
@@ -267,19 +324,43 @@ const RatingButton = ({ type, id }) => {
                 })
               })
               .catch(() => {
+                console.log('In catch')
                 // Rating tekið í burt
-                console.log('In catch block')
-                console.log(currentUser.id)
-                console.log(id)
-                //FIXME: Taka rating burt
-                console.log(
-                  deleteQuestionRating({
+
+                // 1) Query-a eftir id-inu sem failaði
+                console.log(userLikesQuestionData.customUserLikesQuestion[0])
+
+                // 2) Breyta yfir í rétt form
+
+                // {typeName, id, action}
+                const workingData =
+                  userLikesQuestionData.customUserLikesQuestion[0]
+
+                // Gefa nýtt rating
+                const ratingChange = calculateRatingDifference(
+                  workingData.action,
+                  rating
+                )
+                const newAction = newRating(workingData.action, rating)
+
+                // ) Updata rating-ið
+
+                updateUserLikesQuestion({
+                  variables: {
+                    input: { action: newAction },
+                    id: workingData.id,
+                  },
+                }).then(() => {
+                  updateQuestionRating({
                     variables: {
-                      questionId: id,
-                      userId: currentUser.id,
+                      input: {
+                        rating: questionData.question.rating + ratingChange,
+                      },
+                      id: id,
                     },
                   })
-                )
+                })
+
                 toast.error('Búið að gefa endurgjöf')
               })
           )

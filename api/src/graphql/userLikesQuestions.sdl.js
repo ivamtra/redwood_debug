@@ -44,6 +44,6 @@ export const schema = gql`
     customDeleteUserLikesQuestion(
       questionId: Int!
       userId: Int!
-    ): UserLikesQuestion! @requireAuth
+    ): UserLikesQuestion! @skipAuth
   }
 `
