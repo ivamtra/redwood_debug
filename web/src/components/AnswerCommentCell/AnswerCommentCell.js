@@ -43,30 +43,30 @@ export const Success = ({ answerComment }) => {
         {answerComment.body !== '[Deleted]' &&
         /*answerComment.user.id === currentUser.id */ true ? (
           <>
-            <RatingButton type={'comment'} id={answerComment.id} />
+            <RatingButton className="" type={'comment'} id={answerComment.id} />
             <FlagButton type={'comment'} id={answerComment.id} />
             <ReplyButton
               parentId={answerComment.id}
               answerId={answerComment.answerId}
             />
-            <DeleteButton id={answerComment.id} />
+            <DeleteButton className id={answerComment.id} />
           </>
         ) : (
           <></>
         )}
       </>
 
-      <p>Rating: {answerComment.rating}</p>
+      <p className="order-1">Rating: {answerComment.rating}</p>
       <p>answerId = {answerComment.answerId}</p>
       <p>id = {answerComment.id}</p>
       <p>{answerComment.createdAt}</p>
 
       {answerComment.body !== '[Deleted]' ? (
-        <p>{answerComment.user.email}</p>
+        <p className="order-1">{answerComment.user.email}</p>
       ) : (
         <></>
       )}
-      <p>parentId: {answerComment.parentId}</p>
+      <p className="order-1">parentId: {answerComment.parentId}</p>
       <p>level: {answerComment.level}</p>
     </div>
   )

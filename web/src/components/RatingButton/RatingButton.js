@@ -105,8 +105,8 @@ const UPDATE_COMMENT_RATING = gql`
 // til að taka burt ratingið sitt.
 
 const DELETE_QUESTION_RATING = gql`
-  mutation DeleteQuestionRating($id: Int!) {
-    deleteUserLikesQuestion(id: $id) {
+  mutation DeleteQuestionRating($userId: Int!, $questionId: Int!) {
+    customDeleteUserLikesQuestion(userId: $userId, questionId: $questionId) {
       id
     }
   }
@@ -272,6 +272,14 @@ const RatingButton = ({ type, id }) => {
                 console.log(currentUser.id)
                 console.log(id)
                 //FIXME: Taka rating burt
+                console.log(
+                  deleteQuestionRating({
+                    variables: {
+                      questionId: id,
+                      userId: currentUser.id,
+                    },
+                  })
+                )
                 toast.error('Búið að gefa endurgjöf')
               })
           )

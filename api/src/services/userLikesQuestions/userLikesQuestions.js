@@ -29,6 +29,12 @@ export const deleteUserLikesQuestion = ({ id }) => {
   })
 }
 
+export const customDeleteUserLikesQuestion = ({ questionId, userId }) => {
+  return db.userLikesQuestion.delete({
+    where: { userId: userId, questionId: questionId },
+  })
+}
+
 export const UserLikesQuestion = {
   user: (_obj, { root }) =>
     db.userLikesQuestion.findUnique({ where: { id: root.id } }).user(),

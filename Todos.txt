@@ -15,4 +15,11 @@
   - Bæta við refetch queries þegar maður commentar
 
 - Töflur fyrir eydd gögn
-- Leyfa admin/moderator að eyða gögnum
+
+- RBAC
+  - Leyfa admin/moderator að eyða gögnum
+
+- Laga delete þannig það fari í nýja töflu.
+
+- Hægt að upvote-a tvisvar til að losna við ratingið
+

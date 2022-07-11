@@ -37,5 +37,9 @@ export const schema = gql`
       input: UpdateUserLikesQuestionInput!
     ): UserLikesQuestion! @requireAuth
     deleteUserLikesQuestion(id: Int!): UserLikesQuestion! @requireAuth
+    customDeleteUserLikesQuestion(
+      questionId: Int!
+      userId: Int!
+    ): UserLikesQuestion! @requireAuth
   }
 `
