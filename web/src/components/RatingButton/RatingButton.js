@@ -2,12 +2,14 @@
 //TODO: Refactora
 //TODO: ENUM fyrir tegund af component?
 //TODO: CSS til að merkja hvort að takkinn hafi verið smelltur
-import { useState } from 'react' //
+import { useCallback, useEffect, useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
+
+import { useForceUpdate } from 'src/customhooks/useForceUpdate'
 
 import { QUERY as refetchAnswerQuery } from '../AnswerCell'
 import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
@@ -173,6 +175,17 @@ const RatingButton = ({ type, id }) => {
   // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
+  const [isFinished, setIsFinished] = useState(false)
+  const [newActionState, setNewActionState] = useState(0)
+  const [ratingDifferenceState, setRatingDifferenceState] = useState(0)
+
+  // useEffect
+
+  useEffect(() => console.log('re-render'))
+
+  const calcRate = useCallback(
+    (oldRating, newRating) => calculateRatingDifference
+  )
 
   // --------- DATABASE ------------------------------
 
@@ -210,7 +223,14 @@ const RatingButton = ({ type, id }) => {
 
   // UserLikesX
 
-  const [updateUserLikesQuestion] = useMutation(UPDATE_USER_LIKES_QUESTION)
+  const [updateUserLikesQuestion] = useMutation(UPDATE_USER_LIKES_QUESTION, {
+    refetchQueries: [
+      {
+        query: USER_LIKES_QUESTION_QUERY,
+        variables: { userId: currentUser.id, questionId: id },
+      },
+    ],
+  })
   // ------------------------------------------------
 
   // Component Queries
@@ -328,6 +348,8 @@ const RatingButton = ({ type, id }) => {
                 // Rating tekið í burt
 
                 // 1) Query-a eftir id-inu sem failaði
+
+                //FIXME: Requerie-ar ekki
                 console.log(userLikesQuestionData.customUserLikesQuestion[0])
 
                 // 2) Breyta yfir í rétt form
@@ -336,12 +358,22 @@ const RatingButton = ({ type, id }) => {
                 const workingData =
                   userLikesQuestionData.customUserLikesQuestion[0]
 
-                // Gefa nýtt rating
+                // Gefa nýtt rating á component
                 const ratingChange = calculateRatingDifference(
                   workingData.action,
                   rating
                 )
+
+                console.log(questionData.question.rating)
+                console.log(userLikesQuestionData)
+
+                console.log(ratingChange)
                 const newAction = newRating(workingData.action, rating)
+                console.log(newAction)
+
+                console.log('Old action:' + workingData.action)
+                console.log('New Action:' + newAction)
+                setNewActionState()
 
                 // ) Updata rating-ið
 
@@ -361,7 +393,9 @@ const RatingButton = ({ type, id }) => {
                   })
                 })
 
-                toast.error('Búið að gefa endurgjöf')
+                setIsFinished(true)
+
+                toast.success('Endurgjöf breytt!')
               })
           )
           break
@@ -393,6 +427,7 @@ const RatingButton = ({ type, id }) => {
   return (
     <>
       <Form onSubmit={handleCreateMutation}>
+        {true ? <></> : <p></p>}
         <Submit
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l mx-1"
           onClick={upvoteClick}
