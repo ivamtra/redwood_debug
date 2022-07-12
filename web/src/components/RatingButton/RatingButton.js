@@ -100,6 +100,18 @@ const USER_LIKES_ANSWER_QUERY = gql`
     }
   }
 `
+
+const USER_LIKES_COMMENT_QUERY = gql`
+  query CustomUserLikesComment($userId: Int!, $commentId: Int!) {
+    customUserLikesComment: customUserLikesComment(
+      userId: $userId
+      commentId: $commentId
+    ) {
+      id
+      action
+    }
+  }
+`
 // ---------------------------------------------
 
 // ----------- UPDATE --------------------------
@@ -149,6 +161,17 @@ const UPDATE_USER_LIKES_ANSWER = gql`
     $input: UpdateUserLikesAnswerInput!
   ) {
     updateUserLikesAnswer(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
+const UPDATE_USER_LIKES_COMMENT = gql`
+  mutation UpdateUserLikesComment(
+    $id: Int!
+    $input: UpdateUserLikesCommentInput!
+  ) {
+    updateUserLikesComment(id: $id, input: $input) {
       id
     }
   }
@@ -228,7 +251,7 @@ const RatingButton = ({ type, id }) => {
   const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE, {
     refetchQueries: [
       {
-        query: USER_LIKES_ANSWER_QUERY,
+        query: USER_LIKES_COMMENT_QUERY,
         variables: {
           userId: currentUser.id,
           commentId: id,
@@ -281,6 +304,15 @@ const RatingButton = ({ type, id }) => {
       },
     ],
   })
+
+  const [updateUserLikesComment] = useMutation(UPDATE_USER_LIKES_COMMENT, {
+    refetchQueries: [
+      {
+        query: USER_LIKES_COMMENT_QUERY,
+        variables: { userId: currentUser.id, commentId: id },
+      },
+    ],
+  })
   // ------------------------------------------------
 
   // Component Queries
@@ -321,6 +353,10 @@ const RatingButton = ({ type, id }) => {
 
   const { data: userLikesAnswerData } = useQuery(USER_LIKES_ANSWER_QUERY, {
     variables: { answerId: id, userId: currentUser.id },
+  })
+
+  const { data: userLikesCommentData } = useQuery(USER_LIKES_COMMENT_QUERY, {
+    variables: { commentId: id, userId: currentUser.id },
   })
 
   // ------------------------------------------------
@@ -379,7 +415,7 @@ const RatingButton = ({ type, id }) => {
               })
               .catch(() => {
                 console.log(id)
-                console.log(userLikesAnswerData) // FIXME: Á ekki að vera undefined
+                console.log(userLikesAnswerData)
                 const workingData = userLikesAnswerData.customUserLikesAnswer[0]
                 const ratingChange = calculateRatingDifference(
                   workingData.action,
@@ -472,14 +508,43 @@ const RatingButton = ({ type, id }) => {
           console.log(
             createCommentUpvote({
               variables: { input: commentInput },
-            }).then(() => {
-              UpdateCommentRating({
-                variables: {
-                  input: { rating: commentData.answerComment.rating + rating },
-                  id: id,
-                },
-              })
             })
+              .then(() => {
+                UpdateCommentRating({
+                  variables: {
+                    input: {
+                      rating: commentData.answerComment.rating + rating,
+                    },
+                    id: id,
+                  },
+                })
+              })
+              .catch(() => {
+                const workingData =
+                  userLikesCommentData.customUserLikesComment[0]
+                console.log(workingData)
+                const ratingChange = calculateRatingDifference(
+                  workingData.action,
+                  rating
+                )
+                const newAction = newRating(workingData.action, rating)
+
+                updateUserLikesComment({
+                  variables: {
+                    input: { action: newAction },
+                    id: workingData.id,
+                  },
+                }).then(() => {
+                  UpdateCommentRating({
+                    variables: {
+                      input: {
+                        rating: commentData.answerComment.rating + ratingChange,
+                      },
+                      id: id,
+                    },
+                  })
+                })
+              })
           )
           break
         default:
