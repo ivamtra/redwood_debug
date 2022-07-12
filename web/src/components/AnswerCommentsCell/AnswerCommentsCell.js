@@ -31,10 +31,45 @@ export const Failure = ({ error }) => (
 )
 
 const newSortComments = (answerComments) => {
-  let hashMap = new Map()
+  // Stilla hakkatöflu
+  const hashMap = new Map()
   answerComments.forEach((item) => {
-    hashMap.set()
+    try {
+      hashMap.set(item.parentId, [...hashMap.get(item.parentId), item.id])
+    } catch {
+      hashMap.set(item.parentId, [item.id])
+    }
   })
+  console.log(hashMap)
+
+  const stack = []
+  let currentChildren = hashMap.get(0)
+  currentChildren.forEach((child) => {
+    stack.push(child)
+  })
+  console.log(stack)
+  let currentNode
+  let returnList = []
+
+  //Debug counter
+  let counter = 0
+
+  // Ítra í gegn
+  while (stack.length !== 0) {
+    currentNode = stack.pop()
+    returnList.push(currentNode)
+    currentChildren = hashMap.get(currentNode)
+    console.log(currentChildren)
+    try {
+      currentChildren.forEach((item) => stack.push(item))
+    } catch {}
+
+    console.log(returnList)
+    //Debug
+    counter++
+    if (counter > 20) return
+  }
+  console.log(returnList)
 }
 
 const sortComments = (answerComments) => {
@@ -108,7 +143,9 @@ export const Success = ({ answerComments, answerId }) => {
 
   return (
     <div>
-      <button onClick={newSortComments}>New Sort comments</button>
+      <button onClick={() => newSortComments(answerComments)}>
+        New Sort comments
+      </button>
       {list.map((item) => {
         return (
           <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
