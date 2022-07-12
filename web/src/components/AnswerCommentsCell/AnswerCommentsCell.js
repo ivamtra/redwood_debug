@@ -30,6 +30,13 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
+const newSortComments = (answerComments) => {
+  let hashMap = new Map()
+  answerComments.forEach((item) => {
+    hashMap.set()
+  })
+}
+
 const sortComments = (answerComments) => {
   //Clone-a answerComments fylkið
   console.log(answerComments)
@@ -101,6 +108,7 @@ export const Success = ({ answerComments, answerId }) => {
 
   return (
     <div>
+      <button onClick={newSortComments}>New Sort comments</button>
       {list.map((item) => {
         return (
           <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />

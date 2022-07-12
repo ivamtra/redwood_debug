@@ -22,5 +22,8 @@
 - Laga delete þannig það fari í nýja töflu.
 
 - Hægt að upvote-a tvisvar til að losna við ratingið (Komið)
-  - Laga það að það þurfi að refresha til að fá fulla virkni
+  - Laga það að það þurfi að refresha til að fá fulla virkni (Komið)
 
+- Búa til script sem resettar dbAuth
+
+- Gera trjáreikniritið O(n) með hashMap
