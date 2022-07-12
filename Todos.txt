@@ -23,7 +23,8 @@
 
 - Hægt að upvote-a tvisvar til að losna við ratingið (Komið)
   - Laga það að það þurfi að refresha til að fá fulla virkni (Komið)
+  - Gera það fyrir comment
 
 - Búa til script sem resettar dbAuth
 
-- Gera trjáreikniritið O(n) með hashMap
+- Gera trjáreikniritið O(n) með hashMap (Komið)
