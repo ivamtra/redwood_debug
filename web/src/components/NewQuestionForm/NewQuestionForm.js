@@ -44,7 +44,9 @@ const UPDATE_USER = gql`
 //---------------- React Component ----------------------------------
 
 const NewQuestionForm = () => {
-  const [createQuestion] = useMutation(CREATE_QUESTION)
+  const [createQuestion] = useMutation(CREATE_QUESTION, {
+    onCompleted: () => toast.success('Question Created'),
+  })
   const [createSentence] = useMutation(CREATE_SENTENCE)
   const { currentUser, hasRole } = useAuth()
   const [textValue, setTextValue] = useState('')
@@ -70,7 +72,7 @@ const NewQuestionForm = () => {
 
   const onSubmit = (questionData) => {
     console.log(currentUser.roles)
-    handleQuestionMutation(questionData)
+    handleQuestionMutation(questionData, 0)
   }
 
   // Höndlar gögnin sem fást úr listanum og sendir þau í gagnagrunninn
@@ -115,7 +117,11 @@ const NewQuestionForm = () => {
   // Höndlar gögn fyrir Question hlutinn en kallar
   // einnig á handleSentenceMutation sem býr til
   // raðir í Sentence töflunni
-  const handleQuestionMutation = (data) => {
+  // Það er endurkvæmni í newUser tilvikinu
+  // Þannig safeguardinn kemur í veg fyrir endalaus loop.
+  const handleQuestionMutation = (data, safeGuardCounter) => {
+    console.log(safeGuardCounter)
+    if (safeGuardCounter >= 2) return
     console.log(data)
     const inputData = { ...data, userId: currentUser.id, rating: 0 }
     console.log(inputData)
@@ -155,7 +161,8 @@ const NewQuestionForm = () => {
               },
             })
             console.log(currentUser)
-            toast.error('Try again')
+            handleQuestionMutation(data, safeGuardCounter + 1) //! Endurkvæmni sem getur verið hættuleg:
+            // toast.error('Try again shortly')
           } else {
             const timeRemainingInMinutes =
               60 -
