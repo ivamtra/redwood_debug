@@ -9,11 +9,11 @@ newUser (
 )
 
 -> Breytist í User eftir 1 klst
-User (
+user (
 
 )
 
-Moderator (
+moderator (
   Getur falið post-a
   Getur séð falda posts
   Getur stofnað hóp, getur boðið í hóp
@@ -21,17 +21,17 @@ Moderator (
 
 )
 
-Admin (
+admin (
   Getur allt
 )
 
-Shadowbanned (
+shadowbanned (
   Efni eftir notanda þegar hann er shadowbanned
   er bara sýnilegt honum og mods/admin
 )
 
 
-Committee member (
+committeeMember (
   Getur samþykkt tillögur
   Getur boðið í sinn hóp
 )

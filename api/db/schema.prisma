@@ -19,7 +19,7 @@ model User {
   email               String              @unique
   name                String? //notandanafnið
   createdAt           DateTime            @default(now())
-  roles               String              @default("user") //State of user. Moderator, admin, banned, etc.
+  roles               String              @default("newUser") //State of user. Moderator, admin, banned, etc.
   hashedPassword      String
   salt                String
   resetToken          String?
