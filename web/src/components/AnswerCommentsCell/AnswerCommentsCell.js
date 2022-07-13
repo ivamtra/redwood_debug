@@ -80,7 +80,6 @@ export const Success = ({ answerComments, answerId }) => {
 
   return (
     <div>
-      <button onClick={() => testSort()}>New Sort comments</button>
       {list.map((item) => {
         return (
           <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
