@@ -48,7 +48,7 @@ const NewQuestionForm = () => {
   const [createSentence] = useMutation(CREATE_SENTENCE)
   const { currentUser, hasRole } = useAuth()
   const [textValue, setTextValue] = useState('')
-  const [updateUser] = useMutation(UPDATE_USER)
+  const [updateUser] = useMutation(UPDATE_USER) // ATH. hvort það þurfi refreshQuery
 
   const [list, setList] = useState([
     { listIndex: 0, sentence: 'placeholder', questionId: 0 },
@@ -149,6 +149,13 @@ const NewQuestionForm = () => {
             ) > 3600
           ) {
             console.log('User older than 1 hour')
+            updateUser({
+              variables: {
+                input: { roles: 'user' },
+                id: currentUser.id,
+              },
+            })
+            console.log(currentUser)
           }
         }
       })
