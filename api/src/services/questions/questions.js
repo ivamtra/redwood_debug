@@ -1,3 +1,4 @@
+import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
 export const questions = () => {
@@ -11,6 +12,7 @@ export const question = ({ id }) => {
 }
 
 export const createQuestion = ({ input }) => {
+  requireAuth({ roles: 'user' })
   return db.question.create({
     data: input,
   })

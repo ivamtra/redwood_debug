@@ -10,6 +10,8 @@ newUser (
 
 -> Breytist í User eftir 1 klst
 user (
+  Getur flaggað,
+  Getur búið til question og answer
 
 )
 

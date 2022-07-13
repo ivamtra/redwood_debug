@@ -23,7 +23,7 @@ const CREATE_SENTENCE = gql`
 const NewQuestionForm = () => {
   const [createQuestion] = useMutation(CREATE_QUESTION)
   const [createSentence] = useMutation(CREATE_SENTENCE)
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { currentUser, hasRole } = useAuth()
   const [textValue, setTextValue] = useState('')
 
   const [list, setList] = useState([
@@ -45,6 +45,7 @@ const NewQuestionForm = () => {
   const onChange = (e) => setTextValue(e.target.value)
 
   const onSubmit = (questionData) => {
+    console.log(hasRole)
     handleQuestionMutation(questionData)
   }
 
