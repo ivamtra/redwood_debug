@@ -129,6 +129,7 @@ const NewQuestionForm = () => {
       .catch(() => {
         toast.error('Try again')
         console.log(currentUser)
+        console.log(new Date().toISOString())
         if (currentUser.roles === 'newUser') {
           // Höndla það að ef accountinn er eldri en 1 klst
           // þá á að breyta honum í venjulegan user sem getur postað
