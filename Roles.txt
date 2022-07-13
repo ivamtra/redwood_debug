@@ -1,3 +1,8 @@
+// Ekki beint role
+ekki loggaður inn (
+  Getur séð posts/comments/answers
+)
+
 newUser (
   Gert rating/Breytt rating
   Búið til komment/ Delete-að sín eigin komment (Update í bakenda)
