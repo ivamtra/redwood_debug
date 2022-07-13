@@ -1,32 +1,36 @@
--Form componentar
+-Form componentar (Komið)
 -Bæta við ehv styling svo hægt er að horfa á þetta
-- Button componentar
+- Button componentar (Komið)
 - CSS á Button componentinn til að merkja að hann hafi verið smelltur
-- Bæta flagg-takka við Question/Answer componenta.
+- Bæta flagg-takka við Question/Answer componenta. (Komið)
   -Þegar ýtt er á flaggið opnast gluggi sem tekur inn upplýsingar um vandamál
     - 1) Getur verið ný slóð
     - 2) Getur verið pop up
 
-
 -Verkefnalýsingar fyrir fiverr
 
--Birta comment componenta í réttri röð (Komið)
-  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt (Komið)
-  - Bæta við refetch queries þegar maður commentar
-
-- Töflur fyrir eydd gögn
-
-- RBAC
-  - Leyfa admin/moderator að eyða gögnum
-
-- Laga delete þannig það fari í nýja töflu.
+-------- 13. júlí ---------
 
 - Hægt að upvote-a tvisvar til að losna við ratingið (Komið)
   - Laga það að það þurfi að refresha til að fá fulla virkni (Komið)
-  - Gera það fyrir comment
+  - Gera það fyrir comment (Komið)
+
+- Gera trjáreikniritið O(n) með hashMap (Komið)
+
+-Birta comment componenta í réttri röð (Komið)
+  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt (Komið)
+  - Bæta við refetch queries þegar maður commentar (Laga)
+
+
+- RBAC
+  - Leyfa admin/moderator að eyða gögnum
+  - Virkni fyrir newUser (Komið fyrir Question)
+
+- Laga delete þannig það fari í nýja töflu.
+- Töflur fyrir eydd gögn
+
 
 - Búa til script sem resettar dbAuth
 
-- Gera trjáreikniritið O(n) með hashMap (Komið)
 
 - Refactora ratingButton

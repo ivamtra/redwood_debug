@@ -43,6 +43,20 @@ const UPDATE_USER = gql`
 
 //---------------- React Component ----------------------------------
 
+// Handle new User
+// Tekur inn currentUser
+export const handleNewUser = (user) => {
+  const timeRemainingInMinutes =
+    60 -
+    Math.round(
+      timeBetweenTwoDateStringsInSeconds(
+        user.createdAt,
+        new Date().toISOString()
+      ) / 60
+    )
+  toast.error('Try again in ' + timeRemainingInMinutes + ' minutes')
+}
+
 const NewQuestionForm = () => {
   const [createQuestion] = useMutation(CREATE_QUESTION, {
     onCompleted: () => toast.success('Question Created'),
@@ -162,17 +176,8 @@ const NewQuestionForm = () => {
             })
             console.log(currentUser)
             handleQuestionMutation(data, safeGuardCounter + 1) //! Endurkvæmni sem getur verið hættuleg:
-            // toast.error('Try again shortly')
           } else {
-            const timeRemainingInMinutes =
-              60 -
-              Math.round(
-                timeBetweenTwoDateStringsInSeconds(
-                  currentUser.createdAt,
-                  new Date().toISOString()
-                ) / 60
-              )
-            toast.error('Try again in ' + timeRemainingInMinutes + ' minutes')
+            handleNewUser(currentUser)
           }
         }
       })
