@@ -3,6 +3,14 @@ import { useState } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form, TextField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
+
+import { QUERY as UserQuery } from '../UserCell/UserCell'
+
+//-------------- Database --------------------------------------------
+
+//-------------- Create Question og Sentence -------------------------
+
 const CREATE_QUESTION = gql`
   mutation CreateQuestionMutation($input: CreateQuestionInput!) {
     createQuestion(input: $input) {
@@ -19,6 +27,19 @@ const CREATE_SENTENCE = gql`
     }
   }
 `
+
+//-------------- Update User ---------------------------------------
+
+const UPDATE_USER = gql`
+  mutation UpdateUserMutation($input: UpdateUserInput!, $id: Int!) {
+    updateUser(input: $input, id: $id) {
+      id
+      roles
+    }
+  }
+`
+
+//---------------- React Component ----------------------------------
 
 const NewQuestionForm = () => {
   const [createQuestion] = useMutation(CREATE_QUESTION)
@@ -45,7 +66,7 @@ const NewQuestionForm = () => {
   const onChange = (e) => setTextValue(e.target.value)
 
   const onSubmit = (questionData) => {
-    console.log(hasRole)
+    console.log(currentUser.roles)
     handleQuestionMutation(questionData)
   }
 
@@ -100,10 +121,19 @@ const NewQuestionForm = () => {
         input: inputData,
       },
     })
-    questionCreatedPromise.then((result) => {
-      console.log(result.data.createQuestion.id)
-      handleSentenceMutation(result.data.createQuestion.id)
-    })
+    questionCreatedPromise
+      .then((result) => {
+        console.log(result.data.createQuestion.id)
+        handleSentenceMutation(result.data.createQuestion.id)
+      })
+      .catch(() => {
+        toast.error('Try again')
+        console.log(currentUser)
+        if (currentUser.roles === 'newUser') {
+          // Höndla það að ef accountinn er eldri en 1 klst
+          // þá á að breyta honum í venjulegan user sem getur postað
+        }
+      })
     console.log(questionCreatedPromise)
   }
   return (
