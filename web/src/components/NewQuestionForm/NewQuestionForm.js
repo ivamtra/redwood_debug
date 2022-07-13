@@ -130,7 +130,6 @@ const NewQuestionForm = () => {
         handleSentenceMutation(result.data.createQuestion.id)
       })
       .catch(() => {
-        toast.error('Try again')
         console.log(currentUser)
         console.log(new Date().toISOString())
         if (currentUser.roles === 'newUser') {
@@ -156,6 +155,17 @@ const NewQuestionForm = () => {
               },
             })
             console.log(currentUser)
+            toast.error('Try again')
+          } else {
+            const timeRemainingInMinutes =
+              60 -
+              Math.round(
+                timeBetweenTwoDateStringsInSeconds(
+                  currentUser.createdAt,
+                  new Date().toISOString()
+                ) / 60
+              )
+            toast.error('Try again in ' + timeRemainingInMinutes + ' minutes')
           }
         }
       })
