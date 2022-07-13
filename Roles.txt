@@ -1,4 +1,32 @@
-newUser(
+newUser (
   Gert rating/Breytt rating
-  Búið til komment/ Delet-að sín eigin komment (Update í bakenda)
+  Búið til komment/ Delete-að sín eigin komment (Update í bakenda)
+)
+
+-> Breytist í User eftir 1 klst
+User (
+
+)
+
+Moderator (
+  Getur falið post-a
+  Getur séð falda posts
+  Getur stofnað hóp, getur boðið í hóp
+  Getur shadowbannað notanda
+
+)
+
+Admin (
+  Getur allt
+)
+
+Shadowbanned (
+  Efni eftir notanda þegar hann er shadowbanned
+  er bara sýnilegt honum og mods/admin
+)
+
+
+Committee member (
+  Getur samþykkt tillögur
+  Getur boðið í sinn hóp
 )
