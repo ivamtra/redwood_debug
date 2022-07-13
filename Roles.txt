@@ -1,0 +1,4 @@
+newUser(
+  Gert rating/Breytt rating
+  Búið til komment/ Delet-að sín eigin komment (Update í bakenda)
+)
