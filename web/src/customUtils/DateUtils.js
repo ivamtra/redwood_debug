@@ -1,27 +1,20 @@
-// Old Date
-// ISO String 2022-07-09T22:10:44.815Z
-
-// New Date
-// ISO String 2022-07-13T22:11:44.815Z
-
-const newDate = '2022-07-13T22:11:44.815Z'
-const oldDate = '2022-07-09T22:10:44.815Z'
-
-//(String, String) => Boolean
-const dateIsOlderThanHour = (oldDateString, newDateString) => {
-  //Ath. dagsetningu
-  const oldDate = parseInt(oldDateString.substring(8, 10))
-  const newDate = parseInt(newDateString.substring(8, 10))
-  console.log(oldDate)
-  console.log(newDate)
-  if (newDate > oldDate) {
-    return true
-  }
-  // Sami dagur, athuga klst mun
-  else {
-    // Fá klukkuna HH::MM:SS
-    const oldTime = oldDateString.subString()
-  }
+//(String, String) => Int
+/*
+  Tekur inn two ISO Date strengi og
+  skilar sekúndu mismun þeirra
+*/
+export const timeBetweenTwoDateStringsInSeconds = (
+  oldDateString,
+  newDateString
+) => {
+  const oldDate = new Date(oldDateString)
+  const newDate = new Date(newDateString)
+  return (newDate - oldDate) / 1e3
 }
 
-dateIsOlderThanHour(oldDate, newDate)
+// console.log(
+//   timeBetweenTwoDateStringsInSeconds(
+//     new Date('2022-07-13T16:18:59.142Z'),
+//     new Date()
+//   )
+// )

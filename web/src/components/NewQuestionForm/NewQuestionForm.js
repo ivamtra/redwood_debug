@@ -5,6 +5,8 @@ import { Submit, Form, TextField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
+import { timeBetweenTwoDateStringsInSeconds } from 'src/customUtils/DateUtils'
+
 import { QUERY as UserQuery } from '../UserCell/UserCell'
 
 //-------------- Database --------------------------------------------
@@ -46,6 +48,7 @@ const NewQuestionForm = () => {
   const [createSentence] = useMutation(CREATE_SENTENCE)
   const { currentUser, hasRole } = useAuth()
   const [textValue, setTextValue] = useState('')
+  const [updateUser] = useMutation(UPDATE_USER)
 
   const [list, setList] = useState([
     { listIndex: 0, sentence: 'placeholder', questionId: 0 },
@@ -133,6 +136,20 @@ const NewQuestionForm = () => {
         if (currentUser.roles === 'newUser') {
           // Höndla það að ef accountinn er eldri en 1 klst
           // þá á að breyta honum í venjulegan user sem getur postað
+          console.log(
+            timeBetweenTwoDateStringsInSeconds(
+              currentUser.createdAt,
+              new Date().toISOString()
+            )
+          )
+          if (
+            timeBetweenTwoDateStringsInSeconds(
+              currentUser.createdAt,
+              new Date().toISOString()
+            ) > 3600
+          ) {
+            console.log('User older than 1 hour')
+          }
         }
       })
     console.log(questionCreatedPromise)
