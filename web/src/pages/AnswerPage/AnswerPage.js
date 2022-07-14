@@ -11,7 +11,7 @@ const AnswerPage = ({ id }) => {
 
       <h1>AnswerPage</h1>
 
-      <AnswerForm questionId={25} />
+      <AnswerForm questionId={7} />
       {/* <AnswerCell id={id} /> */}
     </>
   )

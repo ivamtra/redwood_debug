@@ -32,7 +32,7 @@ const CREATE_SENTENCE = gql`
 
 //-------------- Update User ---------------------------------------
 
-const UPDATE_USER = gql`
+export const UPDATE_USER = gql`
   mutation UpdateUserMutation($input: UpdateUserInput!, $id: Int!) {
     updateUser(input: $input, id: $id) {
       id

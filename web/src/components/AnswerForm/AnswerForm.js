@@ -3,6 +3,15 @@ import { useState } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form, TextField } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
+
+import { timeBetweenTwoDateStringsInSeconds } from 'src/customUtils/DateUtils'
+
+import { UPDATE_USER, handleNewUser } from '../NewQuestionForm/NewQuestionForm'
+
+//-------------- Database --------------------------------------------
+
+//-------------- Create Answer og Translation -------------------------
 
 const CREATE_ANSWER = gql`
   mutation CreateAnswerMutation($input: CreateAnswerInput!) {
@@ -22,10 +31,15 @@ const CREATE_TRANSLATION = gql`
 `
 
 const AnswerForm = ({ questionId }) => {
-  const [createAnswer] = useMutation(CREATE_ANSWER)
-  const [createTranslation] = useMutation(CREATE_TRANSLATION)
+  const [createAnswer] = useMutation(CREATE_ANSWER, {
+    onCompleted: () => toast.success('svar móttekið'),
+  })
+  const [createTranslation] = useMutation(CREATE_TRANSLATION, {
+    onCompleted: () => toast.success('Þýðing móttekin'),
+  })
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [textValue, setTextValue] = useState('')
+  const [updateUser] = useMutation(UPDATE_USER)
 
   const [list, setList] = useState([
     { listIndex: 0, translation: 'placeholder', answerId: 0 },
@@ -47,7 +61,7 @@ const AnswerForm = ({ questionId }) => {
   const onChange = (e) => setTextValue(e.target.value)
 
   const onSubmit = (answerData) => {
-    handleAnswerMutation(answerData)
+    handleAnswerMutation(answerData, 0)
   }
 
   const handleTranslationMutation = (answerId) => {
@@ -87,7 +101,9 @@ const AnswerForm = ({ questionId }) => {
     })
   }
 
-  const handleAnswerMutation = (data) => {
+  const handleAnswerMutation = (data, safeGuardCounter) => {
+    console.log(safeGuardCounter)
+    if (safeGuardCounter >= 2) return
     console.log(data)
     const inputData = {
       ...data,
@@ -100,9 +116,40 @@ const AnswerForm = ({ questionId }) => {
         input: inputData,
       },
     })
-    answerCreatedPromise.then((result) => {
-      handleTranslationMutation(result.data.createAnswer.id)
-    })
+    answerCreatedPromise
+      .then((result) => {
+        handleTranslationMutation(result.data.createAnswer.id)
+      })
+      .catch(() => {
+        console.log(currentUser)
+        if (currentUser.roles === 'newUser') {
+          console.log(new Date().toISOString())
+          console.log(
+            timeBetweenTwoDateStringsInSeconds(
+              currentUser.createdAt,
+              new Date().toISOString()
+            )
+          )
+          if (
+            timeBetweenTwoDateStringsInSeconds(
+              currentUser.createdAt,
+              new Date().toISOString()
+            ) > 3600
+          ) {
+            console.log('User older than 1 hour')
+            updateUser({
+              variables: {
+                input: { roles: 'user' },
+                id: currentUser.id,
+              },
+            })
+            console.log(currentUser)
+            handleAnswerMutation(data, safeGuardCounter + 1) //! Endurkvæmni sem getur verið hættuleg:
+          } else {
+            handleNewUser(currentUser)
+          }
+        }
+      })
   }
   return (
     <div>
