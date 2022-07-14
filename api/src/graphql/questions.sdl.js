@@ -1,3 +1,6 @@
+//! Að gefa spurningu rating update-ar question
+//! þannig allir sem eru loggaðir inn hafa aðgang að update api
+
 export const schema = gql`
   type Question {
     id: Int!

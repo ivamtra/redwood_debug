@@ -25,6 +25,7 @@
 - RBAC
   - Leyfa admin/moderator að eyða gögnum
   - Virkni fyrir newUser (Komið fyrir Question)
+  - Private síður fyrir admin/mods að skoða falin gögn
 
 - Laga delete þannig það fari í nýja töflu.
 - Töflur fyrir eydd gögn
