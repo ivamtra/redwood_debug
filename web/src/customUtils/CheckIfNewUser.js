@@ -1,0 +1,1 @@
+const isNewUser = (user) => {}

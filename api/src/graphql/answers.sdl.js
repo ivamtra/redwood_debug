@@ -16,8 +16,8 @@ export const schema = gql`
   }
 
   type Query {
-    answers(questionId: Int!): [Answer!]! @requireAuth
-    answer(id: Int!): Answer @requireAuth
+    answers(questionId: Int!): [Answer!]! @skipAuth
+    answer(id: Int!): Answer @skipAuth
   }
 
   input CreateAnswerInput {
@@ -37,7 +37,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createAnswer(input: CreateAnswerInput!): Answer! @requireAuth
+    createAnswer(input: CreateAnswerInput!): Answer! @requireAuth(roles: "user")
     updateAnswer(id: Int!, input: UpdateAnswerInput!): Answer! @requireAuth
     deleteAnswer(id: Int!): Answer! @requireAuth
   }

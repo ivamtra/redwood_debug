@@ -167,6 +167,7 @@ const NewQuestionForm = () => {
               new Date().toISOString()
             ) > 3600
           ) {
+            // Eldri en 1 klst
             console.log('User older than 1 hour')
             updateUser({
               variables: {
@@ -177,6 +178,7 @@ const NewQuestionForm = () => {
             console.log(currentUser)
             handleQuestionMutation(data, safeGuardCounter + 1) //! Endurkvæmni sem getur verið hættuleg:
           } else {
+            // Yngri en 1 klst
             handleNewUser(currentUser)
           }
         }
