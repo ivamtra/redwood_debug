@@ -1,5 +1,4 @@
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
-
 import { db } from './db'
 
 /**
@@ -22,7 +21,7 @@ import { db } from './db'
 export const getCurrentUser = async (session) => {
   return await db.user.findUnique({
     where: { id: session.id },
-    select: { id: true, email: true, roles: true, createdAt: true },
+    select: { id: true },
   })
 }
 
