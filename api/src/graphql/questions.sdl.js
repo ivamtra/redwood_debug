@@ -1,6 +1,8 @@
 //! Að gefa spurningu rating update-ar question
 //! þannig allir sem eru loggaðir inn hafa aðgang að update api
 
+const CREATE_QUESTION_ROLES = ['admin', 'moderator', 'user']
+
 export const schema = gql`
   type Question {
     id: Int!
@@ -43,8 +45,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createQuestion(input: CreateQuestionInput!): Question!
-      @requireAuth(roles: "user")
+    createQuestion(input: CreateQuestionInput!): Question! @requireAuth
     updateQuestion(id: Int!, input: UpdateQuestionInput!): Question!
       @requireAuth
     deleteQuestion(id: Int!): Question! @requireAuth
