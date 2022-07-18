@@ -14,6 +14,7 @@ export const schema = gql`
     userId: Int!
     createdAt: DateTime!
     rating: Int!
+    isHidden: Boolean!
     Sentence: [Sentence]!
     Answer: [Answer]!
     UserLikesQuestion: [UserLikesQuestion]!
@@ -42,6 +43,7 @@ export const schema = gql`
     other_info: String
     userId: Int
     rating: Int
+    isHidden: Boolean
   }
 
   type Mutation {
