@@ -11,3 +11,33 @@
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
+
+ html {
+  height: 200px;
+  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
+}
+
+
+ button {
+  font: bold;
+  background-color: red;
+  color: brown;
+  border-radius: 50%;
+ }
+
+ button:hover {
+  background-color: pink;
+
+ }
+
+ h1 {
+  color: green;
+ }
+
+ h2 {
+  color: aquamarine;
+ }
+
+ a {
+  color: red
+ }

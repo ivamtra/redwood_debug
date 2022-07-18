@@ -39,10 +39,6 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question, inQuestionsCell }) => {
-  useEffect(() => {
-    console.log(question)
-    console.log(inQuestionsCell)
-  })
   const { hasRole, currentUser } = useAuth()
   return (
     <div>

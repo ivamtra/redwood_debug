@@ -40,7 +40,9 @@ const HideButton = ({ type, id }) => {
   return (
     <>
       {hasRole(['admin', 'moderator']) ? (
-        <button onClick={hideComponent}>Hide</button>
+        <button className="buttonTest" onClick={hideComponent}>
+          Hide
+        </button>
       ) : (
         <></>
       )}

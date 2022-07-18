@@ -260,19 +260,4 @@ model QuestionIsInCategory {
   @@unique([questionId, categoryId])
 }
 
-// ------------------- Faldir componentar --------------------------
-
-// Ef einhver er shadowbanned og reynir að posta fer það í þessar töflur
-
-// model HiddenQuestion {
-//   id Int
-//   status String // hidden/deleted/shadowbanned
-//   refId // gamla id-ið
-
-//
-// }
-
-// model HiddenAnswer
-
-// Getur verið flókið út af commenta-trénu
-// model HiddenComment
+//TODO: Notifications
