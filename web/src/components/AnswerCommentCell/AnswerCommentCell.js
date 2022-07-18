@@ -49,7 +49,11 @@ export const Success = ({ answerComment }) => {
               parentId={answerComment.id}
               answerId={answerComment.answerId}
             />
-            <DeleteButton className id={answerComment.id} />
+            {currentUser.id === answerComment.id ? (
+              <DeleteButton className id={answerComment.id} />
+            ) : (
+              <></>
+            )}
           </>
         ) : (
           <></>
