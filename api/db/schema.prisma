@@ -25,6 +25,7 @@ model User {
   resetToken          String?
   resetTokenExpiresAt DateTime?
   imageUrl            String? // Fyrir profile-mynd
+  //TODO: Breyta í isShadowBanned í  næsta resetti
   shadowBanned        Boolean             @default(false)
   Question            Question[]
   Answer              Answer[]
@@ -58,6 +59,7 @@ model Question {
   userId     Int
   createdAt  DateTime @default(now())
   rating     Int      @default(0)
+  isHidden   Boolean  @default(false)
 
   Sentence             Sentence[]
   Answer               Answer[]
@@ -83,6 +85,7 @@ model Answer {
   question      Question @relation(fields: [questionId], references: [id])
   questionId    Int
   rating        Int      @default(0)
+  isHidden      Boolean  @default(false)
 
   UserLikesAnswer UserLikesAnswer[]
   AnswerComment   AnswerComment[]
@@ -109,6 +112,7 @@ model AnswerComment {
   createdAt        DateTime           @default(now())
   level            Int                @default(0)
   rating           Int                @default(0)
+  isHidden         Boolean            @default(false)
   Issue            Issue[]
   UserLikesComment UserLikesComment[]
 }
