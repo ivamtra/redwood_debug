@@ -1,3 +1,4 @@
+//TODO: isHidden
 export const schema = gql`
   type Answer {
     id: Int!

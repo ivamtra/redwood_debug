@@ -3,6 +3,7 @@ import { routes, Link } from '@redwoodjs/router'
 import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
 import AnswerCommentsCell from '../AnswerCommentsCell/AnswerCommentsCell'
 import FlagButton from '../FlagButton/FlagButton'
+import HideButton from '../HideButton/HideButton'
 import RatingButton from '../RatingButton/RatingButton'
 export const QUERY = gql`
   query FindAnswerQuery($id: Int!) {
@@ -33,12 +34,14 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
+//TODO: Uncommenta þegar búið er að laga api
 export const Success = ({ answer }) => {
   return (
     <div>
       <div>
         <RatingButton id={answer.id} type={'answer'} />
         <FlagButton id={answer.id} type={'answer'} />
+        {/* <HideButton id={answer.id} type={'answer'} /> */}
         <p>answer.id = {answer.id}</p>
         <p>Rating: {answer.rating}</p>
         <p>Dagsetning: {answer.createdAt}</p>

@@ -18,7 +18,7 @@ const HideButton = ({ type, id }) => {
 
     switch (type) {
       case question:
-        console.log(updateQuestion({ variables: variables }))
+        updateQuestion({ variables: variables })
         break
       case answer:
         updateAnswer({ variables: variables })

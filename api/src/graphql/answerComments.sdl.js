@@ -1,3 +1,4 @@
+//TODO: isHidden
 export const schema = gql`
   type AnswerComment {
     id: Int!

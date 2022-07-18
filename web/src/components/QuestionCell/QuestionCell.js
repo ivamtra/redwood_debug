@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
 import AnswerForm from '../AnswerForm'
@@ -24,6 +25,7 @@ export const QUERY = gql`
         email
       }
       rating
+      isHidden
     }
   }
 `
@@ -37,49 +39,58 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question, inQuestionsCell }) => {
-  // useEffect(() => {
-  //   console.log(question)
-  //   console.log(inQuestionsCell)
-  // })
+  useEffect(() => {
+    console.log(question)
+    console.log(inQuestionsCell)
+  })
+  const { hasRole, currentUser } = useAuth()
   return (
     <div>
-      <h1>---------------------------------------</h1>
-      {inQuestionsCell ? (
-        <h1>
-          <Link to={routes.question({ id: question.id })}>
-            Titill: {question.title}
-          </Link>
-        </h1>
+      {question.isHidden &&
+      question.user.id !== currentUser.id &&
+      !hasRole(['admin', 'moderator']) ? (
+        <></>
       ) : (
-        <h1>Titill: {question.title}</h1>
-      )}
-      <div>
-        <HideButton type={'question'} id={question.id} />
-        <RatingButton id={question.id} type="question" />
-        <FlagButton type={'question'} id={question.id} />
-        <p>Rating: {question.rating}</p>
-        <p>Dagsetning: {question.createdAt}</p>
-        <p>User: {question.user.email}</p>
-      </div>
-      <div>
-        <h3>Tungumál: {question.language}</h3>
-        <h3>Aðrar upplýsingar: {question.other_info}</h3>
-      </div>
-      <h3>Setningar</h3>
-      <div>
-        <SentencesCell questionId={question.id} />
-      </div>
-      {!inQuestionsCell ? (
-        <div>
+        <>
           <h1>---------------------------------------</h1>
-          <h1>Answer form</h1>
-          <AnswerForm questionId={question.id} />
-          <h1>---------------------------------------</h1>
-          <AnswersCell questionId={question.id} />
-          {/* <Link to={routes.answer({ id: question.id })} /> */}
-        </div>
-      ) : (
-        <div></div>
+          {inQuestionsCell ? (
+            <h1>
+              <Link to={routes.question({ id: question.id })}>
+                Titill: {question.title}
+              </Link>
+            </h1>
+          ) : (
+            <h1>Titill: {question.title}</h1>
+          )}
+          <div>
+            <HideButton type={'question'} id={question.id} />
+            <RatingButton id={question.id} type="question" />
+            <FlagButton type={'question'} id={question.id} />
+            <p>Rating: {question.rating}</p>
+            <p>Dagsetning: {question.createdAt}</p>
+            <p>User: {question.user.email}</p>
+          </div>
+          <div>
+            <h3>Tungumál: {question.language}</h3>
+            <h3>Aðrar upplýsingar: {question.other_info}</h3>
+          </div>
+          <h3>Setningar</h3>
+          <div>
+            <SentencesCell questionId={question.id} />
+          </div>
+          {!inQuestionsCell ? (
+            <div>
+              <h1>---------------------------------------</h1>
+              <h1>Answer form</h1>
+              <AnswerForm questionId={question.id} />
+              <h1>---------------------------------------</h1>
+              <AnswersCell questionId={question.id} />
+              {/* <Link to={routes.answer({ id: question.id })} /> */}
+            </div>
+          ) : (
+            <div></div>
+          )}
+        </>
       )}
     </div>
   )
