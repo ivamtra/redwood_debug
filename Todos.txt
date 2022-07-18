@@ -27,6 +27,12 @@
   - Virkni fyrir newUser (Komið fyrir Question)
   - Private síður fyrir admin/mods að skoða falin gögn
 
+- Shadowbanned notandi verður property en ekki role
+  - Allt sem shadowbanned notandi postar er hidden
+  - Allir notendur sjá sína hidden posta
+
+- Hidden property í component töflum
+
 - Laga delete þannig það fari í nýja töflu.
 - Töflur fyrir eydd gögn
 - Page fyrir eydd/falin gögn sem bara adminar geta séð
@@ -38,3 +44,7 @@
 - Refactora ratingButton
 
 - Laga síðuna þannig hún virki ef maður er ekki loggaður inn
+
+
+- Notification kerfi
+  - Alltaf þegar einhverju er svarar fær höfundur notification sem vísar í svarið
