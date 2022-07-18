@@ -15,7 +15,12 @@ const TestLayout = ({ children, user }) => {
       {currentUser === null ? (
         <p>Not logged in</p>
       ) : (
-        <UserCell id={currentUser.id} />
+        <>
+          <UserCell id={currentUser.id} />
+          <button type="button" onClick={logOut}>
+            Log out
+          </button>
+        </>
       )}
       <h2>Links</h2>
       <h2>
