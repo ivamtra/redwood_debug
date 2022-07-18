@@ -5,6 +5,7 @@ import { Link, routes } from '@redwoodjs/router'
 import AnswerForm from '../AnswerForm'
 import AnswersCell from '../AnswersCell'
 import FlagButton from '../FlagButton/FlagButton'
+import HideButton from '../HideButton/HideButton'
 import RatingButton from '../RatingButton/RatingButton'
 import SentencesCell from '../SentencesCell'
 export const QUERY = gql`
@@ -53,6 +54,7 @@ export const Success = ({ question, inQuestionsCell }) => {
         <h1>Titill: {question.title}</h1>
       )}
       <div>
+        <HideButton />
         <RatingButton id={question.id} type="question" />
         <FlagButton type={'question'} id={question.id} />
         <p>Rating: {question.rating}</p>

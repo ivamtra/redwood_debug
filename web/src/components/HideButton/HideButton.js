@@ -1,10 +1,19 @@
+import { useAuth } from '@redwoodjs/auth'
+import { useMutation } from '@redwoodjs/web'
+
+import {
+  UPDATE_COMMENT_RATING as UpdateComment,
+  UPDATE_ANSWER_RATING as UpdateAnswer,
+  UPDATE_QUESTION_RATING as UpdateQuestion,
+} from '../RatingButton/RatingButton'
+//------------------- GRAPHQL -------------------------------
+
 const HideButton = () => {
-  return (
-    <div>
-      <h2>{'HideButton'}</h2>
-      <p>{'Find me in ./web/src/components/HideButton/HideButton.js'}</p>
-    </div>
-  )
+  const [updateQuestion] = useMutation(UpdateQuestion)
+  const [updateAnswer] = useMutation(UpdateAnswer)
+  const [updateComment] = useMutation(UpdateComment)
+  const { hasRole } = useAuth()
+  return <>{hasRole(['admin', 'moderator']) ? <button>Hide</button> : <></>}</>
 }
 
 export default HideButton

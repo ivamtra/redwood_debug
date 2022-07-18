@@ -118,7 +118,7 @@ const USER_LIKES_COMMENT_QUERY = gql`
 
 // ----------- Hækka rating á question --------------------------
 
-const UPDATE_QUESTION_RATING = gql`
+export const UPDATE_QUESTION_RATING = gql`
   mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
     updateQuestion(id: $id, input: $input) {
       id
@@ -126,7 +126,7 @@ const UPDATE_QUESTION_RATING = gql`
   }
 `
 
-const UPDATE_ANSWER_RATING = gql`
+export const UPDATE_ANSWER_RATING = gql`
   mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
     updateAnswer(id: $id, input: $input) {
       id
@@ -134,7 +134,7 @@ const UPDATE_ANSWER_RATING = gql`
   }
 `
 
-const UPDATE_COMMENT_RATING = gql`
+export const UPDATE_COMMENT_RATING = gql`
   mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
     updateAnswerComment(id: $id, input: $input) {
       id
