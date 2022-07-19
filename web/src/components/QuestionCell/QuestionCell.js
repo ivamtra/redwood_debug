@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
+import useHidden from 'src/customhooks/useHidden'
+
 import AnswerForm from '../AnswerForm'
 import AnswersCell from '../AnswersCell'
 import FlagButton from '../FlagButton/FlagButton'
@@ -40,11 +42,11 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ question, inQuestionsCell }) => {
   const { hasRole, currentUser } = useAuth()
+  const hidden = useHidden(question)
+  useEffect(() => console.log(hidden))
   return (
     <div>
-      {question.isHidden &&
-      question.user.id !== currentUser.id &&
-      !hasRole(['admin', 'moderator']) ? (
+      {hidden ? (
         <></>
       ) : (
         <>

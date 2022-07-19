@@ -21,6 +21,7 @@ export const QUERY = gql`
       parentId
       level
       rating
+      isHidden
     }
   }
 `
