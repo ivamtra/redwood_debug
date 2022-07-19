@@ -6,6 +6,7 @@ import useHidden from 'src/customhooks/useHidden'
 
 import DeleteButton from '../DeleteButton/DeleteButton'
 import FlagButton from '../FlagButton/FlagButton'
+import HideButton from '../HideButton/HideButton'
 import RatingButton from '../RatingButton/RatingButton'
 import ReplyButton from '../ReplyButton/ReplyButton'
 
@@ -65,6 +66,7 @@ export const Success = ({ answerComment }) => {
                     parentId={answerComment.id}
                     answerId={answerComment.answerId}
                   />
+                  <HideButton type={'comment'} id={answerComment.id} />
                   {currentUser.id === answerComment.user.id ? (
                     <DeleteButton className id={answerComment.id} />
                   ) : (
