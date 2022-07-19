@@ -10,6 +10,7 @@ export const schema = gql`
     question: Question!
     questionId: Int!
     rating: Int!
+    isHidden: Boolean!
     UserLikesAnswer: [UserLikesAnswer]!
     AnswerComment: [AnswerComment]!
     translations: [Translation]!

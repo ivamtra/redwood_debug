@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+
+import { useAuth } from '@redwoodjs/auth'
 import { routes, Link } from '@redwoodjs/router'
 
 import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
@@ -14,6 +17,7 @@ export const QUERY = gql`
       userId
       user {
         email
+        id
       }
       createdAt
       questionId
@@ -22,6 +26,7 @@ export const QUERY = gql`
         translation
       }
       rating
+      isHidden
     }
   }
 `
@@ -36,25 +41,38 @@ export const Failure = ({ error }) => (
 
 //TODO: Uncommenta þegar búið er að laga api
 export const Success = ({ answer }) => {
+  useEffect(() => {
+    console.log(answer.isHidden)
+    console.log(answer.user.id)
+  })
+  const { hasRole, currentUser } = useAuth()
   return (
     <div>
-      <div>
-        <RatingButton id={answer.id} type={'answer'} />
-        <FlagButton id={answer.id} type={'answer'} />
-        {/* <HideButton id={answer.id} type={'answer'} /> */}
-        <p>answer.id = {answer.id}</p>
-        <p>Rating: {answer.rating}</p>
-        <p>Dagsetning: {answer.createdAt}</p>
-        <h4>User: {answer.user.email}</h4>
-      </div>
-      <div>
-        <h2>Titill: {answer.title} (Getur verið ekkert)</h2>
-        <h3>Rökstuðningur: {answer.justification}</h3>
-        <p>answer.questionId = {answer.questionId}</p>
-      </div>
-      {/* <Link to={routes.answer({ id: answer.id })} /> */}
-      <AnswerCommentForm answerId={answer.id} parentId={0} />
-      <AnswerCommentsCell answerId={answer.id} />
+      {answer.isHidden &&
+      answer.user.id !== currentUser.id &&
+      !hasRole(['moderator', 'admin']) ? (
+        <></>
+      ) : (
+        <>
+          <div>
+            <RatingButton id={answer.id} type={'answer'} />
+            <FlagButton id={answer.id} type={'answer'} />
+            {/* <HideButton id={answer.id} type={'answer'} /> */}
+            <p>answer.id = {answer.id}</p>
+            <p>Rating: {answer.rating}</p>
+            <p>Dagsetning: {answer.createdAt}</p>
+            <h4>User: {answer.user.email}</h4>
+          </div>
+          <div>
+            <h2>Titill: {answer.title} (Getur verið ekkert)</h2>
+            <h3>Rökstuðningur: {answer.justification}</h3>
+            <p>answer.questionId = {answer.questionId}</p>
+          </div>
+          {/* <Link to={routes.answer({ id: answer.id })} /> */}
+          <AnswerCommentForm answerId={answer.id} parentId={0} />
+          <AnswerCommentsCell answerId={answer.id} />
+        </>
+      )}
     </div>
   )
 }
