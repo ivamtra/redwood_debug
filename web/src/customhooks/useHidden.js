@@ -6,6 +6,7 @@ import { useAuth } from '@redwoodjs/auth'
 */
 export default function useHidden(componentObject) {
   const { currentUser, hasRole } = useAuth()
+  if (currentUser === null) return componentObject.isHidden
 
   return (
     componentObject.isHidden &&

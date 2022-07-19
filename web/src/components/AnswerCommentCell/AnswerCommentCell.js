@@ -41,7 +41,14 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
-  const { currentUser } = useAuth()
+  const { currentUser, isAuthenticated } = useAuth()
+  // Laga tilfellið þegar user er ekki loggaður inn
+  let debugUserId
+  if (!isAuthenticated) {
+    debugUserId = 0
+  } else {
+    debugUserId = currentUser.id
+  }
   const hidden = useHidden(answerComment)
   return (
     <>
@@ -65,7 +72,7 @@ export const Success = ({ answerComment }) => {
                     answerId={answerComment.answerId}
                   />
                   <HideButton type={'comment'} id={answerComment.id} />
-                  {currentUser.id === answerComment.user.id ? (
+                  {debugUserId === answerComment.user.id ? (
                     <DeleteButton className id={answerComment.id} />
                   ) : (
                     <></>

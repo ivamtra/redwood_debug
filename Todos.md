@@ -76,7 +76,7 @@
 
 <br>
 
-- Laga síðuna þannig hún virki ef maður er ekki loggaður inn
+- Laga síðuna þannig hún virki ef maður er ekki loggaður inn ✅
 
 <br>
 
