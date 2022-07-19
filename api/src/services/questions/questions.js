@@ -1,7 +1,7 @@
 import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
-const CREATE_QUESTION_ROLES = ['admin', 'moderator', 'user']
+export const CREATE_QUESTION_ROLES = ['admin', 'moderator', 'user']
 
 export const questions = () => {
   return db.question.findMany()

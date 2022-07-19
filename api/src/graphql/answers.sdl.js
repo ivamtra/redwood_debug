@@ -27,6 +27,7 @@ export const schema = gql`
     userId: Int!
     questionId: Int!
     rating: Int!
+    isHidden: Boolean
   }
 
   input UpdateAnswerInput {
@@ -35,10 +36,11 @@ export const schema = gql`
     userId: Int
     questionId: Int
     rating: Int
+    isHidden: Boolean
   }
 
   type Mutation {
-    createAnswer(input: CreateAnswerInput!): Answer! @requireAuth(roles: "user")
+    createAnswer(input: CreateAnswerInput!): Answer! @requireAuth
     updateAnswer(id: Int!, input: UpdateAnswerInput!): Answer! @requireAuth
     deleteAnswer(id: Int!): Answer! @requireAuth
   }

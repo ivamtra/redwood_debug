@@ -1,6 +1,8 @@
 import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
+import { CREATE_QUESTION_ROLES as CreateAnswerRoles } from '../questions/questions'
+
 export const answers = ({ questionId }) => {
   return db.answer.findMany({ where: { questionId } })
 }
@@ -12,7 +14,7 @@ export const answer = ({ id }) => {
 }
 
 export const createAnswer = ({ input }) => {
-  requireAuth({ roles: 'user' })
+  requireAuth({ roles: CreateAnswerRoles })
   return db.answer.create({
     data: input,
   })

@@ -153,7 +153,7 @@ const NewQuestionForm = () => {
         handleSentenceMutation(result.data.createQuestion.id)
       })
       .catch(() => {
-        console.log(currentlUser)
+        console.log(currentUser)
         console.log(new Date().toISOString())
         if (currentUser.roles === 'newUser') {
           // Höndla það að ef accountinn er eldri en 1 klst

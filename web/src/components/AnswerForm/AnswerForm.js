@@ -105,17 +105,21 @@ const AnswerForm = ({ questionId }) => {
     console.log(safeGuardCounter)
     if (safeGuardCounter >= 2) return
     console.log(data)
-    const inputData = {
+    let inputData = {
       ...data,
       userId: currentUser.id,
       questionId: questionId,
       rating: 0,
+    }
+    if (currentUser.shadowBanned) {
+      inputData = { ...inputData, isHidden: true }
     }
     const answerCreatedPromise = createAnswer({
       variables: {
         input: inputData,
       },
     })
+    console.log(answerCreatedPromise)
     answerCreatedPromise
       .then((result) => {
         handleTranslationMutation(result.data.createAnswer.id)
