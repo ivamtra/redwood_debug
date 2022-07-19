@@ -17,14 +17,14 @@
 ---
 # 13. Júli
 
-- Hægt að upvote-a tvisvar til að losna við ratingið (Komið)
-  - Laga það að það þurfi að refresha til að fá fulla virkni (Komið)
-  - Gera það fyrir comment (Komið)
+- Hægt að upvote-a tvisvar til að losna við ratingið ✅
+  - Laga það að það þurfi að refresha til að fá fulla virkni ✅
+  - Gera það fyrir comment ✅
 
-- Gera trjáreikniritið O(n) með hashMap (Komið)
+- Gera trjáreikniritið O(n) með hashMap ✅
 
--Birta comment componenta í réttri röð (Komið)
-  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt (Komið)
+-Birta comment componenta í réttri röð ✅
+  - Bæta við level attribute við hvert comment þannig hægt er að indenta rétt ✅
   - Bæta við refetch queries þegar maður commentar (Laga)
 
 
@@ -43,8 +43,7 @@
   - Leyfa admin/moderator að fela gögnum frá userum  ✅
     - Pæla í delete virkni seinna
   - Virkni fyrir newUser  ✅
-  - Private síður fyrir admin/mods að skoða falin gögn (Sleppt)
-    - Componentar eru bara filteraðir og venjulegir userar sjá ekki falin gögn  ✅
+  - Componentar eru filteraðir og venjulegir userar sjá ekki falin gögn  ✅
 
 <br>
 
@@ -56,6 +55,11 @@
 
 - Hidden property í component töflum ✅
 
+
+<br>
+
+- Notification kerfi
+  - Alltaf þegar einhverju er svarað fær höfundur notification sem vísar í svarið
 
 <br>
 
@@ -76,10 +80,6 @@
 
 <br>
 
-- Notification kerfi
-  - Alltaf þegar einhverju er svarar fær höfundur notification sem vísar í svarið
-
-<br>
 
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
 

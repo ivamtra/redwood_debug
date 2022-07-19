@@ -220,6 +220,14 @@ const RatingButton = ({ type, id }) => {
   // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser, logOut } = useAuth()
   const [rating, setRating] = useState(0)
+  let debugUserId
+
+  // Laga tilfellið þegar user er ekki loggaður inn
+  if (!isAuthenticated) {
+    debugUserId = 0
+  } else {
+    debugUserId = currentUser.id
+  }
 
   // --------- DATABASE ------------------------------
 
@@ -231,7 +239,7 @@ const RatingButton = ({ type, id }) => {
       {
         query: USER_LIKES_QUESTION_QUERY,
         variables: {
-          userId: currentUser.id,
+          userId: debugUserId,
           questionId: id,
         },
       },
@@ -242,7 +250,7 @@ const RatingButton = ({ type, id }) => {
       {
         query: USER_LIKES_ANSWER_QUERY,
         variables: {
-          userId: currentUser.id,
+          userId: debugUserId,
           answerId: id,
         },
       },
@@ -253,7 +261,7 @@ const RatingButton = ({ type, id }) => {
       {
         query: USER_LIKES_COMMENT_QUERY,
         variables: {
-          userId: currentUser.id,
+          userId: debugUserId,
           commentId: id,
         },
       },
@@ -291,7 +299,7 @@ const RatingButton = ({ type, id }) => {
     refetchQueries: [
       {
         query: USER_LIKES_QUESTION_QUERY,
-        variables: { userId: currentUser.id, questionId: id },
+        variables: { userId: debugUserId, questionId: id },
       },
     ],
   })
@@ -300,7 +308,7 @@ const RatingButton = ({ type, id }) => {
     refetchQueries: [
       {
         query: USER_LIKES_ANSWER_QUERY,
-        variables: { userId: currentUser.id, answerId: id },
+        variables: { userId: debugUserId, answerId: id },
       },
     ],
   })
@@ -309,7 +317,7 @@ const RatingButton = ({ type, id }) => {
     refetchQueries: [
       {
         query: USER_LIKES_COMMENT_QUERY,
-        variables: { userId: currentUser.id, commentId: id },
+        variables: { userId: debugUserId, commentId: id },
       },
     ],
   })
@@ -348,15 +356,15 @@ const RatingButton = ({ type, id }) => {
   // UserLikesX Queries
 
   const { data: userLikesQuestionData } = useQuery(USER_LIKES_QUESTION_QUERY, {
-    variables: { questionId: id, userId: currentUser.id },
+    variables: { questionId: id, userId: debugUserId },
   })
 
   const { data: userLikesAnswerData } = useQuery(USER_LIKES_ANSWER_QUERY, {
-    variables: { answerId: id, userId: currentUser.id },
+    variables: { answerId: id, userId: debugUserId },
   })
 
   const { data: userLikesCommentData } = useQuery(USER_LIKES_COMMENT_QUERY, {
-    variables: { commentId: id, userId: currentUser.id },
+    variables: { commentId: id, userId: debugUserId },
   })
 
   // ------------------------------------------------
