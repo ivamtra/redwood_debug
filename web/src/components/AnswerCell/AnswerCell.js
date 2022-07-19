@@ -60,7 +60,11 @@ export const Success = ({ answer }) => {
               <h3>Rökstuðningur: {answer.justification}</h3>
               <p>answer.questionId = {answer.questionId}</p>
             </div>
-            <HideButton id={answer.id} type={'answer'} />
+            {hasRole(['moderator', 'admin']) ? (
+              <HideButton id={answer.id} type={'answer'} />
+            ) : (
+              <></>
+            )}
             <RatingButton id={answer.id} type={'answer'} />
             <FlagButton id={answer.id} type={'answer'} />
             {/* <HideButton id={answer.id} type={'answer'} /> */}
