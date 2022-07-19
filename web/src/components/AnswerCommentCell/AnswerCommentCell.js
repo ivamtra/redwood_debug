@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 
+import useHidden from 'src/customhooks/useHidden'
+
 import DeleteButton from '../DeleteButton/DeleteButton'
 import FlagButton from '../FlagButton/FlagButton'
 import RatingButton from '../RatingButton/RatingButton'
@@ -34,45 +36,61 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
+/*
+  Hidden fær hærra priority heldur en Deleted.
+  Þ.e. ef shadowbanned user deletar commentið sitt þá
+  sér hann deleted en allir hinir sjá ekki neitt.
+*/
 export const Success = ({ answerComment }) => {
   const { currentUser } = useAuth()
+  const hidden = useHidden(answerComment)
   return (
-    <div className="grid grid-cols-4">
-      {/* <h1>----------------------------------</h1> */}
-      <h2>{answerComment.body}</h2>
-      <>
-        {answerComment.body !== '[Deleted]' &&
-        /*answerComment.user.id === currentUser.id */ true ? (
-          <>
-            <RatingButton className="" type={'comment'} id={answerComment.id} />
-            <FlagButton type={'comment'} id={answerComment.id} />
-            <ReplyButton
-              parentId={answerComment.id}
-              answerId={answerComment.answerId}
-            />
-            {currentUser.id === answerComment.user.id ? (
-              <DeleteButton className id={answerComment.id} />
+    <>
+      {hidden ? (
+        <></>
+      ) : (
+        <>
+          <div className="grid grid-cols-4">
+            <h2>{answerComment.body}</h2>
+            <>
+              {answerComment.body !== '[Deleted]' ? (
+                <>
+                  <RatingButton
+                    className=""
+                    type={'comment'}
+                    id={answerComment.id}
+                  />
+                  <FlagButton type={'comment'} id={answerComment.id} />
+                  <ReplyButton
+                    parentId={answerComment.id}
+                    answerId={answerComment.answerId}
+                  />
+                  {currentUser.id === answerComment.user.id ? (
+                    <DeleteButton className id={answerComment.id} />
+                  ) : (
+                    <></>
+                  )}
+                </>
+              ) : (
+                <></>
+              )}
+            </>
+
+            <p className="order-1">Rating: {answerComment.rating}</p>
+            <p>answerId = {answerComment.answerId}</p>
+            <p>id = {answerComment.id}</p>
+            <p>{answerComment.createdAt}</p>
+
+            {answerComment.body !== '[Deleted]' ? (
+              <p className="order-1">{answerComment.user.email}</p>
             ) : (
               <></>
             )}
-          </>
-        ) : (
-          <></>
-        )}
-      </>
-
-      <p className="order-1">Rating: {answerComment.rating}</p>
-      <p>answerId = {answerComment.answerId}</p>
-      <p>id = {answerComment.id}</p>
-      <p>{answerComment.createdAt}</p>
-
-      {answerComment.body !== '[Deleted]' ? (
-        <p className="order-1">{answerComment.user.email}</p>
-      ) : (
-        <></>
+            <p className="order-1">parentId: {answerComment.parentId}</p>
+            <p>level: {answerComment.level}</p>
+          </div>
+        </>
       )}
-      <p className="order-1">parentId: {answerComment.parentId}</p>
-      <p>level: {answerComment.level}</p>
-    </div>
+    </>
   )
 }
