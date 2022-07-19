@@ -51,4 +51,6 @@
   - Alltaf þegar einhverju er svarar fær höfundur notification sem vísar í svarið
 
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
-- Disable forms fyrir admina þegar isHidden er true
+  - Disable forms fyrir admina þegar isHidden er true
+    - Gætum leyft shadowbönnuðum að commenta á sín eigin post til að það
+      sjáist ekki að það hafi verið disabled

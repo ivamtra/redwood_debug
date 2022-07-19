@@ -1,8 +1,6 @@
 //! Að gefa spurningu rating update-ar question
 //! þannig allir sem eru loggaðir inn hafa aðgang að update api
 
-const CREATE_QUESTION_ROLES = ['admin', 'moderator', 'user']
-
 export const schema = gql`
   type Question {
     id: Int!

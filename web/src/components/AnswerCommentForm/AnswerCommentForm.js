@@ -35,7 +35,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
     },
     refetchQueries: [{ query: CommentsQuery, variables: { answerId } }],
   })
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { isAuthenticated, currentUser, hasRole } = useAuth()
   const [level, setLevel] = useState(0)
 
   const onSubmit = (data) => {
@@ -48,13 +48,16 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
     console.log(parentId)
     console.log(answerId)
 
-    const inputData = {
+    let inputData = {
       userId: currentUser.id,
       body: data.body,
       parentId: parentId,
       answerId: answerId,
       level: level,
       rating: 0,
+    }
+    if (currentUser.shadowBanned) {
+      inputData = { ...inputData, isHidden: true }
     }
 
     console.log(inputData)
