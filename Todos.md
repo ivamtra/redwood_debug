@@ -1,3 +1,8 @@
+[green]: #4eff00
+
+# Gamalt
+
+
 -Form componentar (Komið)
 -Bæta við ehv styling svo hægt er að horfa á þetta
 - Button componentar (Komið)
@@ -9,7 +14,8 @@
 
 -Verkefnalýsingar fyrir fiverr
 
--------- 13. júlí ---------
+---
+# 13. Júli
 
 - Hægt að upvote-a tvisvar til að losna við ratingið (Komið)
   - Laga það að það þurfi að refresha til að fá fulla virkni (Komið)
@@ -22,46 +28,62 @@
   - Bæta við refetch queries þegar maður commentar (Laga)
 
 
--------- 19. júlí ---------
+---
+# 19. júlí
 
-SLEPPT (
+- <span style="color:red">SLEPPT</span>
   - Laga delete þannig það fari í nýja töflu.
   - Töflur fyrir eydd gögn
-  - Page fyrir eydd/falin gögn sem bara adminar geta séð
-)
+  - Page fyrir eydd/falin gögn sem bara adminar geta séð <br>
+
+<br>
 
 
 - RBAC
-  - Leyfa admin/moderator að fela gögnum frá userum (Komið)
+  - Leyfa admin/moderator að fela gögnum frá userum  ✅
     - Pæla í delete virkni seinna
-  - Virkni fyrir newUser (Komið)
+  - Virkni fyrir newUser  ✅
   - Private síður fyrir admin/mods að skoða falin gögn (Sleppt)
-    - Componentar eru bara filteraðir og venjulegir userar sjá ekki falin gögn (Komið)
+    - Componentar eru bara filteraðir og venjulegir userar sjá ekki falin gögn  ✅
 
-- Shadowbanned notandi verður property en ekki role (Komið)
-  - Allt sem shadowbanned notandi postar er hidden (Komið)
-  - Allir notendur sjá sína hidden posta (Komið)
+<br>
 
-- Hidden property í component töflum (Komið)
+- Shadowbanned notandi verður property en ekki role ✅
+  - Allt sem shadowbanned notandi postar er hidden ✅
+  - Allir notendur sjá sína hidden posta ✅
+
+<br>
+
+- Hidden property í component töflum ✅
 
 
+<br>
 
+- User page/component svo admin/mod getur shadowbannað/breytt role hjá viðkomandi
 
-- User page svo admin/mod getur shadowbannað/breytt role hjá viðkomandi
-
+<br>
 
 - Búa til script sem resettar dbAuth
+
+<br>
 
 
 - Refactora ratingButton
 
+<br>
+
 - Laga síðuna þannig hún virki ef maður er ekki loggaður inn
 
+<br>
 
 - Notification kerfi
   - Alltaf þegar einhverju er svarar fær höfundur notification sem vísar í svarið
 
+<br>
+
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
+
+<br>
 
 - Disable forms fyrir admina þegar isHidden er true
   - Getum leyft shadowbönnuðum að commenta á sín eigin post til að það
