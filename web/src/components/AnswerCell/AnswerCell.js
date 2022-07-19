@@ -55,6 +55,12 @@ export const Success = ({ answer }) => {
       ) : (
         <>
           <div>
+            <div>
+              <h2>Titill: {answer.title} (Getur verið ekkert)</h2>
+              <h3>Rökstuðningur: {answer.justification}</h3>
+              <p>answer.questionId = {answer.questionId}</p>
+            </div>
+            <HideButton id={answer.id} type={'answer'} />
             <RatingButton id={answer.id} type={'answer'} />
             <FlagButton id={answer.id} type={'answer'} />
             {/* <HideButton id={answer.id} type={'answer'} /> */}
@@ -63,12 +69,8 @@ export const Success = ({ answer }) => {
             <p>Dagsetning: {answer.createdAt}</p>
             <h4>User: {answer.user.email}</h4>
           </div>
-          <div>
-            <h2>Titill: {answer.title} (Getur verið ekkert)</h2>
-            <h3>Rökstuðningur: {answer.justification}</h3>
-            <p>answer.questionId = {answer.questionId}</p>
-          </div>
           {/* <Link to={routes.answer({ id: answer.id })} /> */}
+          {/* TODO: Disable þegar isHidden er true */}
           <AnswerCommentForm answerId={answer.id} parentId={0} />
           <AnswerCommentsCell answerId={answer.id} />
         </>

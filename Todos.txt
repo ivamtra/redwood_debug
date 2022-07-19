@@ -51,3 +51,4 @@
   - Alltaf þegar einhverju er svarar fær höfundur notification sem vísar í svarið
 
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
+- Disable forms fyrir admina þegar isHidden er true
