@@ -34,6 +34,7 @@ export const schema = gql`
     other_info: String
     userId: Int!
     rating: Int!
+    isHidden: Boolean
   }
 
   input UpdateQuestionInput {

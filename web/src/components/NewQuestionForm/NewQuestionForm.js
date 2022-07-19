@@ -137,7 +137,10 @@ const NewQuestionForm = () => {
     console.log(safeGuardCounter)
     if (safeGuardCounter >= 2) return
     console.log(data)
-    const inputData = { ...data, userId: currentUser.id, rating: 0 }
+    let inputData = { ...data, userId: currentUser.id, rating: 0 }
+    if (currentUser.shadowBanned) {
+      inputData = { ...inputData, isHidden: true }
+    }
     console.log(inputData)
     const questionCreatedPromise = createQuestion({
       variables: {
@@ -150,7 +153,7 @@ const NewQuestionForm = () => {
         handleSentenceMutation(result.data.createQuestion.id)
       })
       .catch(() => {
-        console.log(currentUser)
+        console.log(currentlUser)
         console.log(new Date().toISOString())
         if (currentUser.roles === 'newUser') {
           // Höndla það að ef accountinn er eldri en 1 klst

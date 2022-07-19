@@ -12,23 +12,67 @@
  * END --- SETUP TAILWINDCSS EDIT
  */
 
- html {
-  height: 200px;
-  background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet, red);
-}
+ /* html {
+    width: 80vw;
+    height: 200px;
+    border-radius: 5px;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+    );
+} */
 
 
- button {
-  font: bold;
-  background-color: red;
-  color: brown;
-  border-radius: 50%;
+ /* button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
  }
 
  button:hover {
   background-color: pink;
 
- }
+ } */
+
+ /* // Font Variables
+$header-font: 'Dosis', sans-serif;
+$button-font: 'Montserrat', sans-serif;
+
+// Color Variables
+$gray: #2b2d30;
+$blue: #2d7eff;
+$teal: #10FFB4;
+$purple: #8041F2;
+$blue-gray: #3095ED;
+$orange: #FF530D; */
+
+ /* button {
+  box-sizing: border-box;
+	color: white;
+  background: linear-gradient(to right, #8041F2 , #3095ED);
+	border-radius: 8px;
+	transition: .2s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+button:hover {
+	border-radius: 30px;
+}
 
  h1 {
   color: green;
@@ -41,3 +85,5 @@
  a {
   color: red
  }
+ */
+

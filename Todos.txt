@@ -24,12 +24,13 @@
 
 - RBAC
   - Leyfa admin/moderator að eyða gögnum
-  - Virkni fyrir newUser (Komið fyrir Question)
-  - Private síður fyrir admin/mods að skoða falin gögn
+  - Virkni fyrir newUser (Komiðn)
+  - Private síður fyrir admin/mods að skoða falin gögn (Sleppt)
+    - Componentar eru bara filteraðir og venjulegir userar sjá ekki falin gögn
 
 - Shadowbanned notandi verður property en ekki role
   - Allt sem shadowbanned notandi postar er hidden
-  - Allir notendur sjá sína hidden posta
+  - Allir notendur sjá sína hidden posta (Komið)
 
 - Hidden property í component töflum
 
