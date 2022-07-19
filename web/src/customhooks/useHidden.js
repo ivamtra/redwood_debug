@@ -1,7 +1,8 @@
 import { useAuth } from '@redwoodjs/auth'
 
 /*
-  type = [question, answer, comment]
+  Tekur inn component hlut
+  Skilar true ef fela á componentinn
 */
 export default function useHidden(componentObject) {
   const { currentUser, hasRole } = useAuth()
