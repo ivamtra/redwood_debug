@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
-import { routes, Link } from '@redwoodjs/router'
 
 import useHidden from 'src/customhooks/useHidden'
 
@@ -48,7 +47,7 @@ export const Success = ({ answer }) => {
     console.log(answer.user.id)
   })
   const hidden = useHidden(answer)
-  const { hasRole, currentUser } = useAuth()
+  const { hasRole } = useAuth()
   return (
     <div>
       {hidden ? (

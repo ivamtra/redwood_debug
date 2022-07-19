@@ -7,8 +7,6 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { timeBetweenTwoDateStringsInSeconds } from 'src/customUtils/DateUtils'
 
-import { QUERY as UserQuery } from '../UserCell/UserCell'
-
 //-------------- Database --------------------------------------------
 
 //-------------- Create Question og Sentence -------------------------
@@ -62,7 +60,7 @@ const NewQuestionForm = () => {
     onCompleted: () => toast.success('Question Created'),
   })
   const [createSentence] = useMutation(CREATE_SENTENCE)
-  const { currentUser, hasRole } = useAuth()
+  const { currentUser } = useAuth()
   const [textValue, setTextValue] = useState('')
   const [updateUser] = useMutation(UPDATE_USER) // ATH. hvort það þurfi refreshQuery
 

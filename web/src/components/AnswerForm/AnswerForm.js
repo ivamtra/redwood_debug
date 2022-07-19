@@ -37,7 +37,7 @@ const AnswerForm = ({ questionId }) => {
   const [createTranslation] = useMutation(CREATE_TRANSLATION, {
     onCompleted: () => toast.success('Þýðing móttekin'),
   })
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { currentUser } = useAuth()
   const [textValue, setTextValue] = useState('')
   const [updateUser] = useMutation(UPDATE_USER)
 

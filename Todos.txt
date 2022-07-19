@@ -22,21 +22,31 @@
   - Bæta við refetch queries þegar maður commentar (Laga)
 
 
-- RBAC
-  - Leyfa admin/moderator að eyða gögnum
-  - Virkni fyrir newUser (Komiðn)
-  - Private síður fyrir admin/mods að skoða falin gögn (Sleppt)
-    - Componentar eru bara filteraðir og venjulegir userar sjá ekki falin gögn
+-------- 19. júlí ---------
 
-- Shadowbanned notandi verður property en ekki role
-  - Allt sem shadowbanned notandi postar er hidden
+SLEPPT (
+  - Laga delete þannig það fari í nýja töflu.
+  - Töflur fyrir eydd gögn
+  - Page fyrir eydd/falin gögn sem bara adminar geta séð
+)
+
+
+- RBAC
+  - Leyfa admin/moderator að fela gögnum frá userum (Komið)
+    - Pæla í delete virkni seinna
+  - Virkni fyrir newUser (Komið)
+  - Private síður fyrir admin/mods að skoða falin gögn (Sleppt)
+    - Componentar eru bara filteraðir og venjulegir userar sjá ekki falin gögn (Komið)
+
+- Shadowbanned notandi verður property en ekki role (Komið)
+  - Allt sem shadowbanned notandi postar er hidden (Komið)
   - Allir notendur sjá sína hidden posta (Komið)
 
-- Hidden property í component töflum
+- Hidden property í component töflum (Komið)
 
-- Laga delete þannig það fari í nýja töflu.
-- Töflur fyrir eydd gögn
-- Page fyrir eydd/falin gögn sem bara adminar geta séð
+
+
+
 - User page svo admin/mod getur shadowbannað/breytt role hjá viðkomandi
 
 - Búa til script sem resettar dbAuth
@@ -51,6 +61,7 @@
   - Alltaf þegar einhverju er svarar fær höfundur notification sem vísar í svarið
 
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
-  - Disable forms fyrir admina þegar isHidden er true
-    - Gætum leyft shadowbönnuðum að commenta á sín eigin post til að það
-      sjáist ekki að það hafi verið disabled
+
+- Disable forms fyrir admina þegar isHidden er true
+  - Getum leyft shadowbönnuðum að commenta á sín eigin post til að það
+    sjáist ekki að það hafi verið disabled

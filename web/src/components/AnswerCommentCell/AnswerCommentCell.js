@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { useAuth } from '@redwoodjs/auth'
 
 import useHidden from 'src/customhooks/useHidden'
