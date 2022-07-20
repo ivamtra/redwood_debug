@@ -7,8 +7,8 @@ export const schema = gql`
   }
 
   type Query {
-    translations: [Translation!]! @requireAuth
-    translation(id: Int!): Translation @requireAuth
+    translations(answerId: Int!): [Translation!]! @skipAuth
+    translation(id: Int!): Translation @skipAuth
   }
 
   input CreateTranslationInput {

@@ -1,7 +1,9 @@
 export const QUERY = gql`
-  query TranslationsQuery {
-    translations {
+  query TranslationsQuery($answerId: Int!) {
+    translations(answerId: $answerId) {
       id
+      translation
+      answerId
     }
   }
 `
@@ -18,7 +20,13 @@ export const Success = ({ translations }) => {
   return (
     <ul>
       {translations.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
+        return (
+          <div key={item.id}>
+            <p>id = {item.id}</p>
+            <p>translation = {item.translation}</p>
+            <p>answerId = {item.answerId}</p>
+          </div>
+        )
       })}
     </ul>
   )

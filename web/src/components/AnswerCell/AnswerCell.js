@@ -9,6 +9,7 @@ import AnswerCommentsCell from '../AnswerCommentsCell/AnswerCommentsCell'
 import FlagButton from '../FlagButton/FlagButton'
 import HideButton from '../HideButton/HideButton'
 import RatingButton from '../RatingButton/RatingButton'
+import TranslationsCell from '../TranslationsCell/TranslationsCell'
 export const QUERY = gql`
   query FindAnswerQuery($id: Int!) {
     answer: answer(id: $id) {
@@ -77,6 +78,7 @@ export const Success = ({ answer }) => {
           </div>
           {/* <Link to={routes.answer({ id: answer.id })} /> */}
           {/* TODO: Disable þegar isHidden er true */}
+          <TranslationsCell answerId={answer.id} />
           <AnswerCommentForm answerId={answer.id} parentId={0} />
           <AnswerCommentsCell answerId={answer.id} />
         </>
