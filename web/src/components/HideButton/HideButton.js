@@ -12,12 +12,12 @@ import {
 //------------------- GRAPHQL -------------------------------
 const [question, answer, comment] = ['question', 'answer', 'comment']
 
-const HideButton = ({ type, id }) => {
+const HideButton = ({ type, id, isHidden }) => {
   /*
     Updatar gildi á component þannig isHidden verður true
   */
   const hideComponent = () => {
-    const variables = { id: id, input: { isHidden: true } }
+    const variables = { id: id, input: { isHidden: !isHidden } }
 
     switch (type) {
       case question:
@@ -50,7 +50,7 @@ const HideButton = ({ type, id }) => {
     <>
       {hasRole(['admin', 'moderator']) ? (
         <button className="buttonTest" onClick={hideComponent}>
-          Hide
+          {isHidden ? 'Unhide' : 'Hide'}
         </button>
       ) : (
         <></>

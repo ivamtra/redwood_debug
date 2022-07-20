@@ -64,7 +64,11 @@ export const Success = ({ answer }) => {
               <p>answer.questionId = {answer.questionId}</p>
             </div>
             {hasRole(['moderator', 'admin']) ? (
-              <HideButton id={answer.id} type={'answer'} />
+              <HideButton
+                id={answer.id}
+                type={'answer'}
+                isHidden={answer.isHidden}
+              />
             ) : (
               <></>
             )}

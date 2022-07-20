@@ -58,7 +58,11 @@ export const Success = ({ question, inQuestionsCell }) => {
             <h1>Titill: {question.title}</h1>
           )}
           <div>
-            <HideButton type={'question'} id={question.id} />
+            <HideButton
+              type={'question'}
+              id={question.id}
+              isHidden={question.isHidden}
+            />
             <RatingButton id={question.id} type="question" />
             <FlagButton type={'question'} id={question.id} />
             <p>Rating: {question.rating}</p>

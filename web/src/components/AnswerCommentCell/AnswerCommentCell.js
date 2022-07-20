@@ -73,7 +73,11 @@ export const Success = ({ answerComment }) => {
                     parentId={answerComment.id}
                     answerId={answerComment.answerId}
                   />
-                  <HideButton type={'comment'} id={answerComment.id} />
+                  <HideButton
+                    type={'comment'}
+                    id={answerComment.id}
+                    isHidden={answerComment.isHidden}
+                  />
                   {debugUserId === answerComment.user.id ? (
                     <DeleteButton className id={answerComment.id} />
                   ) : (
