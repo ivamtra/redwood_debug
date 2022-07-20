@@ -41,7 +41,6 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ question, inQuestionsCell }) => {
   const hidden = useHidden(question)
-  useEffect(() => console.log(hidden))
   return (
     <div>
       {hidden ? (
@@ -50,7 +49,7 @@ export const Success = ({ question, inQuestionsCell }) => {
         <>
           <h1>---------------------------------------</h1>
           {inQuestionsCell ? (
-            <h1>
+            <h1 className={question.isHidden ? 'hidden' : ''}>
               <Link to={routes.question({ id: question.id })}>
                 Titill: {question.title}
               </Link>

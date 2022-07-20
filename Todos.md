@@ -58,6 +58,10 @@
 
 <br>
 
+- Laga síðuna þannig hún virki ef maður er ekki loggaður inn ✅
+
+<br>
+
 - Notification kerfi
   - Alltaf þegar einhverju er svarað fær höfundur notification sem vísar í svarið
 
@@ -76,9 +80,7 @@
 
 <br>
 
-- Laga síðuna þannig hún virki ef maður er ekki loggaður inn ✅
 
-<br>
 
 
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
@@ -88,3 +90,8 @@
 - Disable forms fyrir admina þegar isHidden er true
   - Getum leyft shadowbönnuðum að commenta á sín eigin post til að það
     sjáist ekki að það hafi verið disabled
+
+
+<br>
+
+- Translations Cell
