@@ -84,6 +84,7 @@
 
 
 - CSS á hidden componenta þannig adminar sjá að hann er falinn
+  - Basic CSS Komið ✅
 
 <br>
 
