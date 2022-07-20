@@ -1,6 +1,9 @@
 import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@redwoodjs/web'
 
+import { QUERY as refetchAnswerQuery } from '../AnswerCell'
+import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
+import { QUERY as refetchQuestionQuery } from '../QuestionCell'
 import {
   UPDATE_COMMENT_RATING as UpdateComment,
   UPDATE_ANSWER_RATING as UpdateAnswer,
@@ -32,9 +35,15 @@ const HideButton = ({ type, id }) => {
     }
   }
 
-  const [updateQuestion] = useMutation(UpdateQuestion)
-  const [updateAnswer] = useMutation(UpdateAnswer)
-  const [updateComment] = useMutation(UpdateComment)
+  const [updateQuestion] = useMutation(UpdateQuestion, {
+    refetchQueries: [{ query: refetchQuestionQuery, variables: { id } }],
+  })
+  const [updateAnswer] = useMutation(UpdateAnswer, {
+    refetchQueries: [{ query: refetchAnswerQuery, variables: { id } }],
+  })
+  const [updateComment] = useMutation(UpdateComment, {
+    refetchQueries: [{ query: refetchCommentQuery, variables: { id } }],
+  })
   const { hasRole } = useAuth()
 
   return (
