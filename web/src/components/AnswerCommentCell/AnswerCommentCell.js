@@ -57,7 +57,9 @@ export const Success = ({ answerComment }) => {
       ) : (
         <>
           <div className="grid grid-cols-4">
-            <h2>{answerComment.body}</h2>
+            <h2 className={answerComment.isHidden ? 'hidden' : ''}>
+              {answerComment.body}
+            </h2>
             <>
               {answerComment.body !== '[Deleted]' ? (
                 <>

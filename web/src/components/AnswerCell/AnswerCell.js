@@ -56,7 +56,9 @@ export const Success = ({ answer }) => {
         <>
           <div>
             <div>
-              <h2>Titill: {answer.title} (Getur verið ekkert)</h2>
+              <h2 className={answer.isHidden ? 'hidden' : ''}>
+                Titill: {answer.title} (Getur verið ekkert)
+              </h2>
               <h3>Rökstuðningur: {answer.justification}</h3>
               <p>answer.questionId = {answer.questionId}</p>
             </div>
