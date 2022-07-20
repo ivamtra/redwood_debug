@@ -90,4 +90,14 @@ button:hover {
   opacity: 0.5;
  }
 
+ // Upvote
+ .red {
+  background-color: red;
+ }
+
+ // Downvote
+ .blue {
+  background-color: blue;
+ }
+
 

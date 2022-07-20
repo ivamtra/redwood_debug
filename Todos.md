@@ -95,4 +95,4 @@
 
 <br>
 
-- Translations Cell ✅
+- Translations Cell fyrir Answer ✅

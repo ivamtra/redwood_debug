@@ -202,6 +202,12 @@ const newRating = (oldRating, newRating) => {
   }
 }
 
+const handleCatch = (workingData, rating) => {
+  const ratingChange = calculateRatingDifference(workingData.action, rating)
+  const newAction = newRating(workingData.action, rating)
+  return [newAction, ratingChange]
+}
+
 // ------------------------------------------------------
 
 // ------------ React Component ------------------------
@@ -425,11 +431,10 @@ const RatingButton = ({ type, id }) => {
                 console.log(id)
                 console.log(userLikesAnswerData)
                 const workingData = userLikesAnswerData.customUserLikesAnswer[0]
-                const ratingChange = calculateRatingDifference(
-                  workingData.action,
+                const [newAction, ratingChange] = handleCatch(
+                  workingData,
                   rating
                 )
-                const newAction = newRating(workingData.action, rating)
 
                 updateUserLikesAnswer({
                   variables: {
@@ -481,12 +486,10 @@ const RatingButton = ({ type, id }) => {
                   userLikesQuestionData.customUserLikesQuestion[0]
 
                 // Gefa nýtt rating á component
-                const ratingChange = calculateRatingDifference(
-                  workingData.action,
+                const [newAction, ratingChange] = handleCatch(
+                  workingData,
                   rating
                 )
-
-                const newAction = newRating(workingData.action, rating)
 
                 // ) Updata rating-ið
 
@@ -531,11 +534,10 @@ const RatingButton = ({ type, id }) => {
                 const workingData =
                   userLikesCommentData.customUserLikesComment[0]
                 console.log(workingData)
-                const ratingChange = calculateRatingDifference(
-                  workingData.action,
+                const [newAction, ratingChange] = handleCatch(
+                  workingData,
                   rating
                 )
-                const newAction = newRating(workingData.action, rating)
 
                 updateUserLikesComment({
                   variables: {
