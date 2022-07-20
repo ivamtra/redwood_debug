@@ -49,9 +49,7 @@ const HideButton = ({ type, id, isHidden }) => {
   return (
     <>
       {hasRole(['admin', 'moderator']) ? (
-        <button className="buttonTest" onClick={hideComponent}>
-          {isHidden ? 'Unhide' : 'Hide'}
-        </button>
+        <button onClick={hideComponent}>{isHidden ? 'Unhide' : 'Hide'}</button>
       ) : (
         <></>
       )}

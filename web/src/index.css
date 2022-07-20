@@ -98,6 +98,8 @@ button:hover {
  // Downvote
  .blue {
   background-color: blue;
+  color: blue;
+  border: none;
  }
 
 
