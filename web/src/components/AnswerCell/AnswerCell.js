@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
-import { Link, routes } from '@redwoodjs/router'
+import { Link, routes, useParams } from '@redwoodjs/router'
 
 import useHidden from 'src/customhooks/useHidden'
 
@@ -45,13 +45,20 @@ export const Failure = ({ error }) => (
 //TODO: Uncommenta þegar búið er að laga api
 export const Success = ({ answer }) => {
   const testFocus = () => {
+    console.log('In test focus')
     testRef.current.scrollIntoView()
   }
 
+  // TODO: Focusa þegar parameter fæst
+  const { answerId: paramAnswerId } = useParams()
+
   useEffect(() => {
-    console.log(answer.isHidden)
-    console.log(answer.user.id)
-  })
+    console.log(parseInt(paramAnswerId) === answer.id)
+    if (parseInt(paramAnswerId) === answer.id) {
+      console.log('In if block')
+      testFocus()
+    }
+  }, [answer.id])
   const hidden = useHidden(answer)
   const { hasRole } = useAuth()
   const testRef = useRef()
@@ -88,7 +95,6 @@ export const Success = ({ answer }) => {
             <p>Dagsetning: {answer.createdAt}</p>
             <h4>User: {answer.user.email}</h4>
           </div>
-          <Link to={routes.answer({ id: answer.id })}> as</Link>
           {/* TODO: Disable þegar isHidden er true */}
           <TranslationsCell answerId={answer.id} />
           <AnswerCommentForm answerId={answer.id} parentId={0} />

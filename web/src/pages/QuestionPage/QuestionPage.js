@@ -7,6 +7,8 @@ import QuestionCell from 'src/components/QuestionCell/QuestionCell'
 
 //TODO: Fá inn parameter frá Notification
 const QuestionPage = ({ id, answerId, commentId }) => {
+  // answerId og commentId fást frá notification
+  // Focusa á þann component þegar parameterinn fæst inn
   useEffect(() => console.log(answerId))
   return (
     <>
