@@ -14,3 +14,4 @@ yarn rw g sdl UserLikesAnswer --force
 yarn rw g sdl UserLikesComment --force
 yarn rw g sdl UserLikesQuestion --force
 yarn rw g sdl User --force
+yarn rw g sdl Notification --force
