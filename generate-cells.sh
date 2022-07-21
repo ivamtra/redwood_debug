@@ -14,3 +14,5 @@ yarn rw g cell UserLikesAnswer
 yarn rw g cell UserLikesComment
 yarn rw g cell UserLikesQuestion
 yarn rw g cell User
+yarn rw g cell Notification
+yarn rw g cell Notifications
