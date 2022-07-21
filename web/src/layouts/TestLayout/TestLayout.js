@@ -22,6 +22,7 @@ const TestLayout = ({ children, user }) => {
           </button>
         </>
       )}
+
       <h2>Links</h2>
       <h2>
         <Link to={routes.questions()}>Spurningar </Link>
