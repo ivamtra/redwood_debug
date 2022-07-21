@@ -1,9 +1,13 @@
+import { useEffect } from 'react'
+
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import QuestionCell from 'src/components/QuestionCell/QuestionCell'
 
-const QuestionPage = ({ id }) => {
+//TODO: Fá inn parameter frá Notification
+const QuestionPage = ({ id, answerId, commentId }) => {
+  useEffect(() => console.log(answerId))
   return (
     <>
       <MetaTags title="Question" description="Question page" />

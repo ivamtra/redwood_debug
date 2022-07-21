@@ -10,6 +10,7 @@ const AnswerPage = ({ id }) => {
       <MetaTags title="Answer" description="Answer page" />
 
       <h1>AnswerPage</h1>
+      <AnswerCell id={id} />
 
       <AnswerForm questionId={7} />
       {/* <AnswerCell id={id} /> */}

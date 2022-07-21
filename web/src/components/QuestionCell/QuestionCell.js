@@ -50,7 +50,7 @@ export const Success = ({ question, inQuestionsCell }) => {
           <h1>---------------------------------------</h1>
           {inQuestionsCell ? (
             <h1 className={question.isHidden ? 'hidden' : ''}>
-              <Link to={routes.question({ id: question.id })}>
+              <Link to={routes.question({ id: question.id, answerId: 5 })}>
                 Titill: {question.title}
               </Link>
             </h1>

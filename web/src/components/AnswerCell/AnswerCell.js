@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
+import { Link, routes } from '@redwoodjs/router'
 
 import useHidden from 'src/customhooks/useHidden'
 
@@ -87,7 +88,7 @@ export const Success = ({ answer }) => {
             <p>Dagsetning: {answer.createdAt}</p>
             <h4>User: {answer.user.email}</h4>
           </div>
-          {/* <Link to={routes.answer({ id: answer.id })} /> */}
+          <Link to={routes.answer({ id: answer.id })}> as</Link>
           {/* TODO: Disable þegar isHidden er true */}
           <TranslationsCell answerId={answer.id} />
           <AnswerCommentForm answerId={answer.id} parentId={0} />

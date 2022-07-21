@@ -29,7 +29,8 @@ const TestLayout = ({ children, user }) => {
         <Link to={routes.forms()}>Forms </Link> <br />
         <Link to={routes.test()}>Svör </Link>
         <Link to={routes.commentTest()}>Comment </Link>
-        <Link to={routes.answer()}>AnswerPage </Link>
+        {/* <Link to={routes.answer()}>AnswerPage </Link> <br /> */}
+        <Link to={routes.notificationTest()}>Notification test</Link>
       </h2>
       <main>{children}</main>
     </>
