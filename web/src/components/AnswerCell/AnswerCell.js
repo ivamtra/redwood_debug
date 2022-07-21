@@ -44,7 +44,7 @@ export const Failure = ({ error }) => (
 //TODO: Uncommenta þegar búið er að laga api
 export const Success = ({ answer }) => {
   const testFocus = () => {
-    testRef.current.focus()
+    testRef.current.scrollIntoView()
   }
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export const Success = ({ answer }) => {
             <div>
               <button onClick={testFocus}>Test Focus</button>
 
-              <h2 className={answer.isHidden ? 'hidden' : ''}>
+              <h2 ref={testRef} className={answer.isHidden ? 'hidden' : ''}>
                 Titill: {answer.title} (Getur verið ekkert)
               </h2>
               <h3>Rökstuðningur: {answer.justification}</h3>
@@ -86,7 +86,7 @@ export const Success = ({ answer }) => {
             <p>Rating: {answer.rating}</p>
             <p>Dagsetning: {answer.createdAt}</p>
             <h4>User: {answer.user.email}</h4>
-            <button ref={testRef}>Test button</button>
+            <button>Test button</button>
           </div>
           {/* <Link to={routes.answer({ id: answer.id })} /> */}
           {/* TODO: Disable þegar isHidden er true */}
