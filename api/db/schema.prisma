@@ -175,7 +175,6 @@ model UserLikesQuestion {
   questionId Int
   dateTime   DateTime @default(now())
 
-
   @@unique([userId, questionId])
 }
 
@@ -214,7 +213,6 @@ model UserHasBadge {
   badge    Badge    @relation(fields: [badgeId], references: [id])
   badgeId  Int
   dateTime DateTime @default(now()) //Dagsetning þegar user fær verðlaun
-
 
   @@unique([userId, badgeId])
 }
@@ -261,3 +259,13 @@ model QuestionIsInCategory {
 }
 
 //TODO: Notifications
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  commentId  Int
+  questionId Int
+  answerId   Int
+  userId     Int
+  body       String
+  createdAt  DateTime
+}
