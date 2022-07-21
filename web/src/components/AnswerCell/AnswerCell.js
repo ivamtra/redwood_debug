@@ -86,7 +86,6 @@ export const Success = ({ answer }) => {
             <p>Rating: {answer.rating}</p>
             <p>Dagsetning: {answer.createdAt}</p>
             <h4>User: {answer.user.email}</h4>
-            <button>Test button</button>
           </div>
           {/* <Link to={routes.answer({ id: answer.id })} /> */}
           {/* TODO: Disable þegar isHidden er true */}

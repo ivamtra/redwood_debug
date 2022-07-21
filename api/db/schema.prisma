@@ -36,6 +36,7 @@ model User {
   UserIsInGroup       UserIsInGroup[]
   UserLikesComment    UserLikesComment[]
   Issue               Issue[]
+  Notification        Notification[]
 }
 
 // Svipað og facebook hópur
@@ -260,12 +261,14 @@ model QuestionIsInCategory {
 
 //TODO: Notifications
 
+// Sleppi því að nota foreign key fyrir componenta svo id-in geta verið null
 model Notification {
   id         Int      @id @default(autoincrement())
-  commentId  Int
-  questionId Int
-  answerId   Int
+  commentId  Int?
+  questionId Int?
+  answerId   Int?
   userId     Int
+  user       User     @relation(fields: [userId], references: [id])
   body       String
   createdAt  DateTime
 }
