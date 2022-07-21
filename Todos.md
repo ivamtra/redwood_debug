@@ -38,6 +38,7 @@
 
 <br>
 
+- Kommentakerfi lagað, þarf ekki lengur að refresha ✅
 
 - RBAC
   - Leyfa admin/moderator að fela gögnum frá userum  ✅
@@ -64,6 +65,9 @@
 
 - Notification kerfi
   - Alltaf þegar einhverju er svarað fær höfundur notification sem vísar í svarið
+  - Link frá notification að svarinu
+    - Líklegast linkur á question síðuna. Focus á nýja svarið væri flott ef hægt er að útfæra það
+      - Kannski hægt að útfæra focusinn með useRef
 
 <br>
 
@@ -79,7 +83,6 @@
 - Refactora ratingButton
 
 <br>
-
 
 
 

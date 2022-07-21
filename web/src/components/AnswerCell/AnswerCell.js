@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 
@@ -43,12 +43,17 @@ export const Failure = ({ error }) => (
 
 //TODO: Uncommenta þegar búið er að laga api
 export const Success = ({ answer }) => {
+  const testFocus = () => {
+    testRef.current.focus()
+  }
+
   useEffect(() => {
     console.log(answer.isHidden)
     console.log(answer.user.id)
   })
   const hidden = useHidden(answer)
   const { hasRole } = useAuth()
+  const testRef = useRef()
   return (
     <div>
       {hidden ? (
@@ -57,6 +62,8 @@ export const Success = ({ answer }) => {
         <>
           <div>
             <div>
+              <button onClick={testFocus}>Test Focus</button>
+
               <h2 className={answer.isHidden ? 'hidden' : ''}>
                 Titill: {answer.title} (Getur verið ekkert)
               </h2>
@@ -79,6 +86,7 @@ export const Success = ({ answer }) => {
             <p>Rating: {answer.rating}</p>
             <p>Dagsetning: {answer.createdAt}</p>
             <h4>User: {answer.user.email}</h4>
+            <button ref={testRef}>Test button</button>
           </div>
           {/* <Link to={routes.answer({ id: answer.id })} /> */}
           {/* TODO: Disable þegar isHidden er true */}
