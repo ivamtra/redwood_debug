@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
 import useHidden from 'src/customhooks/useHidden'
@@ -40,6 +41,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question, inQuestionsCell }) => {
+  const { currentUser } = useAuth()
   const hidden = useHidden(question)
   return (
     <div>
@@ -49,7 +51,11 @@ export const Success = ({ question, inQuestionsCell }) => {
         <>
           <h1>---------------------------------------</h1>
           {inQuestionsCell ? (
-            <h1 className={question.isHidden ? 'hidden' : ''}>
+            <h1
+              className={
+                question.isHidden && !currentUser.shadowBanned ? 'hidden' : ''
+              }
+            >
               <Link to={routes.question({ id: question.id, answerId: 5 })}>
                 Titill: {question.title}
               </Link>

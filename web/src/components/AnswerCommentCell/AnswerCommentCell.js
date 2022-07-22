@@ -57,7 +57,13 @@ export const Success = ({ answerComment }) => {
       ) : (
         <>
           <div className="grid grid-cols-4">
-            <h2 className={answerComment.isHidden ? 'hidden' : ''}>
+            <h2
+              className={
+                answerComment.isHidden && !currentUser.shadowBanned
+                  ? 'hidden'
+                  : ''
+              }
+            >
               {answerComment.body}
             </h2>
             <>

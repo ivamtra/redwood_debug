@@ -62,6 +62,7 @@ export const Success = ({ answer }) => {
   const hidden = useHidden(answer)
   const { hasRole } = useAuth()
   const testRef = useRef()
+  const { currentUser } = useAuth()
   return (
     <div>
       {hidden ? (
@@ -72,7 +73,12 @@ export const Success = ({ answer }) => {
             <div>
               <button onClick={testFocus}>Test Focus</button>
 
-              <h2 ref={testRef} className={answer.isHidden ? 'hidden' : ''}>
+              <h2
+                ref={testRef}
+                className={
+                  answer.isHidden && !currentUser.shadowBanned ? 'hidden' : ''
+                }
+              >
                 Titill: {answer.title} (Getur verið ekkert)
               </h2>
               <h3>Rökstuðningur: {answer.justification}</h3>
