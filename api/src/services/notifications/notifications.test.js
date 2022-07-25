@@ -30,13 +30,13 @@ describe('notifications', () => {
       input: {
         userId: scenario.notification.two.userId,
         body: 'String',
-        createdAt: '2022-07-25T17:14:50Z',
+        createdAt: '2022-07-25T21:48:04Z',
       },
     })
 
     expect(result.userId).toEqual(scenario.notification.two.userId)
     expect(result.body).toEqual('String')
-    expect(result.createdAt).toEqual('2022-07-25T17:14:50Z')
+    expect(result.createdAt).toEqual('2022-07-25T21:48:04Z')
   })
 
   scenario('updates a notification', async (scenario) => {

@@ -263,13 +263,13 @@ model QuestionIsInCategory {
 
 // Sleppi því að nota foreign key fyrir componenta svo id-in geta verið null
 model Notification {
-  id         Int      @id @default(autoincrement())
-  commentId  Int?
-  questionId Int?
-  answerId   Int?
-  userId     Int
-  user       User     @relation(fields: [userId], references: [id])
-  body       String
-  createdAt  DateTime
-  seen       Boolean  @default(false)
+  id        Int      @id @default(autoincrement())
+  commentId Int?
+  questionId Int? ww
+  answerId  Int?
+  userId    Int
+  body      String
+  createdAt DateTime
+  seen      Boolean  @default(false)
+  User      User     @relation(fields: [userId], references: [id])
 }

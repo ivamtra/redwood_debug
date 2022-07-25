@@ -1,6 +1,8 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
+import NotificationsCell from 'src/components/NotificationsCell/NotificationsCell'
+
 const NotificationTestPage = () => {
   return (
     <>
@@ -17,6 +19,7 @@ const NotificationTestPage = () => {
         My default route is named <code>notificationTest</code>, link to me with
         `<Link to={routes.notificationTest()}>NotificationTest</Link>`
       </p>
+      <NotificationsCell />
     </>
   )
 }

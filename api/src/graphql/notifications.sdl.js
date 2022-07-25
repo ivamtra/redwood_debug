@@ -4,16 +4,16 @@ export const schema = gql`
     commentId: Int
     questionId: Int
     answerId: Int
-    userId: Int!
     user: User!
+    userId: Int!
     body: String!
     createdAt: DateTime!
     seen: Boolean!
   }
 
   type Query {
-    notifications: [Notification!]! @skipAuth
-    notification(id: Int!): Notification @skipAuth
+    notifications: [Notification!]! @requireAuth
+    notification(id: Int!): Notification @requireAuth
   }
 
   input CreateNotificationInput {
@@ -35,11 +35,12 @@ export const schema = gql`
   }
 
   type Mutation {
-    createNotification(input: CreateNotificationInput!): Notification! @skipAuth
+    createNotification(input: CreateNotificationInput!): Notification!
+      @requireAuth
     updateNotification(
       id: Int!
       input: UpdateNotificationInput!
-    ): Notification! @skipAuth
-    deleteNotification(id: Int!): Notification! @skipAuth
+    ): Notification! @requireAuth
+    deleteNotification(id: Int!): Notification! @requireAuth
   }
 `
