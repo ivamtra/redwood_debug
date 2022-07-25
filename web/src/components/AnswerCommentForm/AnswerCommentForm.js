@@ -130,7 +130,6 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
           input: {
             userId: 1,
             body: 'Test',
-            seen: false,
           },
         },
       })

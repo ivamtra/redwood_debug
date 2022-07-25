@@ -67,6 +67,7 @@ model Question {
   UserLikesQuestion    UserLikesQuestion[]
   Issue                Issue[]
   QuestionIsInCategory QuestionIsInCategory[]
+  TestNotification     TestNotification[]
 }
 
 model Sentence {
@@ -88,10 +89,11 @@ model Answer {
   rating        Int      @default(0)
   isHidden      Boolean  @default(false)
 
-  UserLikesAnswer UserLikesAnswer[]
-  AnswerComment   AnswerComment[]
-  translations    Translation[] // Hvert svar getur innihaldið nokkrar þýðingar
-  Issue           Issue[]
+  UserLikesAnswer  UserLikesAnswer[]
+  AnswerComment    AnswerComment[]
+  translations     Translation[] // Hvert svar getur innihaldið nokkrar þýðingar
+  Issue            Issue[]
+  TestNotification TestNotification[]
 }
 
 // Hvert svar getur innihaldið margar þýðingar sem notandinn gefur.
@@ -116,6 +118,7 @@ model AnswerComment {
   isHidden         Boolean            @default(false)
   Issue            Issue[]
   UserLikesComment UserLikesComment[]
+  TestNotification TestNotification[]
 }
 
 model Category {
@@ -263,13 +266,16 @@ model QuestionIsInCategory {
 
 // Sleppi því að nota foreign key fyrir componenta svo id-in geta verið null
 model TestNotification {
-  id         Int      @id @default(autoincrement())
+  id         Int            @id @default(autoincrement())
   commentId  Int?
   questionId Int?
   answerId   Int?
   body       String
   createdAt  DateTime
-  seen       Boolean  @default(false)
+  seen       Boolean        @default(false)
   userId     Int
-  user       User     @relation(fields: [userId], references: [id])
+  user       User           @relation(fields: [userId], references: [id])
+  comment    AnswerComment? @relation(fields: [commentId], references: [id])
+  question   Question?      @relation(fields: [questionId], references: [id])
+  answer     Answer?        @relation(fields: [answerId], references: [id])
 }
