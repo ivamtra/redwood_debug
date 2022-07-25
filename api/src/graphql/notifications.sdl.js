@@ -12,8 +12,8 @@ export const schema = gql`
   }
 
   type Query {
-    notifications: [Notification!]! @requireAuth
-    notification(id: Int!): Notification @requireAuth
+    notifications: [Notification!]! @skipAuth
+    notification(id: Int!): Notification @skipAuth
   }
 
   input CreateNotificationInput {

@@ -123,13 +123,32 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
     }
   })
 
+  const test = () => {
+    console.log(
+      createNotification({
+        variables: {
+          input: {
+            userId: 1,
+            body: 'Test',
+            seen: false,
+          },
+        },
+      })
+    )
+  }
+
   return (
-    <div>
-      <Form onSubmit={onSubmit}>
-        <TextAreaField name="body" placeholder="Skrifa athugasemd" />
-        <Submit>Save</Submit>
-      </Form>
-    </div>
+    <>
+      <div>
+        <Form onSubmit={onSubmit}>
+          <TextAreaField name="body" placeholder="Skrifa athugasemd" />
+          <Submit>Save</Submit>
+        </Form>
+      </div>
+      <div>
+        <button onClick={test}>Test</button>
+      </div>
+    </>
   )
 }
 
