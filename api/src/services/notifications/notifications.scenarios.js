@@ -3,10 +3,10 @@ export const standard = defineScenario({
     one: {
       data: {
         body: 'String',
-        createdAt: '2022-07-21T16:50:52Z',
+        createdAt: '2022-07-25T17:14:50Z',
         user: {
           create: {
-            email: 'String8483832',
+            email: 'String6357098',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -17,10 +17,10 @@ export const standard = defineScenario({
     two: {
       data: {
         body: 'String',
-        createdAt: '2022-07-21T16:50:52Z',
+        createdAt: '2022-07-25T17:14:50Z',
         user: {
           create: {
-            email: 'String391855',
+            email: 'String2182939',
             hashedPassword: 'String',
             salt: 'String',
           },

@@ -14,6 +14,17 @@ export const CREATE_COMMENT = gql`
   mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
     createAnswerComment(input: $input) {
       id
+      user {
+        id
+      }
+    }
+  }
+`
+
+const CREATE_NOTIFICATION = gql`
+  mutation CreateNotification($input: CreateNotificationInput!) {
+    createNotification(input: $input) {
+      id
     }
   }
 `
@@ -22,12 +33,20 @@ const PARENT_COMMENT_QUERY = gql`
   query FindAnswerCommentQuery($id: Int!) {
     answerComment: answerComment(id: $id) {
       level
+      user {
+        id
+      }
     }
   }
 `
 
+const createReplyBody = (userId) => {
+  return 'User með id ' + userId + ' svaraði athugasemd þinni'
+}
+
 const AnswerCommentForm = ({ parentId, answerId }) => {
   const [hasPosted, setHasPosted] = useState(false)
+  const [createNotification] = useMutation(CREATE_NOTIFICATION)
   const [createComment] = useMutation(CREATE_COMMENT, {
     onCompleted: () => {
       setHasPosted(true)
@@ -61,16 +80,40 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
     }
 
     console.log(inputData)
-    console.log(createComment({ variables: { input: inputData } }))
+    createComment({ variables: { input: inputData } }).then((res) => {
+      // Comment id sem fer í töfluna
+      // Þetta er id-ið á commentinu sem var búið til
+      const sendingCommentId = res.data.createAnswerComment.id
+      const sendingUserId = res.data.createAnswerComment.user.id
+
+      const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
+      const notificationInput = {
+        commentId: sendingCommentId,
+        questionId: 0,
+        answerId: 0,
+        userId: recievingUserId,
+        body: 'test',
+        seen: false,
+      }
+      console.log(notificationInput)
+
+      console.log(
+        createNotification({ variables: { input: notificationInput } })
+      )
+    })
   }
 
   const handleLevel = () => {
-    const parentLevel = data.answerComment.level
+    const parentLevel = parentData.answerComment.level
     setLevel(parentLevel + 1)
     //parentId: er -1 ef verið er að svara comment
   }
 
-  const { data, loading, error } = useQuery(PARENT_COMMENT_QUERY, {
+  const {
+    data: parentData,
+    loading,
+    error,
+  } = useQuery(PARENT_COMMENT_QUERY, {
     variables: { id: parentId },
   })
 
