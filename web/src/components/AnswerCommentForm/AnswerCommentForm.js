@@ -88,10 +88,10 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
       const notificationInput = {
-        commentId: sendingCommentId,
+        commentId: 0,
         questionId: 0,
         answerId: 0,
-        userId: recievingUserId,
+        userId: 6,
         body: 'test',
         seen: false,
       }
