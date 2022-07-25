@@ -1,6 +1,6 @@
 export const QUERY = gql`
   query NotificationsQuery {
-    notifications {
+    testNotifications {
       id
       body
     }

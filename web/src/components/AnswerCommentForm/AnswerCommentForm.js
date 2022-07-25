@@ -22,8 +22,8 @@ export const CREATE_COMMENT = gql`
 `
 
 const CREATE_NOTIFICATION = gql`
-  mutation CreateNotification($input: CreateNotificationInput!) {
-    createNotification(input: $input) {
+  mutation CreateTestNotification($input: CreateTestNotificationInput!) {
+    createTestNotification(input: $input) {
       id
     }
   }
