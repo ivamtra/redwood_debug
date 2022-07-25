@@ -31,13 +31,13 @@ describe('testNotifications', () => {
     const result = await createTestNotification({
       input: {
         body: 'String',
-        createdAt: '2022-07-25T22:11:32Z',
+        createdAt: '2022-07-25T22:20:55Z',
         userId: scenario.testNotification.two.userId,
       },
     })
 
     expect(result.body).toEqual('String')
-    expect(result.createdAt).toEqual('2022-07-25T22:11:32Z')
+    expect(result.createdAt).toEqual('2022-07-25T22:20:55Z')
     expect(result.userId).toEqual(scenario.testNotification.two.userId)
   })
 

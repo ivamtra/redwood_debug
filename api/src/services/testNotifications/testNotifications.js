@@ -32,4 +32,10 @@ export const deleteTestNotification = ({ id }) => {
 export const TestNotification = {
   user: (_obj, { root }) =>
     db.testNotification.findUnique({ where: { id: root.id } }).user(),
+  comment: (_obj, { root }) =>
+    db.testNotification.findUnique({ where: { id: root.id } }).comment(),
+  question: (_obj, { root }) =>
+    db.testNotification.findUnique({ where: { id: root.id } }).question(),
+  answer: (_obj, { root }) =>
+    db.testNotification.findUnique({ where: { id: root.id } }).answer(),
 }

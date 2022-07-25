@@ -9,6 +9,9 @@ export const schema = gql`
     seen: Boolean!
     userId: Int!
     user: User!
+    comment: AnswerComment
+    question: Question
+    answer: Answer
   }
 
   type Query {
