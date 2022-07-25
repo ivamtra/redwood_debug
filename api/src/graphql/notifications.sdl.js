@@ -12,8 +12,8 @@ export const schema = gql`
   }
 
   type Query {
-    notifications: [Notification!]! @requireAuth
-    notification(id: Int!): Notification @requireAuth
+    notifications: [Notification!]! @skipAuth
+    notification(id: Int!): Notification @skipAuth
   }
 
   input CreateNotificationInput {
@@ -35,12 +35,11 @@ export const schema = gql`
   }
 
   type Mutation {
-    createNotification(input: CreateNotificationInput!): Notification!
-      @requireAuth
+    createNotification(input: CreateNotificationInput!): Notification! @skipAuth
     updateNotification(
       id: Int!
       input: UpdateNotificationInput!
-    ): Notification! @requireAuth
-    deleteNotification(id: Int!): Notification! @requireAuth
+    ): Notification! @skipAuth
+    deleteNotification(id: Int!): Notification! @skipAuth
   }
 `
