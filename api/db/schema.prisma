@@ -36,7 +36,7 @@ model User {
   UserIsInGroup       UserIsInGroup[]
   UserLikesComment    UserLikesComment[]
   Issue               Issue[]
-  Notification        Notification[]
+  TestNotification    TestNotification[]
 }
 
 // Svipað og facebook hópur
@@ -262,14 +262,14 @@ model QuestionIsInCategory {
 //TODO: Notifications
 
 // Sleppi því að nota foreign key fyrir componenta svo id-in geta verið null
-model Notification {
-  id        Int      @id @default(autoincrement())
-  commentId Int?
-  questionId Int? ww
-  answerId  Int?
-  userId    Int
-  body      String
-  createdAt DateTime
-  seen      Boolean  @default(false)
-  User      User     @relation(fields: [userId], references: [id])
+model TestNotification {
+  id         Int      @id @default(autoincrement())
+  commentId  Int?
+  questionId Int?
+  answerId   Int?
+  body       String
+  createdAt  DateTime
+  seen       Boolean  @default(false)
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
 }
