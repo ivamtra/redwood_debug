@@ -271,4 +271,5 @@ model Notification {
   user       User     @relation(fields: [userId], references: [id])
   body       String
   createdAt  DateTime
+  seen       Boolean  @default(false)
 }

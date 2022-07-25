@@ -63,6 +63,7 @@
 
 <br>
 
+
 - Notification kerfi
   - Alltaf þegar einhverju er svarað fær höfundur notification sem vísar í svarið
   - Link frá notification að svarinu
@@ -99,3 +100,7 @@
 <br>
 
 - Translations Cell fyrir Answer ✅
+
+# 25. júlí
+
+- QuestionComment component

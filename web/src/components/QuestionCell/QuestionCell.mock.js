@@ -9,8 +9,11 @@ export const standard = () => ({
     userId: 1,
     createdAt: '781293',
     user: {
-      email: 'ivan',
+      id: 1,
+      email: 'ivanmar',
+      name: 'ivan',
     },
     rating: 500,
+    isHidden: false,
   },
 })
