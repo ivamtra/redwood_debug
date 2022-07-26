@@ -11,6 +11,7 @@ export const schema = gql`
     answerId: Int!
     answerCommentId: Int!
     userId: Int!
+    createdAt: DateTime!
   }
 
   type Query {
