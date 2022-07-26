@@ -36,7 +36,7 @@ model User {
   UserIsInGroup       UserIsInGroup[]
   UserLikesComment    UserLikesComment[]
   Issue               Issue[]
-  Fart                Fart[]
+  Notification        Notification[]
 }
 
 // Svipað og facebook hópur
@@ -67,7 +67,7 @@ model Question {
   UserLikesQuestion    UserLikesQuestion[]
   Issue                Issue[]
   QuestionIsInCategory QuestionIsInCategory[]
-  Fart                 Fart[]
+  Notification         Notification[]
 }
 
 model Sentence {
@@ -93,7 +93,7 @@ model Answer {
   AnswerComment   AnswerComment[]
   translations    Translation[] // Hvert svar getur innihaldið nokkrar þýðingar
   Issue           Issue[]
-  Fart            Fart[]
+  Notification    Notification[]
 }
 
 // Hvert svar getur innihaldið margar þýðingar sem notandinn gefur.
@@ -118,7 +118,7 @@ model AnswerComment {
   isHidden         Boolean            @default(false)
   Issue            Issue[]
   UserLikesComment UserLikesComment[]
-  Fart             Fart[]
+  Notification     Notification[]
 }
 
 model Category {
@@ -279,7 +279,7 @@ model QuestionIsInCategory {
 //   answer     Answer?        @relation(fields: [answerId], references: [id])
 // }
 
-model Fart {
+model Notification {
   id            Int           @id @default(autoincrement())
   question      Question      @relation(fields: [questionId], references: [id])
   answer        Answer        @relation(fields: [answerId], references: [id])
