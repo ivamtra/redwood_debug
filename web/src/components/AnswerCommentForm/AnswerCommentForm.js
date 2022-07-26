@@ -22,8 +22,8 @@ export const CREATE_COMMENT = gql`
 `
 
 const CREATE_NOTIFICATION = gql`
-  mutation CreateTestNotification($input: CreateTestNotificationInput!) {
-    createTestNotification(input: $input) {
+  mutation CreateNotification($input: CreateNotificationInput!) {
+    createNotification(input: $input) {
       id
     }
   }
@@ -88,12 +88,12 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
       const notificationInput = {
-        commentId: 0,
-        questionId: 0,
+        body: 'Comment reply test',
+        isSeen: false,
+        userId: 0,
         answerId: 0,
-        userId: 6,
-        body: 'test',
-        seen: false,
+        answerCommentId: 0,
+        questionId: 0,
       }
       console.log(notificationInput)
 
