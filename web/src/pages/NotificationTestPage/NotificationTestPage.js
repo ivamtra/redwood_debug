@@ -1,9 +1,11 @@
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 
 import NotificationsCell from 'src/components/NotificationsCell/NotificationsCell'
 
 const NotificationTestPage = () => {
+  const { currentUser } = useAuth()
   return (
     <>
       <MetaTags title="NotificationTest" description="NotificationTest page" />
@@ -19,7 +21,7 @@ const NotificationTestPage = () => {
         My default route is named <code>notificationTest</code>, link to me with
         `<Link to={routes.notificationTest()}>NotificationTest</Link>`
       </p>
-      <NotificationsCell />
+      <NotificationsCell userId={currentUser.id} />
     </>
   )
 }

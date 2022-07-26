@@ -1,8 +1,8 @@
 import NotificationCell from '../NotificationCell/NotificationCell'
 
 export const QUERY = gql`
-  query FindNotificationsQuery2 {
-    notifications {
+  query FindNotificationsQuery($userId: Int!) {
+    notifications(userId: $userId) {
       id
     }
   }

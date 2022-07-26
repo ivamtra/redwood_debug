@@ -1,7 +1,9 @@
 import { db } from 'src/lib/db'
 
-export const notifications = () => {
-  return db.notification.findMany()
+export const notifications = ({ userId }) => {
+  return db.notification.findMany({
+    where: { userId },
+  })
 }
 
 export const notification = ({ id }) => {

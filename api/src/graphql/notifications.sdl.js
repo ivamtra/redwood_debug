@@ -14,7 +14,7 @@ export const schema = gql`
   }
 
   type Query {
-    notifications: [Notification!]! @skipAuth
+    notifications(userId: Int!): [Notification!]! @skipAuth
     notification(id: Int!): Notification @skipAuth
   }
 
