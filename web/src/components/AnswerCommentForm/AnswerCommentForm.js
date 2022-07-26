@@ -17,6 +17,11 @@ export const CREATE_COMMENT = gql`
       user {
         id
       }
+      answer {
+        userId
+      }
+      level
+      answerId
     }
   }
 `
@@ -40,8 +45,9 @@ const PARENT_COMMENT_QUERY = gql`
   }
 `
 
-const createReplyBody = (userId) => {
-  return 'User með id ' + userId + ' svaraði athugasemd þinni'
+const createReplyBody = (userId, isReply) => {
+  if (isReply) return 'User með id ' + userId + ' svaraði athugasemd þinni'
+  else return 'User með id ' + userId + ' svaraði svarinu þínu'
 }
 
 const AnswerCommentForm = ({ parentId, answerId }) => {
@@ -81,13 +87,14 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
 
     console.log(inputData)
     createComment({ variables: { input: inputData } }).then((res) => {
+      console.log(res)
       // Comment id sem fer í töfluna
       // Þetta er id-ið á commentinu sem var búið til
       const sendingCommentId = res.data.createAnswerComment.id
       const sendingUserId = res.data.createAnswerComment.user.id
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
-      const notificationInput = {
+      let notificationInput = {
         body: createReplyBody(sendingUserId),
         isSeen: false,
         userId: recievingUserId,
@@ -95,8 +102,13 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
         answerCommentId: sendingCommentId,
         questionId: 0,
       }
-      console.log(notificationInput)
 
+      // Comment sem reply-ar svarinu
+      if (res.data.createAnswerComment.level === 1) {
+        notificationInput.userId = res.data.createAnswerComment.answer.userId
+      }
+
+      console.log(notificationInput)
       console.log(
         createNotification({ variables: { input: notificationInput } })
       )
