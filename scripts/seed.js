@@ -74,7 +74,7 @@ export default async () => {
         id: 0,
         body: 'placeholder',
         userId: 0,
-        parentId: 0,
+        parentId: null,
         answerId: 0,
         level: 0,
         rating: 0,

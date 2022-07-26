@@ -1,3 +1,5 @@
+import NotificationCell from '../NotificationCell/NotificationCell'
+
 export const QUERY = gql`
   query FindNotificationsQuery2 {
     notifications {
@@ -16,10 +18,14 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ notifications }) => {
   return (
-    <ul>
-      {notifications.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
-      })}
-    </ul>
+    <>
+      <div>
+        <ul>
+          {notifications.map((item) => {
+            return <NotificationCell id={item.id} key={item.id} />
+          })}
+        </ul>
+      </div>
+    </>
   )
 }

@@ -1,4 +1,4 @@
-import { routes } from "@redwoodjs/router"
+import { Link, routes } from "@redwoodjs/router"
 
 export const QUERY = gql`
   query FindNotificationQuery($id: Int!) {
@@ -26,7 +26,16 @@ export const Success = ({ notification }) => {
   return (
   <>
     <div>
-    <h4></h4>
+    <h4>
+      <Link to={routes.question({
+         id: notification.questionId,
+         answerId: notification.answerId,
+         answerCommentId: notification.answerCommentId,
+         })}>
+        Link
+      </Link>
+    </h4>
+
       <p>id = {notification.id}</p>
       <p>body = {notification.body}</p>
       <p>isSeen = {notification.isSeen}</p>
