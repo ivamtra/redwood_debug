@@ -27,6 +27,7 @@ const CREATE_ANSWER = gql`
         userId # userId viðtakanda
       }
       userId #userId sendanda
+      questionId
     }
   }
 `
@@ -118,7 +119,7 @@ const AnswerForm = ({ questionId }) => {
     console.log(res.data.createAnswer.question.userId)
     const notificationInput = {
       body: notificationBody(res),
-      questionId: 0,
+      questionId: res.data.createAnswer.questionId,
       answerId: res.data.createAnswer.id,
       answerCommentId: 0,
       isSeen: false,
