@@ -45,10 +45,13 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
-  const { commentId } = useParams()
-  const focusRef = useRef()
   const { currentUser, isAuthenticated } = useAuth()
+
+  // Focus
+  const focusRef = useRef()
+  const { commentId } = useParams()
   useFocus(focusRef, answerComment.id, commentId)
+
   // Laga tilfellið þegar user er ekki loggaður inn
   let debugUserId
   if (!isAuthenticated) {
