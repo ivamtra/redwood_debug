@@ -3,6 +3,9 @@ import { db } from 'src/lib/db'
 export const notifications = ({ userId }) => {
   return db.notification.findMany({
     where: { userId },
+    orderBy: {
+      id: 'desc',
+    },
   })
 }
 

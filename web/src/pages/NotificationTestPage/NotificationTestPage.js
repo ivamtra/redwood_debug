@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
@@ -6,6 +8,7 @@ import NotificationsCell from 'src/components/NotificationsCell/NotificationsCel
 
 const NotificationTestPage = () => {
   const { currentUser } = useAuth()
+  useEffect(() => console.log(currentUser))
   return (
     <>
       <MetaTags title="NotificationTest" description="NotificationTest page" />
