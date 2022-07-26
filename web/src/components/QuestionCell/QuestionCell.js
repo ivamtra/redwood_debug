@@ -56,7 +56,7 @@ export const Success = ({ question, inQuestionsCell }) => {
                 question.isHidden && !currentUser.shadowBanned ? 'hidden' : ''
               }
             >
-              <Link to={routes.question({ id: question.id, answerId: 5 })}>
+              <Link to={routes.question({ id: question.id })}>
                 Titill: {question.title}
               </Link>
             </h1>

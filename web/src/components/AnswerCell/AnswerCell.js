@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes, useParams } from '@redwoodjs/router'
 
+import useFocus from 'src/customhooks/useFocus'
 import useHidden from 'src/customhooks/useHidden'
 
 import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
@@ -44,25 +45,17 @@ export const Failure = ({ error }) => (
 
 //TODO: Uncommenta þegar búið er að laga api
 export const Success = ({ answer }) => {
-  const testFocus = () => {
-    console.log('In test focus')
-    testRef.current.scrollIntoView()
-  }
-
   // TODO: Focusa þegar parameter fæst
-  const { answerId: paramAnswerId } = useParams()
-
-  useEffect(() => {
-    console.log(parseInt(paramAnswerId) === answer.id)
-    if (parseInt(paramAnswerId) === answer.id) {
-      console.log('In if block')
-      testFocus()
-    }
-  }, [answer.id])
+  // useFocus(focusRef)
   const hidden = useHidden(answer)
   const { hasRole } = useAuth()
-  const testRef = useRef()
+  const focusRef = useRef()
   const { currentUser } = useAuth()
+  const { answerId: paramId } = useParams()
+
+  // Focus á element ef komið er frá notification
+  useFocus(focusRef, answer.id, paramId)
+
   return (
     <div>
       {hidden ? (
@@ -71,10 +64,8 @@ export const Success = ({ answer }) => {
         <>
           <div>
             <div>
-              <button onClick={testFocus}>Test Focus</button>
-
               <h2
-                ref={testRef}
+                ref={focusRef}
                 className={
                   answer.isHidden && !currentUser.shadowBanned ? 'hidden' : ''
                 }
