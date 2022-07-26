@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import NotificationForm from './NotificationForm'
+import FartForm from './FartForm'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('NotificationForm', () => {
+describe('FartForm', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<NotificationForm />)
+      render(<FartForm />)
     }).not.toThrow()
   })
 })
