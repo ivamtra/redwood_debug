@@ -1,5 +1,9 @@
-import { useAuth } from '@redwoodjs/auth'
+import { useRef } from 'react'
 
+import { useAuth } from '@redwoodjs/auth'
+import { useParams } from '@redwoodjs/router'
+
+import useFocus from 'src/customhooks/useFocus'
 import useHidden from 'src/customhooks/useHidden'
 
 import DeleteButton from '../DeleteButton/DeleteButton'
@@ -41,7 +45,10 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
+  const { commentId } = useParams()
+  const focusRef = useRef()
   const { currentUser, isAuthenticated } = useAuth()
+  useFocus(focusRef, answerComment.id, commentId)
   // Laga tilfellið þegar user er ekki loggaður inn
   let debugUserId
   if (!isAuthenticated) {
@@ -98,7 +105,7 @@ export const Success = ({ answerComment }) => {
             <p className="order-1">Rating: {answerComment.rating}</p>
             <p>answerId = {answerComment.answerId}</p>
             <p>id = {answerComment.id}</p>
-            <p>{answerComment.createdAt}</p>
+            <p ref={focusRef}>{answerComment.createdAt}</p>
 
             {answerComment.body !== '[Deleted]' ? (
               <p className="order-1">{answerComment.user.email}</p>

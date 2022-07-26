@@ -30,7 +30,7 @@ export const Success = ({ notification }) => {
       <Link to={routes.question({
          id: notification.questionId,
          answerId: notification.answerId,
-         answerCommentId: notification.answerCommentId,
+         commentId: notification.answerCommentId,
          })}>
         Link
       </Link>

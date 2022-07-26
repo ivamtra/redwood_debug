@@ -10,7 +10,7 @@ import { useLayoutEffect } from 'react'
 export default function useFocus(ref, componentId, paramId) {
   const focus = () => {
     if (componentId === parseInt(paramId))
-      ref.current.scrollIntoView({ behavior: 'smooth' })
+      ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
   useLayoutEffect(focus, [ref, componentId, paramId])

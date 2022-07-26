@@ -65,14 +65,13 @@ export const Success = ({ answer }) => {
           <div>
             <div>
               <h2
-                ref={focusRef}
                 className={
                   answer.isHidden && !currentUser.shadowBanned ? 'hidden' : ''
                 }
               >
                 Titill: {answer.title} (Getur verið ekkert)
               </h2>
-              <h3>Rökstuðningur: {answer.justification}</h3>
+              <h3 ref={focusRef}>Rökstuðningur: {answer.justification}</h3>
               <p>answer.questionId = {answer.questionId}</p>
             </div>
             {hasRole(['moderator', 'admin']) ? (
