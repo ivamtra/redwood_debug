@@ -36,7 +36,7 @@ model User {
   UserIsInGroup       UserIsInGroup[]
   UserLikesComment    UserLikesComment[]
   Issue               Issue[]
-  TestNotification    TestNotification[]
+  Fart                Fart[]
 }
 
 // Svipað og facebook hópur
@@ -67,7 +67,7 @@ model Question {
   UserLikesQuestion    UserLikesQuestion[]
   Issue                Issue[]
   QuestionIsInCategory QuestionIsInCategory[]
-  TestNotification     TestNotification[]
+  Fart                 Fart[]
 }
 
 model Sentence {
@@ -89,11 +89,11 @@ model Answer {
   rating        Int      @default(0)
   isHidden      Boolean  @default(false)
 
-  UserLikesAnswer  UserLikesAnswer[]
-  AnswerComment    AnswerComment[]
-  translations     Translation[] // Hvert svar getur innihaldið nokkrar þýðingar
-  Issue            Issue[]
-  TestNotification TestNotification[]
+  UserLikesAnswer UserLikesAnswer[]
+  AnswerComment   AnswerComment[]
+  translations    Translation[] // Hvert svar getur innihaldið nokkrar þýðingar
+  Issue           Issue[]
+  Fart            Fart[]
 }
 
 // Hvert svar getur innihaldið margar þýðingar sem notandinn gefur.
@@ -118,7 +118,7 @@ model AnswerComment {
   isHidden         Boolean            @default(false)
   Issue            Issue[]
   UserLikesComment UserLikesComment[]
-  TestNotification TestNotification[]
+  Fart             Fart[]
 }
 
 model Category {
@@ -264,17 +264,34 @@ model QuestionIsInCategory {
 
 //TODO: Notifications
 
-model TestNotification {
-  id         Int            @id @default(autoincrement())
-  commentId  Int?
-  questionId Int?
-  answerId   Int?
-  body       String
-  createdAt  DateTime
-  seen       Boolean        @default(false)
-  userId     Int
-  user       User           @relation(fields: [userId], references: [id])
-  comment    AnswerComment? @relation(fields: [commentId], references: [id])
-  question   Question?      @relation(fields: [questionId], references: [id])
-  answer     Answer?        @relation(fields: [answerId], references: [id])
+// model TestNotification {
+//   id         Int            @id @default(autoincrement())
+//   commentId  Int?
+//   questionId Int?
+//   answerId   Int?
+//   body       String
+//   createdAt  DateTime
+//   seen       Boolean        @default(false)
+//   userId     Int
+//   user       User           @relation(fields: [userId], references: [id])
+//   comment    AnswerComment? @relation(fields: [commentId], references: [id])
+//   question   Question?      @relation(fields: [questionId], references: [id])
+//   answer     Answer?        @relation(fields: [answerId], references: [id])
+// }
+
+model Fart {
+  id            Int           @id @default(autoincrement())
+  question      Question      @relation(fields: [questionId], references: [id])
+  answer        Answer        @relation(fields: [answerId], references: [id])
+  answerComment AnswerComment @relation(fields: [answerCommentId], references: [id])
+  user          User          @relation(fields: [userId], references: [id])
+
+  body   String // Notification lysing
+  isSeen Boolean
+
+  // Gefum bull id ef notandinn gefur ekkert
+  questionId      Int @default(0)
+  answerId        Int @default(0)
+  answerCommentId Int @default(0)
+  userId          Int
 }
