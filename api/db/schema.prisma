@@ -290,8 +290,9 @@ model Notification {
   isSeen Boolean
 
   // Gefum bull id ef notandinn gefur ekkert
-  questionId      Int @default(0)
-  answerId        Int @default(0)
-  answerCommentId Int @default(0)
+  questionId      Int      @default(0)
+  answerId        Int      @default(0)
+  answerCommentId Int      @default(0)
   userId          Int
+  createdAt       DateTime @default(now())
 }
