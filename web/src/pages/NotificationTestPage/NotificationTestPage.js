@@ -2,7 +2,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import NotificationForm from 'src/components/NotificationForm/NotificationForm'
-import NotificationsCell from 'src/components/NotificationsCell/NotificationsCell'
+import TestNotificationsCell from 'src/components/TestNotificationsCell/TestNotificationsCell'
 
 const NotificationTestPage = () => {
   return (
@@ -21,6 +21,8 @@ const NotificationTestPage = () => {
         `<Link to={routes.notificationTest()}>NotificationTest</Link>`
       </p>
       <NotificationForm />
+
+      <TestNotificationsCell />
     </>
   )
 }

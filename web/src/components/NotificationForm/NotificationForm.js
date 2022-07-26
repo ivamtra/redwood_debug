@@ -20,6 +20,16 @@ const NotificationForm = () => {
       console.log('In catch')
     })
   }
+
+  const fart = () => {
+    const input = {
+      body: 'body',
+      userId: 1,
+      commentId: 0,
+      seen: false,
+    }
+    createNotification({ variables: { input: input } })
+  }
   return (
     <div>
       <Form onSubmit={onSubmit}>
@@ -28,6 +38,7 @@ const NotificationForm = () => {
         <TextField name="seen" placeholder="seen" />
         <Submit>Submit</Submit>
       </Form>
+      <button onClick={fart}>Fart</button>
     </div>
   )
 }

@@ -2,6 +2,8 @@ export const QUERY = gql`
   query TestNotificationsQuery {
     testNotifications {
       id
+      body
+      createdAt
     }
   }
 `

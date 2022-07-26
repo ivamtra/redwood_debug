@@ -264,7 +264,6 @@ model QuestionIsInCategory {
 
 //TODO: Notifications
 
-// Sleppi því að nota foreign key fyrir componenta svo id-in geta verið null
 model TestNotification {
   id         Int            @id @default(autoincrement())
   commentId  Int?
