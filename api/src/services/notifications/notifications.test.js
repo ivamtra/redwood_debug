@@ -28,15 +28,15 @@ describe('notifications', () => {
   scenario('creates a notification', async (scenario) => {
     const result = await createNotification({
       input: {
-        userId: scenario.notification.two.userId,
         body: 'String',
-        createdAt: '2022-07-25T21:48:04Z',
+        isSeen: true,
+        userId: scenario.notification.two.userId,
       },
     })
 
-    expect(result.userId).toEqual(scenario.notification.two.userId)
     expect(result.body).toEqual('String')
-    expect(result.createdAt).toEqual('2022-07-25T21:48:04Z')
+    expect(result.isSeen).toEqual(true)
+    expect(result.userId).toEqual(scenario.notification.two.userId)
   })
 
   scenario('updates a notification', async (scenario) => {

@@ -30,6 +30,12 @@ export const deleteNotification = ({ id }) => {
 }
 
 export const Notification = {
+  question: (_obj, { root }) =>
+    db.notification.findUnique({ where: { id: root.id } }).question(),
+  answer: (_obj, { root }) =>
+    db.notification.findUnique({ where: { id: root.id } }).answer(),
+  answerComment: (_obj, { root }) =>
+    db.notification.findUnique({ where: { id: root.id } }).answerComment(),
   user: (_obj, { root }) =>
     db.notification.findUnique({ where: { id: root.id } }).user(),
 }

@@ -1,14 +1,16 @@
 export const schema = gql`
   type Notification {
     id: Int!
-    commentId: Int
-    questionId: Int
-    answerId: Int
+    question: Question!
+    answer: Answer!
+    answerComment: AnswerComment!
     user: User!
-    userId: Int!
     body: String!
-    createdAt: DateTime!
-    seen: Boolean!
+    isSeen: Boolean!
+    questionId: Int!
+    answerId: Int!
+    answerCommentId: Int!
+    userId: Int!
   }
 
   type Query {
@@ -17,21 +19,21 @@ export const schema = gql`
   }
 
   input CreateNotificationInput {
-    commentId: Int
-    questionId: Int
-    answerId: Int
-    userId: Int!
     body: String!
-    seen: Boolean!
+    isSeen: Boolean!
+    questionId: Int!
+    answerId: Int!
+    answerCommentId: Int!
+    userId: Int!
   }
 
   input UpdateNotificationInput {
-    commentId: Int
+    body: String
+    isSeen: Boolean
     questionId: Int
     answerId: Int
+    answerCommentId: Int
     userId: Int
-    body: String
-    seen: Boolean
   }
 
   type Mutation {

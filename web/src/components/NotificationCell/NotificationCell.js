@@ -1,6 +1,6 @@
 export const QUERY = gql`
-  query FindNotificationsQuery2 {
-    notifications {
+  query FindNotificationQuery($id: Int!) {
+    notification: notification(id: $id) {
       id
     }
   }
@@ -14,12 +14,6 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ notifications }) => {
-  return (
-    <ul>
-      {notifications.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
-      })}
-    </ul>
-  )
+export const Success = ({ notification }) => {
+  return <div>{JSON.stringify(notification)}</div>
 }
