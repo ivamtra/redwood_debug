@@ -88,11 +88,11 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
       const notificationInput = {
-        body: 'Comment reply test',
+        body: createReplyBody(sendingUserId),
         isSeen: false,
-        userId: 0,
+        userId: recievingUserId,
         answerId: 0,
-        answerCommentId: 0,
+        answerCommentId: sendingCommentId,
         questionId: 0,
       }
       console.log(notificationInput)
@@ -123,20 +123,6 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
     }
   })
 
-  const test = () => {
-    console.log(
-      createNotification({
-        variables: {
-          input: {
-            userId: 1,
-            body: 'Test',
-            seen: false,
-          },
-        },
-      })
-    )
-  }
-
   return (
     <>
       <div>
@@ -144,9 +130,6 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
           <TextAreaField name="body" placeholder="Skrifa athugasemd" />
           <Submit>Save</Submit>
         </Form>
-      </div>
-      <div>
-        <button onClick={test}>Test</button>
       </div>
     </>
   )
