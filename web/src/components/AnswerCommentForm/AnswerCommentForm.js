@@ -18,7 +18,8 @@ export const CREATE_COMMENT = gql`
         id
       }
       answer {
-        userId
+        userId #reciever
+        questionId
       }
       level
       answerId
@@ -94,13 +95,14 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
       const sendingUserId = res.data.createAnswerComment.user.id // Fer í skilaboðin
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
+      const questionId = res.data.createAnswerComment.answer.questionId
       let notificationInput = {
         body: createReplyBody(sendingUserId),
         isSeen: false,
         userId: recievingUserId,
         answerId: 0,
         answerCommentId: sendingCommentId,
-        questionId: 0,
+        questionId: questionId,
       }
 
       // Comment á svar
