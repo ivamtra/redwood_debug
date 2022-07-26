@@ -1,28 +1,9 @@
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 
-const CREATE_NOTIFICATION = gql`
-  mutation CreateNotification($input: CreateNotificationInput!) {
-    createNotification(input: $input) {
-      id
-    }
-  }
-`
+import NotificationCell from 'src/components/NotificationCell/NotificationCell'
 
 const NotificationTestPage = () => {
-  const [createNotification] = useMutation(CREATE_NOTIFICATION)
-  const inputData = {
-    body: 'GraphQL test',
-    isSeen: false,
-    userId: 0,
-    answerId: 0,
-    answerCommentId: 0,
-    questionId: 0,
-  }
-
-  const notify = () => {
-    createNotification({ variables: { input: inputData } })
-  }
   return (
     <>
       <MetaTags title="NotificationTest" description="NotificationTest page" />
@@ -38,7 +19,7 @@ const NotificationTestPage = () => {
         My default route is named <code>notificationTest</code>, link to me with
         `<Link to={routes.notificationTest()}>NotificationTest</Link>`
       </p>
-      <button onClick={notify}>Notification test</button>
+      <NotificationCell id={1} />
     </>
   )
 }
