@@ -7,17 +7,26 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { timeBetweenTwoDateStringsInSeconds } from 'src/customUtils/DateUtils'
 
+import { CREATE_NOTIFICATION } from '../AnswerCommentForm/AnswerCommentForm'
 import { UPDATE_USER, handleNewUser } from '../NewQuestionForm/NewQuestionForm'
-
 //-------------- Database --------------------------------------------
 
 //-------------- Create Answer og Translation -------------------------
 
+const notificationBody = (res) => {
+  // user x svaraði spurningu þinni
+  return 'User ' + res.data.createAnswer.userId + ' svaraði spurningu þinni'
+}
+
 const CREATE_ANSWER = gql`
   mutation CreateAnswerMutation($input: CreateAnswerInput!) {
     createAnswer(input: $input) {
-      id
+      id #answerId sendanda
       createdAt
+      question {
+        userId # userId viðtakanda
+      }
+      userId #userId sendanda
     }
   }
 `
@@ -31,6 +40,7 @@ const CREATE_TRANSLATION = gql`
 `
 
 const AnswerForm = ({ questionId }) => {
+  const [createNotification] = useMutation(CREATE_NOTIFICATION)
   const [createAnswer] = useMutation(CREATE_ANSWER, {
     onCompleted: () => toast.success('svar móttekið'),
   })
@@ -101,6 +111,23 @@ const AnswerForm = ({ questionId }) => {
     })
   }
 
+  const handleNotificationMutation = (res) => {
+    console.log('In handle Notification')
+    console.log(notificationBody(res))
+    console.log(res)
+    console.log(res.data.createAnswer.question.userId)
+    const notificationInput = {
+      body: notificationBody(res),
+      questionId: 0,
+      answerId: res.data.createAnswer.id,
+      answerCommentId: 0,
+      isSeen: false,
+      userId: res.data.createAnswer.question.userId, //Id viðtakanda
+    }
+    console.log(notificationInput)
+    console.log(createNotification({ variables: { input: notificationInput } }))
+  }
+
   const handleAnswerMutation = (data, safeGuardCounter) => {
     console.log(safeGuardCounter)
     if (safeGuardCounter >= 2) return
@@ -122,7 +149,9 @@ const AnswerForm = ({ questionId }) => {
     console.log(answerCreatedPromise)
     answerCreatedPromise
       .then((result) => {
+        handleNotificationMutation(result)
         handleTranslationMutation(result.data.createAnswer.id)
+        console.log(result)
       })
       .catch(() => {
         console.log(currentUser)

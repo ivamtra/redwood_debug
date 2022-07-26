@@ -26,7 +26,7 @@ export const CREATE_COMMENT = gql`
   }
 `
 
-const CREATE_NOTIFICATION = gql`
+export const CREATE_NOTIFICATION = gql`
   mutation CreateNotification($input: CreateNotificationInput!) {
     createNotification(input: $input) {
       id
@@ -91,7 +91,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
       // Comment id sem fer í töfluna
       // Þetta er id-ið á commentinu sem var búið til
       const sendingCommentId = res.data.createAnswerComment.id
-      const sendingUserId = res.data.createAnswerComment.user.id
+      const sendingUserId = res.data.createAnswerComment.user.id // Fer í skilaboðin
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
       let notificationInput = {
@@ -103,7 +103,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
         questionId: 0,
       }
 
-      // Comment sem reply-ar svarinu
+      // Comment á svar
       if (res.data.createAnswerComment.level === 1) {
         notificationInput.userId = res.data.createAnswerComment.answer.userId
       }
