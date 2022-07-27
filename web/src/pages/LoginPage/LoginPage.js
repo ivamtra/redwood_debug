@@ -1,7 +1,5 @@
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useRef } from 'react'
-import { useEffect } from 'react'
-
-import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
   Label,
@@ -10,16 +8,17 @@ import {
   Submit,
   FieldError,
 } from '@redwoodjs/forms'
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { useAuth } from '@redwoodjs/auth'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
+import { useEffect } from 'react'
 
 const LoginPage = () => {
   const { isAuthenticated, logIn } = useAuth()
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.questions())
+      navigate(routes.home())
     }
   }, [isAuthenticated])
 
