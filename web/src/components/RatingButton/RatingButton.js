@@ -2,182 +2,34 @@
 //TODO: Refactora
 //TODO: ENUM fyrir tegund af component?
 //TODO: CSS til að merkja hvort að takkinn hafi verið smelltur
-import { useCallback, useEffect, useState } from 'react' //
+import { useState } from 'react' //
 
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
-import { useForceUpdate } from 'src/customhooks/useForceUpdate'
+import {
+  QUESTION_QUERY,
+  UPDATE_ANSWER_RATING,
+  UPDATE_COMMENT_RATING,
+  UPDATE_QUESTION_RATING,
+  UPDATE_USER_LIKES_ANSWER,
+  UPDATE_USER_LIKES_COMMENT,
+  UPDATE_USER_LIKES_QUESTION,
+  USER_LIKES_ANSWER_QUERY,
+  USER_LIKES_COMMENT_QUERY,
+  USER_LIKES_QUESTION_QUERY,
+  ANSWER_QUERY,
+  COMMENT_QUERY,
+  CREATE_ANSWER_UPVOTE,
+  CREATE_COMMENT_UPVOTE,
+  CREATE_QUESTION_UPVOTE,
+} from 'src/customUtils/GraphQLMutations'
 
 import { QUERY as refetchAnswerQuery } from '../AnswerCell'
 import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
 import { QUERY as refetchQuestionQuery } from '../QuestionCell'
-
-// ----------- GRAPHQL CRUD --------------------------
-
-// ----------- CREATE ---------------------------
-
-const CREATE_QUESTION_UPVOTE = gql`
-  mutation CreateQuestionUpvote($input: CreateUserLikesQuestionInput!) {
-    createUserLikesQuestion(input: $input) {
-      id
-    }
-  }
-`
-
-const CREATE_ANSWER_UPVOTE = gql`
-  mutation CreateAnswerUpvote($input: CreateUserLikesAnswerInput!) {
-    createUserLikesAnswer(input: $input) {
-      id
-    }
-  }
-`
-
-const CREATE_COMMENT_UPVOTE = gql`
-  mutation CreateCommentUpvote($input: CreateUserLikesCommentInput!) {
-    createUserLikesComment(input: $input) {
-      id
-    }
-  }
-`
-// ---------------------------------------------
-
-// ----------- READ ----------------------------
-
-// ----------- Componenta Query ----------------------------
-
-const QUESTION_QUERY = gql`
-  query FindQuestionQuery($id: Int!) {
-    question: question(id: $id) {
-      id
-      rating
-    }
-  }
-`
-
-const ANSWER_QUERY = gql`
-  query FindAnswerQuery($id: Int!) {
-    answer: answer(id: $id) {
-      id
-      rating
-    }
-  }
-`
-
-const COMMENT_QUERY = gql`
-  query FindAnswerCommentQuery($id: Int!) {
-    answerComment: answerComment(id: $id) {
-      id
-      rating
-    }
-  }
-`
-
-// ----------- UserLikesX Töflur Query GraphQL --------------------------
-
-const USER_LIKES_QUESTION_QUERY = gql`
-  query CustomUserLikesQuestion($userId: Int!, $questionId: Int!) {
-    customUserLikesQuestion: customUserLikesQuestion(
-      userId: $userId
-      questionId: $questionId
-    ) {
-      id
-      action
-    }
-  }
-`
-
-const USER_LIKES_ANSWER_QUERY = gql`
-  query CustomUserLikesAnswer($userId: Int!, $answerId: Int!) {
-    customUserLikesAnswer: customUserLikesAnswer(
-      userId: $userId
-      answerId: $answerId
-    ) {
-      id
-      action
-    }
-  }
-`
-
-const USER_LIKES_COMMENT_QUERY = gql`
-  query CustomUserLikesComment($userId: Int!, $commentId: Int!) {
-    customUserLikesComment: customUserLikesComment(
-      userId: $userId
-      commentId: $commentId
-    ) {
-      id
-      action
-    }
-  }
-`
-// ---------------------------------------------
-
-// ----------- UPDATE --------------------------
-
-// ----------- Hækka rating á question --------------------------
-
-export const UPDATE_QUESTION_RATING = gql`
-  mutation UpdateQuestionRating($id: Int!, $input: UpdateQuestionInput!) {
-    updateQuestion(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-export const UPDATE_ANSWER_RATING = gql`
-  mutation UpdateAnswerRating($id: Int!, $input: UpdateAnswerInput!) {
-    updateAnswer(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-export const UPDATE_COMMENT_RATING = gql`
-  mutation UpdateCommentRating($id: Int!, $input: UpdateAnswerCommentInput!) {
-    updateAnswerComment(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-// ----------- Breytingar í UserLikesX töflum ----------
-
-const UPDATE_USER_LIKES_QUESTION = gql`
-  mutation UpdateUserLikesQuestion(
-    $id: Int!
-    $input: UpdateUserLikesQuestionInput!
-  ) {
-    updateUserLikesQuestion(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-const UPDATE_USER_LIKES_ANSWER = gql`
-  mutation UpdateUserLikesAnswer(
-    $id: Int!
-    $input: UpdateUserLikesAnswerInput!
-  ) {
-    updateUserLikesAnswer(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-const UPDATE_USER_LIKES_COMMENT = gql`
-  mutation UpdateUserLikesComment(
-    $id: Int!
-    $input: UpdateUserLikesCommentInput!
-  ) {
-    updateUserLikesComment(id: $id, input: $input) {
-      id
-    }
-  }
-`
-
-// -----------------------------------------------------
 
 // ----------- UpdateRating fall ----------------------------------
 
@@ -224,7 +76,7 @@ const RatingButton = ({ type, id }) => {
   }
 
   // ----------------- Variables ---------------------
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { isAuthenticated, currentUser } = useAuth()
   const [rating, setRating] = useState(0)
   let debugUserId
 
@@ -579,14 +431,3 @@ const RatingButton = ({ type, id }) => {
 }
 
 export default RatingButton
-
-// type : {
-//   question
-//   answer
-//   comment
-// }
-
-//const types = ['question', 'answer', 'comment']
-
-//useReducer gæti verið sniðugt hérna þar sem
-// það eru 3 mismunandi tilvik eftir því hvort þetta er spurning, svar eða comment

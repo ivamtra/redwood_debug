@@ -1,14 +1,20 @@
 import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@redwoodjs/web'
 
-import { QUERY as refetchAnswerQuery } from '../AnswerCell'
-import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
-import { QUERY as refetchQuestionQuery } from '../QuestionCell'
 import {
   UPDATE_COMMENT_RATING as UpdateComment,
   UPDATE_ANSWER_RATING as UpdateAnswer,
   UPDATE_QUESTION_RATING as UpdateQuestion,
-} from '../RatingButton/RatingButton'
+} from 'src/customUtils/GraphQLMutations'
+
+import { QUERY as refetchAnswerQuery } from '../AnswerCell'
+import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
+import { QUERY as refetchQuestionQuery } from '../QuestionCell'
+
+// UPDATE_COMMENT_RATING as UpdateComment,
+//   UPDATE_ANSWER_RATING as UpdateAnswer,
+//   UPDATE_QUESTION_RATING as UpdateQuestion,
+
 //------------------- GRAPHQL -------------------------------
 const [question, answer, comment] = ['question', 'answer', 'comment']
 
