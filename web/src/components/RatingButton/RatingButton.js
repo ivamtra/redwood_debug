@@ -9,23 +9,7 @@ import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation, useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
 
-import {
-  QUESTION_QUERY,
-  UPDATE_ANSWER_RATING,
-  UPDATE_COMMENT_RATING,
-  UPDATE_QUESTION_RATING,
-  UPDATE_USER_LIKES_ANSWER,
-  UPDATE_USER_LIKES_COMMENT,
-  UPDATE_USER_LIKES_QUESTION,
-  USER_LIKES_ANSWER_QUERY,
-  USER_LIKES_COMMENT_QUERY,
-  USER_LIKES_QUESTION_QUERY,
-  ANSWER_QUERY,
-  COMMENT_QUERY,
-  CREATE_ANSWER_UPVOTE,
-  CREATE_COMMENT_UPVOTE,
-  CREATE_QUESTION_UPVOTE,
-} from 'src/customUtils/GraphQLMutations'
+import { GraphQLMutations } from 'src/customUtils/GraphQLMutations'
 
 import { QUERY as refetchAnswerQuery } from '../AnswerCell'
 import { QUERY as refetchCommentQuery } from '../AnswerCommentCell'
@@ -92,39 +76,48 @@ const RatingButton = ({ type, id }) => {
   // -------------------------------------------------
 
   // CREATE
-  const [createQuestionUpvote] = useMutation(CREATE_QUESTION_UPVOTE, {
-    refetchQueries: [
-      {
-        query: USER_LIKES_QUESTION_QUERY,
-        variables: {
-          userId: debugUserId,
-          questionId: id,
+  const [createQuestionUpvote] = useMutation(
+    GraphQLMutations.CREATE_QUESTION_UPVOTE,
+    {
+      refetchQueries: [
+        {
+          query: GraphQLMutations.USER_LIKES_QUESTION_QUERY,
+          variables: {
+            userId: debugUserId,
+            questionId: id,
+          },
         },
-      },
-    ],
-  })
-  const [createAnswerUpvote] = useMutation(CREATE_ANSWER_UPVOTE, {
-    refetchQueries: [
-      {
-        query: USER_LIKES_ANSWER_QUERY,
-        variables: {
-          userId: debugUserId,
-          answerId: id,
+      ],
+    }
+  )
+  const [createAnswerUpvote] = useMutation(
+    GraphQLMutations.CREATE_ANSWER_UPVOTE,
+    {
+      refetchQueries: [
+        {
+          query: GraphQLMutations.USER_LIKES_ANSWER_QUERY,
+          variables: {
+            userId: debugUserId,
+            answerId: id,
+          },
         },
-      },
-    ],
-  })
-  const [createCommentUpvote] = useMutation(CREATE_COMMENT_UPVOTE, {
-    refetchQueries: [
-      {
-        query: USER_LIKES_COMMENT_QUERY,
-        variables: {
-          userId: debugUserId,
-          commentId: id,
+      ],
+    }
+  )
+  const [createCommentUpvote] = useMutation(
+    GraphQLMutations.CREATE_COMMENT_UPVOTE,
+    {
+      refetchQueries: [
+        {
+          query: GraphQLMutations.USER_LIKES_COMMENT_QUERY,
+          variables: {
+            userId: debugUserId,
+            commentId: id,
+          },
         },
-      },
-    ],
-  })
+      ],
+    }
+  )
   // -------------------------------
 
   // UPDATE
@@ -132,53 +125,71 @@ const RatingButton = ({ type, id }) => {
   // Components
 
   // Question
-  const [updateQuestionRating] = useMutation(UPDATE_QUESTION_RATING, {
-    refetchQueries: [{ query: refetchQuestionQuery, variables: { id } }],
-    onCompleted: () => {
-      onCompleted('question')
-    },
-  })
+  const [updateQuestionRating] = useMutation(
+    GraphQLMutations.UPDATE_QUESTION_RATING,
+    {
+      refetchQueries: [{ query: refetchQuestionQuery, variables: { id } }],
+      onCompleted: () => {
+        onCompleted('question')
+      },
+    }
+  )
 
   // Answer
-  const [UpdateAnswerRating] = useMutation(UPDATE_ANSWER_RATING, {
-    refetchQueries: [{ query: refetchAnswerQuery, variables: { id } }],
-    onCompleted: () => onCompleted('answer'),
-  })
+  const [UpdateAnswerRating] = useMutation(
+    GraphQLMutations.UPDATE_ANSWER_RATING,
+    {
+      refetchQueries: [{ query: refetchAnswerQuery, variables: { id } }],
+      onCompleted: () => onCompleted('answer'),
+    }
+  )
 
   // Comment
-  const [UpdateCommentRating] = useMutation(UPDATE_COMMENT_RATING, {
-    refetchQueries: [{ query: refetchCommentQuery, variables: { id } }],
-    onCompleted: () => onCompleted('comment'),
-  })
+  const [UpdateCommentRating] = useMutation(
+    GraphQLMutations.UPDATE_COMMENT_RATING,
+    {
+      refetchQueries: [{ query: refetchCommentQuery, variables: { id } }],
+      onCompleted: () => onCompleted('comment'),
+    }
+  )
 
   // UserLikesX
 
-  const [updateUserLikesQuestion] = useMutation(UPDATE_USER_LIKES_QUESTION, {
-    refetchQueries: [
-      {
-        query: USER_LIKES_QUESTION_QUERY,
-        variables: { userId: debugUserId, questionId: id },
-      },
-    ],
-  })
+  const [updateUserLikesQuestion] = useMutation(
+    GraphQLMutations.UPDATE_USER_LIKES_QUESTION,
+    {
+      refetchQueries: [
+        {
+          query: GraphQLMutations.USER_LIKES_QUESTION_QUERY,
+          variables: { userId: debugUserId, questionId: id },
+        },
+      ],
+    }
+  )
 
-  const [updateUserLikesAnswer] = useMutation(UPDATE_USER_LIKES_ANSWER, {
-    refetchQueries: [
-      {
-        query: USER_LIKES_ANSWER_QUERY,
-        variables: { userId: debugUserId, answerId: id },
-      },
-    ],
-  })
+  const [updateUserLikesAnswer] = useMutation(
+    GraphQLMutations.UPDATE_USER_LIKES_ANSWER,
+    {
+      refetchQueries: [
+        {
+          query: GraphQLMutations.USER_LIKES_ANSWER_QUERY,
+          variables: { userId: debugUserId, answerId: id },
+        },
+      ],
+    }
+  )
 
-  const [updateUserLikesComment] = useMutation(UPDATE_USER_LIKES_COMMENT, {
-    refetchQueries: [
-      {
-        query: USER_LIKES_COMMENT_QUERY,
-        variables: { userId: debugUserId, commentId: id },
-      },
-    ],
-  })
+  const [updateUserLikesComment] = useMutation(
+    GraphQLMutations.UPDATE_USER_LIKES_COMMENT,
+    {
+      refetchQueries: [
+        {
+          query: GraphQLMutations.USER_LIKES_COMMENT_QUERY,
+          variables: { userId: debugUserId, commentId: id },
+        },
+      ],
+    }
+  )
   // ------------------------------------------------
 
   // Component Queries
@@ -188,7 +199,7 @@ const RatingButton = ({ type, id }) => {
     data: questionData,
     loading: questionLoading,
     error: questionError,
-  } = useQuery(QUESTION_QUERY, {
+  } = useQuery(GraphQLMutations.QUESTION_QUERY, {
     variables: { id },
   })
 
@@ -197,7 +208,7 @@ const RatingButton = ({ type, id }) => {
     data: answerData,
     loading: answerLoading,
     error: answerError,
-  } = useQuery(ANSWER_QUERY, {
+  } = useQuery(GraphQLMutations.ANSWER_QUERY, {
     variables: { id },
   })
 
@@ -206,24 +217,33 @@ const RatingButton = ({ type, id }) => {
     data: commentData,
     loading: commentLoading,
     error: commentError,
-  } = useQuery(COMMENT_QUERY, {
+  } = useQuery(GraphQLMutations.COMMENT_QUERY, {
     variables: { id },
   })
   // ------------------------------------------------
 
   // UserLikesX Queries
 
-  const { data: userLikesQuestionData } = useQuery(USER_LIKES_QUESTION_QUERY, {
-    variables: { questionId: id, userId: debugUserId },
-  })
+  const { data: userLikesQuestionData } = useQuery(
+    GraphQLMutations.USER_LIKES_QUESTION_QUERY,
+    {
+      variables: { questionId: id, userId: debugUserId },
+    }
+  )
 
-  const { data: userLikesAnswerData } = useQuery(USER_LIKES_ANSWER_QUERY, {
-    variables: { answerId: id, userId: debugUserId },
-  })
+  const { data: userLikesAnswerData } = useQuery(
+    GraphQLMutations.USER_LIKES_ANSWER_QUERY,
+    {
+      variables: { answerId: id, userId: debugUserId },
+    }
+  )
 
-  const { data: userLikesCommentData } = useQuery(USER_LIKES_COMMENT_QUERY, {
-    variables: { commentId: id, userId: debugUserId },
-  })
+  const { data: userLikesCommentData } = useQuery(
+    GraphQLMutations.USER_LIKES_COMMENT_QUERY,
+    {
+      variables: { commentId: id, userId: debugUserId },
+    }
+  )
 
   // ------------------------------------------------
 
