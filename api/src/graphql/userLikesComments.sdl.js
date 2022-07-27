@@ -22,7 +22,7 @@ export const schema = gql`
     dateTime: DateTime!
     userId: Int!
     commentId: Int!
-    questionId: Int!
+    questionId: Int
   }
 
   input UpdateUserLikesCommentInput {

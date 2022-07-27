@@ -194,7 +194,7 @@ model UserLikesComment {
   dateTime      DateTime      @default(now())
   userId        Int
   commentId     Int
-  questionId    Int //FIXME: Þessi dálkur á ekki að vera hérna en allt brotnar þegar hann fer
+  questionId    Int?          @default(0) //FIXME: Þessi dálkur á ekki að vera hérna en allt brotnar þegar hann fer
 
   @@unique([userId, commentId])
 }
