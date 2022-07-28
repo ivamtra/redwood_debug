@@ -5,6 +5,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 import useHidden from 'src/customhooks/useHidden'
 
+import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
 import AnswerCommentsCell from '../AnswerCommentsCell'
 import AnswerForm from '../AnswerForm'
 import AnswersCell from '../AnswersCell'
@@ -86,8 +87,14 @@ export const Success = ({ question, inQuestionsCell }) => {
           </div>
           {!inQuestionsCell ? (
             <div>
+              <AnswerCommentForm
+                answerId={0}
+                parentId={0}
+                questionId={question.id}
+              />
               <AnswerCommentsCell answerId={0} questionId={question.id} />
               <h1>---------------------------------------</h1>
+
               <h1>Answer form</h1>
               <AnswerForm questionId={question.id} />
               <h1>---------------------------------------</h1>

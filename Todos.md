@@ -104,3 +104,4 @@
 # 25. júlí
 
 - QuestionComment component
+  - Kominn með fulla virkni ✅
