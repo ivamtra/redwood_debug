@@ -1,4 +1,4 @@
-//TODO: isHidden
+//TODO: fá question til að virka
 export const schema = gql`
   type AnswerComment {
     id: Int!
@@ -8,8 +8,8 @@ export const schema = gql`
     parentId: Int
     answer: Answer!
     answerId: Int!
-    questionId: Int!
     question: Question!
+    questionId: Int!
     createdAt: DateTime!
     level: Int!
     rating: Int!
@@ -51,7 +51,7 @@ export const schema = gql`
 
   type Mutation {
     createAnswerComment(input: CreateAnswerCommentInput!): AnswerComment!
-      @requireAuth
+      @skipAuth
     updateAnswerComment(
       id: Int!
       input: UpdateAnswerCommentInput!

@@ -25,6 +25,9 @@ export const CREATE_COMMENT = gql`
       level
       answerId
       questionId
+      question {
+        userId
+      }
     }
   }
 `

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { useParams } from '@redwoodjs/router'
@@ -28,6 +28,12 @@ export const QUERY = gql`
       rating
       isHidden
       questionId
+      answer {
+        userId
+      }
+      question {
+        userId
+      }
     }
   }
 `
@@ -46,6 +52,7 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
+  useEffect(() => console.log(answerComment))
   const { currentUser, isAuthenticated } = useAuth()
 
   // Focus

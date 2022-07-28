@@ -1,12 +1,17 @@
 import { db } from 'src/lib/db'
 
 export const answerComments = ({ answerId }) => {
-  return db.answerComment.findMany({ where: { answerId } })
+  return db.answerComment.findMany({
+    where: { answerId },
+    include: { question: true },
+  })
 }
 
+// * Nu virkar að query-a question
 export const answerComment = ({ id }) => {
   return db.answerComment.findUnique({
     where: { id },
+    include: { question: true },
   })
 }
 
@@ -32,6 +37,7 @@ export const customAnswerComments = ({ answerId, questionId }) => {
 export const createAnswerComment = ({ input }) => {
   return db.answerComment.create({
     data: input,
+    include: { question: true },
   })
 }
 
