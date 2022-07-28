@@ -60,7 +60,9 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
       setHasPosted(true)
       toast.success('Thank you for your comment!')
     },
-    refetchQueries: [{ query: CommentsQuery, variables: { answerId } }],
+    refetchQueries: [
+      { query: CommentsQuery, variables: { answerId, questionId } },
+    ],
   })
   const { isAuthenticated, currentUser, hasRole } = useAuth()
   const [level, setLevel] = useState(0)
