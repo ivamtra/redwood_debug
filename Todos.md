@@ -116,3 +116,7 @@
   - Refactora ratingButton 🟡
     - Betra núna
 
+<br>
+
+- Svar birtist nú strax þegar maður svarar spurningu ✅
+

@@ -4,7 +4,11 @@ import { db } from 'src/lib/db'
 export const CREATE_QUESTION_ROLES = ['admin', 'moderator', 'user']
 
 export const questions = () => {
-  return db.question.findMany()
+  return db.question.findMany({
+    orderBy: {
+      id: 'desc',
+    },
+  })
 }
 
 export const question = ({ id }) => {
