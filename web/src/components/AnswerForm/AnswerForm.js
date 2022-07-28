@@ -8,6 +8,7 @@ import { toast } from '@redwoodjs/web/dist/toast'
 import { timeBetweenTwoDateStringsInSeconds } from 'src/customUtils/DateUtils'
 
 import { CREATE_NOTIFICATION } from '../AnswerCommentForm/AnswerCommentForm'
+import { QUERY as AnswersQuery } from '../AnswersCell'
 import { UPDATE_USER, handleNewUser } from '../NewQuestionForm/NewQuestionForm'
 //-------------- Database --------------------------------------------
 
@@ -47,6 +48,7 @@ const AnswerForm = ({ questionId }) => {
   })
   const [createTranslation] = useMutation(CREATE_TRANSLATION, {
     onCompleted: () => toast.success('Þýðing móttekin'),
+    refetchQueries: [{ query: AnswersQuery, variables: { questionId } }],
   })
   const { currentUser } = useAuth()
   const [textValue, setTextValue] = useState('')

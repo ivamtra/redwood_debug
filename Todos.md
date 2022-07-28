@@ -64,13 +64,6 @@
 <br>
 
 
-- Notification kerfi
-  - Alltaf þegar einhverju er svarað fær höfundur notification sem vísar í svarið
-  - Link frá notification að svarinu
-    - Focus á svarið með useRef
-    - Pulse animation með CSS þegar focusað er
-
-<br>
 
 - User page/component svo admin/mod getur shadowbannað/breytt role hjá viðkomandi
 
@@ -81,9 +74,7 @@
 <br>
 
 
-- Refactora ratingButton
 
-<br>
 
 
 
@@ -103,5 +94,25 @@
 
 # 25. júlí
 
+- Notification kerfi
+  - Alltaf þegar einhverju er svarað fær höfundur notification sem vísar í svarið ✅
+  - Virkar fyrir svar við spurningu ✅
+  - Virkar fyrir athugasemd við svar ✅
+  - Virkar fyrir athugasemd við spurningu ✅
+  - Virkar fyrir svar við athugasemd ✅
+  - Link frá notification að svarinu ✅
+    - Focus á svarið með useRef ✅
+    - Pulse animation með CSS þegar focusað er
+  - Filtera þannig notandi fær ekki notification frá sjálfum sér
+
+<br>
+
 - QuestionComment component
   - Kominn með fulla virkni ✅
+
+
+<br>
+
+  - Refactora ratingButton 🟡
+    - Betra núna
+
