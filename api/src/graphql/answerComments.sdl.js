@@ -8,6 +8,8 @@ export const schema = gql`
     parentId: Int
     answer: Answer!
     answerId: Int!
+    questionId: Int!
+    question: Question!
     createdAt: DateTime!
     level: Int!
     rating: Int!
@@ -22,6 +24,8 @@ export const schema = gql`
     answerComments(answerId: Int!): [AnswerComment!]! @skipAuth
     answerCommentsByParentId(parentId: Int): [AnswerComment!]! @skipAuth
     answerCommentsByAnswerId(answerId: Int!): [AnswerComment!]! @skipAuth
+    customAnswerComments(answerId: Int!, questionId: Int!): [AnswerComment!]!
+      @skipAuth
   }
 
   input CreateAnswerCommentInput {

@@ -14,6 +14,12 @@ export const answerCommentsByAnswerId = ({ answerId }) => {
   return db.answerComment.findMany({ where: { answerId } })
 }
 
+export const customAnswerComments = ({ answerId, questionId }) => {
+  return db.answerComment.findMany({
+    where: { answerId: answerId, questionId, questionId },
+  })
+}
+
 export const createAnswerComment = ({ input }) => {
   return db.answerComment.create({
     data: input,
