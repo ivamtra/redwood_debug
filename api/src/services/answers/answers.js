@@ -4,7 +4,12 @@ import { db } from 'src/lib/db'
 import { CREATE_QUESTION_ROLES as CreateAnswerRoles } from '../questions/questions'
 
 export const answers = ({ questionId }) => {
-  return db.answer.findMany({ where: { questionId } })
+  return db.answer.findMany({
+    where: { questionId },
+    orderBy: {
+      id: 'desc',
+    },
+  })
 }
 
 export const answer = ({ id }) => {
