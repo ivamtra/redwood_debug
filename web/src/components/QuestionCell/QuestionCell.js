@@ -86,7 +86,7 @@ export const Success = ({ question, inQuestionsCell }) => {
           </div>
           {!inQuestionsCell ? (
             <div>
-              <AnswerCommentsCell answerId={5} />
+              <AnswerCommentsCell answerId={0} questionId={question.id} />
               <h1>---------------------------------------</h1>
               <h1>Answer form</h1>
               <AnswerForm questionId={question.id} />

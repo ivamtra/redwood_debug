@@ -27,6 +27,7 @@ export const QUERY = gql`
       level
       rating
       isHidden
+      questionId
     }
   }
 `
@@ -107,6 +108,7 @@ export const Success = ({ answerComment }) => {
 
             <p className="order-1">Rating: {answerComment.rating}</p>
             <p>answerId = {answerComment.answerId}</p>
+            <p>questionId = {answerComment.questionId}</p>
             <p>id = {answerComment.id}</p>
             <p ref={focusRef}>{answerComment.createdAt}</p>
 

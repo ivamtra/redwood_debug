@@ -16,7 +16,16 @@ export const answerCommentsByAnswerId = ({ answerId }) => {
 
 export const customAnswerComments = ({ answerId, questionId }) => {
   return db.answerComment.findMany({
-    where: { answerId: answerId, questionId, questionId },
+    where: {
+      AND: [
+        {
+          answerId: answerId,
+        },
+        {
+          questionId: questionId,
+        },
+      ],
+    },
   })
 }
 
