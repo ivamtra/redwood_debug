@@ -101,6 +101,7 @@
   - Virkar fyrir athugasemd við spurningu ✅
   - Virkar fyrir svar við athugasemd ✅
   - Link frá notification að svarinu ✅
+  - User fær ekki notification frá sjálfum sér ✅
     - Focus á svarið með useRef ✅
     - Pulse animation með CSS þegar focusað er
   - Filtera þannig notandi fær ekki notification frá sjálfum sér
@@ -127,3 +128,13 @@
 
 - Leyfa notanda að svara sinni eigin spurningu?
   - Getur verið gagnlegt ef hann finnur eitthvað svar
+
+
+<br>
+
+## Linkar
+
+- Svar við spurningu virkar ✅
+- Athugasemd við svar virkar ✅
+- Reply virkar fyrir answerComment ✅
+- Reply virkar fyrir questionComment ✅

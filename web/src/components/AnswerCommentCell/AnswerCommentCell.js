@@ -52,7 +52,6 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
-  useEffect(() => console.log(answerComment))
   const { currentUser, isAuthenticated } = useAuth()
 
   // Focus

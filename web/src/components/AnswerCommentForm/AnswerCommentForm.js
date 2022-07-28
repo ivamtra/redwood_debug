@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Form, Submit, TextAreaField } from '@redwoodjs/forms'
+import { useParams } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
@@ -76,7 +77,14 @@ const handleRecievingUserId = (level) => {
 }
 
 const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
-  useEffect(() => console.log(parentData))
+  useEffect(() => {
+    console.log(paramQuestionId)
+
+    if (!loading) {
+      handleLevel()
+    }
+  })
+  const { id: paramQuestionId } = useParams()
   const [hasPosted, setHasPosted] = useState(false)
   const [createNotification] = useMutation(CREATE_NOTIFICATION)
   const [createComment] = useMutation(CREATE_COMMENT, {
@@ -154,7 +162,7 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
         userId: recievingUserId,
         answerId: 0,
         answerCommentId: sendingCommentId,
-        questionId: notificationQuestionId,
+        questionId: paramQuestionId,
       }
 
       // // Comment á svar
@@ -187,15 +195,6 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
     error,
   } = useQuery(PARENT_COMMENT_QUERY, {
     variables: { id: parentId },
-  })
-
-  useEffect(() => {
-    // console.log(error)
-    // console.log(loading)
-    // console.log(parentData)
-    if (!loading) {
-      handleLevel()
-    }
   })
 
   return (
