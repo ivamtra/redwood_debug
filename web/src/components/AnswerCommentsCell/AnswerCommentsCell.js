@@ -5,8 +5,8 @@ import commentSort from 'src/algos/commentSort'
 import AnswerCommentCell from '../AnswerCommentCell'
 
 export const QUERY = gql`
-  query AnswerCommentsQuery($answerId: Int!) {
-    answerComments(answerId: $answerId) {
+  query AnswerCommentsQuery($answerId: Int!, $questionId: Int!) {
+    customAnswerComments(answerId: $answerId, questionId: $questionId) {
       id
       user {
         email
@@ -26,18 +26,23 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-export const Success = ({ answerComments, answerId, questionId }) => {
+export const Success = ({ customAnswerComments, answerId, questionId }) => {
   const [list, setList] = useState([])
 
   useLayoutEffect(() => {
-    setList(commentSort(answerComments))
-  }, [answerComments])
+    setList(commentSort(customAnswerComments))
+  }, [customAnswerComments])
 
   return (
     <div>
       {list.map((item) => {
         return (
-          <AnswerCommentCell key={item.id} id={item.id} answerId={answerId} />
+          <AnswerCommentCell
+            key={item.id}
+            id={item.id}
+            answerId={answerId}
+            questionId={questionId}
+          />
         )
       })}
     </div>
