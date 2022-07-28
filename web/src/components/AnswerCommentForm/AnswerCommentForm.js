@@ -10,6 +10,7 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { QUERY as CommentsQuery } from 'src/components/AnswerCommentsCell/AnswerCommentsCell'
 
+//TODO vantar að laga question hér
 export const CREATE_COMMENT = gql`
   mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
     createAnswerComment(input: $input) {
@@ -23,9 +24,7 @@ export const CREATE_COMMENT = gql`
       }
       level
       answerId
-      question {
-        userId
-      }
+      questionId
     }
   }
 `
