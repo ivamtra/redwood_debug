@@ -76,6 +76,7 @@ export default async () => {
         userId: 0,
         parentId: null,
         answerId: 0,
+        questionId: 0,
         level: 0,
         rating: 0,
       },
@@ -84,6 +85,7 @@ export default async () => {
         userId: 1,
         parentId: 0,
         answerId: 5,
+        questionId: 0,
         level: 0,
         rating: 0,
       },
@@ -124,6 +126,43 @@ export default async () => {
           console.log(record)
         })
       })
+
+    // for (const user of userData) {
+    //   await db.user.upsert({
+    //     where: { id: user.id },
+    //     create: { user },
+    //     update: {},
+    //   })
+
+    //   console.log(`  Seeded "${user.email}"`)
+    // }
+    // for (const question of questionData) {
+    //   await db.question.upsert({
+    //     where: { id: question.id },
+    //     create: { question },
+    //     update: {},
+    //   })
+
+    //   console.log(`  Seeded "${question.title}"`)
+    // }
+    // for (const answer of answerData) {
+    //   await db.answer.upsert({
+    //     where: { id: answer.id },
+    //     create: { answer },
+    //     update: {},
+    //   })
+
+    //   console.log(`  Seeded "${answer.id}"`)
+    // }
+    // for (const answerComment of commentData) {
+    //   await db.answerComment.upsert({
+    //     where: { id: answerComment.id },
+    //     create: { answerComment },
+    //     update: {},
+    //   })
+
+    //   console.log(`  Seeded "${answerComment.id}"`)
+    // }
   } catch (error) {
     console.warn('Please define your seed data.')
     console.error(error)

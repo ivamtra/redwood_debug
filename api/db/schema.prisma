@@ -68,6 +68,7 @@ model Question {
   Issue                Issue[]
   QuestionIsInCategory QuestionIsInCategory[]
   Notification         Notification[]
+  AnswerComment        AnswerComment[]
 }
 
 model Sentence {
@@ -112,6 +113,8 @@ model AnswerComment {
   parentId         Int? // Vísa í komment fyrir ofan
   answer           Answer             @relation(fields: [answerId], references: [id])
   answerId         Int
+  question         Question           @relation(fields: [questionId], references: [id])
+  questionId       Int                @default(0)
   createdAt        DateTime           @default(now())
   level            Int                @default(0)
   rating           Int                @default(0)

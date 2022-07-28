@@ -52,6 +52,7 @@ const createReplyBody = (userId, isReply) => {
 }
 
 const AnswerCommentForm = ({ parentId, answerId }) => {
+  useEffect(() => console.log(parentData))
   const [hasPosted, setHasPosted] = useState(false)
   const [createNotification] = useMutation(CREATE_NOTIFICATION)
   const [createComment] = useMutation(CREATE_COMMENT, {
@@ -132,6 +133,9 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
   })
 
   useEffect(() => {
+    console.log(error)
+    console.log(loading)
+    console.log(parentData)
     if (!loading) {
       handleLevel()
     }
