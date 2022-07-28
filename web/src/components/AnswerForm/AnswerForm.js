@@ -119,13 +119,17 @@ const AnswerForm = ({ questionId }) => {
     console.log(notificationBody(res))
     console.log(res)
     console.log(res.data.createAnswer.question.userId)
+    const recievingUserId = res.data.createAnswer.question.userId
+    const sendingUserId = res.data.createAnswer.userId
+    if (recievingUserId === sendingUserId) return
+
     const notificationInput = {
       body: notificationBody(res),
       questionId: res.data.createAnswer.questionId,
       answerId: res.data.createAnswer.id,
       answerCommentId: 0,
       isSeen: false,
-      userId: res.data.createAnswer.question.userId, //Id viðtakanda
+      userId: recievingUserId, //Id viðtakanda
     }
     console.log(notificationInput)
     console.log(createNotification({ variables: { input: notificationInput } }))

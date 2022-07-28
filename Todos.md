@@ -120,3 +120,10 @@
 
 - Svar birtist nú strax þegar maður svarar spurningu ✅
 
+- Svör og spurningar birtast í tímaröð ✅
+  - Getum raðað eftir vinsældum seinna
+
+<br>
+
+- Leyfa notanda að svara sinni eigin spurningu?
+  - Getur verið gagnlegt ef hann finnur eitthvað svar

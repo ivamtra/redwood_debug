@@ -143,9 +143,12 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
       // }
 
       console.log(notificationInput)
-      console.log(
-        createNotification({ variables: { input: notificationInput } })
-      )
+      // Notandi sem svarar sér sjálfum á ekki að fá notification
+      if (recievingUserId !== sendingUserId) {
+        console.log(
+          createNotification({ variables: { input: notificationInput } })
+        )
+      }
     })
   }
 
