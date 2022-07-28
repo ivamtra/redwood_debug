@@ -31,6 +31,7 @@ export const CREATE_NOTIFICATION = gql`
   mutation CreateNotification($input: CreateNotificationInput!) {
     createNotification(input: $input) {
       id
+      body
     }
   }
 `
@@ -46,9 +47,29 @@ const PARENT_COMMENT_QUERY = gql`
   }
 `
 
-const createReplyBody = (userId, isReply) => {
-  if (isReply) return 'User með id ' + userId + ' svaraði athugasemd þinni'
-  else return 'User með id ' + userId + ' svaraði svarinu þínu'
+const createReplyBody = (userId, questionId, level) => {
+  console.log('Create reply')
+  console.log('questionid:' + questionId)
+  console.log('level: ' + level)
+  console.log(typeof questionId)
+  console.log(questionId === 0)
+  // if (isReply) return 'User með id ' + userId + ' svaraði athugasemd þinni'
+  // else if (answerId === 0) {
+  //   return 'User með id ' + userId + ' gerði athugasemd við spurningu þína'
+  // } else return 'User með id ' + userId + ' gerði athugasemd við svar þitt'
+
+  // Athugasemd við svar eða spurning
+  if (level === 1) {
+    // Athugasemd við svar
+    if (questionId === 0) {
+      return 'User með id ' + userId + ' gerði athugasemd við svar þitt'
+    }
+    // Athugasemd við spurningu
+    else {
+      return 'User með id ' + userId + ' gerði athugasemd við spurningu þína'
+    }
+  }
+  return 'User með id ' + userId + ' svaraði athugasemd þinni'
 }
 
 const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
@@ -99,20 +120,27 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
       const sendingUserId = res.data.createAnswerComment.user.id // Fer í skilaboðin
 
       const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
-      const questionId = res.data.createAnswerComment.answer.questionId
+      const notificationQuestionId =
+        res.data.createAnswerComment.answer.questionId
+      const body = createReplyBody(
+        sendingUserId,
+        questionId,
+        res.data.createAnswerComment.level
+      )
       let notificationInput = {
-        body: createReplyBody(sendingUserId),
+        body: body,
         isSeen: false,
         userId: recievingUserId,
         answerId: 0,
         answerCommentId: sendingCommentId,
-        questionId: questionId,
+        questionId: notificationQuestionId,
       }
 
-      // Comment á svar
-      if (res.data.createAnswerComment.level === 1) {
-        notificationInput.userId = res.data.createAnswerComment.answer.userId
-      }
+      // // Comment á svar
+      // if (res.data.createAnswerComment.level === 1) {
+      //   notificationInput.userId = res.data.createAnswerComment.answer.userId
+      //   notificationInput.body = createReplyBody(sendingUserId, true)
+      // }
 
       console.log(notificationInput)
       console.log(
