@@ -51,7 +51,7 @@ const createReplyBody = (userId, isReply) => {
   else return 'User með id ' + userId + ' svaraði svarinu þínu'
 }
 
-const AnswerCommentForm = ({ parentId, answerId }) => {
+const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
   useEffect(() => console.log(parentData))
   const [hasPosted, setHasPosted] = useState(false)
   const [createNotification] = useMutation(CREATE_NOTIFICATION)
@@ -82,6 +82,7 @@ const AnswerCommentForm = ({ parentId, answerId }) => {
       answerId: answerId,
       level: level,
       rating: 0,
+      questionId: questionId,
     }
     if (currentUser.shadowBanned) {
       inputData = { ...inputData, isHidden: true }

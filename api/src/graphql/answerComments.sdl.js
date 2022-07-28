@@ -32,6 +32,7 @@ export const schema = gql`
     body: String!
     userId: Int!
     parentId: Int
+    questionId: Int!
     answerId: Int!
     level: Int!
     rating: Int!

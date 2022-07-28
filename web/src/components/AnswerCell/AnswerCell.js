@@ -93,7 +93,7 @@ export const Success = ({ answer }) => {
           </div>
           {/* TODO: Disable þegar isHidden er true */}
           <TranslationsCell answerId={answer.id} />
-          <AnswerCommentForm answerId={answer.id} parentId={0} />
+          <AnswerCommentForm answerId={answer.id} parentId={0} questionId={0} />
           <AnswerCommentsCell answerId={answer.id} questionId={0} />
         </>
       )}

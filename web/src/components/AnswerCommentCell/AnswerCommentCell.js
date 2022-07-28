@@ -89,6 +89,7 @@ export const Success = ({ answerComment }) => {
                   <ReplyButton
                     parentId={answerComment.id}
                     answerId={answerComment.answerId}
+                    questionId={answerComment.questionId}
                   />
                   <HideButton
                     type={'comment'}
