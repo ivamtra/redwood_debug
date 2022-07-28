@@ -121,6 +121,8 @@ const AnswerForm = ({ questionId }) => {
     console.log(res.data.createAnswer.question.userId)
     const recievingUserId = res.data.createAnswer.question.userId
     const sendingUserId = res.data.createAnswer.userId
+    console.log(recievingUserId)
+    console.log(sendingUserId)
     if (recievingUserId === sendingUserId) return
 
     const notificationInput = {

@@ -23,6 +23,9 @@ export const CREATE_COMMENT = gql`
       }
       level
       answerId
+      question {
+        userId
+      }
     }
   }
 `
@@ -48,16 +51,6 @@ const PARENT_COMMENT_QUERY = gql`
 `
 
 const createReplyBody = (userId, questionId, level) => {
-  console.log('Create reply')
-  console.log('questionid:' + questionId)
-  console.log('level: ' + level)
-  console.log(typeof questionId)
-  console.log(questionId === 0)
-  // if (isReply) return 'User með id ' + userId + ' svaraði athugasemd þinni'
-  // else if (answerId === 0) {
-  //   return 'User með id ' + userId + ' gerði athugasemd við spurningu þína'
-  // } else return 'User með id ' + userId + ' gerði athugasemd við svar þitt'
-
   // Athugasemd við svar eða spurning
   if (level === 1) {
     // Athugasemd við svar
@@ -70,6 +63,14 @@ const createReplyBody = (userId, questionId, level) => {
     }
   }
   return 'User með id ' + userId + ' svaraði athugasemd þinni'
+}
+
+const handleRecievingUserId = (level) => {
+  if (level === 1) {
+    // Hér er gerð athugasemd við spurningu
+  } else {
+    // Hér er gerð athugasemd við svar
+  }
 }
 
 const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
@@ -97,6 +98,7 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
     console.log(currentUser.id)
     console.log(parentId)
     console.log(answerId)
+    console.log(questionId)
 
     let inputData = {
       userId: currentUser.id,
@@ -119,14 +121,31 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
       const sendingCommentId = res.data.createAnswerComment.id
       const sendingUserId = res.data.createAnswerComment.user.id // Fer í skilaboðin
 
-      const recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
+      // Hversu djúpt nestað commentið er
+      const level = res.data.createAnswerComment.level
+
+      let recievingUserId
+      // Hérna er verið að svara athugasemd
+      if (level !== 1) {
+        recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda
+      }
+      // Hérna er verið að gera athugasemd við spurningu eða svar
+      else {
+        if (questionId === 0)
+          recievingUserId = res.data.createAnswerComment.answer.userId
+        else recievingUserId = res.data.createAnswerComment.question.userId
+      }
+
+      // Viljum ekki búa til notification ef verið er að svara sjálfum sér
+      if (recievingUserId === sendingUserId) {
+        return
+      }
+
+      console.log(recievingUserId)
+
       const notificationQuestionId =
         res.data.createAnswerComment.answer.questionId
-      const body = createReplyBody(
-        sendingUserId,
-        questionId,
-        res.data.createAnswerComment.level
-      )
+      const body = createReplyBody(sendingUserId, questionId, level)
       let notificationInput = {
         body: body,
         isSeen: false,
@@ -141,6 +160,8 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
       //   notificationInput.userId = res.data.createAnswerComment.answer.userId
       //   notificationInput.body = createReplyBody(sendingUserId, true)
       // }
+      console.log(recievingUserId)
+      console.log(sendingUserId)
 
       console.log(notificationInput)
       // Notandi sem svarar sér sjálfum á ekki að fá notification
@@ -167,9 +188,9 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
   })
 
   useEffect(() => {
-    console.log(error)
-    console.log(loading)
-    console.log(parentData)
+    // console.log(error)
+    // console.log(loading)
+    // console.log(parentData)
     if (!loading) {
       handleLevel()
     }
