@@ -440,13 +440,15 @@ const RatingButton = ({ type, id, compRating }) => {
 
   return (
     <>
-      <Form onSubmit={handleCreateMutation}>
-        <Submit className="blue" onClick={upvoteClick}>
-          Upvote
-        </Submit>
-        <p>{compRating}</p>
-        <Submit onClick={downvoteClick}>Downvote</Submit>
-      </Form>
+      <div className="flex flex-col justify-items-center">
+        <Form onSubmit={handleCreateMutation}>
+          <Submit className="blue" onClick={upvoteClick}>
+            Upvote
+          </Submit>
+          <p>{compRating}</p>
+          <Submit onClick={downvoteClick}>Downvote</Submit>
+        </Form>
+      </div>
     </>
   )
 }
