@@ -2,10 +2,12 @@
 export const standard = () => ({
   question: {
     id: 1,
-    title: 'title',
-    language: 'language',
-    definition: 'definition',
-    other_info: 'other_info',
+    title: 'Wearable',
+    language: 'English',
+    definition:
+      'A device is said to be wearable if the user can wear it. For example, a smart-watch is a wearable.',
+    other_info:
+      'I have not found any sources where this word is translated to Icelandic.',
     userId: 1,
     createdAt: '781293',
     user: {

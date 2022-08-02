@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import { BiDotsVerticalRounded } from 'react-icons/bi'
+
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 
@@ -46,12 +48,11 @@ export const Success = ({ question, inQuestionsCell }) => {
   const { currentUser } = useAuth()
   const hidden = useHidden(question)
   return (
-    <div>
+    <div className="flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white text-slate-500">
       {hidden ? (
         <></>
       ) : (
         <>
-          <h1>---------------------------------------</h1>
           {inQuestionsCell ? (
             <h1
               className={
@@ -76,39 +77,77 @@ export const Success = ({ question, inQuestionsCell }) => {
               type="question"
               compRating={question.rating}
             />
-            <FlagButton type={'question'} id={question.id} />
-            <p>Rating: {question.rating}</p>
-            <p>Dagsetning: {question.createdAt}</p>
-            <p>User: {question.user.email}</p>
-          </div>
-          <div>
-            <h3>Skilgreining: {question.definition}</h3>
-            <h3>Tungumál: {question.language}</h3>
-            <h3>Aðrar upplýsingar: {question.other_info}</h3>
-          </div>
-          <h3>Setningar</h3>
-          <div>
-            <SentencesCell questionId={question.id} />
-          </div>
-          {!inQuestionsCell ? (
-            <div>
-              <AnswerCommentForm
-                answerId={0}
-                parentId={0}
-                questionId={question.id}
-              />
-              <AnswerCommentsCell answerId={0} questionId={question.id} />
-              <h1>---------------------------------------</h1>
 
-              <h1>Answer form</h1>
-              <AnswerForm questionId={question.id} />
-              <h1>---------------------------------------</h1>
-              <AnswersCell questionId={question.id} />
-              {/* <Link to={routes.answer({ id: question.id })} /> */}
+            {/* Question and definition section */}
+            <div className="relative flex-grow flex flex-col pl-8">
+              {/* Vertical dots part */}
+              <div className="ml-auto cursor-pointer">
+                <BiDotsVerticalRounded onClick={() => handleActions()} />
+              </div>
+
+              {/* Question title */}
+              <h2 className="text-2xl font-bold flex items-center gap-2">
+                <Link to={routes.question({ id: question.id })}>
+                  {question?.title}{' '}
+                </Link>
+                <span className="text-sm font-light underline decoration-dashed flex items-center gap-2">
+                  ({question?.language})
+                </span>
+              </h2>
+              <hr className="mt-2" />
+
+              {/* Definition */}
+              <div className="mt-4">
+                <div className="-indent-16 ml-16  leading-relaxed">
+                  <span className="font-bold">Definition: </span>
+                  {question?.definition}
+                </div>
+              </div>
+
+              {/* Other info section */}
+              <div className="mt-4">
+                <div className="-indent-16 ml-16  leading-relaxed">
+                  <span className="font-bold">Other Information: </span>
+                  {question?.other_info}
+                </div>
+              </div>
+
+              {/* Submitted by section */}
+              <div className="text-right text-xs italic mt-4">
+                Submitted by <strong>{question?.username}</strong> at{' '}
+                <strong>{moment(question?.createdAt).format('hh:mm')}</strong>{' '}
+                on{' '}
+                <strong>
+                  {moment(question?.createdAt).format('MMM Do YYYY')}
+                </strong>
+              </div>
+
+              <FlagButton type={'question'} id={question.id} />
+              <p>Rating: {question.rating}</p>
+              <p>Dagsetning: {question.createdAt}</p>
+              <p>User: {question.user.email}</p>
             </div>
-          ) : (
-            <div></div>
-          )}
+            <SentencesCell questionId={question.id} />
+            {!inQuestionsCell ? (
+              <div>
+                <AnswerCommentForm
+                  answerId={0}
+                  parentId={0}
+                  questionId={question.id}
+                />
+                <AnswerCommentsCell answerId={0} questionId={question.id} />
+                <h1>---------------------------------------</h1>
+
+                <h1>Answer form</h1>
+                <AnswerForm questionId={question.id} />
+                <h1>---------------------------------------</h1>
+                <AnswersCell questionId={question.id} />
+                {/* <Link to={routes.answer({ id: question.id })} /> */}
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </>
       )}
     </div>

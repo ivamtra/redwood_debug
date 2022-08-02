@@ -4,6 +4,8 @@
 //TODO: CSS til að merkja hvort að takkinn hafi verið smelltur
 import { useState } from 'react' //
 
+import { BiUpArrow, BiDownArrow } from 'react-icons/bi'
+
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form } from '@redwoodjs/forms'
 import { useMutation, useQuery } from '@redwoodjs/web'
@@ -443,10 +445,16 @@ const RatingButton = ({ type, id, compRating }) => {
       <div className="flex flex-col justify-items-center">
         <Form onSubmit={handleCreateMutation}>
           <Submit className="blue" onClick={upvoteClick}>
-            Upvote
+            <div className="hover:scale-125 cursor-pointer">
+              <BiUpArrow />
+            </div>
           </Submit>
-          <p>{compRating}</p>
-          <Submit onClick={downvoteClick}>Downvote</Submit>
+          <p className="">{compRating}</p>
+          <Submit onClick={downvoteClick}>
+            <div className="hover:scale-125 cursor-pointer">
+              <BiDownArrow />
+            </div>
+          </Submit>
         </Form>
       </div>
     </>

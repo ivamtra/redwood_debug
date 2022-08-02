@@ -23,15 +23,20 @@ export const Failure = ({ error }) => (
 export const Success = ({ sentences }) => {
   return (
     <>
-      {sentences.map((item) => {
-        return (
-          <div key={item.id}>
-            <p>id = {item.id}</p>
-            <p>sentence = {item.sentence}</p>
-            <p>questionId = {item.questionId}</p>
-          </div>
-        )
-      })}
+      <div className="flex flex-col mt-4">
+        <div className="text-xl font-semibold  leading-relaxed">
+          Example sentences using the word
+        </div>
+        <ul className="list-decimal pl-8">
+          {sentences?.map((sentence) => {
+            return (
+              <li key={sentence.id} className="italic mt-2">
+                {sentence.example}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </>
   )
 }
