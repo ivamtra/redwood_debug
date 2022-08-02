@@ -23,6 +23,7 @@
   },
   "packageManager": "yarn@3.2.1",
   "dependencies": {
+    "moment": "^2.29.4",
     "react-icons": "^4.4.0",
     "tree-model": "^1.0.7"
   }
