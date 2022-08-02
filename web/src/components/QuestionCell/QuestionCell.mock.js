@@ -9,7 +9,7 @@ export const standard = () => ({
     other_info:
       'I have not found any sources where this word is translated to Icelandic.',
     userId: 1,
-    createdAt: '781293',
+    createdAt: '0',
     user: {
       id: 1,
       email: 'ivanmar',

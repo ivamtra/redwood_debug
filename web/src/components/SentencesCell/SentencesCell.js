@@ -31,7 +31,7 @@ export const Success = ({ sentences }) => {
           {sentences?.map((sentence) => {
             return (
               <li key={sentence.id} className="italic mt-2">
-                {sentence.example}
+                {sentence.sentence}
               </li>
             )
           })}

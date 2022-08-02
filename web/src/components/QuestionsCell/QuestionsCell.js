@@ -23,7 +23,9 @@ export const Success = ({ questions }) => {
     <ul>
       {questions.map((item) => {
         return (
-          <QuestionCell inQuestionsCell={true} key={item.id} id={item.id} />
+          <div key={item.id} className="mt-11">
+            <QuestionCell inQuestionsCell={true} key={item.id} id={item.id} />
+          </div>
         )
       })}
     </ul>

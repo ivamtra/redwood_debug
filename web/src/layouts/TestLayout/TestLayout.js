@@ -12,27 +12,33 @@ const TestLayout = ({ children, user }) => {
   return (
     <>
       <Toaster />
-      {currentUser === null ? (
-        <p>Not logged in</p>
-      ) : (
-        <>
-          <UserCell id={currentUser.id} />
-          <button type="button" onClick={logOut}>
-            Log out
-          </button>
-        </>
-      )}
+      <div className="w-full min-h-screen bg-zinc-200 flex gap-8 pt-[96px] px-12">
+        <div className="flex flex-col min-w-[200px]">Left Sidebar</div>
+        <div className="flex flex-col gap-8">
+          {currentUser === null ? (
+            <p>Not logged in</p>
+          ) : (
+            <>
+              <UserCell id={currentUser.id} />
+              <button type="button" onClick={logOut}>
+                Log out
+              </button>
+            </>
+          )}
 
-      <h2>Links</h2>
-      <h2>
-        <Link to={routes.questions()}>Spurningar </Link>
-        <Link to={routes.forms()}>Forms </Link> <br />
-        <Link to={routes.test()}>Svör </Link>
-        <Link to={routes.commentTest()}>Comment </Link>
-        {/* <Link to={routes.answer()}>AnswerPage </Link> <br /> */}
-        <Link to={routes.notificationTest()}>Notification test</Link>
-      </h2>
-      <main>{children}</main>
+          <h2>Links</h2>
+          <h2>
+            <Link to={routes.questions()}>Spurningar </Link>
+            <Link to={routes.forms()}>Forms </Link> <br />
+            <Link to={routes.test()}>Svör </Link>
+            <Link to={routes.commentTest()}>Comment </Link>
+            {/* <Link to={routes.answer()}>AnswerPage </Link> <br /> */}
+            <Link to={routes.notificationTest()}>Notification test</Link>
+          </h2>
+          <main>{children}</main>
+        </div>
+        <div className="flex flex-col min-w-[350px]">Right Sidebar</div>
+      </div>
     </>
   )
 }
