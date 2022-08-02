@@ -58,89 +58,91 @@ export const Success = ({ question, inQuestionsCell }) => {
         <></>
       ) : (
         <>
-          <div
-            className={
-              question.isHidden && !currentUser.shadowBanned
-                ? 'flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white opacity-50 text-slate-500'
-                : 'flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white text-slate-500'
-            }
-          >
-            <div className="flex flex-col">
-              <div className="flex">
-                {/* Up and down voting and rating */}
-                <RatingButton
-                  id={question.id}
-                  type="question"
-                  compRating={question.rating}
-                />
-                {/* <HideButton
+          <div>
+            <div
+              className={
+                question.isHidden && !currentUser.shadowBanned
+                  ? 'flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white opacity-50 text-slate-500'
+                  : 'flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white text-slate-500'
+              }
+            >
+              <div className="flex flex-col">
+                <div className="flex">
+                  {/* Up and down voting and rating */}
+                  <RatingButton
+                    id={question.id}
+                    type="question"
+                    compRating={question.rating}
+                  />
+                  {/* <HideButton
                 type={'question'}
                 id={question.id}
                 isHidden={question.isHidden}
               /> */}
 
-                {/* <FlagButton type={'question'} id={question.id} /> */}
+                  {/* <FlagButton type={'question'} id={question.id} /> */}
 
-                {/* Question and definition section */}
-                <div className="relative flex-grow flex flex-col pl-8">
-                  {/* Vertical dots part */}
-                  <div className="ml-auto cursor-pointer">
-                    <BiDotsVerticalRounded onClick={() => handleActions()} />
-                  </div>
+                  {/* Question and definition section */}
+                  <div className="relative flex-grow flex flex-col pl-8">
+                    {/* Flag and Hide action sections */}
+                    <ul
+                      className={
+                        !actions
+                          ? 'hidden'
+                          : 'absolute bg-zinc-100 px-8 py-4 top-0 right-4 rounded-md shadow-lg'
+                      }
+                    >
+                      <li className="border-b-2 border-zinc-300 cursor-pointer pb-2">
+                        Flag
+                      </li>
+                      <li className=" cursor-pointer pt-2">Hide</li>
+                    </ul>
 
-                  {/* Question title */}
-                  <h2 className="text-2xl font-bold flex items-center gap-2">
-                    <Link to={routes.question({ id: question.id })}>
-                      {question?.title}{' '}
-                    </Link>
-                    <span className="text-sm font-light underline decoration-dashed flex items-center gap-2">
-                      ({question?.language})
-                    </span>
-                  </h2>
-                  <hr className="mt-2" />
-
-                  {/* Definition */}
-                  <div className="mt-4">
-                    <div className="-indent-16 ml-16  leading-relaxed">
-                      <span className="font-bold">Definition: </span>
-                      {question?.definition}
+                    {/* Vertical dots part */}
+                    <div className="ml-auto cursor-pointer">
+                      <BiDotsVerticalRounded onClick={() => handleActions()} />
                     </div>
-                  </div>
 
-                  {/* Other info section */}
-                  <div className="mt-4">
-                    <div className="-indent-16 ml-16  leading-relaxed">
-                      <span className="font-bold">Other Information: </span>
-                      {question?.other_info}
+                    {/* Question title */}
+                    <h2 className="text-2xl font-bold flex items-center gap-2">
+                      <Link to={routes.question({ id: question.id })}>
+                        {question?.title}{' '}
+                      </Link>
+                      <span className="text-sm font-light underline decoration-dashed flex items-center gap-2">
+                        ({question?.language})
+                      </span>
+                    </h2>
+                    <hr className="mt-2" />
+
+                    {/* Definition */}
+                    <div className="mt-4">
+                      <div className="-indent-16 ml-16  leading-relaxed">
+                        <span className="font-bold">Definition: </span>
+                        {question?.definition}
+                      </div>
+                    </div>
+
+                    {/* Other info section */}
+                    <div className="mt-4">
+                      <div className="-indent-16 ml-16  leading-relaxed">
+                        <span className="font-bold">Other Information: </span>
+                        {question?.other_info}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <SentencesCell questionId={question.id} />
+                <SentencesCell questionId={question.id} />
 
-              {/* Flag and Hide action sections */}
-              <ul
-                className={
-                  !actions
-                    ? 'hidden'
-                    : 'absolute bg-zinc-100 px-8 py-4 top-0 right-4 rounded-md shadow-lg'
-                }
-              >
-                <li className="border-b-2 border-zinc-300 cursor-pointer pb-2">
-                  Flag
-                </li>
-                <li className=" cursor-pointer pt-2">Hide</li>
-              </ul>
-
-              {/* Submitted by section */}
-              <div className="text-right text-xs italic mt-4">
-                Submitted by <strong>{question.user.email}</strong> at{' '}
-                <strong>{moment(question?.createdAt).format('hh:mm')}</strong>{' '}
-                on{' '}
-                <strong>
-                  {moment(question?.createdAt).format('MMM Do YYYY')}
-                </strong>
+                {/* Submitted by section */}
+                <div className="text-right text-xs italic mt-4">
+                  Submitted by <strong>{question.user.email}</strong> at{' '}
+                  <strong>{moment(question?.createdAt).format('hh:mm')}</strong>{' '}
+                  on{' '}
+                  <strong>
+                    {moment(question?.createdAt).format('MMM Do YYYY')}
+                  </strong>
+                </div>
               </div>
             </div>
           </div>
