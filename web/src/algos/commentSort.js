@@ -7,6 +7,8 @@
  * Tímaflækja O(n)
  */
 export default function commentSort(answerComments) {
+  if (answerComments === undefined || answerComments === null) return null
+  if (answerComments.length === 0) return answerComments
   console.log(answerComments)
   // Stilla hakkatöflu
   // Ætti að vera O(n) ef append er O(1)

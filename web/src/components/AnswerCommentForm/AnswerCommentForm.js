@@ -1,5 +1,3 @@
-//TODO: Vantar refetch queries þegar maður commentar
-
 import { useEffect, useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
@@ -11,7 +9,6 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { QUERY as CommentsQuery } from 'src/components/AnswerCommentsCell/AnswerCommentsCell'
 
-//TODO vantar að laga question hér
 export const CREATE_COMMENT = gql`
   mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
     createAnswerComment(input: $input) {

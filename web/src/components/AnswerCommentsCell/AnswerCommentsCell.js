@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
 import commentSort from 'src/algos/commentSort'
 
@@ -28,6 +28,11 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ customAnswerComments, answerId, questionId }) => {
   const [list, setList] = useState([])
+
+  useEffect(() => {
+    console.log(commentSort(undefined))
+    console.log(commentSort(null))
+  })
 
   useLayoutEffect(() => {
     setList(commentSort(customAnswerComments))

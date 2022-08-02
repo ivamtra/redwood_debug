@@ -14,24 +14,12 @@ const FormsPage = () => {
       <MetaTags title="Forms" description="Forms page" />
       <h2>---------------------------------------------------</h2>
       <h1>FormsPage</h1>
-      <h2>---------------------------------------------------</h2>
+      <h1>Verður líklega síða til að búa til nýjar spurningar</h1>
 
-      <h1>Prufa fyrir component sem getur tekið inn margar setningar</h1>
-      <h4>
-        Componentinn er ófullkominn þar sem hann þarf tvo takka með þessari
-        útfærslu
-      </h4>
-      <TestForm />
       <h2>---------------------------------------------------</h2>
       <h1>Question Form</h1>
       <h2>---------------------------------------------------</h2>
       <NewQuestionForm />
-      <h2>---------------------------------------------------</h2>
-      <h1>Comment form test</h1>
-      {/* <AnswerCommentForm parentId={0} answerId={0} /> */}
-      <h2>---------------------------------------------------</h2>
-      <h1>Answer Form test</h1>
-      {/* <AnswerForm questionId={20} /> */}
     </>
   )
 }

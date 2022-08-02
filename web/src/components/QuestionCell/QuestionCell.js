@@ -78,6 +78,7 @@ export const Success = ({ question, inQuestionsCell }) => {
             <p>User: {question.user.email}</p>
           </div>
           <div>
+            <h3>Skilgreining: {question.definition}</h3>
             <h3>Tungumál: {question.language}</h3>
             <h3>Aðrar upplýsingar: {question.other_info}</h3>
           </div>

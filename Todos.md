@@ -104,7 +104,7 @@
   - User fær ekki notification frá sjálfum sér ✅
     - Focus á svarið með useRef ✅
     - Pulse animation með CSS þegar focusað er
-  - Filtera þannig notandi fær ekki notification frá sjálfum sér
+  - Filtera þannig notandi fær ekki notification frá sjálfum sér ✅
 
 <br>
 
@@ -132,9 +132,21 @@
 
 <br>
 
+---
+
 ## Linkar
 
 - Svar við spurningu virkar ✅
 - Athugasemd við svar virkar ✅
 - Reply virkar fyrir answerComment ✅
 - Reply virkar fyrir questionComment ✅
+
+---
+
+<br>
+
+- Refresh í NotificationPage brýtur síðuna
+
+
+
+- Tab icon
