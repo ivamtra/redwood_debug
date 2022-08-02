@@ -47,7 +47,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question, inQuestionsCell }) => {
-  const { currentUser } = useAuth()
+  const { currentUser, hasRole } = useAuth()
   const hidden = useHidden(question)
   const [actions, setActions] = useState(false)
   const handleActions = () => setActions(!actions)
@@ -92,8 +92,15 @@ export const Success = ({ question, inQuestionsCell }) => {
                           : 'absolute bg-zinc-100 px-8 py-4 top-0 right-4 rounded-md shadow-lg'
                       }
                     >
-                      <li className="border-b-2 border-zinc-300 cursor-pointer pb-2">
-                        Flag
+                      <li
+                        className={
+                          hasRole(['admin', 'moderator'])
+                            ? 'border-b-2 border-zinc-300 cursor-pointer pb-2'
+                            : ' border-zinc-300 cursor-pointer pb-2'
+                        }
+                      >
+                        {/* Flag */}
+                        <FlagButton type={'question'} id={question.id} />
                       </li>
                       <li className=" cursor-pointer pt-2">
                         <HideButton

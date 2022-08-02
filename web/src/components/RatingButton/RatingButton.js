@@ -442,7 +442,7 @@ const RatingButton = ({ type, id, compRating }) => {
 
   return (
     <>
-      <div className="flex flex-col justify-items-center">
+      <div className="flex flex-col justify-items-center align-middle">
         <Form onSubmit={handleCreateMutation}>
           <Submit className="blue" onClick={upvoteClick}>
             <div className="hover:scale-125 cursor-pointer">
