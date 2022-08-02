@@ -95,7 +95,13 @@ export const Success = ({ question, inQuestionsCell }) => {
                       <li className="border-b-2 border-zinc-300 cursor-pointer pb-2">
                         Flag
                       </li>
-                      <li className=" cursor-pointer pt-2">Hide</li>
+                      <li className=" cursor-pointer pt-2">
+                        <HideButton
+                          type={'question'}
+                          id={question.id}
+                          isHidden={question.isHidden}
+                        />
+                      </li>
                     </ul>
 
                     {/* Vertical dots part */}
