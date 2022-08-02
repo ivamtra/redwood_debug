@@ -83,7 +83,11 @@ export const Success = ({ answer }) => {
             ) : (
               <></>
             )}
-            <RatingButton id={answer.id} type={'answer'} />
+            <RatingButton
+              id={answer.id}
+              type={'answer'}
+              compRating={answer.rating}
+            />
             <FlagButton id={answer.id} type={'answer'} />
             {/* <HideButton id={answer.id} type={'answer'} /> */}
             <p>answer.id = {answer.id}</p>

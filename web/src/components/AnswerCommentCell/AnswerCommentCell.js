@@ -90,6 +90,7 @@ export const Success = ({ answerComment }) => {
                     className=""
                     type={'comment'}
                     id={answerComment.id}
+                    compRating={answerComment.rating}
                   />
                   <FlagButton type={'comment'} id={answerComment.id} />
                   <ReplyButton

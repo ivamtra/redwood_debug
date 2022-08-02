@@ -71,7 +71,11 @@ export const Success = ({ question, inQuestionsCell }) => {
               id={question.id}
               isHidden={question.isHidden}
             />
-            <RatingButton id={question.id} type="question" />
+            <RatingButton
+              id={question.id}
+              type="question"
+              compRating={question.rating}
+            />
             <FlagButton type={'question'} id={question.id} />
             <p>Rating: {question.rating}</p>
             <p>Dagsetning: {question.createdAt}</p>

@@ -48,7 +48,7 @@ const handleCatch = (workingData, rating) => {
 
 // ------------ React Component ------------------------
 
-const RatingButton = ({ type, id }) => {
+const RatingButton = ({ type, id, compRating }) => {
   // ------------ OnCompleted ----------------------------
 
   const onCompleted = (type) => {
@@ -444,6 +444,7 @@ const RatingButton = ({ type, id }) => {
         <Submit className="blue" onClick={upvoteClick}>
           Upvote
         </Submit>
+        <p>{compRating}</p>
         <Submit onClick={downvoteClick}>Downvote</Submit>
       </Form>
     </>
