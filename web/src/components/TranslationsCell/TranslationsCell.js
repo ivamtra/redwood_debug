@@ -18,16 +18,19 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ translations }) => {
   return (
-    <ul>
-      {translations.map((item) => {
-        return (
-          <div key={item.id}>
-            <p>id = {item.id}</p>
-            <p>translation = {item.translation}</p>
-            <p>answerId = {item.answerId}</p>
-          </div>
-        )
-      })}
-    </ul>
+    <>
+      <div className="flex flex-col mt-4">
+        <div className="text-xl font-semibold  leading-relaxed">Þýðingar</div>
+        <ul className="list-decimal pl-8">
+          {translations?.map((translation) => {
+            return (
+              <li key={translation.id} className="italic mt-2">
+                {translation.translation}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </>
   )
 }

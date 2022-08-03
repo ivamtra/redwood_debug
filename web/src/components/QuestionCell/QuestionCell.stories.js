@@ -17,4 +17,11 @@ export const success = () => {
   return Success ? <Success {...standard()} /> : null
 }
 
+export const moderatorView = () => {
+  mockCurrentUser({
+    roles: 'moderator',
+  })
+  return Success ? <Success {...standard()} /> : null
+}
+
 export default { title: 'Cells/QuestionCell' }

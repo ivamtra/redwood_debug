@@ -12,7 +12,7 @@ const TestLayout = ({ children, user }) => {
   return (
     <>
       <Toaster />
-      <div className="w-full min-h-screen bg-zinc-200 flex gap-8 pt-[96px] px-12">
+      <div className="w-full min-h-screen bg-zinc-200 pt-[96px] px-12">
         <div className="flex flex-col min-w-[200px]">Left Sidebar</div>
         <div className="flex flex-col gap-8">
           {currentUser === null ? (
