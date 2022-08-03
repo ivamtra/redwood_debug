@@ -125,7 +125,7 @@ export const Success = ({ answer }) => {
                     className={
                       !actions
                         ? 'hidden'
-                        : 'absolute bg-zing-100 px-8 py-4 top-0 right-4 rounded-md shadow-lg'
+                        : 'absolute bg-zinc-100 px-8 py-4 top-0 right-4 rounded-md shadow-lg'
                     }
                   >
                     <li

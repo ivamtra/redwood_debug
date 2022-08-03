@@ -2,7 +2,7 @@
 export const standard = () => ({
   answer: {
     id: 6,
-    title: 'Íslenskt þýðing',
+    title: 'Íslensk þýðing',
     justification:
       'Hér er langur og ítarlegur rökstuðningur yfir því af hverju mér finnst þetta vera góð þýðing',
     userId: 3,

@@ -14,9 +14,21 @@ export const QUERY = gql`
       body
       createdAt
       parentId
+      level
     }
   }
 `
+
+// Fyrir CSS til að fá indent í comment
+const cssLevel = {
+  1: 'left-[10px]',
+  2: 'left-[20px]',
+  3: 'left-[30px]',
+  4: 'left-[40px]',
+  5: 'left-[50px]',
+  6: 'left-[60px]',
+  7: 'left-[70px]',
+}
 
 export const Loading = () => <div>Loading...</div>
 
@@ -42,12 +54,17 @@ export const Success = ({ customAnswerComments, answerId, questionId }) => {
     <div>
       {list.map((item) => {
         return (
-          <AnswerCommentCell
+          <div
             key={item.id}
-            id={item.id}
-            answerId={answerId}
-            questionId={questionId}
-          />
+            className={'mt-4 relative ' + cssLevel[item.level]}
+          >
+            <AnswerCommentCell
+              key={item.id}
+              id={item.id}
+              answerId={answerId}
+              questionId={questionId}
+            />
+          </div>
         )
       })}
     </div>
