@@ -8,6 +8,7 @@ import { Link, routes } from '@redwoodjs/router'
 
 import useHidden from 'src/customhooks/useHidden'
 
+import { getTimeAndDateIS } from '../../customUtils/DateUtils'
 import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
 import AnswerCommentsCell from '../AnswerCommentsCell'
 import AnswerForm from '../AnswerForm'
@@ -47,6 +48,8 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ question, inQuestionsCell }) => {
+  const [time, date] = getTimeAndDateIS(question.createdAt)
+
   const { currentUser, hasRole } = useAuth()
   const hidden = useHidden(question)
   const [actions, setActions] = useState(false)
@@ -154,11 +157,7 @@ export const Success = ({ question, inQuestionsCell }) => {
                 {/* Submitted by section */}
                 <div className="text-right text-xs italic mt-4">
                   Submitted by <strong>{question.user.email}</strong> at{' '}
-                  <strong>{moment(question?.createdAt).format('hh:mm')}</strong>{' '}
-                  on{' '}
-                  <strong>
-                    {moment(question?.createdAt).format('MMM Do YYYY')}
-                  </strong>
+                  <strong>{time}</strong> on <strong>{date}</strong>
                 </div>
               </div>
             </div>

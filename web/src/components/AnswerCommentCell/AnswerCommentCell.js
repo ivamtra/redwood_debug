@@ -56,7 +56,6 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
-  const timeDate = getTimeAndDateIS(answerComment.createdAt)
   const [time, date] = getTimeAndDateIS(answerComment.createdAt)
   useEffect(() => {
     console.log(time)

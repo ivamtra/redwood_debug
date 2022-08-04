@@ -9,6 +9,7 @@ import { Link, routes, useParams } from '@redwoodjs/router'
 import useFocus from 'src/customhooks/useFocus'
 import useHidden from 'src/customhooks/useHidden'
 
+import { getTimeAndDateIS } from '../../customUtils/DateUtils'
 import AnswerCommentForm from '../AnswerCommentForm/AnswerCommentForm'
 import AnswerCommentsCell from '../AnswerCommentsCell/AnswerCommentsCell'
 import FlagButton from '../FlagButton/FlagButton'
@@ -57,6 +58,7 @@ export const Success = ({ answer }) => {
   const { currentUser } = useAuth()
   const { answerId: paramId } = useParams()
   const handleActions = () => setActions(!actions)
+  const [time, date] = getTimeAndDateIS(answer.createdAt)
 
   // Focus á element ef komið er frá notification
   useFocus(focusRef, answer.id, paramId)
@@ -169,12 +171,8 @@ export const Success = ({ answer }) => {
 
                   {/* Submitted by section */}
                   <div className="text-right text-xs italic mt-4">
-                    Submitted by <strong>{answer.user.email}</strong> at{' '}
-                    <strong>{moment(answer?.createdAt).format('hh:mm')}</strong>{' '}
-                    on{' '}
-                    <strong>
-                      {moment(answer?.createdAt).format('MMM Do YYYY')}
-                    </strong>
+                    Sent inn af <strong>{answer.user.email}</strong> á{' '}
+                    <strong>{time}</strong> | <strong>{date}</strong>
                   </div>
                 </div>
               </div>
