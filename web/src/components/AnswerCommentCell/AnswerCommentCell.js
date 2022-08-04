@@ -207,7 +207,7 @@ export const Success = ({ answerComment }) => {
                 <BiDotsVerticalRounded onClick={handleActions} />
               </div>
               {/* Comment Body */}
-              <h2 className="text-sm flex items-center gap-2">
+              <h2 ref={focusRef} className="text-sm flex items-center gap-2">
                 {answerComment.body}{' '}
               </h2>
               <hr className="mt-2" />

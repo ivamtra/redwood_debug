@@ -196,7 +196,7 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
 
   return (
     <>
-      <div>
+      <div className="pt-4">
         <Form onSubmit={onSubmit}>
           <TextAreaField name="body" placeholder="Skrifa athugasemd" />
           <Submit>Save</Submit>

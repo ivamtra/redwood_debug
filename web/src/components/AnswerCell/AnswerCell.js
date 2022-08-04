@@ -70,7 +70,7 @@ export const Success = ({ answer }) => {
       ) : (
         <>
           {/* Gamli componentinn */}
-          <div>
+          {/* <div>
             <div>
               <h2
                 className={
@@ -98,11 +98,11 @@ export const Success = ({ answer }) => {
             />
             <FlagButton id={answer.id} type={'answer'} />
             {/* <HideButton id={answer.id} type={'answer'} /> */}
-            <p>answer.id = {answer.id}</p>
+          {/* <p>answer.id = {answer.id}</p>
             <p>Rating: {answer.rating}</p>
             <p>Dagsetning: {answer.createdAt}</p>
-            <h4>User: {answer.user.email}</h4>
-          </div>
+            <h4>User: {answer.user.email}</h4> */}
+          {/* </div>  */}
 
           {/* Hér byrjar nýji componentinn */}
           <div
@@ -121,7 +121,10 @@ export const Success = ({ answer }) => {
                   compRating={answer.rating}
                 />
                 {/* Aðal section */}
-                <div className="relative flex-grow flex flex-col pl-8">
+                <div
+                  ref={focusRef}
+                  className="relative flex-grow flex flex-col pl-8"
+                >
                   {/* Flag and Hide action sections */}
                   <ul
                     className={
