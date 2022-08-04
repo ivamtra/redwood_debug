@@ -12,9 +12,17 @@ export const timeBetweenTwoDateStringsInSeconds = (
   return (newDate - oldDate) / 1e3
 }
 
-// console.log(
-//   timeBetweenTwoDateStringsInSeconds(
-//     new Date('2022-07-13T16:18:59.142Z'),
-//     new Date()
-//   )
-// )
+// String -> String
+
+/*
+ Tekur inn ISO Date streng og skilar
+ tíma og dagsetningu strengi á íslensku formi
+*/
+export const getTimeAndDateIS = (createdAt) => {
+  return [
+    new Date(createdAt)
+      .toLocaleTimeString('en-GB', { timeZone: 'UTC' })
+      .substring(0, 5),
+    new Date(createdAt).toLocaleDateString('en-GB', { timeZone: 'UTC' }),
+  ]
+}

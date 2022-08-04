@@ -9,6 +9,7 @@ import { useParams } from '@redwoodjs/router'
 import useFocus from 'src/customhooks/useFocus'
 import useHidden from 'src/customhooks/useHidden'
 
+import { getTimeAndDateIS } from '../../customUtils/DateUtils'
 import DeleteButton from '../DeleteButton/DeleteButton'
 import FlagButton from '../FlagButton/FlagButton'
 import HideButton from '../HideButton/HideButton'
@@ -55,7 +56,12 @@ export const Failure = ({ error }) => (
   sér hann deleted en allir hinir sjá ekki neitt.
 */
 export const Success = ({ answerComment }) => {
-  useEffect(() => console.log(levelClass))
+  const timeDate = getTimeAndDateIS(answerComment.createdAt)
+  const [time, date] = getTimeAndDateIS(answerComment.createdAt)
+  useEffect(() => {
+    console.log(time)
+    console.log(date)
+  })
 
   // TODO Fá Indent á comment til að virka
   // * Virkar ekki að nota string interpolation
@@ -211,11 +217,17 @@ export const Success = ({ answerComment }) => {
               <div className="text-right text-xs italic mt-4">
                 Submitted by <strong>{answerComment.user.email}</strong> at{' '}
                 <strong>
-                  {moment(answerComment?.createdAt).format('hh:mm')}
+                  {/* {moment(answerComment?.createdAt)
+                    .format('hh:mm')
+                    .toLocaleLowerCase()} */}
+                  {time}
                 </strong>{' '}
                 on{' '}
                 <strong>
-                  {moment(answerComment?.createdAt).format('MMM Do YYYY')}
+                  {/* {moment(answerComment?.createdAt)
+                    .format()
+                    .toLocaleUpperCase()} */}
+                  {date}
                 </strong>
               </div>
             </div>
