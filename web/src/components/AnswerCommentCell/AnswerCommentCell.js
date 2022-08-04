@@ -214,20 +214,8 @@ export const Success = ({ answerComment }) => {
 
               {/* Submitted by section */}
               <div className="text-right text-xs italic mt-4">
-                Submitted by <strong>{answerComment.user.email}</strong> at{' '}
-                <strong>
-                  {/* {moment(answerComment?.createdAt)
-                    .format('hh:mm')
-                    .toLocaleLowerCase()} */}
-                  {time}
-                </strong>{' '}
-                on{' '}
-                <strong>
-                  {/* {moment(answerComment?.createdAt)
-                    .format()
-                    .toLocaleUpperCase()} */}
-                  {date}
-                </strong>
+                Sent inn af <strong>{answerComment.user.email}</strong> {'    '}
+                <strong>{date}</strong> | <strong>{time}</strong>
               </div>
             </div>
           </div>

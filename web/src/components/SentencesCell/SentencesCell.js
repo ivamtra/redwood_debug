@@ -25,7 +25,7 @@ export const Success = ({ sentences }) => {
     <>
       <div className="flex flex-col mt-4">
         <div className="text-xl font-semibold  leading-relaxed">
-          Example sentences using the word
+          Setningar sem nota þetta orð:
         </div>
         <ul className="list-decimal pl-8">
           {sentences?.map((sentence) => {

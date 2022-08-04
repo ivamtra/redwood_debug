@@ -137,7 +137,7 @@ export const Success = ({ question, inQuestionsCell }) => {
                     {/* Definition */}
                     <div className="mt-4">
                       <div className="-indent-16 ml-16  leading-relaxed">
-                        <span className="font-bold">Definition: </span>
+                        <span className="font-bold">Skilgreining: </span>
                         {question?.definition}
                       </div>
                     </div>
@@ -145,7 +145,7 @@ export const Success = ({ question, inQuestionsCell }) => {
                     {/* Other info section */}
                     <div className="mt-4">
                       <div className="-indent-16 ml-16  leading-relaxed">
-                        <span className="font-bold">Other Information: </span>
+                        <span className="font-bold">Aðrar upplýsingar: </span>
                         {question?.other_info}
                       </div>
                     </div>
@@ -156,8 +156,8 @@ export const Success = ({ question, inQuestionsCell }) => {
 
                 {/* Submitted by section */}
                 <div className="text-right text-xs italic mt-4">
-                  Submitted by <strong>{question.user.email}</strong> at{' '}
-                  <strong>{time}</strong> on <strong>{date}</strong>
+                  Sent inn af <strong>{question.user.email}</strong> {'   '}
+                  <strong>{date}</strong> | <strong>{time}</strong>
                 </div>
               </div>
             </div>

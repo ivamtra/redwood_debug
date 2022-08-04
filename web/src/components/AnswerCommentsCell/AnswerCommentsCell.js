@@ -21,13 +21,13 @@ export const QUERY = gql`
 
 // Fyrir CSS til að fá indent í comment
 const cssLevel = {
-  1: 'left-[10px]',
-  2: 'left-[20px]',
-  3: 'left-[30px]',
-  4: 'left-[40px]',
-  5: 'left-[50px]',
-  6: 'left-[60px]',
-  7: 'left-[70px]',
+  1: 'left-[15px]',
+  2: 'left-[30px]',
+  3: 'left-[45px]',
+  4: 'left-[60px]',
+  5: 'left-[75px]',
+  6: 'left-[90px]',
+  7: 'left-[105px]',
 }
 
 export const Loading = () => <div>Loading...</div>

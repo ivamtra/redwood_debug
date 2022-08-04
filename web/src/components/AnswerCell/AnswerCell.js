@@ -171,8 +171,9 @@ export const Success = ({ answer }) => {
 
                   {/* Submitted by section */}
                   <div className="text-right text-xs italic mt-4">
-                    Sent inn af <strong>{answer.user.email}</strong> á{' '}
-                    <strong>{time}</strong> | <strong>{date}</strong>
+                    Sent inn af <strong>{answer.user.email}</strong>
+                    {'   '}
+                    <strong>{date}</strong> | <strong>{time}</strong>
                   </div>
                 </div>
               </div>
