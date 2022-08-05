@@ -5,6 +5,7 @@ export const schema = gql`
     answer: Answer!
     answerComment: AnswerComment!
     user: User!
+    createdAt: DateTime!
     description: String!
     questionId: Int!
     answerId: Int!

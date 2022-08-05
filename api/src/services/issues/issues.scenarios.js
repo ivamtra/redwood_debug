@@ -10,7 +10,7 @@ export const standard = defineScenario({
             definition: 'String',
             user: {
               create: {
-                email: 'String4203718',
+                email: 'String6419191',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -24,7 +24,7 @@ export const standard = defineScenario({
             justification: 'String',
             user: {
               create: {
-                email: 'String8272313',
+                email: 'String4774991',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -37,7 +37,7 @@ export const standard = defineScenario({
                 definition: 'String',
                 user: {
                   create: {
-                    email: 'String16806',
+                    email: 'String593644',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -52,7 +52,7 @@ export const standard = defineScenario({
             body: 'String',
             user: {
               create: {
-                email: 'String7505281',
+                email: 'String3902007',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -64,7 +64,7 @@ export const standard = defineScenario({
                 justification: 'String',
                 user: {
                   create: {
-                    email: 'String8075553',
+                    email: 'String1095942',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -77,11 +77,26 @@ export const standard = defineScenario({
                     definition: 'String',
                     user: {
                       create: {
-                        email: 'String7002202',
+                        email: 'String7407074',
                         hashedPassword: 'String',
                         salt: 'String',
                       },
                     },
+                  },
+                },
+              },
+            },
+
+            question: {
+              create: {
+                title: 'String',
+                language: 'String',
+                definition: 'String',
+                user: {
+                  create: {
+                    email: 'String1962628',
+                    hashedPassword: 'String',
+                    salt: 'String',
                   },
                 },
               },
@@ -91,7 +106,7 @@ export const standard = defineScenario({
 
         user: {
           create: {
-            email: 'String9598220',
+            email: 'String5656718',
             hashedPassword: 'String',
             salt: 'String',
           },
@@ -109,7 +124,7 @@ export const standard = defineScenario({
             definition: 'String',
             user: {
               create: {
-                email: 'String2002230',
+                email: 'String457536',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -123,7 +138,7 @@ export const standard = defineScenario({
             justification: 'String',
             user: {
               create: {
-                email: 'String9412979',
+                email: 'String6138941',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -136,7 +151,7 @@ export const standard = defineScenario({
                 definition: 'String',
                 user: {
                   create: {
-                    email: 'String1469894',
+                    email: 'String8298751',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -151,7 +166,7 @@ export const standard = defineScenario({
             body: 'String',
             user: {
               create: {
-                email: 'String6280255',
+                email: 'String1298396',
                 hashedPassword: 'String',
                 salt: 'String',
               },
@@ -163,7 +178,7 @@ export const standard = defineScenario({
                 justification: 'String',
                 user: {
                   create: {
-                    email: 'String4659213',
+                    email: 'String6256796',
                     hashedPassword: 'String',
                     salt: 'String',
                   },
@@ -176,11 +191,26 @@ export const standard = defineScenario({
                     definition: 'String',
                     user: {
                       create: {
-                        email: 'String735609',
+                        email: 'String8694371',
                         hashedPassword: 'String',
                         salt: 'String',
                       },
                     },
+                  },
+                },
+              },
+            },
+
+            question: {
+              create: {
+                title: 'String',
+                language: 'String',
+                definition: 'String',
+                user: {
+                  create: {
+                    email: 'String9623541',
+                    hashedPassword: 'String',
+                    salt: 'String',
                   },
                 },
               },
@@ -190,7 +220,7 @@ export const standard = defineScenario({
 
         user: {
           create: {
-            email: 'String5138695',
+            email: 'String7210549',
             hashedPassword: 'String',
             salt: 'String',
           },
