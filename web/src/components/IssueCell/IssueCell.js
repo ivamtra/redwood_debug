@@ -29,22 +29,25 @@ export const Failure = ({ error }) => (
 export const Success = ({ issue }) => {
   return (
     <>
-      <div>
-        <p>
-          <Link
-            to={routes.question({
-              id: issue.questionId,
-              answerId: issue.answerId,
-              commentId: issue.answerCommentId,
-            })}
-          >
-            Vandamál nr. {issue.id}
-          </Link>
-        </p>
-        <p>Hlekkur að vandamáli</p>
-        <p>Upplýsingar um vandamál {issue.description}</p>
-        <p>Notandi sem senti inn vandamál {issue.user.email}</p>
-        <p>Sent {issue.createdAt}</p>
+      <div className="flex-grow max-w-xl shadow-lg p-4 rounded-lg bg-white text-slate-500">
+        <div className="flex flex-col">
+          <p>Vandamál nr. {issue.id}</p>
+          <p>
+            {' '}
+            <Link
+              to={routes.question({
+                id: issue.questionId,
+                answerId: issue.answerId,
+                commentId: issue.answerCommentId,
+              })}
+            >
+              Hlekkur að vandamáli
+            </Link>
+          </p>
+          <p>Upplýsingar um vandamál {issue.description}</p>
+          <p>Notandi sem senti inn vandamál {issue.user.email}</p>
+          <p>Sent {issue.createdAt}</p>
+        </div>
       </div>
     </>
   )
