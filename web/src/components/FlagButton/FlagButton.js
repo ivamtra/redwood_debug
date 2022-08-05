@@ -21,6 +21,9 @@ const CREATE_ISSUE = gql`
       }
       answerComment {
         questionId
+        answer {
+          questionId
+        }
       }
     }
   }
@@ -35,11 +38,28 @@ const UPDATE_ISSUE = gql`
 `
 
 const FlagButton = ({ type, id }) => {
-  const handleAnswerOrComment = (res, isComment) => {
+  const handleAnswer = (res) => {
     let issue = res.data.createIssue
-    let questionId = issue.answer.questionId
-    if (isComment) questionId = issue.answerComment.questionId
+    const questionId = issue.answer.questionId
     console.log({ id: issue.id, questionId: questionId })
+    updateIssue({
+      variables: { id: issue.id, input: { questionId: questionId } },
+    })
+  }
+
+  const handleComment = (res) => {
+    console.log(res)
+    let issue = res.data.createIssue
+    // Hér er comment við answer
+    let questionId
+    if (issue.answerComment.questionId === 0) {
+      questionId = issue.answerComment.answer.questionid
+    }
+    // Hér er comment við question
+    else {
+      questionId = issue.answerComment.questionId
+    }
+    console.log({ id: issue.id, questionId: questionId }, 'color:green')
     updateIssue({
       variables: { id: issue.id, input: { questionId: questionId } },
     })
@@ -73,7 +93,7 @@ const FlagButton = ({ type, id }) => {
         console.log(data)
         console.log(
           createIssue({ variables: { input: data } }).then((res) =>
-            handleAnswerOrComment(res, false)
+            handleAnswer(res)
           )
         )
         break
@@ -86,7 +106,7 @@ const FlagButton = ({ type, id }) => {
         data.answerCommentId = id
         console.log(
           createIssue({ variables: { input: data } }).then((res) =>
-            handleAnswerOrComment(res, true)
+            handleComment(res, true)
           )
         )
         break
