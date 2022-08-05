@@ -1,6 +1,10 @@
+import { requireAuth } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
+const GET_ISSUE_ROLES = ['admin', 'moderator']
+
 export const issues = () => {
+  requireAuth({ role: GET_ISSUE_ROLES })
   return db.issue.findMany({
     orderBy: {
       id: 'desc',
@@ -9,6 +13,7 @@ export const issues = () => {
 }
 
 export const issue = ({ id }) => {
+  requireAuth({ role: GET_ISSUE_ROLES })
   return db.issue.findUnique({
     where: { id },
   })
