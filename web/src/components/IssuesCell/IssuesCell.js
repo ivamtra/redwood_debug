@@ -1,3 +1,5 @@
+import IssueCell from '../IssueCell/IssueCell'
+
 export const QUERY = gql`
   query IssuesQuery {
     issues {
@@ -18,7 +20,11 @@ export const Success = ({ issues }) => {
   return (
     <ul>
       {issues.map((item) => {
-        return <li key={item.id}>{JSON.stringify(item)}</li>
+        return (
+          <div key={item.id} className="mt-11">
+            <IssueCell key={item.id} id={item.id} />
+          </div>
+        )
       })}
     </ul>
   )

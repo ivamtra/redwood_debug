@@ -141,7 +141,7 @@ export const Success = ({ answer }) => {
                       }
                     >
                       {/* Flag */}
-                      <FlagButton type={'question'} id={answer.id} />
+                      <FlagButton type={'answer'} id={answer.id} />
                     </li>
                     <li className=" cursor-pointer pt-2">
                       <HideButton

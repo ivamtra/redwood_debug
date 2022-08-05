@@ -192,7 +192,7 @@ export const Success = ({ answerComment }) => {
                   }
                 >
                   {/* Flag */}
-                  <FlagButton type={'question'} id={answerComment.id} />
+                  <FlagButton type={'comment'} id={answerComment.id} />
                 </li>
                 <li className=" cursor-pointer pt-1">
                   <HideButton

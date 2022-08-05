@@ -15,11 +15,37 @@ const CREATE_ISSUE = gql`
   mutation CreateIssue($input: CreateIssueInput!) {
     createIssue(input: $input) {
       id
+      questionId
+      answer {
+        questionId
+      }
+      answerComment {
+        questionId
+      }
+    }
+  }
+`
+
+const UPDATE_ISSUE = gql`
+  mutation UpdateIssue($input: UpdateIssueInput!, $id: Int!) {
+    updateIssue(input: $input, id: $id) {
+      id
     }
   }
 `
 
 const FlagButton = ({ type, id }) => {
+  const handleAnswerOrComment = (res, isComment) => {
+    let issue = res.data.createIssue
+    let questionId = issue.answer.questionId
+    if (isComment) questionId = issue.answerComment.questionId
+    console.log({ id: issue.id, questionId: questionId })
+    updateIssue({
+      variables: { id: issue.id, input: { questionId: questionId } },
+    })
+  }
+
+  const [updateIssue] = useMutation(UPDATE_ISSUE)
   const [isClicked, setIsClicked] = useState(false)
   const onSubmit = (data) => {
     console.log(data)
@@ -45,7 +71,11 @@ const FlagButton = ({ type, id }) => {
       case 'answer':
         data.answerId = id
         console.log(data)
-        console.log(createIssue({ variables: { input: data } }))
+        console.log(
+          createIssue({ variables: { input: data } }).then((res) =>
+            handleAnswerOrComment(res, false)
+          )
+        )
         break
       case 'question':
         data.questionId = id
@@ -54,7 +84,11 @@ const FlagButton = ({ type, id }) => {
         break
       case 'comment':
         data.answerCommentId = id
-        console.log(createIssue({ variables: { input: data } }))
+        console.log(
+          createIssue({ variables: { input: data } }).then((res) =>
+            handleAnswerOrComment(res, true)
+          )
+        )
         break
       default:
         // Throw exception
