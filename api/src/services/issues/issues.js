@@ -1,7 +1,11 @@
 import { db } from 'src/lib/db'
 
 export const issues = () => {
-  return db.issue.findMany()
+  return db.issue.findMany({
+    orderBy: {
+      id: 'desc',
+    },
+  })
 }
 
 export const issue = ({ id }) => {
