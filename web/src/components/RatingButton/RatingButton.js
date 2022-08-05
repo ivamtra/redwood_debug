@@ -54,11 +54,11 @@ const RatingButton = ({ type, id, compRating }) => {
   // ------------ OnCompleted ----------------------------
 
   const onCompleted = (type) => {
-    if (rating === -1) {
-      toast.success('downvoted ' + type)
-    } else {
-      toast.success('upvoted ' + type)
-    }
+    // if (rating === -1) {
+    //   toast.success('downvoted ' + type)
+    // } else {
+    //   toast.success('upvoted ' + type)
+    // }
   }
 
   // ----------------- Variables ---------------------
@@ -382,8 +382,6 @@ const RatingButton = ({ type, id, compRating }) => {
                     },
                   })
                 })
-
-                toast.success('Endurgjöf breytt!')
               })
           )
           break

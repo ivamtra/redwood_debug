@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import moment from 'moment'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 
 import { useAuth } from '@redwoodjs/auth'
