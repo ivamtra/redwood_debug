@@ -2,7 +2,7 @@
 //TODO: Refactora
 //TODO: ENUM fyrir tegund af component?
 //TODO: CSS til að merkja hvort að takkinn hafi verið smelltur
-import { useState } from 'react' //
+import { useEffect, useState } from 'react' //
 
 import { BiUpArrow, BiDownArrow } from 'react-icons/bi'
 
@@ -51,6 +51,7 @@ const handleCatch = (workingData, rating) => {
 // ------------ React Component ------------------------
 
 const RatingButton = ({ type, id, compRating }) => {
+  useEffect(() => console.log(rating))
   // ------------ OnCompleted ----------------------------
 
   const onCompleted = (type) => {
@@ -63,7 +64,8 @@ const RatingButton = ({ type, id, compRating }) => {
 
   // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser } = useAuth()
-  const [rating, setRating] = useState(0)
+  const [UIrating, setUIrating] = useState(0)
+  let rating = 0
   let debugUserId
 
   // Laga tilfellið þegar user er ekki loggaður inn
@@ -252,14 +254,21 @@ const RatingButton = ({ type, id, compRating }) => {
   // ---------- Click Events -------------------------
 
   const downvoteClick = () => {
-    setRating(-1)
+    // Höndla útlitið
+    UIrating === -1 ? setUIrating(0) : setUIrating(-1)
+
+    // -----------------
+    rating = -1
     console.log('downvoted')
     console.log(new Date().toISOString)
     handleCreateMutation()
   }
 
   const upvoteClick = () => {
-    setRating(1)
+    // Höndla útlitið
+    UIrating === 1 ? setUIrating(0) : setUIrating(1)
+    // -----------------
+    rating = 1
     console.log('upvoted')
     handleCreateMutation()
   }
@@ -444,13 +453,13 @@ const RatingButton = ({ type, id, compRating }) => {
         <Form onSubmit={handleCreateMutation}>
           <Submit className="blue" onClick={upvoteClick}>
             <div className="hover:scale-125 cursor-pointer">
-              <BiUpArrow />
+              <BiUpArrow color={UIrating === 1 ? 'red' : ''} />
             </div>
           </Submit>
           <p className="">{compRating}</p>
           <Submit onClick={downvoteClick}>
             <div className="hover:scale-125 cursor-pointer">
-              <BiDownArrow />
+              <BiDownArrow color={UIrating === -1 ? 'blue' : ''} />
             </div>
           </Submit>
         </Form>
