@@ -53,7 +53,8 @@ const FlagButton = ({ type, id }) => {
     // Hér er comment við answer
     let questionId
     if (issue.answerComment.questionId === 0) {
-      questionId = issue.answerComment.answer.questionid
+      console.log(issue.answerComment.answer.questionId)
+      questionId = issue.answerComment.answer.questionId
     }
     // Hér er comment við question
     else {
