@@ -15,7 +15,7 @@ const Routes = () => {
   return (
     <Router>
       <Set wrap={TestLayout}>
-        <Private unauthenticated="questions" roles="admin">
+        <Private unauthenticated="questions" roles={['admin', 'moderator']}>
           <Route path="/issues" page={IssuesPage} name="issues" />
         </Private>
         <Route path="/notification-test" page={NotificationTestPage} name="notificationTest" />
