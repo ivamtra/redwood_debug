@@ -2,7 +2,7 @@
 //TODO: Refactora
 //TODO: ENUM fyrir tegund af component?
 //TODO: CSS til að merkja hvort að takkinn hafi verið smelltur
-import { useEffect, useState } from 'react' //
+import { useEffect, useLayoutEffect, useState } from 'react' //
 
 import { BiUpArrow, BiDownArrow } from 'react-icons/bi'
 
@@ -54,13 +54,43 @@ const RatingButton = ({ type, id, compRating }) => {
   useEffect(() => console.log(rating))
   // ------------ OnCompleted ----------------------------
 
-  const onCompleted = (type) => {
-    // if (rating === -1) {
-    //   toast.success('downvoted ' + type)
-    // } else {
-    //   toast.success('upvoted ' + type)
-    // }
+  const onCompleted = (type) => {}
+
+  const initializeRating = () => {
+    if (
+      userLikesAnswerLoading ||
+      userLikesCommentLoading ||
+      userLikesQuestionLoading
+    ) {
+      return
+    }
+    console.log(userLikesAnswerData)
+    console.log(userLikesCommentData)
+    console.log(userLikesQuestionData)
+    console.log(userLikesAnswerData.customUserLikesAnswer)
+    console.log(userLikesCommentData.customUserLikesComment)
+    console.log(userLikesQuestionData.customUserLikesQuestion)
+    console.log(userLikesAnswerLoading)
+    console.log(userLikesCommentLoading)
+    console.log(userLikesQuestionLoading)
+    const list = [
+      userLikesAnswerData.customUserLikesAnswer,
+      userLikesCommentData.customUserLikesComment,
+      userLikesQuestionData.customUserLikesQuestion,
+    ]
+    list.forEach((item) => {
+      console.log(item)
+      if (item !== undefined) {
+        if (item.length !== 0) {
+          console.log(item.action)
+          console.log({ action: item[0].action })
+          setUIrating(item[0].action)
+        }
+      }
+    })
   }
+
+  useLayoutEffect(() => initializeRating())
 
   // ----------------- Variables ---------------------
   const { isAuthenticated, currentUser } = useAuth()
@@ -228,26 +258,20 @@ const RatingButton = ({ type, id, compRating }) => {
 
   // UserLikesX Queries
 
-  const { data: userLikesQuestionData } = useQuery(
-    GraphQLMutations.USER_LIKES_QUESTION_QUERY,
-    {
+  const { data: userLikesQuestionData, loading: userLikesQuestionLoading } =
+    useQuery(GraphQLMutations.USER_LIKES_QUESTION_QUERY, {
       variables: { questionId: id, userId: debugUserId },
-    }
-  )
+    })
 
-  const { data: userLikesAnswerData } = useQuery(
-    GraphQLMutations.USER_LIKES_ANSWER_QUERY,
-    {
+  const { data: userLikesAnswerData, loading: userLikesAnswerLoading } =
+    useQuery(GraphQLMutations.USER_LIKES_ANSWER_QUERY, {
       variables: { answerId: id, userId: debugUserId },
-    }
-  )
+    })
 
-  const { data: userLikesCommentData } = useQuery(
-    GraphQLMutations.USER_LIKES_COMMENT_QUERY,
-    {
+  const { data: userLikesCommentData, loading: userLikesCommentLoading } =
+    useQuery(GraphQLMutations.USER_LIKES_COMMENT_QUERY, {
       variables: { commentId: id, userId: debugUserId },
-    }
-  )
+    })
 
   // ------------------------------------------------
 
