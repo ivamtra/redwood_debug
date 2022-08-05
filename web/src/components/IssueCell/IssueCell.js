@@ -1,3 +1,5 @@
+import { Link, routes } from '@redwoodjs/router'
+
 export const QUERY = gql`
   query FindIssueQuery($id: Int!) {
     issue: issue(id: $id) {
@@ -28,7 +30,17 @@ export const Success = ({ issue }) => {
   return (
     <>
       <div>
-        <p>Vandamál nr. {issue.id}</p>
+        <p>
+          <Link
+            to={routes.question({
+              id: issue.questionId,
+              answerId: issue.answerId,
+              commentId: issue.answerCommentId,
+            })}
+          >
+            Vandamál nr. {issue.id}
+          </Link>
+        </p>
         <p>Hlekkur að vandamáli</p>
         <p>Upplýsingar um vandamál {issue.description}</p>
         <p>Notandi sem senti inn vandamál {issue.user.email}</p>
