@@ -33,7 +33,9 @@ const TestLayout = ({ children, user }) => {
             <Link to={routes.test()}>Svör </Link>
             <Link to={routes.commentTest()}>Comment </Link>
             {/* <Link to={routes.answer()}>AnswerPage </Link> <br /> */}
-            <Link to={routes.notificationTest()}>Notification test</Link>
+            <Link to={routes.notificationTest()}>Notification test </Link>{' '}
+            <br />
+            <Link to={routes.issues()}>Issues </Link>
           </h2>
           <main>{children}</main>
         </div>

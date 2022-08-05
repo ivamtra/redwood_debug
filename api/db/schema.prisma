@@ -243,6 +243,7 @@ model Issue {
   answer        Answer        @relation(fields: [answerId], references: [id])
   answerComment AnswerComment @relation(fields: [answerCommentId], references: [id])
   user          User          @relation(fields: [userId], references: [id])
+  createdAt     DateTime      @default(now())
 
   description String // Lýsingin á vandamálinu
 

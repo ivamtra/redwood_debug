@@ -1,7 +1,20 @@
+import { useAuth } from '@redwoodjs/auth'
+
+import UserCellStories from '../UserCell/UserCell.stories'
+
 export const QUERY = gql`
   query FindIssueQuery($id: Int!) {
     issue: issue(id: $id) {
       id
+      user {
+        id
+        email
+        name
+      }
+      questionId
+      answerId
+      answerCommentId
+      description
     }
   }
 `
@@ -15,5 +28,14 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ issue }) => {
-  return <div>{JSON.stringify(issue)}</div>
+  return (
+    <>
+      <div>
+        <p>Vandamál nr. {issue.id}</p>
+        <p>Hlekkur að vandamáli</p>
+        <p>Upplýsingar um vandamál {issue.description}</p>
+        <p>Notandi sem senti inn vandamál {issue.user.email}</p>
+      </div>
+    </>
+  )
 }
