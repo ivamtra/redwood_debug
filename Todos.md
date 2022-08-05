@@ -154,7 +154,9 @@
 ---
 
 - Issue cell byrjað fyrir admina/moderatora
-  - Private síða sem aðeins þeir hafa aðgang að
+  - Private síða sem aðeins þeir hafa aðgang að ✅
   - Inniheldur hlekk að componentum ✅
   - Inniheldur upplýsingar um vandamálið, hver senti það inn og hvenær ✅
   - Settar inn í tímaröð ✅
+
+- Rating button er nú blár eða rauður eftir því hvort að það sé upvote eða downvote frá notanda ✅
