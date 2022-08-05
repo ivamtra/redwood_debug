@@ -155,5 +155,6 @@
 
 - Issue cell byrjað fyrir admina/moderatora
   - Private síða sem aðeins þeir hafa aðgang að
-  - Inniheldur hlekk að componentum
-  - Inniheldur upplýsingar um vandamálið, hver senti það inn og hvenær
+  - Inniheldur hlekk að componentum ✅
+  - Inniheldur upplýsingar um vandamálið, hver senti það inn og hvenær ✅
+  - Settar inn í tímaröð ✅
