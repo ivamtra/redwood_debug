@@ -68,6 +68,8 @@ export const USER_LIKES_QUESTION_QUERY = gql`
     ) {
       id
       action
+      userId
+      questionId
     }
   }
 `
@@ -80,6 +82,8 @@ export const USER_LIKES_ANSWER_QUERY = gql`
     ) {
       id
       action
+      userId
+      answerId
     }
   }
 `
@@ -92,6 +96,8 @@ export const USER_LIKES_COMMENT_QUERY = gql`
     ) {
       id
       action
+      userId
+      commentId
     }
   }
 `
