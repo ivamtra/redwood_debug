@@ -53,10 +53,6 @@ export const Success = ({ question, inQuestionsCell }) => {
   const hidden = useHidden(question)
   const [actions, setActions] = useState(false)
   const handleActions = () => setActions(!actions)
-  useEffect(() => {
-    let dateTime = new Date(question.createdAt)
-    console.log(dateTime.toLocaleString())
-  })
 
   return (
     <>

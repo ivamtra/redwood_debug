@@ -60,13 +60,13 @@ const RatingButton = ({ type, id, compRating }) => {
   const initializeRating = (type) => {
     switch (type) {
       case 'answer':
-        setUIrating(userLikesAnswerData?.customUserLikesAnswer[0].action)
+        setUIrating(userLikesAnswerData?.customUserLikesAnswer[0]?.action)
         break
       case 'question':
-        setUIrating(userLikesQuestionData?.customUserLikesQuestion[0].action)
+        setUIrating(userLikesQuestionData?.customUserLikesQuestion[0]?.action)
         break
       case 'comment':
-        setUIrating(userLikesCommentData?.customUserLikesComment[0].action)
+        setUIrating(userLikesCommentData?.customUserLikesComment[0]?.action)
         break
     }
     return

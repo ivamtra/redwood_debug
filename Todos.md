@@ -149,7 +149,7 @@
 
 
 
-- Tab icon
+- Favicon
 
 ---
 
@@ -159,4 +159,30 @@
   - Inniheldur upplýsingar um vandamálið, hver senti það inn og hvenær ✅
   - Settar inn í tímaröð ✅
 
+<br>
+
 - Rating button er nú blár eða rauður eftir því hvort að það sé upvote eða downvote frá notanda ✅
+
+- Rating liturinn vistast nú hjá hverjum notanda þannig hann fer ekki ef notandinn fer af síðunni ✅
+
+<br>
+
+
+- Sorta spurningar eftir vinsældum / hot / new etc.
+
+<br>
+
+
+- QuestionPage er ennþá til þótt að spurning hafi verið falin þannig það er hægt að fara inn á hana með url
+  - Redirect aftur á questionpage?
+  - Öðruvísi styling fyrir síðuna fyrir venjulega usera til að sýna að spurning er ekki lengur til en adminar sjá ennþá componentinn eins og hann er
+
+<br>
+
+
+- Hide virkni fyrir nýja comment componentinn
+
+<br>
+
+- Question title í URL
+  - Titill verður þá að vera unique sem þýðir aðeins ein spurning fyrir hvert orð

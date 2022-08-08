@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
+import { Head } from '@redwoodjs/web'
 import { Toaster } from '@redwoodjs/web/dist/toast'
 
 import UserCell from 'src/components/UserCell/UserCell'
@@ -11,6 +12,12 @@ const TestLayout = ({ children, user }) => {
 
   return (
     <>
+      {/* Breyta FavIcon hérna */}
+      <Head>
+        <link rel="icon" type="image/png" href="favicon.png" />
+      </Head>
+      {/* Breyta FavIcon hérna */}
+
       <Toaster />
       <div className="w-full min-h-screen bg-zinc-200 pt-[96px] px-12">
         <div className="flex flex-col min-w-[200px]">Left Sidebar</div>
