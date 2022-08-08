@@ -24,7 +24,7 @@ const NotificationTestPage = () => {
         My default route is named <code>notificationTest</code>, link to me with
         `<Link to={routes.notificationTest()}>NotificationTest</Link>`
       </p>
-      <NotificationsCell userId={currentUser.id} />
+      <NotificationsCell userId={currentUser?.id} />
     </>
   )
 }

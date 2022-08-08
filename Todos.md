@@ -145,7 +145,7 @@
 
 <br>
 
-- Refresh í NotificationPage brýtur síðuna
+- Refresh í NotificationPage brýtur síðuna ✅
 
 
 

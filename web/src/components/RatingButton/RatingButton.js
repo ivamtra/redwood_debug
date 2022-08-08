@@ -55,51 +55,21 @@ const RatingButton = ({ type, id, compRating }) => {
 
   const onCompleted = (type) => {}
 
-  // ! Virkar ekki þegar tveir componentar hafa sama id
+  // Upphafsstillir lit á rating component eftir því hvort að notandi
+  // hafi like-að eða dislike-að
   const initializeRating = (type) => {
     switch (type) {
       case 'answer':
-        console.log(userLikesAnswerData?.customUserLikesAnswer[0])
         setUIrating(userLikesAnswerData?.customUserLikesAnswer[0].action)
         break
       case 'question':
-        console.log(userLikesQuestionData?.customUserLikesQuestion[0])
         setUIrating(userLikesQuestionData?.customUserLikesQuestion[0].action)
         break
       case 'comment':
-        console.log(userLikesCommentData?.customUserLikesComment[0])
         setUIrating(userLikesCommentData?.customUserLikesComment[0].action)
         break
     }
     return
-
-    setUIrating(0)
-    // console.log(userLikesAnswerData)
-
-    if (
-      userLikesAnswerLoading ||
-      userLikesCommentLoading ||
-      userLikesQuestionLoading
-    ) {
-      // console.log('In if block')
-      return
-    }
-    console.log(userLikesAnswerData.customUserLikesAnswer)
-    console.log(userLikesAnswerData.customUserLikesAnswer[0])
-    console.log(userLikesAnswerData.customUserLikesAnswer[0]?.action)
-
-    const list = [
-      userLikesAnswerData.customUserLikesAnswer,
-      userLikesCommentData.customUserLikesComment,
-      userLikesQuestionData.customUserLikesQuestion,
-    ]
-    list.forEach((item) => {
-      // console.log(item)
-      if (item.length !== 0) {
-        console.log(item[0])
-        setUIrating(item[0].action)
-      }
-    })
   }
 
   useLayoutEffect(() => initializeRating(type))
