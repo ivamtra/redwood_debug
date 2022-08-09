@@ -186,3 +186,14 @@
 
 - Question title í URL
   - Titill verður þá að vera unique sem þýðir aðeins ein spurning fyrir hvert orð
+  - Vont að nota route params því notification og issue nota það
+
+<br>
+
+- Seen virkni í notification sem gerir notification component daufari ef hann hefur verið séður
+  - Spurning hvort að notification er seen ef maður skoðar notification-in sín eða þegar maður opnar sérhvert notification
+
+
+<br>
+
+- Leið til að tengja saman comment í viðmótinu t.d. með línum
