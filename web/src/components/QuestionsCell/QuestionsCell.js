@@ -2,6 +2,8 @@ import { useEffect, useMemo } from 'react'
 
 import ReactSearchBox from 'react-search-box'
 
+import { navigate, routes } from '@redwoodjs/router'
+
 import QuestionCell from '../QuestionCell/QuestionCell'
 
 export const QUERY = gql`
@@ -31,12 +33,18 @@ const mutateQuestionsForSearch = (questions) => {
   return returnList
 }
 
+const onSelect = (item) => {
+  console.log(item.item)
+
+  navigate(routes.question({ id: item.item.id }))
+}
+
 export const Success = ({ questions }) => {
   const searchData = useMemo(() => mutateQuestionsForSearch(questions))
   useEffect(() => console.log(searchData), [questions, searchData])
   return (
     <>
-      <ReactSearchBox data={searchData} />
+      <ReactSearchBox data={searchData} onSelect={onSelect} />
       <ul>
         {questions.map((item) => {
           return (
