@@ -20,9 +20,9 @@ const TestLayout = ({ children, user }) => {
       {/* Breyta FavIcon hérna */}
 
       <Toaster />
-      <div className="w-full min-h-screen bg-zinc-200 pt-[96px] px-12">
-        <div className="flex flex-col min-w-[200px]">Left Sidebar</div>
-        <div className="flex flex-col gap-8">
+      <div className="bg-zinc-200 pt-[96px] flex">
+        <div className="flex flex-col w-1/6">Left Sidebar</div>
+        <div className="flex flex-col w-4/6">
           {currentUser === null ? (
             <p>Not logged in</p>
           ) : (
@@ -47,7 +47,7 @@ const TestLayout = ({ children, user }) => {
           </h2>
           <main>{children}</main>
         </div>
-        <div className="flex flex-col min-w-[350px]">Right Sidebar</div>
+        <div className="flex flex-col w-1/6">Right Sidebar</div>
       </div>
     </>
   )
