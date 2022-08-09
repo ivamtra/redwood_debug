@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react'
 
+import { BsSearch } from 'react-icons/bs'
 import ReactSearchBox from 'react-search-box'
 
 import { navigate, routes } from '@redwoodjs/router'
@@ -34,17 +35,25 @@ const mutateQuestionsForSearch = (questions) => {
 }
 
 const onSelect = (item) => {
-  console.log(item.item)
-
   navigate(routes.question({ id: item.item.id }))
 }
 
 export const Success = ({ questions }) => {
-  const searchData = useMemo(() => mutateQuestionsForSearch(questions))
+  const searchData = useMemo(
+    () => mutateQuestionsForSearch(questions),
+    [questions]
+  )
   useEffect(() => console.log(searchData), [questions, searchData])
   return (
     <>
-      <ReactSearchBox data={searchData} onSelect={onSelect} />
+      <div className="pt-4 max-w-md">
+        <ReactSearchBox
+          data={searchData}
+          onSelect={onSelect}
+          placeholder="Leita af orði"
+          className="inline"
+        />
+      </div>
       <ul>
         {questions.map((item) => {
           return (

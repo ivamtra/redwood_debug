@@ -16,7 +16,9 @@ import { UPDATE_USER, handleNewUser } from '../NewQuestionForm/NewQuestionForm'
 
 const notificationBody = (res) => {
   // user x svaraði spurningu þinni
-  return 'User ' + res.data.createAnswer.userId + ' svaraði spurningu þinni'
+  return (
+    'Notandi ' + res.data.createAnswer.user.email + ' svaraði spurningu þinni'
+  )
 }
 
 const CREATE_ANSWER = gql`
@@ -28,6 +30,9 @@ const CREATE_ANSWER = gql`
         userId # userId viðtakanda
       }
       userId #userId sendanda
+      user {
+        email
+      }
       questionId
     }
   }

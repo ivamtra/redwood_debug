@@ -18,7 +18,11 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <div>
+    <IoNotifications className="text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer" />
+  </div>
+)
 
 export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
