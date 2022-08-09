@@ -197,3 +197,8 @@
 <br>
 
 - Leið til að tengja saman comment í viðmótinu t.d. með línum
+
+
+<br>
+
+- Header navbar

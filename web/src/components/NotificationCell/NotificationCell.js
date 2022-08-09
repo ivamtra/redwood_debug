@@ -25,7 +25,8 @@ export const Failure = ({ error }) => (
 export const Success = ({ notification }) => {
   return (
     <>
-      <div>
+      {/* Gamli component */}
+      {/* <div>
         <h4>
           <Link
             to={routes.question({
@@ -45,7 +46,19 @@ export const Success = ({ notification }) => {
         <p>answerId = {notification.answerId}</p>
         <p>userId = {notification.userId}</p>
         <p>answerCommentId = {notification.answerCommentId}</p>
-      </div>
+      </div> */}
+      {/* Nýji component */}
+      <Link
+        to={routes.question({
+          id: notification.questionId,
+          answerId: notification.answerId,
+          commentId: notification.answerCommentId,
+        })}
+      >
+        <div className="flex-grow max-w-xs shadow-lg p-4 bg-white text-slate-500 border-b-2">
+          <p> {notification.body}</p>
+        </div>
+      </Link>
     </>
   )
 }

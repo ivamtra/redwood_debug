@@ -14,8 +14,9 @@ const TestLayout = ({ children, user }) => {
     <>
       {/* Breyta FavIcon hérna */}
       <Head>
-        <link rel="icon" type="image/png" href="snack.png" />
+        <link rel="icon" type="image/png" href="pied-piper.png" />
       </Head>
+      <img src="snack.png" alt="Logo" />
       {/* Breyta FavIcon hérna */}
 
       <Toaster />
