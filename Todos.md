@@ -165,6 +165,10 @@
 
 - Rating liturinn vistast nú hjá hverjum notanda þannig hann fer ekki ef notandinn fer af síðunni ✅
 
+- Basic Issue styling ✅
+
+- Basic Notification styling ✅
+  - Bjalla sem sýnir fjölda notification-a
 <br>
 
 
