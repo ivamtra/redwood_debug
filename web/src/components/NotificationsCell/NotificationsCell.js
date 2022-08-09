@@ -68,7 +68,11 @@ export const Success = ({ notifications }) => {
         </span>
       </div>
       {/* Upplýsingarnar */}
-      <div className={isBellClicked ? 'hidden' : ''}>
+      <div
+        className={
+          isBellClicked ? 'hidden' : 'max-h-[300px] max-w-xs overflow-auto'
+        }
+      >
         <ul>
           {notifications.map((item) => {
             return <NotificationCell id={item.id} key={item.id} />

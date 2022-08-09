@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 
-import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import QuestionCell from 'src/components/QuestionCell/QuestionCell'
