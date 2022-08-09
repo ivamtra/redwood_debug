@@ -13,17 +13,9 @@ const NotificationTestPage = () => {
     <>
       <MetaTags title="NotificationTest" description="NotificationTest page" />
 
-      <h1>NotificationTestPage</h1>
-      <p>
-        Find me in{' '}
-        <code>
-          ./web/src/pages/NotificationTestPage/NotificationTestPage.js
-        </code>
-      </p>
-      <p>
-        My default route is named <code>notificationTest</code>, link to me with
-        `<Link to={routes.notificationTest()}>NotificationTest</Link>`
-      </p>
+      <h1 className="text-xl text-slate-800">
+        Hér kemur notification component sem fer í navbar{' '}
+      </h1>
       <NotificationsCell userId={currentUser?.id} />
     </>
   )

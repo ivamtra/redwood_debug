@@ -1,5 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
+import { useMutation } from '@redwoodjs/web'
 
+import { UPDATE_NOTIFICATION } from 'src/customUtils/GraphQLMutations'
 export const QUERY = gql`
   query FindNotificationQuery($id: Int!) {
     notification: notification(id: $id) {
@@ -23,30 +25,17 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ notification }) => {
+  const [updateNotification] = useMutation(UPDATE_NOTIFICATION)
+
+  const handleNotificationClick = () => {
+    if (!notification.isSeen) {
+      updateNotification({
+        variables: { id: notification.id, input: { isSeen: true } },
+      })
+    }
+  }
   return (
     <>
-      {/* Gamli component */}
-      {/* <div>
-        <h4>
-          <Link
-            to={routes.question({
-              id: notification.questionId,
-              answerId: notification.answerId,
-              commentId: notification.answerCommentId,
-            })}
-          >
-            Link
-          </Link>
-        </h4>
-
-        <p>id = {notification.id}</p>
-        <p>body = {notification.body}</p>
-        <p>isSeen = {notification.isSeen}</p>
-        <p>questionId = {notification.questionId}</p>
-        <p>answerId = {notification.answerId}</p>
-        <p>userId = {notification.userId}</p>
-        <p>answerCommentId = {notification.answerCommentId}</p>
-      </div> */}
       {/* Nýji component */}
       <Link
         to={routes.question({
@@ -54,9 +43,10 @@ export const Success = ({ notification }) => {
           answerId: notification.answerId,
           commentId: notification.answerCommentId,
         })}
+        onClick={handleNotificationClick}
       >
         <div className={notification.isSeen ? 'opacity-75' : ''}>
-          <div className="flex-grow max-w-xs shadow-lg p-4 bg-white text-slate-500 border-b-2">
+          <div className="flex-grow max-w-xs shadow-lg p-4 bg-white text-slate-500 border-b-2 hover:bg-blue-100">
             <p> {notification.body}</p>
           </div>
         </div>
