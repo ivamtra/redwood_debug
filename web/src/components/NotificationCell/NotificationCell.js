@@ -55,8 +55,10 @@ export const Success = ({ notification }) => {
           commentId: notification.answerCommentId,
         })}
       >
-        <div className="flex-grow max-w-xs shadow-lg p-4 bg-white text-slate-500 border-b-2">
-          <p> {notification.body}</p>
+        <div className={notification.isSeen ? 'opacity-75' : ''}>
+          <div className="flex-grow max-w-xs shadow-lg p-4 bg-white text-slate-500 border-b-2">
+            <p> {notification.body}</p>
+          </div>
         </div>
       </Link>
     </>

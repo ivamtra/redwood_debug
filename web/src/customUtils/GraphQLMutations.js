@@ -166,6 +166,14 @@ export const UPDATE_USER_LIKES_COMMENT = gql`
   }
 `
 
+export const UPDATE_NOTIFICATION = gql`
+  mutation UpdateNotification($id: Int!, $input: UpdateNotificationInput!) {
+    updateNotification(id: $id, input: $input) {
+      id
+    }
+  }
+`
+
 export const GraphQLMutations = {
   CREATE_QUESTION_UPVOTE: CREATE_QUESTION_UPVOTE,
   CREATE_ANSWER_UPVOTE: CREATE_ANSWER_UPVOTE,

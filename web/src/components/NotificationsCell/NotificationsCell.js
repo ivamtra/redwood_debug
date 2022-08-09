@@ -2,6 +2,10 @@ import { useEffect, useLayoutEffect, useState } from 'react'
 
 import { IoNotifications } from 'react-icons/io5'
 
+import { useMutation } from '@redwoodjs/web'
+
+import { UPDATE_NOTIFICATION } from 'src/customUtils/GraphQLMutations'
+
 import NotificationCell from '../NotificationCell/NotificationCell'
 export const QUERY = gql`
   query FindNotificationsQuery($userId: Int!) {
@@ -21,29 +25,50 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ notifications }) => {
+  // Refetcha ekki því ég vil að notandi geti séð
+  // hvaða comment eru ekki seen áður en hann refreshar
+  const [updateNotification] = useMutation(UPDATE_NOTIFICATION)
   const [numberOfUnseen, setNumberOfUnseen] = useState(0)
+  // ! Breyta í true þegar búið er að debugga
+  const [isBellClicked, setIsBellClicked] = useState(true)
+
+  const handleBell = () => setIsBellClicked(!isBellClicked)
   useLayoutEffect(() => {
     let counter = 0
     notifications.forEach((element) => {
       console.log(element)
       if (!element.isSeen) {
         counter++
+        // updateNotification({
+        //   variables: { id: element.id, input: { isSeen: true } },
+        // })
       }
     })
     setNumberOfUnseen(counter)
     console.log(counter)
-  }, [notifications])
+  }, [notifications, updateNotification])
   return (
     <>
       {/* Bell notification */}
       <div className="p-4">
-        <IoNotifications className="text-[#ffd700] border-slate-500 w-8 h-8 inline" />
-        <span className="bg-red-500 rounded-full p-[1px] text-zinc-100">
-          {numberOfUnseen}
+        <IoNotifications
+          onClick={handleBell}
+          className="text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer"
+        />
+        <span
+          className={
+            numberOfUnseen === 0
+              ? 'hidden'
+              : 'bg-red-500 rounded-full pl-[5px] pr-[5px] text-zinc-100 relative right-3 bottom-2 '
+          }
+        >
+          <p className="text-xs inline">
+            {numberOfUnseen === 0 ? '' : numberOfUnseen}
+          </p>
         </span>
       </div>
       {/* Upplýsingarnar */}
-      <div className="">
+      <div className={isBellClicked ? 'hidden' : ''}>
         <ul>
           {notifications.map((item) => {
             return <NotificationCell id={item.id} key={item.id} />
