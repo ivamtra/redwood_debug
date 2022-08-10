@@ -208,4 +208,4 @@
 
 - Header navbar
 
-- Search bar
+- Search bar ✅

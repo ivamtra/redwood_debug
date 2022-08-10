@@ -13,15 +13,19 @@ const TestLayout = ({ children, user }) => {
   return (
     <>
       {/* Breyta FavIcon hérna */}
-      <Head>
+      <Head className="bg-slate-600">
         <link rel="icon" type="image/png" href="pied-piper.png" />
       </Head>
-      <img src="snack.png" alt="Logo" />
       {/* Breyta FavIcon hérna */}
 
       <Toaster />
-      <div className="bg-zinc-200 pt-[96px] flex">
-        <div className="flex flex-col w-1/6">Left Sidebar</div>
+      <div className="bg-white">
+        <img src="snack.png" alt="Logo" />
+      </div>
+      <div className="bg-zinc-200 pt-[96px] flex h-max">
+        <div className="flex flex-col w-1/6 items-center">
+          <p className="">Left Sidebar</p>
+        </div>
         <div className="flex flex-col w-4/6">
           {currentUser === null ? (
             <p>Not logged in</p>
@@ -47,7 +51,9 @@ const TestLayout = ({ children, user }) => {
           </h2>
           <main>{children}</main>
         </div>
-        <div className="flex flex-col w-1/6">Right Sidebar</div>
+        <div className="flex flex-col w-1/6 align-middle items-center">
+          Right Sidebar
+        </div>
       </div>
     </>
   )
