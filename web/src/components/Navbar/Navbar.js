@@ -6,7 +6,8 @@ import { useAuth } from '@redwoodjs/auth'
 import { Link, routes, navigate } from '@redwoodjs/router'
 import { useQuery } from '@redwoodjs/web'
 
-import logo from '../../../public/pied-piper.png'
+import logo from '../../../public/pied-piper-transparent.png'
+import OJ from '../../../public/snack-dick.png'
 import NotificationsCell from '../NotificationsCell/NotificationsCell'
 import { QUERY as QuestionsQuery } from '../QuestionsCell/QuestionsCell'
 
@@ -35,9 +36,11 @@ const Navbar = () => {
   return (
     <>
       <div className="flex flex-row bg-blue-400 justify-between items-center p-2 font-bold text-md text-slate-100">
-        <Link to={routes.questions()}>
-          <img id="logo" src={logo} alt="logo" />
-        </Link>
+        <div className="bg-white rounded-xl p-1 w-12">
+          <Link to={routes.questions()}>
+            <img id="logo" src={logo} alt="logo" />
+          </Link>
+        </div>
         <Link to={routes.forms()}>
           <p>Búa til spurningu</p>
         </Link>
@@ -64,12 +67,12 @@ const Navbar = () => {
               <p onClick={logOut}>Log out</p>
             </div>
           ) : (
-            <div>
+            <div className="flex flex-col justify-items-stretch items-end">
               <Link to={routes.login()}>
                 <p>Log In</p>
               </Link>
               <Link to={routes.signup()}>
-                <p>Sign up</p>
+                <p className="mt-2">Sign up</p>
               </Link>
             </div>
           )}

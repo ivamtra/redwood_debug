@@ -43,6 +43,9 @@ export const Success = ({ notifications }) => {
   // ! Breyta í true þegar búið er að debugga
   const [isBellClicked, setIsBellClicked] = useState(true)
 
+  const bellClickedStyle =
+    'text-white border-slate-500 w-8 h-8 inline cursor-pointer'
+
   const handleBell = () => setIsBellClicked(!isBellClicked)
   useLayoutEffect(() => {
     let counter = 0
@@ -58,13 +61,18 @@ export const Success = ({ notifications }) => {
     setNumberOfUnseen(counter)
     console.log(counter)
   }, [notifications, updateNotification])
+
   return (
     <>
       {/* Bell notification */}
       <div className="p-4 ">
         <IoNotifications
           onClick={handleBell}
-          className="text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer"
+          className={
+            !isBellClicked
+              ? bellClickedStyle
+              : 'text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer'
+          }
         />
         <span
           className={
@@ -83,7 +91,7 @@ export const Success = ({ notifications }) => {
         className={
           isBellClicked
             ? 'hidden'
-            : 'max-h-[300px] max-w-xs overflow-auto absolute right-[270px] top-[100px]'
+            : 'max-h-[300px] max-w-xs overflow-auto absolute right-[270px] top-[100px] z-30'
         }
       >
         <ul>

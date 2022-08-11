@@ -57,8 +57,8 @@ export const Success = ({ notification }) => {
         })}
         onClick={handleNotificationClick}
       >
-        <div className={notification.isSeen ? 'opacity-75' : ''}>
-          <div className="flex-grow max-w-xs shadow-lg p-4 bg-white text-slate-500 border-b-2 hover:bg-blue-100">
+        <div className={notification.isSeen ? 'bg-slate-100' : 'bg-white'}>
+          <div className="flex-grow max-w-xs shadow-lg p-4 text-slate-500 border-b-2 hover:bg-blue-100 z-20">
             <p> {notification.body}</p>
           </div>
         </div>

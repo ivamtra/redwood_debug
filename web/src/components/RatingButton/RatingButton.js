@@ -288,6 +288,10 @@ const RatingButton = ({ type, id, compRating }) => {
     og breytir rating hjá componentum
    */
   const handleCreateMutation = () => {
+    if (!isAuthenticated) {
+      toast.error('Þú verður að vera skráður inn')
+      return
+    }
     const input = {
       userId: currentUser.id,
       action: rating,

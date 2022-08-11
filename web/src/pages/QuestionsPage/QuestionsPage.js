@@ -9,7 +9,7 @@ const QuestionsPage = () => {
     <>
       <MetaTags title="Questions" description="Questions page" />
 
-      <h1>QuestionsPage</h1>
+      {/* <h1>QuestionsPage</h1> */}
 
       <QuestionsCell />
     </>
