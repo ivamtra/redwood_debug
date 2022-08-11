@@ -31,7 +31,7 @@ const Navbar = () => {
   useEffect(() => console.log(data))
   const searchData = useMemo(() => mutateQuestionsForSearch(data), [data])
   useEffect(() => console.log(searchData), [data, searchData])
-  const { currentUser, hasRole, isAuthenticated } = useAuth()
+  const { currentUser, hasRole, isAuthenticated, logOut } = useAuth()
   return (
     <>
       <div className="flex flex-row bg-blue-400 justify-between items-center p-2 font-bold text-md text-slate-100">
@@ -54,20 +54,26 @@ const Navbar = () => {
             Issues
           </p>
         </Link>
+
+        {/* Notifications ættu að koma hér */}
+        <NotificationsCell userId={currentUser?.id} />
         {/* Login/Signup eða Log out */}
         <div className="relative inline">
           {isAuthenticated ? (
-            <div>Log out</div>
+            <div className="cursor-pointer">
+              <p onClick={logOut}>Log out</p>
+            </div>
           ) : (
             <div>
-              <p>Log In</p>
-              <p>Sign up</p>
+              <Link to={routes.login()}>
+                <p>Log In</p>
+              </Link>
+              <Link to={routes.signup()}>
+                <p>Sign up</p>
+              </Link>
             </div>
           )}
         </div>
-      </div>
-      <div className="bg-zinc-200 absolute left-[80%] z-10">
-        <NotificationsCell userId={currentUser?.id} className="right-4" />
       </div>
     </>
   )

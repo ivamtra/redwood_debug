@@ -83,7 +83,7 @@ export const Success = ({ notifications }) => {
         className={
           isBellClicked
             ? 'hidden'
-            : 'max-h-[300px] max-w-xs overflow-auto relative right-[270px]'
+            : 'max-h-[300px] max-w-xs overflow-auto absolute right-[270px] top-[100px]'
         }
       >
         <ul>
