@@ -35,7 +35,7 @@ const Navbar = () => {
   const { currentUser, hasRole, isAuthenticated, logOut } = useAuth()
   return (
     <>
-      <div className="flex flex-row bg-blue-400 justify-between items-center p-2 font-bold text-md text-slate-100">
+      <div className="flex flex-row bg-blue-400 justify-between items-center p-2 font-bold text-md text-slate-100 font-body">
         <div className="bg-white rounded-xl p-1 w-12">
           <Link to={routes.questions()}>
             <img id="logo" src={logo} alt="logo" />
