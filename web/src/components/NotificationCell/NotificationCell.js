@@ -30,7 +30,7 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ notification }) => {
-  useEffect(() => console.log(notification))
+  // useEffect(() => console.log(notification))
   const { currentUser } = useAuth()
   const [updateNotification] = useMutation(UPDATE_NOTIFICATION, {
     query: NotificationsQuery,

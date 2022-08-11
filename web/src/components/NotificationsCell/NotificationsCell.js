@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from 'react'
 
 import { IoNotifications } from 'react-icons/io5'
 
+import { useAuth } from '@redwoodjs/auth'
 import { useMutation } from '@redwoodjs/web'
 
 import { UPDATE_NOTIFICATION } from 'src/customUtils/GraphQLMutations'
@@ -24,9 +25,15 @@ export const Empty = () => (
   </div>
 )
 
-export const Failure = ({ error }) => (
-  <div style={{ color: 'red' }}>Error: {error.message}</div>
-)
+export const Failure = ({ error }) => {
+  const { isAuthenticated } = useAuth()
+  useEffect(() => console.log(isAuthenticated))
+  return (
+    <div className={isAuthenticated ? '' : 'hidden'} style={{ color: 'red' }}>
+      Error: {error.message}
+    </div>
+  )
+}
 
 export const Success = ({ notifications }) => {
   // Refetcha ekki því ég vil að notandi geti séð
@@ -40,7 +47,7 @@ export const Success = ({ notifications }) => {
   useLayoutEffect(() => {
     let counter = 0
     notifications.forEach((element) => {
-      console.log(element)
+      // console.log(element)
       if (!element.isSeen) {
         counter++
         // updateNotification({

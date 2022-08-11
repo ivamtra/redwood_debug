@@ -24,35 +24,21 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error.message}</div>
 )
 
-// Breytir spurningum þannig hægt er að nota searchbar
-const mutateQuestionsForSearch = (questions) => {
-  let returnList = []
-  questions.forEach((item) => {
-    const object = { ...item, key: item.id, value: item.title }
-    returnList.push(object)
-  })
-  return returnList
-}
-
-const onSelect = (item) => {
-  navigate(routes.question({ id: item.item.id }))
-}
-
 export const Success = ({ questions }) => {
-  const searchData = useMemo(
-    () => mutateQuestionsForSearch(questions),
-    [questions]
-  )
-  useEffect(() => console.log(searchData), [questions, searchData])
+  // const searchData = useMemo(
+  //   () => mutateQuestionsForSearch(questions),
+  //   [questions]
+  // )
+  // useEffect(() => console.log(searchData), [questions, searchData])
   return (
     <>
       <div className="pt-4 max-w-md">
-        <ReactSearchBox
+        {/* <ReactSearchBox
           data={searchData}
           onSelect={onSelect}
           placeholder="Leita af orði"
           className="inline"
-        />
+        /> */}
       </div>
       <ul>
         {questions.map((item) => {
