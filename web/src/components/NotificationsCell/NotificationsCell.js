@@ -54,7 +54,7 @@ export const Success = ({ notifications }) => {
   return (
     <>
       {/* Bell notification */}
-      <div className="p-4">
+      <div className="p-4 ">
         <IoNotifications
           onClick={handleBell}
           className="text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer"
@@ -74,7 +74,9 @@ export const Success = ({ notifications }) => {
       {/* Upplýsingarnar */}
       <div
         className={
-          isBellClicked ? 'hidden' : 'max-h-[300px] max-w-xs overflow-auto'
+          isBellClicked
+            ? 'hidden'
+            : 'max-h-[300px] max-w-xs overflow-auto relative right-[270px]'
         }
       >
         <ul>

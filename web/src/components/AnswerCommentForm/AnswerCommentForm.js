@@ -9,6 +9,8 @@ import { toast } from '@redwoodjs/web/dist/toast'
 
 import { QUERY as CommentsQuery } from 'src/components/AnswerCommentsCell/AnswerCommentsCell'
 
+import { QUERY as NotificationsQuery } from '../NotificationsCell/NotificationsCell'
+
 export const CREATE_COMMENT = gql`
   mutation CreateAnswerComment($input: CreateAnswerCommentInput!) {
     createAnswerComment(input: $input) {
@@ -65,13 +67,15 @@ const createReplyBody = (userId, questionId, level) => {
   return 'User með id ' + userId + ' svaraði athugasemd þinni'
 }
 
-const handleRecievingUserId = (level) => {
+const getRecievingUserId = (level) => {
   if (level === 1) {
     // Hér er gerð athugasemd við spurningu
   } else {
     // Hér er gerð athugasemd við svar
   }
 }
+
+let recievingUserId
 
 const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
   useEffect(() => {
@@ -83,7 +87,12 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
   })
   const { id: paramQuestionId } = useParams()
   const [hasPosted, setHasPosted] = useState(false)
-  const [createNotification] = useMutation(CREATE_NOTIFICATION)
+  const [createNotification] = useMutation(CREATE_NOTIFICATION, {
+    refetchQueries: {
+      query: NotificationsQuery,
+      variables: { userId: recievingUserId },
+    },
+  })
   const [createComment] = useMutation(CREATE_COMMENT, {
     onCompleted: () => {
       setHasPosted(true)
@@ -131,7 +140,6 @@ const AnswerCommentForm = ({ parentId, answerId, questionId }) => {
       // Hversu djúpt nestað commentið er
       const level = res.data.createAnswerComment.level
 
-      let recievingUserId
       // Hérna er verið að svara athugasemd
       if (level !== 1) {
         recievingUserId = parentData.answerComment.user.id // Id hjá viðtakanda

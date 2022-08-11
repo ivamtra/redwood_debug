@@ -1,7 +1,12 @@
+import { useEffect } from 'react'
+
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 
 import { UPDATE_NOTIFICATION } from 'src/customUtils/GraphQLMutations'
+
+import { QUERY as NotificationsQuery } from '../NotificationsCell/NotificationsCell'
 export const QUERY = gql`
   query FindNotificationQuery($id: Int!) {
     notification: notification(id: $id) {
@@ -25,7 +30,14 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ notification }) => {
-  const [updateNotification] = useMutation(UPDATE_NOTIFICATION)
+  useEffect(() => console.log(notification))
+  const { currentUser } = useAuth()
+  const [updateNotification] = useMutation(UPDATE_NOTIFICATION, {
+    query: NotificationsQuery,
+    variables: {
+      userId: currentUser?.id,
+    },
+  })
 
   const handleNotificationClick = () => {
     if (!notification.isSeen) {

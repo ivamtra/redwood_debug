@@ -5,6 +5,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { Head } from '@redwoodjs/web'
 import { Toaster } from '@redwoodjs/web/dist/toast'
 
+import Navbar from 'src/components/Navbar/Navbar'
 import UserCell from 'src/components/UserCell/UserCell'
 
 const TestLayout = ({ children, user }) => {
@@ -12,6 +13,7 @@ const TestLayout = ({ children, user }) => {
 
   return (
     <>
+      <Navbar />
       {/* Breyta FavIcon hérna */}
       <Head className="bg-slate-600">
         <link rel="icon" type="image/png" href="pied-piper.png" />
@@ -19,9 +21,6 @@ const TestLayout = ({ children, user }) => {
       {/* Breyta FavIcon hérna */}
 
       <Toaster />
-      <div className="bg-white">
-        <img src="snack.png" alt="Logo" />
-      </div>
       <div className="bg-zinc-200 pt-[96px] flex h-max">
         <div className="flex flex-col w-1/6 items-center">
           <p className="">Left Sidebar</p>
