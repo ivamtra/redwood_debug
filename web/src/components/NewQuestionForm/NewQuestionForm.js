@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form, TextField } from '@redwoodjs/forms'
@@ -228,7 +228,9 @@ const NewQuestionForm = () => {
                 />
               </div>
               <div className="order-2">
-                <Submit>Submit</Submit>
+                <Submit className=" bg-green-400 py-2 px-4 text-sm text-white rounded-lg ">
+                  Submit
+                </Submit>
               </div>
             </div>
           </Form>
@@ -239,13 +241,18 @@ const NewQuestionForm = () => {
           <hr />
           {list.map((item) => (
             <div className="flex gap-2 relative flex-wrap" key={item.listIndex}>
-              <p>Setning {item.listIndex}</p>
+              <p>Setning {item.listIndex + 1}</p>
               <input
                 placeholder={'sentence ' + (item.listIndex + 1)}
                 name={item.listIndex}
                 onChange={onChange}
               />
-              <button onClick={addSentence}>+</button>
+              <button
+                className={listIndex === item.listIndex + 1 ? '' : 'hidden'}
+                onClick={addSentence}
+              >
+                +
+              </button>
             </div>
           ))}
         </div>
