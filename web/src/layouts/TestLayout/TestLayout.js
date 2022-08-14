@@ -21,7 +21,7 @@ const TestLayout = ({ children, user }) => {
       {/* Breyta FavIcon hérna */}
 
       <Toaster />
-      <div className="bg-zinc-200 pt-[96px] flex h-max font-body">
+      <div className="bg-[#e6f3ff] pt-[96px] flex h-max font-body">
         <div className="flex flex-col w-1/6 align-middle justify-between items-center">
           <p>Left Sidebar</p>
           <p>Content</p>

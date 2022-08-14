@@ -19,11 +19,23 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => (
-  <div>
-    <IoNotifications className="text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer" />
-  </div>
-)
+export const Empty = () => {
+  const [isBellClicked, setIsBellClicked] = useState(true)
+  const handleClick = () => setIsBellClicked(!isBellClicked)
+  return (
+    <div>
+      <IoNotifications
+        onClick={handleClick}
+        className="text-[#ffd700] border-slate-500 w-8 h-8 inline cursor-pointer"
+      />
+      <div className="max-h-[300px] max-w-xs overflow-auto absolute right-[200px] top-[50px] z-30">
+        <div className={isBellClicked ? 'hidden' : ''}>
+          <NotificationCell id={0} />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export const Failure = ({ error }) => {
   const { isAuthenticated } = useAuth()

@@ -187,28 +187,71 @@ const NewQuestionForm = () => {
     console.log(questionCreatedPromise)
   }
   return (
-    <div>
-      <Form onSubmit={onSubmit}>
-        <TextField placeholder="title" name="title" /> <br />
-        <TextField placeholder="language" name="language" /> <br />
-        <TextField placeholder="definition" name="definition" /> <br />
-        <TextField placeholder="other_info" name="other_info" /> <br />
-        <Submit>Submit</Submit>
-      </Form>
-      {/*Setningar verða að vera hérna því plús takkinn kallar á onSubmit */}
-      <div>
-        {list.map((item) => (
-          <div key={item.listIndex}>
-            <input
-              placeholder={'sentence ' + listIndex}
-              name={item.listIndex}
-              onChange={onChange}
-            />
-            <button onClick={addSentence}>+</button>
-          </div>
-        ))}
+    <>
+      {/* flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white text-slate-500 */}
+      <div className="flex shadow-lg gap-5 bg-white text-slate-500 p-5 rounded-lg border-2 font-bold text-xl max-w-[700px]">
+        <div className="flex flex-col self-center">
+          <h1 className=" self-center pb-2">Upplýsingar um spurningu</h1>
+          <hr />
+          <Form onSubmit={onSubmit}>
+            <div className="flex flex-col items-end gap-2">
+              <div className="flex flex-row gap-2">
+                <p>Titill </p>
+                <TextField
+                  className="block"
+                  placeholder="Titill"
+                  name="title"
+                />
+              </div>
+              <div className="flex flex-row gap-2">
+                <p>Tungumál</p>
+                <TextField
+                  className="block"
+                  placeholder="language"
+                  name="language"
+                />
+              </div>
+              <div className="flex flex-row gap-2">
+                <p>Skilgreining</p>
+                <TextField
+                  className="block"
+                  placeholder="definition"
+                  name="definition"
+                />
+              </div>
+              <div className="flex flex-row gap-2">
+                <p>Aðrar upplýsingar</p>
+                <TextField
+                  className="block"
+                  placeholder="other_info"
+                  name="other_info"
+                />
+              </div>
+              <div className="order-2">
+                <Submit>Submit</Submit>
+              </div>
+            </div>
+          </Form>
+        </div>
+        {/*Setningar verða að vera hérna því plús takkinn kallar á onSubmit */}
+        <div className="flex flex-col gap-2 flex-wrap">
+          <h1 className="self-center pb-2">Setningar</h1>
+          <hr />
+          {list.map((item) => (
+            <div className="flex gap-2 relative flex-wrap" key={item.listIndex}>
+              <p>Setning {listIndex}</p>
+              <input
+                placeholder={'sentence ' + listIndex}
+                name={item.listIndex}
+                onChange={onChange}
+              />
+              <button onClick={addSentence}>+</button>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+      <div className="h-[100vh] bg-[#e6f3ff]"></div>
+    </>
   )
 }
 
