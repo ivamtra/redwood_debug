@@ -239,9 +239,9 @@ const NewQuestionForm = () => {
           <hr />
           {list.map((item) => (
             <div className="flex gap-2 relative flex-wrap" key={item.listIndex}>
-              <p>Setning {listIndex}</p>
+              <p>Setning {item.listIndex}</p>
               <input
-                placeholder={'sentence ' + listIndex}
+                placeholder={'sentence ' + (item.listIndex + 1)}
                 name={item.listIndex}
                 onChange={onChange}
               />
