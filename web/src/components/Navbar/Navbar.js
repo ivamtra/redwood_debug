@@ -44,7 +44,7 @@ const Navbar = () => {
         <Link to={routes.forms()}>
           <p>Búa til spurningu</p>
         </Link>
-        <div className="w-1/3 relative">
+        <div className="w-1/3 absolute left-[33%] top-4">
           <ReactSearchBox
             placeholder="Leita af orði"
             className="inline"

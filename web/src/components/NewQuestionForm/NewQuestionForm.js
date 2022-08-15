@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import { useAuth } from '@redwoodjs/auth'
 import { Submit, Form, TextField } from '@redwoodjs/forms'
@@ -39,8 +39,6 @@ export const UPDATE_USER = gql`
   }
 `
 
-//---------------- React Component ----------------------------------
-
 // Handle new User
 // Tekur inn currentUser
 export const handleNewUser = (user) => {
@@ -55,10 +53,14 @@ export const handleNewUser = (user) => {
   toast.error('Try again in ' + timeRemainingInMinutes + ' minutes')
 }
 
+//---------------- React Component ----------------------------------
+
 const NewQuestionForm = () => {
   const [createQuestion] = useMutation(CREATE_QUESTION, {
     onCompleted: () => toast.success('Question Created'),
   })
+  const sentenceDiv = useRef()
+  useEffect(() => console.log(sentenceDiv))
   const [createSentence] = useMutation(CREATE_SENTENCE)
   const { currentUser } = useAuth()
   const [textValue, setTextValue] = useState('')
@@ -189,12 +191,16 @@ const NewQuestionForm = () => {
   return (
     <>
       {/* flex-grow max-w-[700px] shadow-lg p-4 rounded-lg bg-white text-slate-500 */}
-      <div className="flex shadow-lg gap-5 bg-white text-slate-500 p-5 rounded-lg border-2 font-bold text-xl max-w-[700px]">
-        <div className="flex flex-col self-center">
+      <div
+        className={
+          'flex shadow-lg gap-5 bg-white text-slate-500 p-5 rounded-lg border-2 font-bold text-xl max-w-[720px]'
+        }
+      >
+        <div className="flex flex-col items-stretch h-full flex-grow basis-auto">
           <h1 className=" self-center pb-2">Upplýsingar um spurningu</h1>
           <hr />
           <Form onSubmit={onSubmit}>
-            <div className="flex flex-col items-end gap-2">
+            <div className="flex flex-col items-start justify-between gap-2 flex-grow basis-auto">
               <div className="flex flex-row gap-2">
                 <p>Titill </p>
                 <TextField
@@ -236,25 +242,30 @@ const NewQuestionForm = () => {
           </Form>
         </div>
         {/*Setningar verða að vera hérna því plús takkinn kallar á onSubmit */}
-        <div className="flex flex-col gap-2 flex-wrap">
+        <div ref={sentenceDiv} className="flex flex-col flex-wrap">
           <h1 className="self-center pb-2">Setningar</h1>
           <hr />
-          {list.map((item) => (
-            <div className="flex gap-2 relative flex-wrap" key={item.listIndex}>
-              <p>Setning {item.listIndex + 1}</p>
-              <input
-                placeholder={'sentence ' + (item.listIndex + 1)}
-                name={item.listIndex}
-                onChange={onChange}
-              />
-              <button
-                className={listIndex === item.listIndex + 1 ? '' : 'hidden'}
-                onClick={addSentence}
+          <div className="gap-2 flex flex-col flex-wrap">
+            {list.map((item) => (
+              <div
+                className="flex gap-2 relative flex-wrap"
+                key={item.listIndex}
               >
-                +
-              </button>
-            </div>
-          ))}
+                <p>Setning {item.listIndex + 1}</p>
+                <input
+                  placeholder={'sentence ' + (item.listIndex + 1)}
+                  name={item.listIndex}
+                  onChange={onChange}
+                />
+                <button
+                  className={listIndex === item.listIndex + 1 ? '' : 'hidden'}
+                  onClick={addSentence}
+                >
+                  +
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className="h-[100vh] bg-[#e6f3ff]"></div>
