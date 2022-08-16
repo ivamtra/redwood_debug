@@ -44,7 +44,8 @@ const Navbar = () => {
         <Link to={routes.forms()}>
           <p>Búa til spurningu</p>
         </Link>
-        <div className="w-1/3 absolute left-[33%] top-4">
+        <div className="w-1/3"></div> {/*Býr til pláss fyrir seachbar */}
+        <div className="w-1/3 absolute left-[33%] top-4 z-10">
           <ReactSearchBox
             placeholder="Leita af orði"
             className="inline"
@@ -57,11 +58,10 @@ const Navbar = () => {
             Issues
           </p>
         </Link>
-
         {/* Notifications ættu að koma hér */}
         <NotificationsCell userId={currentUser?.id} />
         {/* Login/Signup eða Log out */}
-        <div className="relative inline">
+        <div className="relative inline right-2">
           {isAuthenticated ? (
             <div className="cursor-pointer">
               <p onClick={logOut}>Log out</p>

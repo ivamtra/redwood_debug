@@ -50,6 +50,7 @@ const TestLayout = ({ children, user }) => {
             <br />
             <Link to={routes.issues()}>Issues </Link>
           </h2> */}
+          <p>Current user: {currentUser?.email}</p>
           <main>{children}</main>
         </div>
         <div className="flex flex-col w-1/6 justify-between items-center">
