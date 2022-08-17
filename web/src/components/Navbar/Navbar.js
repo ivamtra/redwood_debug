@@ -7,7 +7,6 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useQuery } from '@redwoodjs/web'
 
 import logo from '../../../public/pied-piper-transparent.png'
-import OJ from '../../../public/snack-dick.png'
 import NotificationsCell from '../NotificationsCell/NotificationsCell'
 import { QUERY as QuestionsQuery } from '../QuestionsCell/QuestionsCell'
 

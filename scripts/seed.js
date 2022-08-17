@@ -31,6 +31,20 @@ export default async () => {
         hashedPassword: 'asdasdjkasdffasdjk',
         salt: 'ASDA',
       },
+      {
+        id: 3,
+        email: 'admin',
+        hashedPassword:
+          'd0837ca0bdadc1d10c793292a5440b840a4cfbaf6e37da0c675f2fc9a2497107',
+        salt: '20673fcd6c9c813ee3a037da0809fb3f',
+      },
+      {
+        id: 4,
+        email: 'moderator',
+        hashedPassword:
+          '653b6a461d86c070381dc773bc8dc5e9c14108b5267fbec0ec7615a94f7c29a0',
+        salt: 'db4cca0d8840b936efc83189d3569410',
+      },
     ]
     // --------- QUESTION ------------------------------------------------------
     const questionData = [
