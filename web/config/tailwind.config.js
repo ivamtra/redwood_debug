@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         body: ['Jost'],
       },
+      // HÍ Litir
       colors: {
         blar: '#10099F',
         blagraenn: '#2DD2C0',

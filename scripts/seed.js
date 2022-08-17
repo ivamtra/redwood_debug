@@ -25,7 +25,12 @@ export default async () => {
           'f01d1e7dc3eff50d1addc98cd59197d9b65833495704f8083a8eb3994630f41e',
         salt: 'b8c776ee8e770532d01c1a913bf69553',
       },
-      {id: 2, email: 'test', hashedPassword: 'asdasdjkasdffasdjk', salt: 'ASDA' },
+      {
+        id: 2,
+        email: 'test',
+        hashedPassword: 'asdasdjkasdffasdjk',
+        salt: 'ASDA',
+      },
     ]
     // --------- QUESTION ------------------------------------------------------
     const questionData = [
@@ -36,7 +41,7 @@ export default async () => {
         definition: 'Placeholder',
         userId: 0,
         rating: 0,
-        isHidden: true
+        isHidden: true,
       },
       {
         id: 1,
@@ -57,7 +62,7 @@ export default async () => {
         userId: 0,
         questionId: 0,
         rating: 0,
-        isHidden: true
+        isHidden: true,
       },
       {
         id: 5,
@@ -81,8 +86,7 @@ export default async () => {
         questionId: 0,
         level: 0,
         rating: 0,
-        isHidden: true
-
+        isHidden: true,
       },
       {
         id: 1,
@@ -104,7 +108,7 @@ export default async () => {
 
     // Note: if using PostgreSQL, using `createMany` to insert multiple records is much faster
     // @see: https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#createmany
- /*    Promise.all(
+    /*    Promise.all(
       //
       // Change to match your data model and seeding needs
       //
@@ -132,42 +136,42 @@ export default async () => {
         })
       })
  */
-     for (const user of userData) {
-       await db.user.upsert({
-         where: { id: user.id },
-         create:  user ,
-         update: {},
-       })
+    for (const user of userData) {
+      await db.user.upsert({
+        where: { id: user.id },
+        create: user,
+        update: {},
+      })
 
-       console.log(`  Seeded "${user.email}"`)
-     }
-     for (const question of questionData) {
-       await db.question.upsert({
-         where: { id: question.id },
-         create:  question,
-         update: {},
-       })
+      console.log(`  Seeded "${user.email}"`)
+    }
+    for (const question of questionData) {
+      await db.question.upsert({
+        where: { id: question.id },
+        create: question,
+        update: {},
+      })
 
-       console.log(`  Seeded "${question.title}"`)
-     }
-     for (const answer of answerData) {
-       await db.answer.upsert({
-         where: { id: answer.id },
-         create:  answer ,
-         update: {},
-       })
+      console.log(`  Seeded "${question.title}"`)
+    }
+    for (const answer of answerData) {
+      await db.answer.upsert({
+        where: { id: answer.id },
+        create: answer,
+        update: {},
+      })
 
-       console.log(`  Seeded "${answer.id}"`)
-     }
-     for (const answerComment of commentData) {
-       await db.answerComment.upsert({
-         where: { id: answerComment.id },
-         create:  answerComment ,
-         update: {},
-       })
+      console.log(`  Seeded "${answer.id}"`)
+    }
+    for (const answerComment of commentData) {
+      await db.answerComment.upsert({
+        where: { id: answerComment.id },
+        create: answerComment,
+        update: {},
+      })
 
-       console.log(`  Seeded "${answerComment.id}"`)
-     }
+      console.log(`  Seeded "${answerComment.id}"`)
+    }
   } catch (error) {
     console.warn('Please define your seed data.')
     console.error(error)
