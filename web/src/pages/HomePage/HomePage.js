@@ -1,4 +1,6 @@
-import { Link, routes } from '@redwoodjs/router'
+import { useEffect } from 'react'
+
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import AnswerCell from 'src/components/AnswerCell/AnswerCell'
@@ -7,6 +9,7 @@ import FlagButton from 'src/components/FlagButton/FlagButton'
 import NewQuestionForm from 'src/components/NewQuestionForm/NewQuestionForm'
 
 const HomePage = () => {
+  useEffect(() => navigate(routes.questions()))
   return (
     <>
       <MetaTags title="Test" description="Home page" />

@@ -23,7 +23,7 @@ const Routes = () => {
         <Route path="/comment-test" page={CommentTestPage} name="commentTest" />
         <Route path="/question/{id:Int}" page={QuestionPage} name="question" />
         <Route path="/questions" page={QuestionsPage} name="questions" />
-        <Route path="/test" page={HomePage} name="test" />
+        <Route path="/" page={HomePage} name="home" />
         <Route path="/forms" page={FormsPage} name="forms" />
       </Set>
       <Route path="/login" page={LoginPage} name="login" />
