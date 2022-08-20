@@ -32,7 +32,7 @@ Keyrðu nú
 yarn rw dev
 `````
 til að opna dev serverinn. <br>
-Hann ætti að opnast sjálfkrafa í <a>localhost:8910</a>
+Hann ætti að opnast sjálfkrafa í <a href="localhost:8910">localhost:8910</a>
 ## 4
 Ef þessi villa kemur:
 
