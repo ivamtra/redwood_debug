@@ -59,4 +59,4 @@ Hægt er að keyra
 ````
 yarn rw prisma studio
 `````
-til að skoða gagnagrunninn. Skipunin ætti að opna slóð í <a>localhost:5555</a> þar sem hægt er að skoða gögnin.
+til að skoða gagnagrunninn. Skipunin ætti að opna slóð í <a href="localhost:5555">localhost:5555</a> þar sem hægt er að skoða gögnin.
