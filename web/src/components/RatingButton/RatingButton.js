@@ -466,7 +466,7 @@ const RatingButton = ({ type, id, compRating }) => {
               <BiUpArrow color={UIrating === 1 ? 'red' : ''} />
             </div>
           </Submit>
-          <p className="">{compRating}</p>
+          <p className="text-center">{compRating}</p>
           <Submit onClick={downvoteClick}>
             <div className="hover:scale-125 cursor-pointer">
               <BiDownArrow color={UIrating === -1 ? '#2a8af7' : ''} />
