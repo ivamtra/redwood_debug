@@ -1,5 +1,9 @@
 ## README
 
+# Heimasíða fyrir íslensk nýyrði
+
+<img src="./web/public/heimasida.png">
+
 
 # Uppsetning á síðunni
 ### Forkröfur:

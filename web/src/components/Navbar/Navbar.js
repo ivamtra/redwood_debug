@@ -34,8 +34,8 @@ const Navbar = () => {
   const { currentUser, hasRole, isAuthenticated, logOut } = useAuth()
   return (
     <>
-      <div className="flex flex-row bg-blar justify-between items-center font-bold text-md text-slate-100 font-body shadow-lg shadow-white">
-        <div className="bg-white rounded-xl p-1 w-12 relative left-2">
+      <div className="flex flex-row bg-blar justify-around items-center font-bold text-md text-slate-100 font-body shadow-lg shadow-white p-2 ">
+        <div className="bg-white rounded-xl p-1 w-12 relative left-2 ">
           <Link to={routes.questions()}>
             <img id="logo" src={logo} alt="logo" />
           </Link>
@@ -44,7 +44,7 @@ const Navbar = () => {
           <p>Búa til spurningu</p>
         </Link>
         <div className="w-1/3"></div> {/*Býr til pláss fyrir seachbar */}
-        <div className="w-1/3 absolute left-[33%] top-4 z-10">
+        <div className="w-1/3 absolute left-[33%]  z-10">
           <ReactSearchBox
             placeholder="Leita af orði"
             className="inline"

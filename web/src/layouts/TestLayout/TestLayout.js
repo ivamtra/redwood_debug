@@ -21,9 +21,9 @@ const TestLayout = ({ children, user }) => {
       {/* Breyta FavIcon hérna */}
 
       <Toaster />
-      <div className=" pt-[96px] flex h-max font-body bg-grar">
+      <div className=" pt-1 flex h-max font-body bg-grar">
         <div className="flex flex-col w-1/6 align-middle justify-between items-center">
-          <p>Left Sidebar</p>
+          <p> </p>
           <p>Content</p>
           <p>Content</p>
         </div>
@@ -50,11 +50,10 @@ const TestLayout = ({ children, user }) => {
             <br />
             <Link to={routes.issues()}>Issues </Link>
           </h2> */}
-          <p>Current user: {currentUser?.email}</p>
           <main>{children}</main>
         </div>
         <div className="flex flex-col w-1/6 justify-between items-center">
-          <p>Right Sidebar</p>
+          <p></p>
           <p>Content</p>
           <p>Content</p>
         </div>
